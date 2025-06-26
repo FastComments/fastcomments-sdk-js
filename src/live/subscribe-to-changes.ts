@@ -9,7 +9,6 @@ export interface SubscribeToChangesConfig {
     tenantId: string;
     urlId: string;
     apiHost?: string;
-    usePolling?: boolean;
     wsHost?: string;
 }
 
@@ -17,8 +16,6 @@ interface GetEventLogResponse {
     events?: Array<EventLogEntry>;
     status: string;
 }
-
-const SUBSCRIBE_TO_CHANGES_DEBOUNCE = 100;
 
 export default function subscribeToChanges(
     config: SubscribeToChangesConfig,
@@ -55,7 +52,7 @@ export default function subscribeToChanges(
 
                         if (!isAPIError(response) && response.events) {
                             const eventsParsed: LiveEvent[] = response.events.map(event => JSON.parse(event.data) as LiveEvent);
-                            
+
                             for (const eventDataParsed of eventsParsed) {
                                 if (eventDataParsed.timestamp) {
                                     lastLiveEventTime = Math.max(lastLiveEventTime!, eventDataParsed.timestamp);
@@ -79,58 +76,30 @@ export default function subscribeToChanges(
             });
         }
 
-        if (config.usePolling) {
-            if (!lastLiveEventTime) {
-                lastLiveEventTime = Date.now();
+        const wsHost = config.wsHost || 'wss://fastcomments.com';
+        const socket = new (globalThis as any).WebSocket(wsHost + '/sub' + createURLQueryString({
+            urlId: urlIdWS,
+            userIdWS,
+            tenantIdWS
+        }));
+
+        socket.onopen = function () {
+            if (isIntentionallyClosed) {
+                return;
             }
 
-            async function pollNext(): Promise<void> {
-                if (!isIntentionallyClosed) {
-                    await fetchEventLog(lastLiveEventTime!, Date.now());
-                    timeNext();
+            setInterval(() => {
+                if (socket.readyState === 1) { // WebSocket.OPEN
+                    socket.send('ping');
                 }
+            }, 60000);
+
+            if (lastLiveEventTime) {
+                fetchEventLog(lastLiveEventTime, Date.now());
             }
 
-            function timeNext(): void {
-                if (!isIntentionallyClosed) {
-                    setTimeout(() => {
-                        pollNext();
-                    }, 2000);
-                }
-            }
-
-            timeNext();
-
-            return {
-                close: function () {
-                    isIntentionallyClosed = true;
-                }
-            };
-        } else {
-            const wsHost = config.wsHost || 'wss://fastcomments.com';
-            const socket = new (globalThis as any).WebSocket(wsHost + '/sub' + createURLQueryString({
-                urlId: urlIdWS,
-                userIdWS,
-                tenantIdWS
-            }));
-
-            socket.onopen = function () {
-                if (isIntentionallyClosed) {
-                    return;
-                }
-                
-                setInterval(() => {
-                    if (socket.readyState === 1) { // WebSocket.OPEN
-                        socket.send('ping');
-                    }
-                }, 60000);
-
-                if (lastLiveEventTime) {
-                    fetchEventLog(lastLiveEventTime, Date.now());
-                }
-                
-                onConnectionStatusChange && onConnectionStatusChange(true, lastLiveEventTime);
-            };
+            onConnectionStatusChange && onConnectionStatusChange(true, lastLiveEventTime);
+        };
 
             socket.onerror = function () {
                 if (lastLiveEventTime) {
@@ -144,7 +113,7 @@ export default function subscribeToChanges(
                 if (!lastLiveEventTime) {
                     lastLiveEventTime = Date.now();
                 }
-                
+
                 if (!isIntentionallyClosed) {
                     onConnectionStatusChange && onConnectionStatusChange(false, lastLiveEventTime);
                     setTimeout(() => {
@@ -157,7 +126,7 @@ export default function subscribeToChanges(
                 if (isIntentionallyClosed) {
                     return;
                 }
-                
+
                 const eventDataParsed: LiveEvent = JSON.parse(event.data) as LiveEvent;
                 if (eventDataParsed.timestamp) {
                     lastLiveEventTime = Math.max(lastLiveEventTime!, eventDataParsed.timestamp);
