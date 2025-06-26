@@ -1,0 +1,56 @@
+{
+  "name": "@fastcomments/fastcomments-sdk",
+  "version": "0.0.1",
+  "description": "FastComments API Client - A SDK for interacting with the FastComments API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run generate && npm run compile",
+    "compile": "tsc",
+    "generate": "npm run clean:generated && ./scripts/update.sh",
+    "clean:generated": "rm -rf src/generated",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "publish:npm": "./scripts/publish.sh",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "fastcomments",
+    "api",
+    "sdk",
+    "comments",
+    "typescript",
+    "nodejs"
+  ],
+  "author": "FastComments <support@fastcomments.com>",
+  "license": "MIT",
+  "homepage": "https://fastcomments.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastcomments/fastcomments-sdk-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fastcomments/fastcomments-sdk-js/issues"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.12",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
