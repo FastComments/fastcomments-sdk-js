@@ -90,24 +90,30 @@ FastComments supports SSO to integrate with your existing user authentication sy
 Simple SSO can be implemented client-side but offers less security:
 
 ```typescript
-import { PublicApi } from '@fastcomments/fastcomments-sdk';
+import { FastCommentsSSO, PublicApi } from '@fastcomments/fastcomments-sdk';
 
-// Create simple SSO payload (client-side)
-const ssoUserData = {
+// Create simple SSO using the built-in helper
+const userData = {
   username: 'john_doe',
   email: 'john@example.com',
+  displayName: 'John Doe',
   avatar: 'https://example.com/avatar.jpg'
 };
 
-const ssoPayload = btoa(JSON.stringify(ssoUserData));
+const sso = FastCommentsSSO.createSimple(userData, {
+  loginURL: '/login',
+  logoutURL: '/logout'
+});
 
+const ssoToken = sso.createToken();
+
+// Use with API calls  
 const publicApi = new PublicApi();
-
-// Use SSO with public API
 const response = await publicApi.getCommentsPublic({
   tenantId: 'your-tenant-id',
-  urlId: 'page-url-id',
-  sso: ssoPayload
+  urlId: 'page-url-id'
+  // Note: Simple SSO would typically be used with widget integration,
+  // not direct API calls
 });
 ```
 
@@ -116,46 +122,32 @@ const response = await publicApi.getCommentsPublic({
 Secure SSO should be implemented server-side and provides better security:
 
 ```typescript
-import { DefaultApi, Configuration } from '@fastcomments/fastcomments-sdk';
-import crypto from 'crypto';
+import { FastCommentsSSO, PublicApi } from '@fastcomments/fastcomments-sdk';
 
-// Server-side SSO payload creation
-function createSecureSSO(apiKey: string, userData: any): string {
-  const payload = {
-    id: userData.id,
-    email: userData.email,
-    username: userData.username,
-    avatar: userData.avatar,
-    timestamp: Date.now()
-  };
-  
-  const encodedPayload = btoa(JSON.stringify(payload));
-  const signature = crypto
-    .createHmac('sha256', apiKey)
-    .update(encodedPayload)
-    .digest('hex');
-  
-  return `${encodedPayload}.${signature}`;
-}
-
-// Usage
-const config = new Configuration({ apiKey: 'your-api-key' });
-const defaultApi = new DefaultApi(config);
-
+// Create secure SSO using the built-in helper
 const userData = {
   id: 'user-123',
   email: 'john@example.com',
   username: 'john_doe',
-  avatar: 'https://example.com/avatar.jpg'
+  displayName: 'John Doe',
+  avatar: 'https://example.com/avatar.jpg',
+  isAdmin: false,
+  isModerator: false
 };
 
-const ssoToken = createSecureSSO('your-api-key', userData);
+const sso = FastCommentsSSO.createSecure('your-api-key', userData, {
+  loginURL: '/login',
+  logoutURL: '/logout'
+});
+
+const ssoConfig = sso.prepareToSend();
 
 // Use with API calls
-const response = await defaultApi.getComments({
+const publicApi = new PublicApi();
+const response = await publicApi.getCommentsPublic({
   tenantId: 'your-tenant-id',
   urlId: 'page-url-id',
-  sso: ssoToken
+  sso: JSON.stringify(ssoConfig)
 });
 ```
 
@@ -163,13 +155,21 @@ const response = await defaultApi.getComments({
 
 ```typescript
 // Create a comment with SSO authentication
+const sso = FastCommentsSSO.createSecure('your-api-key', userData);
+const ssoConfig = sso.prepareToSend();
+
 const response = await publicApi.createCommentPublic({
-  createCommentParams: {
-    tenantId: 'your-tenant-id',
-    urlId: 'page-url-id',
+  tenantId: 'your-tenant-id',
+  urlId: 'page-url-id',
+  broadcastId: 'unique-broadcast-id',
+  commentData: {
     comment: 'This is my comment',
-    sso: ssoToken
-  }
+    date: Date.now(),
+    commenterName: 'John Doe',
+    url: 'https://example.com/page',
+    urlId: 'page-url-id'
+  },
+  sso: JSON.stringify(ssoConfig)
 });
 ```
 

@@ -6,6 +6,9 @@ export { Configuration, ConfigurationParameters } from './generated/configuratio
 // Re-export commonly used types and classes for convenience
 export { DefaultApi, PublicApi, HiddenApi } from './generated/api';
 
+// Export SSO functionality
+export * from './sso';
+
 // Export a default factory function for easy initialization
 import { DefaultApi, PublicApi, HiddenApi } from './generated/api';
 import { Configuration } from './generated/configuration';

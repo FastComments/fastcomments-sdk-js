@@ -53,6 +53,48 @@ npm run lint
 npm run format
 ```
 
+## Testing
+
+### Setup Test Environment
+
+Copy the example environment file and fill in your test credentials:
+
+```bash
+cp .env.example .env
+# Edit .env with your test credentials
+```
+
+Required environment variables for testing:
+- `FASTCOMMENTS_API_KEY` - Your FastComments API key
+- `FASTCOMMENTS_TENANT_ID` - Your FastComments tenant ID
+- `FASTCOMMENTS_BASE_URL` - Base URL (optional, defaults to https://fastcomments.com)
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run only unit tests
+npx jest src/__tests__/sso.test.ts
+
+# Run only integration tests (requires environment variables)
+npx jest src/__tests__/sso.integration.test.ts
+```
+
+### Test Environment Variables
+
+Tests use environment variables via the type-safe `src/__tests__/env.ts` file:
+
+```typescript
+import { API_KEY, TENANT_ID, BASE_URL } from './env';
+```
+
+This provides:
+- Type safety for environment variable access
+- Clear error messages for missing required variables
+- Centralized configuration for all tests
+
 ## Publishing
 
 ### Prerequisites
