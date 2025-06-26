@@ -101,46 +101,45 @@ export default function subscribeToChanges(
             onConnectionStatusChange && onConnectionStatusChange(true, lastLiveEventTime);
         };
 
-            socket.onerror = function () {
-                if (lastLiveEventTime) {
-                    setTimeout(() => {
-                        fetchEventLog(lastLiveEventTime!, Date.now());
-                    }, 30000 * Math.random());
-                }
-            };
+        socket.onerror = function () {
+            if (lastLiveEventTime) {
+                setTimeout(() => {
+                    fetchEventLog(lastLiveEventTime!, Date.now());
+                }, 30000 * Math.random());
+            }
+        };
 
-            socket.onclose = function () {
-                if (!lastLiveEventTime) {
-                    lastLiveEventTime = Date.now();
-                }
+        socket.onclose = function () {
+            if (!lastLiveEventTime) {
+                lastLiveEventTime = Date.now();
+            }
 
-                if (!isIntentionallyClosed) {
-                    onConnectionStatusChange && onConnectionStatusChange(false, lastLiveEventTime);
-                    setTimeout(() => {
-                        subscribeToChanges(config, tenantIdWS, urlIdWS, userIdWS, handleLiveEvent, onConnectionStatusChange, lastLiveEventTime);
-                    }, 4000 * Math.random());
-                }
-            };
+            if (!isIntentionallyClosed) {
+                onConnectionStatusChange && onConnectionStatusChange(false, lastLiveEventTime);
+                setTimeout(() => {
+                    subscribeToChanges(config, tenantIdWS, urlIdWS, userIdWS, handleLiveEvent, onConnectionStatusChange, lastLiveEventTime);
+                }, 4000 * Math.random());
+            }
+        };
 
-            socket.onmessage = function (event: MessageEvent) {
-                if (isIntentionallyClosed) {
-                    return;
-                }
+        socket.onmessage = function (event: MessageEvent) {
+            if (isIntentionallyClosed) {
+                return;
+            }
 
-                const eventDataParsed: LiveEvent = JSON.parse(event.data) as LiveEvent;
-                if (eventDataParsed.timestamp) {
-                    lastLiveEventTime = Math.max(lastLiveEventTime!, eventDataParsed.timestamp);
-                }
-                handleLiveEvent(eventDataParsed);
-            };
+            const eventDataParsed: LiveEvent = JSON.parse(event.data) as LiveEvent;
+            if (eventDataParsed.timestamp) {
+                lastLiveEventTime = Math.max(lastLiveEventTime!, eventDataParsed.timestamp);
+            }
+            handleLiveEvent(eventDataParsed);
+        };
 
-            return {
-                close: function () {
-                    isIntentionallyClosed = true;
-                    socket && socket.close();
-                }
-            };
-        }
+        return {
+            close: function () {
+                isIntentionallyClosed = true;
+                socket && socket.close();
+            }
+        };
     } catch (e) {
         console.error(e);
         return {
