@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import crypto from 'crypto';
 import { 
   FastCommentsSSO, 
@@ -50,11 +51,11 @@ describe('FastComments SSO', () => {
       const builder = new SecureSSOPayloadBuilder(API_KEY, mockSecureUser);
       const payload = builder.getPayload();
 
-      expect(payload).toBeDefined();
-      expect(payload.userDataJSONBase64).toBeDefined();
-      expect(payload.verificationHash).toBeDefined();
-      expect(payload.timestamp).toBeDefined();
-      expect(typeof payload.timestamp).toBe('number');
+      assert.ok(payload);
+      assert.ok(payload.userDataJSONBase64);
+      assert.ok(payload.verificationHash);
+      assert.ok(payload.timestamp);
+      assert.strictEqual(typeof payload.timestamp, 'number');
     });
 
     it('should create a valid HMAC-SHA256 hash', () => {
@@ -66,7 +67,7 @@ describe('FastComments SSO', () => {
       hmac.update(payload.timestamp + payload.userDataJSONBase64);
       const expectedHash = hmac.digest('hex');
 
-      expect(payload.verificationHash).toBe(expectedHash);
+      assert.strictEqual(payload.verificationHash, expectedHash);
     });
 
     it('should encode user data properly in base64', () => {
@@ -74,18 +75,18 @@ describe('FastComments SSO', () => {
       const payload = builder.getPayload();
 
       const decodedData = JSON.parse(Buffer.from(payload.userDataJSONBase64, 'base64').toString('utf8'));
-      expect(decodedData).toEqual(mockSecureUser);
+      assert.deepStrictEqual(decodedData, mockSecureUser);
     });
 
     it('should produce JSON output', () => {
       const builder = new SecureSSOPayloadBuilder(API_KEY, mockSecureUser);
       const jsonOutput = builder.toJSON();
 
-      expect(() => JSON.parse(jsonOutput)).not.toThrow();
+      assert.doesNotThrow(() => JSON.parse(jsonOutput));
       const parsed = JSON.parse(jsonOutput);
-      expect(parsed.userDataJSONBase64).toBeDefined();
-      expect(parsed.verificationHash).toBeDefined();
-      expect(parsed.timestamp).toBeDefined();
+      assert.ok(parsed.userDataJSONBase64);
+      assert.ok(parsed.verificationHash);
+      assert.ok(parsed.timestamp);
     });
   });
 
@@ -93,37 +94,39 @@ describe('FastComments SSO', () => {
     it('should create secure SSO using factory method', () => {
       const sso = FastCommentsSSO.createSecure(API_KEY, mockSecureUser, mockConfig);
 
-      expect(sso).toBeDefined();
-      expect(sso.isSecure()).toBe(true);
-      expect(sso.isSimple()).toBe(false);
+      assert.ok(sso);
+      assert.strictEqual(sso.isSecure(), true);
+      assert.strictEqual(sso.isSimple(), false);
     });
 
     it('should prepare secure SSO for transmission', () => {
       const sso = FastCommentsSSO.createSecure(API_KEY, mockSecureUser, mockConfig);
       const config = sso.prepareToSend();
 
-      expect(config).toBeDefined();
-      expect(config.userDataJSONBase64).toBeDefined();
-      expect(config.verificationHash).toBeDefined();
-      expect(config.timestamp).toBeDefined();
-      expect(config.loginURL).toBe(mockConfig.loginURL);
-      expect(config.logoutURL).toBe(mockConfig.logoutURL);
+      assert.ok(config);
+      assert.ok(config.userDataJSONBase64);
+      assert.ok(config.verificationHash);
+      assert.ok(config.timestamp);
+      assert.strictEqual(config.loginURL, mockConfig.loginURL);
+      assert.strictEqual(config.logoutURL, mockConfig.logoutURL);
     });
 
     it('should throw error when calling createToken on secure SSO', () => {
       const sso = FastCommentsSSO.createSecure(API_KEY, mockSecureUser);
 
-      expect(() => sso.createToken()).toThrow('createToken() can only be called on simple SSO instances');
+      assert.throws(() => sso.createToken(), /createToken\(\) can only be called on simple SSO instances/);
     });
 
     it('should return secure config from getToken', () => {
       const sso = FastCommentsSSO.createSecure(API_KEY, mockSecureUser, mockConfig);
       const token = sso.getToken();
 
-      expect(typeof token).toBe('object');
-      expect(token).toHaveProperty('userDataJSONBase64');
-      expect(token).toHaveProperty('verificationHash');
-      expect(token).toHaveProperty('timestamp');
+      assert.strictEqual(typeof token, 'object');
+      if (typeof token === 'object') {
+        assert.ok('userDataJSONBase64' in token);
+        assert.ok('verificationHash' in token);
+        assert.ok('timestamp' in token);
+      }
     });
   });
 
@@ -131,21 +134,21 @@ describe('FastComments SSO', () => {
     it('should create simple SSO using factory method', () => {
       const sso = FastCommentsSSO.createSimple(mockSimpleUser, mockConfig);
 
-      expect(sso).toBeDefined();
-      expect(sso.isSimple()).toBe(true);
-      expect(sso.isSecure()).toBe(false);
+      assert.ok(sso);
+      assert.strictEqual(sso.isSimple(), true);
+      assert.strictEqual(sso.isSecure(), false);
     });
 
     it('should create token for simple SSO', () => {
       const sso = FastCommentsSSO.createSimple(mockSimpleUser, mockConfig);
       const token = sso.createToken();
 
-      expect(typeof token).toBe('string');
+      assert.strictEqual(typeof token, 'string');
       const parsed = JSON.parse(token);
-      expect(parsed.email).toBe(mockSimpleUser.email);
-      expect(parsed.username).toBe(mockSimpleUser.username);
-      expect(parsed.loginURL).toBe(mockConfig.loginURL);
-      expect(parsed.logoutURL).toBe(mockConfig.logoutURL);
+      assert.strictEqual(parsed.email, mockSimpleUser.email);
+      assert.strictEqual(parsed.username, mockSimpleUser.username);
+      assert.strictEqual(parsed.loginURL, mockConfig.loginURL);
+      assert.strictEqual(parsed.logoutURL, mockConfig.logoutURL);
     });
 
     it('should cache tokens', () => {
@@ -153,7 +156,7 @@ describe('FastComments SSO', () => {
       const token1 = sso.createToken();
       const token2 = sso.createToken();
 
-      expect(token1).toBe(token2); // Should be the same cached instance
+      assert.strictEqual(token1, token2); // Should be the same cached instance
     });
 
     it('should reset cached token', () => {
@@ -164,23 +167,23 @@ describe('FastComments SSO', () => {
       sso.updateConfig({ loginURL: '/new-login' });
       
       const token2 = sso.createToken();
-      expect(token1).not.toBe(token2); // Should be different after config change
+      assert.notStrictEqual(token1, token2); // Should be different after config change
     });
 
     it('should throw error when calling prepareToSend on simple SSO', () => {
       const sso = FastCommentsSSO.createSimple(mockSimpleUser);
 
-      expect(() => sso.prepareToSend()).toThrow('prepareToSend() can only be called on secure SSO instances');
+      assert.throws(() => sso.prepareToSend(), /prepareToSend\(\) can only be called on secure SSO instances/);
     });
 
     it('should return token string from getToken', () => {
       const sso = FastCommentsSSO.createSimple(mockSimpleUser, mockConfig);
       const token = sso.getToken();
 
-      expect(typeof token).toBe('string');
+      assert.strictEqual(typeof token, 'string');
       if (typeof token === 'string') {
         const parsed = JSON.parse(token);
-        expect(parsed.email).toBe(mockSimpleUser.email);
+        assert.strictEqual(parsed.email, mockSimpleUser.email);
       }
     });
   });
@@ -193,9 +196,9 @@ describe('FastComments SSO', () => {
       sso.updateConfig(newConfig);
       const config = sso.getConfig();
 
-      expect(config.loginURL).toBe('/new-login');
-      expect(config.logoutURL).toBe('/new-logout');
-      expect(config.loginCallback).toBe(mockConfig.loginCallback); // Should preserve existing
+      assert.strictEqual(config.loginURL, '/new-login');
+      assert.strictEqual(config.logoutURL, '/new-logout');
+      assert.strictEqual(config.loginCallback, mockConfig.loginCallback); // Should preserve existing
     });
 
     it('should return copy of configuration', () => {
@@ -205,7 +208,7 @@ describe('FastComments SSO', () => {
       config.loginURL = 'modified';
       const config2 = sso.getConfig();
 
-      expect(config2.loginURL).toBe(mockConfig.loginURL); // Should not be modified
+      assert.strictEqual(config2.loginURL, mockConfig.loginURL); // Should not be modified
     });
   });
 
@@ -215,24 +218,24 @@ describe('FastComments SSO', () => {
       const payload = builder.getPayload();
       const sso = new FastCommentsSSO(payload, mockConfig);
 
-      expect(sso.isSecure()).toBe(true);
-      expect(sso.prepareToSend()).toBeDefined();
+      assert.strictEqual(sso.isSecure(), true);
+      assert.ok(sso.prepareToSend());
     });
 
     it('should accept SimpleSSOUserData in constructor', () => {
       const sso = new FastCommentsSSO(mockSimpleUser, mockConfig);
 
-      expect(sso.isSimple()).toBe(true);
-      expect(sso.createToken()).toBeDefined();
+      assert.strictEqual(sso.isSimple(), true);
+      assert.ok(sso.createToken());
     });
 
     it('should work without config parameter', () => {
       const sso = new FastCommentsSSO(mockSimpleUser);
 
-      expect(sso.isSimple()).toBe(true);
+      assert.strictEqual(sso.isSimple(), true);
       const token = sso.createToken();
       const parsed = JSON.parse(token);
-      expect(parsed.email).toBe(mockSimpleUser.email);
+      assert.strictEqual(parsed.email, mockSimpleUser.email);
     });
   });
 
@@ -247,28 +250,28 @@ describe('FastComments SSO', () => {
       const sso = FastCommentsSSO.createSecure(API_KEY, minimalUser);
       const config = sso.prepareToSend();
 
-      expect(config.userDataJSONBase64).toBeDefined();
+      assert.ok(config.userDataJSONBase64);
       
       const decodedData = JSON.parse(Buffer.from(config.userDataJSONBase64!, 'base64').toString('utf8'));
-      expect(decodedData.id).toBe('minimal-user');
-      expect(decodedData.email).toBe('minimal@example.com');
-      expect(decodedData.username).toBe('minimal');
+      assert.strictEqual(decodedData.id, 'minimal-user');
+      assert.strictEqual(decodedData.email, 'minimal@example.com');
+      assert.strictEqual(decodedData.username, 'minimal');
     });
 
     it('should handle empty config', () => {
       const sso = FastCommentsSSO.createSimple(mockSimpleUser, {});
       const token = sso.createToken();
       
-      expect(typeof token).toBe('string');
+      assert.strictEqual(typeof token, 'string');
       const parsed = JSON.parse(token);
-      expect(parsed.email).toBe(mockSimpleUser.email);
+      assert.strictEqual(parsed.email, mockSimpleUser.email);
     });
 
     it('should throw error when getToken called with no data', () => {
       // This shouldn't be possible with TypeScript, but let's test the runtime check
       const sso = new (FastCommentsSSO as any)();
       
-      expect(() => sso.getToken()).toThrow('No SSO data available');
+      assert.throws(() => sso.getToken(), /No SSO data available/);
     });
   });
 });

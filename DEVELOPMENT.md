@@ -6,7 +6,7 @@ This guide is for maintainers and contributors to the FastComments SDK.
 
 ### Prerequisites
 
-- Node.js 16+
+- Node.js 18+
 - npm
 - Running FastComments server (optional, falls back to local spec)
 
@@ -76,24 +76,14 @@ Required environment variables for testing:
 npm test
 
 # Run only unit tests
-npx jest src/__tests__/sso.test.ts
+npm run test:unit
 
 # Run only integration tests (requires environment variables)
-npx jest src/__tests__/sso.integration.test.ts
+npm run test:integration
+
+# Run tests in watch mode
+npm run test:watch
 ```
-
-### Test Environment Variables
-
-Tests use environment variables via the type-safe `src/__tests__/env.ts` file:
-
-```typescript
-import { API_KEY, TENANT_ID, BASE_URL } from './env';
-```
-
-This provides:
-- Type safety for environment variable access
-- Clear error messages for missing required variables
-- Centralized configuration for all tests
 
 ## Publishing
 
