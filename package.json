@@ -1,5 +1,5 @@
 {
-  "name": "@fastcomments/fastcomments-sdk",
+  "name": "fastcomments-sdk-js",
   "version": "1.0.0",
   "description": "FastComments API Client - A SDK for interacting with the FastComments API",
   "main": "dist/index.js",
