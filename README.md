@@ -5,7 +5,7 @@ Official Node.js and TypeScript SDK for the FastComments API. Build secure and s
 ## Installation
 
 ```bash
-npm install @fastcomments/fastcomments-sdk
+npm install fastcomments-sdk
 ```
 
 ## Usage
