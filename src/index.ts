@@ -1,86 +1,21 @@
-// Export the generated API client
-export * from './generated/src/apis';
-export * from './generated/src/models';
-export { Configuration } from './generated/src/runtime';
+// Default export - Types only (safe for both client and server)
+// This ensures the main package can be imported anywhere without Node.js dependencies
 
-// Re-export commonly used types and classes for convenience
-export { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
+// Export all API and model types
+export type * from './generated/src/apis';
+export type * from './generated/src/models';
+export type { Configuration } from './generated/src/runtime';
 
-// Export SSO functionality
-export * from './sso';
+// Export live event types
+export type { LiveEvent, LiveEventType, EventLogEntry, PubSubComment, PubSubVote, FeedPost, UserNotification } from './generated/src/index';
 
-// Export a default factory function for easy initialization
-import { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
-import { Configuration } from './generated/src/runtime';
+// Export SSO types only (no implementations that require Node.js crypto)
+export type * from './sso/types';
 
-export interface FastCommentsSDKConfig {
-  apiKey?: string;
-  basePath?: string;
-}
+// Export utility types
+export type { SubscribeToChangesResult, SubscribeToChangesConfig } from './live/subscribe-to-changes';
+export type { UserFeedConfig } from './live/user-feed';
 
-export class FastCommentsSDK {
-  private config: FastCommentsSDKConfig;
-  private _defaultApi: DefaultApi | null = null;
-  private _publicApi: PublicApi | null = null;
-  private _hiddenApi: HiddenApi | null = null;
-
-  constructor(config: FastCommentsSDKConfig = {}) {
-    this.config = { ...config };
-    if (!this.config.basePath) {
-      this.config.basePath = 'https://fastcomments.com';
-    }
-  }
-
-  private getConfiguration(): Configuration {
-    return new Configuration({
-      apiKey: this.config.apiKey,
-      basePath: this.config.basePath,
-    });
-  }
-
-  public get defaultApi(): DefaultApi {
-    if (!this._defaultApi) {
-      this._defaultApi = new DefaultApi(this.getConfiguration());
-    }
-    return this._defaultApi;
-  }
-
-  public get publicApi(): PublicApi {
-    if (!this._publicApi) {
-      this._publicApi = new PublicApi(this.getConfiguration());
-    }
-    return this._publicApi;
-  }
-
-  public get hiddenApi(): HiddenApi {
-    if (!this._hiddenApi) {
-      this._hiddenApi = new HiddenApi(this.getConfiguration());
-    }
-    return this._hiddenApi;
-  }
-
-  /**
-   * Update the API key for authenticated requests
-   */
-  setApiKey(apiKey: string): void {
-    this.config.apiKey = apiKey;
-    this._defaultApi = null;
-    this._publicApi = null;
-    this._hiddenApi = null;
-  }
-
-  /**
-   * Update the base path for API requests
-   */
-  setBasePath(basePath: string): void {
-    this.config.basePath = basePath;
-    this._defaultApi = null;
-    this._publicApi = null;
-    this._hiddenApi = null;
-  }
-}
-
-// Export a convenience function to create a new SDK instance
-export function createFastCommentsSDK(config?: FastCommentsSDKConfig): FastCommentsSDK {
-  return new FastCommentsSDK(config);
-}
+// For actual usage, import from specific entry points:
+// - import { ... } from 'fastcomments-sdk/browser' // Browser-safe APIs
+// - import { ... } from 'fastcomments-sdk/server' // Full Node.js SDK with SSO
