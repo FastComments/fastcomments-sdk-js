@@ -8,30 +8,92 @@ Official Node.js and TypeScript SDK for the FastComments API. Build secure and s
 npm install fastcomments-sdk
 ```
 
+## Browser vs Server Compatibility
+
+This SDK uses **dual entry points** to ensure optimal compatibility and prevent runtime errors:
+
+- **`fastcomments-sdk/browser`** - Browser-safe version with native `fetch`, excludes Node.js crypto
+- **`fastcomments-sdk/server`** - Full Node.js version with SSO support, includes crypto features  
+- **`fastcomments-sdk`** (default) - Types only, safe to import anywhere
+
+This prevents issues like "crypto module not found" when using the SDK in browser environments.
+
 ## Usage
 
-### Basic Usage
+This SDK provides separate entry points for browser and server environments to ensure optimal compatibility and security:
+
+### Browser Usage (Client-Side)
+
+For browser/frontend applications, use the browser-safe export that excludes Node.js dependencies:
 
 ```typescript
-import { createFastCommentsSDK } from '@fastcomments/fastcomments-sdk';
+// Browser-safe import (no Node.js crypto dependencies)
+import { createFastCommentsBrowserSDK } from 'fastcomments-sdk/browser';
 
-// Create SDK instance
-const sdk = createFastCommentsSDK({
-  apiKey: 'your-api-key',
+// Create browser SDK instance
+const sdk = createFastCommentsBrowserSDK({
   basePath: 'https://fastcomments.com' // optional, defaults to https://fastcomments.com
 });
 
-// Use the different APIs
+// Use public APIs (no API key needed - safe for browsers)
+const comments = await sdk.publicApi.getCommentsPublic({ 
+  tenantId: 'your-tenant-id',
+  urlId: 'page-url-id'
+});
+```
+
+### Server Usage (Node.js)
+
+For server/backend applications, use the full SDK with SSO and authentication features:
+
+```typescript
+// Server-side import (includes SSO and Node.js crypto features)
+import { createFastCommentsSDK } from 'fastcomments-sdk/server';
+
+// Create server SDK instance
+const sdk = createFastCommentsSDK({
+  apiKey: 'your-api-key', // Keep this secret on the server!
+  basePath: 'https://fastcomments.com' // optional, defaults to https://fastcomments.com
+});
+
+// Use secured APIs with your API key
 const comments = await sdk.defaultApi.getComments({ 
   tenantId: 'your-tenant-id',
   urlId: 'page-url-id'
 });
 ```
 
-### Using Individual API Classes
+### Types Only Import
+
+If you only need TypeScript types (no runtime code), use the default import:
 
 ```typescript
-import { DefaultApi, PublicApi, Configuration } from '@fastcomments/fastcomments-sdk';
+// Types only (no runtime dependencies - safe everywhere)
+import type { 
+  PublicComment, 
+  CreateCommentParams, 
+  GetCommentsPublic200Response 
+} from 'fastcomments-sdk';
+```
+
+### Using Individual API Classes
+
+#### Browser Environment
+
+```typescript
+import { PublicApi, Configuration } from 'fastcomments-sdk/browser';
+
+const config = new Configuration({
+  basePath: 'https://fastcomments.com'
+});
+
+const publicApi = new PublicApi(config);
+```
+
+#### Server Environment  
+
+```typescript
+import { DefaultApi, PublicApi, Configuration } from 'fastcomments-sdk/server';
 
 const config = new Configuration({
   apiKey: 'your-api-key',
@@ -50,10 +112,10 @@ The SDK provides three main API classes:
 - **`PublicApi`** - Public endpoints that can be accessed without an API key. These can be called directly from browsers/mobile devices/etc.
 - **`HiddenApi`** - Internal/admin endpoints for advanced use cases.
 
-### Example: Using Public API (client-side safe)
+### Example: Using Public API (browser-safe)
 
 ```typescript
-import { PublicApi } from '@fastcomments/fastcomments-sdk';
+import { PublicApi } from 'fastcomments-sdk/browser';
 
 const publicApi = new PublicApi();
 
@@ -67,7 +129,7 @@ const response = await publicApi.getCommentsPublic({
 ### Example: Using Default API (server-side only)
 
 ```typescript
-import { DefaultApi, Configuration } from '@fastcomments/fastcomments-sdk';
+import { DefaultApi, Configuration } from 'fastcomments-sdk/server';
 
 const config = new Configuration({
   apiKey: 'your-api-key' // Keep this secret!
@@ -83,16 +145,17 @@ const response = await defaultApi.getComments({
 
 ## SSO (Single Sign-On) Integration
 
-FastComments supports SSO to integrate with your existing user authentication system. There are two types of SSO: Simple SSO (less secure, client-side) and Secure SSO (recommended, server-side).
+FastComments supports SSO to integrate with your existing user authentication system. **SSO functionality is only available in the server export** since it requires Node.js crypto features.
 
-### Simple SSO (Client-Side)
+### Simple SSO (Server-Side Only)
 
-Simple SSO can be implemented client-side but offers less security:
+Simple SSO should be generated server-side and sent to the client:
 
 ```typescript
-import { FastCommentsSSO, PublicApi } from '@fastcomments/fastcomments-sdk';
+// Server-side code (Node.js/backend)
+import { FastCommentsSSO, PublicApi } from 'fastcomments-sdk/server';
 
-// Create simple SSO using the built-in helper
+// Create simple SSO using the built-in helper  
 const userData = {
   username: 'john_doe',
   email: 'john@example.com',
@@ -107,14 +170,8 @@ const sso = FastCommentsSSO.createSimple(userData, {
 
 const ssoToken = sso.createToken();
 
-// Use with API calls  
-const publicApi = new PublicApi();
-const response = await publicApi.getCommentsPublic({
-  tenantId: 'your-tenant-id',
-  urlId: 'page-url-id'
-  // Note: Simple SSO would typically be used with widget integration,
-  // not direct API calls
-});
+// Send ssoToken to your client-side code
+// Client-side code can then use this token with the browser SDK
 ```
 
 ### Secure SSO (Server-Side, Recommended)
@@ -122,7 +179,8 @@ const response = await publicApi.getCommentsPublic({
 Secure SSO should be implemented server-side and provides better security:
 
 ```typescript
-import { FastCommentsSSO, PublicApi } from '@fastcomments/fastcomments-sdk';
+// Server-side code (Node.js/backend)
+import { FastCommentsSSO, PublicApi } from 'fastcomments-sdk/server';
 
 // Create secure SSO using the built-in helper
 const userData = {
@@ -142,19 +200,40 @@ const sso = FastCommentsSSO.createSecure('your-api-key', userData, {
 
 const ssoConfig = sso.prepareToSend();
 
-// Use with API calls
+// Use with API calls on the server
 const publicApi = new PublicApi();
 const response = await publicApi.getCommentsPublic({
   tenantId: 'your-tenant-id',
   urlId: 'page-url-id',
   sso: JSON.stringify(ssoConfig)
 });
+
+// Or send ssoConfig to client for browser usage
+```
+
+### Using SSO from Browser (with Server-Generated Token)
+
+```typescript
+// Client-side code (browser)
+import { PublicApi } from 'fastcomments-sdk/browser';
+
+// Get SSO token from your server endpoint
+const ssoToken = await fetch('/api/sso-token').then(r => r.json());
+
+const publicApi = new PublicApi();
+const response = await publicApi.getCommentsPublic({
+  tenantId: 'your-tenant-id',
+  urlId: 'page-url-id',
+  sso: ssoToken // Use the server-generated SSO token
+});
 ```
 
 ### SSO with Comment Creation
 
 ```typescript
-// Create a comment with SSO authentication
+// Server-side: Create SSO and comment
+import { FastCommentsSSO, PublicApi } from 'fastcomments-sdk/server';
+
 const sso = FastCommentsSSO.createSecure('your-api-key', userData);
 const ssoConfig = sso.prepareToSend();
 
@@ -229,7 +308,7 @@ Subscribe to live events to get real-time updates for comments, votes, and other
 Listen for live events on a specific page (comments, votes, etc.):
 
 ```typescript
-import { subscribeToChanges, LiveEvent, LiveEventType } from 'fastcomments-sdk';
+import { subscribeToChanges, LiveEvent, LiveEventType } from 'fastcomments-sdk/browser';
 
 const config = {
   tenantId: 'your-tenant-id',
@@ -277,7 +356,7 @@ subscription.close();
 Listen for user-specific events (notifications, mentions, etc.):
 
 ```typescript
-import { subscribeToUserFeed, LiveEvent, LiveEventType } from 'fastcomments-sdk';
+import { subscribeToUserFeed, LiveEvent, LiveEventType } from 'fastcomments-sdk/browser';
 
 const userConfig = {
   userIdWS: 'user-session-id', // Get this from getComments response
@@ -370,18 +449,23 @@ try {
 The SDK is written in TypeScript and provides complete type definitions for all API methods and response models:
 
 ```typescript
+// Import types from the default export (safe everywhere)
 import type { 
   PublicComment, 
   CreateCommentParams, 
   GetCommentsPublic200Response 
-} from '@fastcomments/fastcomments-sdk';
+} from 'fastcomments-sdk';
 
+// Use with browser SDK
+import { createFastCommentsBrowserSDK } from 'fastcomments-sdk/browser';
+
+const sdk = createFastCommentsBrowserSDK();
 const response: GetCommentsPublic200Response = await sdk.publicApi.getCommentsPublic({
   tenantId: 'your-tenant-id',
   urlId: 'page-id'
 });
 
-const comments: PublicComment[] = response.data?.comments || [];
+const comments: PublicComment[] = response.comments || [];
 ```
 
 ## License
