@@ -24,7 +24,7 @@
     "generate": "npm run clean:generated && ./scripts/update.sh",
     "clean:generated": "rm -rf src/generated",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run test:browser",
     "publish:npm": "./scripts/publish.sh",
     "test": "node --test dist/__tests__/**/*.test.js",
     "test:unit": "node --test dist/__tests__/sso.test.js",
@@ -60,9 +60,9 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.12",
     "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.35.0",
     "happy-dom": "^12.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
