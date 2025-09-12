@@ -15,7 +15,7 @@ fi
 # Generate the TypeScript client
 npx @openapitools/openapi-generator-cli generate \
     -i "$SPEC_FILE" \
-    -g typescript-axios \
+    -g typescript-fetch \
     -o ./src/generated \
     --additional-properties=useSingleRequestParameter=true \
     -c config.json

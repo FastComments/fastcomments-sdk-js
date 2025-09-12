@@ -1,5 +1,5 @@
 import { createURLQueryString, isAPIError, debounce, makeRequest } from './utils.js';
-import type { LiveEvent, EventLogEntry } from '../generated/index.js';
+import type { LiveEvent, EventLogEntry } from '../generated/src/index';
 
 export interface SubscribeToChangesResult {
     close: () => void;
@@ -31,7 +31,7 @@ export default function subscribeToChanges(
 
         function extractCommentIdFromEvent(liveEvent: LiveEvent): string | undefined {
             if (liveEvent.type === 'new-comment' && liveEvent.comment) {
-                return liveEvent.comment._id;
+                return liveEvent.comment.id;
             }
         }
 

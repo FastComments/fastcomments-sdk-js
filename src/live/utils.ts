@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
-
 export function createURLQueryString(obj: Record<string, any>): string {
     const result: string[] = [];
     for (const key in obj) {
@@ -41,24 +39,33 @@ export async function makeRequest<ResponseType>(
     const url = (config.apiHost || 'https://fastcomments.com') + originalUrl;
 
     try {
-        const response: AxiosResponse<ResponseType> = await axios({
-            method: method as any,
-            url,
-            data: body,
-            withCredentials: true,
+        const response = await fetch(url, {
+            method,
+            body: body ? JSON.stringify(body) : undefined,
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         });
 
-        return response.data;
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            if (response.status !== 400 && attemptsRemaining > 0 && method === 'GET') {
+                await new Promise(resolve => setTimeout(resolve, 1500 * Math.random()));
+                return makeRequest(config, method, originalUrl, body, attemptsRemaining - 1);
+            } else {
+                throw errorData;
+            }
+        }
+
+        return await response.json() as ResponseType;
     } catch (error: any) {
-        if (error.response && error.response.status !== 400 && attemptsRemaining > 0 && method === 'GET') {
+        if (attemptsRemaining > 0 && method === 'GET' && !error.status) {
             await new Promise(resolve => setTimeout(resolve, 1500 * Math.random()));
             return makeRequest(config, method, originalUrl, body, attemptsRemaining - 1);
         } else {
-            throw error.response?.data || error;
+            throw error;
         }
     }
 }
