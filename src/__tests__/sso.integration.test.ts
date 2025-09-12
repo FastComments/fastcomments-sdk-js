@@ -8,7 +8,7 @@ import {
   PublicApi,
   DefaultApi,
   Configuration
-} from '../index';
+} from '../server';
 import { API_KEY, TENANT_ID, BASE_URL } from './env';
 
 // Test against the real FastComments API

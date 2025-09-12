@@ -4,17 +4,32 @@
   "description": "FastComments API Client - A SDK for interacting with the FastComments API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts", 
+      "default": "./dist/browser.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
   "scripts": {
     "build": "npm run generate && npm run compile",
     "compile": "tsc",
     "generate": "npm run clean:generated && ./scripts/update.sh",
     "clean:generated": "rm -rf src/generated",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run test:browser",
     "publish:npm": "./scripts/publish.sh",
     "test": "node --test dist/__tests__/**/*.test.js",
     "test:unit": "node --test dist/__tests__/sso.test.js",
     "test:integration": "node --test dist/__tests__/sso.integration.test.js",
+    "test:browser": "node --test dist/__tests__/browser-compatibility.test.js",
     "test:watch": "node --test --watch dist/__tests__/**/*.test.js",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write src/**/*.ts"
@@ -45,9 +60,10 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.12",
     "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.35.0",
+    "happy-dom": "^12.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   },
