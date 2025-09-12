@@ -1,17 +1,17 @@
 // Export the generated API client
-export * from './generated/api';
-export * from './generated/model';
-export { Configuration, ConfigurationParameters } from './generated/configuration';
+export * from './generated/src/apis';
+export * from './generated/src/models';
+export { Configuration } from './generated/src/runtime';
 
 // Re-export commonly used types and classes for convenience
-export { DefaultApi, PublicApi, HiddenApi } from './generated/api';
+export { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
 
 // Export SSO functionality
 export * from './sso';
 
 // Export a default factory function for easy initialization
-import { DefaultApi, PublicApi, HiddenApi } from './generated/api';
-import { Configuration } from './generated/configuration';
+import { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
+import { Configuration } from './generated/src/runtime';
 
 export interface FastCommentsSDKConfig {
   apiKey?: string;
@@ -19,21 +19,44 @@ export interface FastCommentsSDKConfig {
 }
 
 export class FastCommentsSDK {
-  private config: Configuration;
-  public readonly defaultApi: DefaultApi;
-  public readonly publicApi: PublicApi;
-  public readonly hiddenApi: HiddenApi;
+  private config: FastCommentsSDKConfig;
+  private _defaultApi: DefaultApi | null = null;
+  private _publicApi: PublicApi | null = null;
+  private _hiddenApi: HiddenApi | null = null;
 
   constructor(config: FastCommentsSDKConfig = {}) {
-    const configuration = new Configuration({
-      apiKey: config.apiKey,
-      basePath: config.basePath || 'https://fastcomments.com',
+    this.config = { ...config };
+    if (!this.config.basePath) {
+      this.config.basePath = 'https://fastcomments.com';
+    }
+  }
+
+  private getConfiguration(): Configuration {
+    return new Configuration({
+      apiKey: this.config.apiKey,
+      basePath: this.config.basePath,
     });
-    
-    this.config = configuration;
-    this.defaultApi = new DefaultApi(configuration);
-    this.publicApi = new PublicApi(configuration);
-    this.hiddenApi = new HiddenApi(configuration);
+  }
+
+  public get defaultApi(): DefaultApi {
+    if (!this._defaultApi) {
+      this._defaultApi = new DefaultApi(this.getConfiguration());
+    }
+    return this._defaultApi;
+  }
+
+  public get publicApi(): PublicApi {
+    if (!this._publicApi) {
+      this._publicApi = new PublicApi(this.getConfiguration());
+    }
+    return this._publicApi;
+  }
+
+  public get hiddenApi(): HiddenApi {
+    if (!this._hiddenApi) {
+      this._hiddenApi = new HiddenApi(this.getConfiguration());
+    }
+    return this._hiddenApi;
   }
 
   /**
@@ -41,6 +64,9 @@ export class FastCommentsSDK {
    */
   setApiKey(apiKey: string): void {
     this.config.apiKey = apiKey;
+    this._defaultApi = null;
+    this._publicApi = null;
+    this._hiddenApi = null;
   }
 
   /**
@@ -48,6 +74,9 @@ export class FastCommentsSDK {
    */
   setBasePath(basePath: string): void {
     this.config.basePath = basePath;
+    this._defaultApi = null;
+    this._publicApi = null;
+    this._hiddenApi = null;
   }
 }
 

@@ -68,17 +68,16 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
-        assert.ok(response.data);
+        assert.ok(response.comments !== undefined);
       } catch (error: any) {
         // Check if it's a known/expected error vs a real failure
-        if (error.response?.status === 404) {
+        if (error.status === 404) {
           // Page not found is acceptable for test
-          assert.strictEqual(error.response.status, 404);
-        } else if (error.response?.status === 401) {
+          assert.strictEqual(error.status, 404);
+        } else if (error.status === 401) {
           // Auth error might indicate API key issues
           console.warn('Auth error - check API key and tenant ID');
-          assert.strictEqual(error.response.status, 401);
+          assert.strictEqual(error.status, 401);
         } else {
           throw error;
         }
@@ -94,11 +93,10 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
-        assert.ok(response.data);
+        assert.ok(response.comments !== undefined);
       } catch (error: any) {
-        if (error.response?.status === 404 || error.response?.status === 401) {
-          assert.ok([404, 401].includes(error.response.status));
+        if (error.status === 404 || error.status === 401) {
+          assert.ok([404, 401].includes(error.status));
         } else {
           throw error;
         }
@@ -125,11 +123,9 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
-        assert.ok(response.data);
-
-        if (response.data && typeof response.data === 'object') {
-          const responseData = response.data as any;
+        // Response structure is directly the API response
+        if (response && typeof response === 'object') {
+          const responseData = response as any;
           // Response has structure: { status: "success", comment: { commentHTML: "..." } }
           if (responseData.comment && responseData.comment.commentHTML) {
             assert.ok(responseData.comment.commentHTML.includes('Test comment with secure SSO'));
@@ -137,8 +133,8 @@ describe('FastComments SSO Integration Tests', () => {
         }
       } catch (error: any) {
         // Accept certain expected errors in test environment
-        if (error.response?.status === 401 || error.response?.status === 403 || error.response?.status === 422) {
-          assert.ok([401, 403, 422].includes(error.response.status));
+        if (error.status === 401 || error.status === 403 || error.status === 422) {
+          assert.ok([401, 403, 422].includes(error.status));
         } else {
           throw error;
         }
@@ -159,11 +155,10 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
-        assert.ok(response.data);
+        assert.ok(response.comments !== undefined);
       } catch (error: any) {
-        if (error.response?.status === 404 || error.response?.status === 401) {
-          assert.ok([404, 401].includes(error.response.status));
+        if (error.status === 404 || error.status === 401) {
+          assert.ok([404, 401].includes(error.status));
         } else {
           throw error;
         }
@@ -191,19 +186,17 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
-        assert.ok(response.data);
-
-        if (response.data && typeof response.data === 'object') {
-          const responseData = response.data as any;
+        // Response structure is directly the API response
+        if (response && typeof response === 'object') {
+          const responseData = response as any;
           // Response has structure: { status: "success", comment: { commentHTML: "..." } }
           if (responseData.comment && responseData.comment.commentHTML) {
             assert.ok(responseData.comment.commentHTML.includes('Test comment with simple SSO'));
           }
         }
       } catch (error: any) {
-        if (error.response?.status === 401 || error.response?.status === 403 || error.response?.status === 422) {
-          assert.ok([401, 403, 422].includes(error.response.status));
+        if (error.status === 401 || error.status === 403 || error.status === 422) {
+          assert.ok([401, 403, 422].includes(error.status));
         } else {
           throw error;
         }
@@ -220,11 +213,10 @@ describe('FastComments SSO Integration Tests', () => {
         });
 
         assert.ok(response);
-        assert.strictEqual(response.status, 200);
       } catch (error: any) {
         // API key might not have user search permissions, which is OK
-        if (error.response?.status === 401 || error.response?.status === 403) {
-          assert.ok([401, 403].includes(error.response.status));
+        if (error.status === 401 || error.status === 403) {
+          assert.ok([401, 403].includes(error.status));
         } else {
           throw error;
         }
@@ -244,7 +236,7 @@ describe('FastComments SSO Integration Tests', () => {
           sso: JSON.stringify(ssoConfig)
         });
       } catch (error: any) {
-        assert.ok(error.response?.status >= 400);
+        assert.ok(error.status >= 400);
       }
     });
 
@@ -256,7 +248,7 @@ describe('FastComments SSO Integration Tests', () => {
           sso: 'invalid-sso-data'
         });
       } catch (error: any) {
-        assert.ok(error.response?.status >= 400);
+        assert.ok(error.status >= 400);
       }
     });
   });

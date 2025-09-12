@@ -3,7 +3,7 @@ import type {
   SubscribeToChangesResult,
   SubscribeToChangesConfig,
 } from './subscribe-to-changes.js';
-import type { LiveEvent } from '../generated/index.js';
+import type { LiveEvent } from '../generated/src/index';
 
 export interface UserFeedConfig {
   /**
