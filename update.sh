@@ -15,7 +15,7 @@ else
 fi
 
 # Generate the TypeScript client
-npx @openapitools/openapi-generator-cli generate \
+npm exec @openapitools/openapi-generator-cli generate \
     -i "$SPEC_FILE" \
     -g typescript-fetch \
     -o ./src/generated \
