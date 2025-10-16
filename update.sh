@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm i
+
 # Remove previously generated code
 rm -rvf ./src/generated
 
