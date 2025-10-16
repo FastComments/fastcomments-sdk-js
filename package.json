@@ -21,11 +21,11 @@
   "scripts": {
     "build": "npm run generate && npm run compile",
     "compile": "tsc",
-    "generate": "npm run clean:generated && ./scripts/update.sh",
+    "generate": "npm run clean:generated && ./update.sh",
     "clean:generated": "rm -rf src/generated",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build && npm run test:browser",
-    "publish:npm": "./scripts/publish.sh",
+    "publish:npm": "./publish.sh",
     "test": "node --test dist/__tests__/**/*.test.js",
     "test:unit": "node --test dist/__tests__/sso.test.js",
     "test:integration": "node --test dist/__tests__/sso.integration.test.js",
