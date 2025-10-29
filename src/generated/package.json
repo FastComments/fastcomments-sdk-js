@@ -1,0 +1,25 @@
+{
+  "name": "@fastcomments/fastcomments-sdk",
+  "version": "0.0.1",
+  "description": "OpenAPI client for @fastcomments/fastcomments-sdk",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastcomments/fastcomments-sdk-js.git"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.esm.json",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0 || ^5.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
