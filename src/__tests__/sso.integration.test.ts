@@ -235,8 +235,11 @@ describe('FastComments SSO Integration Tests', () => {
           urlId: 'test-page',
           sso: JSON.stringify(ssoConfig)
         });
+        assert.fail('Expected API call to throw an error for invalid tenant ID');
       } catch (error: any) {
-        assert.ok(error.status >= 400);
+        const status = error.response?.status || error.status;
+        assert.ok(status, 'Error should have a status property');
+        assert.ok(status >= 400, `Expected error status >= 400, got: ${status}`);
       }
     });
 
@@ -247,8 +250,11 @@ describe('FastComments SSO Integration Tests', () => {
           urlId: 'test-page',
           sso: 'invalid-sso-data'
         });
+        assert.fail('Expected API call to throw an error for malformed SSO data');
       } catch (error: any) {
-        assert.ok(error.status >= 400);
+        const status = error.response?.status || error.status;
+        assert.ok(status, 'Error should have a status property');
+        assert.ok(status >= 400, `Expected error status >= 400, got: ${status}`);
       }
     });
   });
