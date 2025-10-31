@@ -43,7 +43,7 @@
 | **domain** | **String** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
 | **groupIds** | **List** |  | [optional] [default to null] |
-| **viewCount** | **Double** |  | [optional] [default to null] |
+| **viewCount** | **Long** |  | [optional] [default to null] |
 | **isLive** | **Boolean** |  | [optional] [default to null] |
 | **hidden** | **Boolean** |  | [optional] [default to null] |
 

@@ -71,7 +71,7 @@
 | **feedbackIds** | **List** |  | [optional] [default to null] |
 | **logs** | [**List**](array.md) |  | [optional] [default to null] |
 | **groupIds** | **List** |  | [optional] [default to null] |
-| **viewCount** | **Double** |  | [optional] [default to null] |
+| **viewCount** | **Long** |  | [optional] [default to null] |
 | **requiresVerification** | **Boolean** |  | [optional] [default to null] |
 | **editKey** | **String** |  | [optional] [default to null] |
 

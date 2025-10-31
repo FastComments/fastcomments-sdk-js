@@ -7,9 +7,9 @@
 | **username** | **String** |  | [default to null] |
 | **websiteUrl** | **String** |  | [default to null] |
 | **email** | **String** |  | [default to null] |
-| **signUpDate** | **Double** |  | [default to null] |
+| **signUpDate** | **Long** |  | [default to null] |
 | **createdFromUrlId** | **String** |  | [default to null] |
-| **loginCount** | **Double** |  | [default to null] |
+| **loginCount** | **Integer** |  | [default to null] |
 | **avatarSrc** | **String** |  | [default to null] |
 | **optedInNotifications** | **Boolean** |  | [default to null] |
 | **optedInSubscriptionNotifications** | **Boolean** |  | [default to null] |

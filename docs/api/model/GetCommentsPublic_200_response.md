@@ -31,8 +31,8 @@
 | **userIdWS** | **String** |  | [optional] [default to null] |
 | **tenantIdWS** | **String** |  | [optional] [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |
-| **bannedUntil** | **Double** |  | [optional] [default to null] |
-| **maxCharacterLength** | **Double** |  | [optional] [default to null] |
+| **bannedUntil** | **Long** |  | [optional] [default to null] |
+| **maxCharacterLength** | **Integer** |  | [optional] [default to null] |
 | **translatedError** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

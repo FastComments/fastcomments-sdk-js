@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **id** | **String** |  | [default to null] |
-| **type** | **Double** |  | [default to null] |
+| **type** | **Integer** |  | [default to null] |
 | **description** | **String** |  | [default to null] |
 | **displayLabel** | **String** |  | [optional] [default to null] |
 | **displaySrc** | **String** |  | [optional] [default to null] |

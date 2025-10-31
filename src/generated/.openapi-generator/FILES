@@ -4,7 +4,6 @@
 README.md
 package.json
 src/apis/DefaultApi.ts
-src/apis/HiddenApi.ts
 src/apis/PublicApi.ts
 src/apis/index.ts
 src/index.ts

@@ -4,14 +4,14 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
-| **matchedCount** | **Double** |  | [default to null] |
-| **modifiedCount** | **Double** |  | [default to null] |
+| **matchedCount** | **Long** |  | [default to null] |
+| **modifiedCount** | **Long** |  | [default to null] |
 | **note** | **String** |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |
-| **bannedUntil** | **Double** |  | [optional] [default to null] |
-| **maxCharacterLength** | **Double** |  | [optional] [default to null] |
+| **bannedUntil** | **Long** |  | [optional] [default to null] |
+| **maxCharacterLength** | **Integer** |  | [optional] [default to null] |
 | **translatedError** | **String** |  | [optional] [default to null] |
 | **customConfig** | [**CustomConfigParameters**](CustomConfigParameters.md) |  | [optional] [default to null] |
 

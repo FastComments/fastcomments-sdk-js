@@ -259,8 +259,8 @@
 						"nullable": true
 					},
 					"countAboveToggle": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"customCSS": {
 						"type": "string",
@@ -373,13 +373,13 @@
 						"nullable": true
 					},
 					"maxCommentCharacterLength": {
-						"type": "number",
-						"format": "double",
+						"type": "integer",
+						"format": "int32",
 						"nullable": true
 					},
 					"maxCommentCreatedCountPUPM": {
-						"type": "number",
-						"format": "double",
+						"type": "integer",
+						"format": "int32",
 						"nullable": true
 					},
 					"noCustomConfig": {
@@ -392,8 +392,8 @@
 						"type": "boolean"
 					},
 					"pageSize": {
-						"type": "number",
-						"format": "double",
+						"type": "integer",
+						"format": "int32",
 						"nullable": true
 					},
 					"readonly": {
@@ -490,12 +490,12 @@
 						"type": "string"
 					},
 					"bannedUntil": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"maxCharacterLength": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"translatedError": {
 						"type": "string"
@@ -588,8 +588,8 @@
 						"type": "array"
 					},
 					"count": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"optedOut": {
 						"type": "boolean"
@@ -710,8 +710,8 @@
 						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
 					},
 					"count": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					}
 				},
 				"required": [
@@ -731,8 +731,8 @@
 						"$ref": "#/components/schemas/NotificationType"
 					},
 					"count": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					}
 				},
 				"required": [
@@ -779,12 +779,12 @@
 						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
 					},
 					"matchedCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"modifiedCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					}
 				},
 				"required": [
@@ -1031,8 +1031,8 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"description": {
 						"type": "string"
@@ -1522,8 +1522,8 @@
 						"type": "boolean"
 					},
 					"count": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"relatedIds": {
 						"items": {
@@ -1744,8 +1744,8 @@
 						"type": "array"
 					},
 					"viewCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					}
 				},
 				"required": [
@@ -2151,8 +2151,8 @@
 						"type": "array"
 					},
 					"viewCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"requiresVerification": {
 						"type": "boolean"
@@ -2364,15 +2364,15 @@
 			"CommentData": {
 				"properties": {
 					"date": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"localDateString": {
 						"type": "string"
 					},
 					"localDateHours": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"commenterName": {
 						"type": "string"
@@ -2389,8 +2389,8 @@
 						"type": "string"
 					},
 					"productId": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"userId": {
 						"type": "string",
@@ -2446,8 +2446,8 @@
 						"type": "boolean"
 					},
 					"autoplayDelayMS": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"feedbackIds": {
 						"items": {
@@ -2840,15 +2840,15 @@
 						"type": "string"
 					},
 					"signUpDate": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"createdFromUrlId": {
 						"type": "string"
 					},
 					"loginCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"avatarSrc": {
 						"type": "string"
@@ -3035,15 +3035,15 @@
 						"type": "string"
 					},
 					"loginCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"createdFromUrlId": {
 						"type": "string"
 					},
 					"signUpDate": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"email": {
 						"type": "string"
@@ -3150,15 +3150,15 @@
 						"type": "string"
 					},
 					"loginCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"createdFromUrlId": {
 						"type": "string"
 					},
 					"signUpDate": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"email": {
 						"type": "string"
@@ -3192,12 +3192,12 @@
 						"type": "array"
 					},
 					"rootCommentCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"commentCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"createdAt": {
 						"type": "string",
@@ -3298,12 +3298,12 @@
 						"type": "array"
 					},
 					"rootCommentCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"commentCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"title": {
 						"type": "string"
@@ -3401,12 +3401,12 @@
 						"format": "date-time"
 					},
 					"type": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"threshold": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"description": {
 						"type": "string"
@@ -3435,8 +3435,8 @@
 						"nullable": true
 					},
 					"veteranUserThresholdMillis": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"displayedOnComments": {
 						"type": "boolean"
@@ -3446,8 +3446,8 @@
 						"format": "date-time"
 					},
 					"order": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					}
 				},
 				"required": [
@@ -3658,8 +3658,8 @@
 						"$ref": "#/components/schemas/Record_number.number_"
 					},
 					"total": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					}
 				},
 				"required": [
@@ -3689,8 +3689,8 @@
 						"$ref": "#/components/schemas/Int32Map"
 					},
 					"total": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"average": {
 						"type": "number",
@@ -4103,8 +4103,8 @@
 						"nullable": true
 					},
 					"viewCount": {
-						"type": "number",
-						"format": "double",
+						"type": "integer",
+						"format": "int64",
 						"nullable": true
 					},
 					"requiresVerification": {
@@ -4171,8 +4171,8 @@
 						"format": "date-time"
 					},
 					"value": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"commentId": {
 						"type": "string",
@@ -4848,15 +4848,15 @@
 			"CreateCommentParams": {
 				"properties": {
 					"date": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"localDateString": {
 						"type": "string"
 					},
 					"localDateHours": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"commenterName": {
 						"type": "string"
@@ -4873,8 +4873,8 @@
 						"type": "string"
 					},
 					"productId": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"userId": {
 						"type": "string",
@@ -4930,8 +4930,8 @@
 						"type": "boolean"
 					},
 					"autoplayDelayMS": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"feedbackIds": {
 						"items": {
@@ -4965,16 +4965,16 @@
 						"type": "boolean"
 					},
 					"votes": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"votesDown": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"votesUp": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					}
 				},
 				"required": [
@@ -4990,8 +4990,8 @@
 			"FlagCommentResponse": {
 				"properties": {
 					"statusCode": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32"
 					},
 					"status": {
 						"$ref": "#/components/schemas/APIStatus"
@@ -5145,8 +5145,8 @@
 						"format": "double"
 					},
 					"distinctCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int64"
 					},
 					"distinctCounts": {
 						"$ref": "#/components/schemas/DistinctAccumulator"
@@ -5192,12 +5192,12 @@
 					"stats": {
 						"properties": {
 							"timeMS": {
-								"type": "number",
-								"format": "double"
+								"type": "integer",
+								"format": "int64"
 							},
 							"scanned": {
-								"type": "number",
-								"format": "double"
+								"type": "integer",
+								"format": "int64"
 							}
 						},
 						"required": [
@@ -5530,13 +5530,12 @@
 						}
 					},
 					{
-						"description": "Defaults to 20.",
 						"in": "query",
 						"name": "pageSize",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -5560,8 +5559,8 @@
 						"name": "afterCreatedAt",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int64",
+							"type": "integer"
 						}
 					},
 					{
@@ -5655,8 +5654,8 @@
 						"name": "afterCreatedAt",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int64",
+							"type": "integer"
 						}
 					},
 					{
@@ -6086,35 +6085,6 @@
 						}
 					}
 				}
-			},
-			"options": {
-				"operationId": "UploadImageOptions",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Hidden"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "tenantId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
 			}
 		},
 		"/flag-comment/{commentId}": {
@@ -7643,8 +7613,8 @@
 						"name": "dir",
 						"required": true,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -8209,8 +8179,8 @@
 						"name": "skip",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					}
 				]
@@ -10236,8 +10206,8 @@
 						"name": "page",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -10245,8 +10215,8 @@
 						"name": "limit",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -10254,8 +10224,8 @@
 						"name": "skip",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -10271,8 +10241,8 @@
 						"name": "skipChildren",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -10280,8 +10250,8 @@
 						"name": "limitChildren",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
@@ -10289,8 +10259,8 @@
 						"name": "maxTreeDepth",
 						"required": false,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"format": "int32",
+							"type": "integer"
 						}
 					},
 					{
