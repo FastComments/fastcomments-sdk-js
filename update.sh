@@ -6,9 +6,9 @@ npm i
 rm -rvf ./src/generated
 
 # Try to download the OpenAPI spec from the running FastComments server
-if wget -q http://localhost:3001/js/swagger.json -O /tmp/fastcomments-openapi.json; then
+if wget -q http://localhost:3001/js/swagger.json -O ./openapi.json; then
     echo "Downloaded OpenAPI spec from running server"
-    SPEC_FILE="/tmp/fastcomments-openapi.json"
+    SPEC_FILE="./openapi.json"
 else
     echo "Server not running, using local OpenAPI spec"
     SPEC_FILE="./openapi.yaml"
