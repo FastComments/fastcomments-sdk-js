@@ -16,11 +16,9 @@ Full API reference: [docs/api/README.md](docs/api/README.md)
 
 This SDK uses **dual entry points** to ensure optimal compatibility and prevent runtime errors:
 
-- **`fastcomments-sdk/browser`** - Browser-safe version with native `fetch`, excludes Node.js crypto
-- **`fastcomments-sdk/server`** - Full Node.js version with SSO support, includes crypto features  
+- **`fastcomments-sdk/browser`** - Browser-safe version with native `fetch`
+- **`fastcomments-sdk/server`** - Full Node.js version with SSO support
 - **`fastcomments-sdk`** (default) - Types only, safe to import anywhere
-
-This prevents issues like "crypto module not found" when using the SDK in browser environments.
 
 ## Usage
 
@@ -31,7 +29,7 @@ This SDK provides separate entry points for browser and server environments to e
 For browser/frontend applications, use the browser-safe export that excludes Node.js dependencies:
 
 ```typescript
-// Browser-safe import (no Node.js crypto dependencies)
+// Browser-safe import (no Node.js dependencies)
 import { createFastCommentsBrowserSDK } from 'fastcomments-sdk/browser';
 
 // Create browser SDK instance
@@ -51,7 +49,7 @@ const comments = await sdk.publicApi.getCommentsPublic({
 For server/backend applications, use the full SDK with SSO and authentication features:
 
 ```typescript
-// Server-side import (includes SSO and Node.js crypto features)
+// Server-side import (includes SSO and designed to work with NodeJS)
 import { createFastCommentsSDK } from 'fastcomments-sdk/server';
 
 // Create server SDK instance
