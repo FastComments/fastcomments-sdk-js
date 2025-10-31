@@ -7,7 +7,7 @@ export * from './generated/src/models';
 export { Configuration } from './generated/src/runtime';
 
 // Re-export commonly used types and classes for convenience
-export { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
+export { DefaultApi, PublicApi } from './generated/src/apis';
 
 // Export client-safe live utilities (fetch-based WebSocket fallbacks)
 export { createURLQueryString, isAPIError, debounce, makeRequest } from './live/utils';
@@ -23,7 +23,7 @@ export type { LiveEvent, LiveEventType, EventLogEntry, PubSubComment, PubSubVote
 export type * from './sso/types';
 
 // Browser-safe SDK class
-import { DefaultApi, PublicApi, HiddenApi } from './generated/src/apis';
+import { DefaultApi, PublicApi } from './generated/src/apis';
 import { Configuration } from './generated/src/runtime';
 
 export interface FastCommentsBrowserSDKConfig {
@@ -35,7 +35,6 @@ export class FastCommentsBrowserSDK {
   private config: FastCommentsBrowserSDKConfig;
   private _defaultApi: DefaultApi | null = null;
   private _publicApi: PublicApi | null = null;
-  private _hiddenApi: HiddenApi | null = null;
 
   constructor(config: FastCommentsBrowserSDKConfig = {}) {
     this.config = { ...config };
@@ -65,13 +64,6 @@ export class FastCommentsBrowserSDK {
     return this._publicApi;
   }
 
-  public get hiddenApi(): HiddenApi {
-    if (!this._hiddenApi) {
-      this._hiddenApi = new HiddenApi(this.getConfiguration());
-    }
-    return this._hiddenApi;
-  }
-
   /**
    * Update the API key for authenticated requests
    */
@@ -79,7 +71,6 @@ export class FastCommentsBrowserSDK {
     this.config.apiKey = apiKey;
     this._defaultApi = null;
     this._publicApi = null;
-    this._hiddenApi = null;
   }
 
   /**
@@ -89,7 +80,6 @@ export class FastCommentsBrowserSDK {
     this.config.basePath = basePath;
     this._defaultApi = null;
     this._publicApi = null;
-    this._hiddenApi = null;
   }
 }
 
