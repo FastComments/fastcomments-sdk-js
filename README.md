@@ -8,6 +8,10 @@ Official Node.js and TypeScript SDK for the FastComments API. Build secure and s
 npm install fastcomments-sdk
 ```
 
+## API Documentation
+
+Full API reference: [docs/api/README.md](docs/api/README.md)
+
 ## Browser vs Server Compatibility
 
 This SDK uses **dual entry points** to ensure optimal compatibility and prevent runtime errors:

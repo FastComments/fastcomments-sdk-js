@@ -23,3 +23,13 @@ npm exec -- @openapitools/openapi-generator-cli generate \
     -c config.json
 
 echo "Generated TypeScript client in ./src/generated"
+
+rm -rvf ./docs/api
+
+npm exec -- @openapitools/openapi-generator-cli generate \
+    -i "$SPEC_FILE" \
+    -g markdown \
+    -o ./docs/api \
+    -c config.json
+
+echo "Generated API documentation in ./docs/api"
