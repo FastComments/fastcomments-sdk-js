@@ -619,13 +619,13 @@ All URIs are relative to *https://fastcomments.com*
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
-| **page** | **Double**|  | [optional] [default to null] |
-| **limit** | **Double**|  | [optional] [default to null] |
-| **skip** | **Double**|  | [optional] [default to null] |
+| **page** | **Integer**|  | [optional] [default to null] |
+| **limit** | **Integer**|  | [optional] [default to null] |
+| **skip** | **Integer**|  | [optional] [default to null] |
 | **asTree** | **Boolean**|  | [optional] [default to null] |
-| **skipChildren** | **Double**|  | [optional] [default to null] |
-| **limitChildren** | **Double**|  | [optional] [default to null] |
-| **maxTreeDepth** | **Double**|  | [optional] [default to null] |
+| **skipChildren** | **Integer**|  | [optional] [default to null] |
+| **limitChildren** | **Integer**|  | [optional] [default to null] |
+| **maxTreeDepth** | **Integer**|  | [optional] [default to null] |
 | **urlId** | **String**|  | [optional] [default to null] |
 | **userId** | **String**|  | [optional] [default to null] |
 | **anonUserId** | **String**|  | [optional] [default to null] |
@@ -842,7 +842,7 @@ All URIs are relative to *https://fastcomments.com*
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
-| **skip** | **Double**|  | [optional] [default to null] |
+| **skip** | **Integer**|  | [optional] [default to null] |
 
 ### Return type
 

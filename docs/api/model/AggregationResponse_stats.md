@@ -3,8 +3,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **timeMS** | **Double** |  | [default to null] |
-| **scanned** | **Double** |  | [default to null] |
+| **timeMS** | **Long** |  | [default to null] |
+| **scanned** | **Long** |  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

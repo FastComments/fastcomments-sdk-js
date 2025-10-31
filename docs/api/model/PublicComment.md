@@ -28,7 +28,7 @@
 | **displayLabel** | **String** |  | [optional] [default to null] |
 | **badges** | [**List**](CommentUserBadgeInfo.md) |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
-| **viewCount** | **Double** |  | [optional] [default to null] |
+| **viewCount** | **Long** |  | [optional] [default to null] |
 | **requiresVerification** | **Boolean** |  | [optional] [default to null] |
 | **editKey** | **String** |  | [optional] [default to null] |
 | **isUnread** | **Boolean** |  | [optional] [default to null] |

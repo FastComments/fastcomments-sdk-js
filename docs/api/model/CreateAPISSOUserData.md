@@ -16,9 +16,9 @@
 | **optedInSubscriptionNotifications** | **Boolean** |  | [optional] [default to null] |
 | **optedInNotifications** | **Boolean** |  | [optional] [default to null] |
 | **avatarSrc** | **String** |  | [optional] [default to null] |
-| **loginCount** | **Double** |  | [optional] [default to null] |
+| **loginCount** | **Integer** |  | [optional] [default to null] |
 | **createdFromUrlId** | **String** |  | [optional] [default to null] |
-| **signUpDate** | **Double** |  | [optional] [default to null] |
+| **signUpDate** | **Long** |  | [optional] [default to null] |
 | **email** | **String** |  | [default to null] |
 | **websiteUrl** | **String** |  | [optional] [default to null] |
 | **username** | **String** |  | [default to null] |

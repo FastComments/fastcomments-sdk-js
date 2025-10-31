@@ -310,7 +310,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
 | **commentId** | **String**|  | [default to null] |
-| **dir** | **Double**|  | [default to null] |
+| **dir** | **Integer**|  | [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
 ### Return type
@@ -539,10 +539,10 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
-| **pageSize** | **Double**| Defaults to 20. | [optional] [default to null] |
+| **pageSize** | **Integer**|  | [optional] [default to null] |
 | **afterId** | **String**|  | [optional] [default to null] |
 | **includeContext** | **Boolean**|  | [optional] [default to null] |
-| **afterCreatedAt** | **Double**|  | [optional] [default to null] |
+| **afterCreatedAt** | **Long**|  | [optional] [default to null] |
 | **unreadOnly** | **Boolean**|  | [optional] [default to null] |
 | **dmOnly** | **Boolean**|  | [optional] [default to null] |
 | **noDm** | **Boolean**|  | [optional] [default to null] |
@@ -740,7 +740,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
 | **afterId** | **String**|  | [optional] [default to null] |
-| **afterCreatedAt** | **Double**|  | [optional] [default to null] |
+| **afterCreatedAt** | **Long**|  | [optional] [default to null] |
 | **unreadOnly** | **Boolean**|  | [optional] [default to null] |
 | **dmOnly** | **Boolean**|  | [optional] [default to null] |
 | **noDm** | **Boolean**|  | [optional] [default to null] |

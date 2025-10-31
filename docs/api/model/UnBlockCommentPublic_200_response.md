@@ -8,8 +8,8 @@
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |
-| **bannedUntil** | **Double** |  | [optional] [default to null] |
-| **maxCharacterLength** | **Double** |  | [optional] [default to null] |
+| **bannedUntil** | **Long** |  | [optional] [default to null] |
+| **maxCharacterLength** | **Integer** |  | [optional] [default to null] |
 | **translatedError** | **String** |  | [optional] [default to null] |
 | **customConfig** | [**CustomConfigParameters**](CustomConfigParameters.md) |  | [optional] [default to null] |
 

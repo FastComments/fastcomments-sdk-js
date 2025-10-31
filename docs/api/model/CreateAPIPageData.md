@@ -4,8 +4,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **accessibleByGroupIds** | **List** |  | [optional] [default to null] |
-| **rootCommentCount** | **Double** |  | [optional] [default to null] |
-| **commentCount** | **Double** |  | [optional] [default to null] |
+| **rootCommentCount** | **Long** |  | [optional] [default to null] |
+| **commentCount** | **Long** |  | [optional] [default to null] |
 | **title** | **String** |  | [default to null] |
 | **url** | **String** |  | [default to null] |
 | **urlId** | **String** |  | [default to null] |

@@ -5,8 +5,8 @@
 |------------ | ------------- | ------------- | -------------|
 | **isClosed** | **Boolean** |  | [optional] [default to null] |
 | **accessibleByGroupIds** | **List** |  | [optional] [default to null] |
-| **rootCommentCount** | **Double** |  | [default to null] |
-| **commentCount** | **Double** |  | [default to null] |
+| **rootCommentCount** | **Long** |  | [default to null] |
+| **commentCount** | **Long** |  | [default to null] |
 | **createdAt** | **Date** |  | [default to null] |
 | **title** | **String** |  | [default to null] |
 | **url** | **String** |  | [optional] [default to null] |

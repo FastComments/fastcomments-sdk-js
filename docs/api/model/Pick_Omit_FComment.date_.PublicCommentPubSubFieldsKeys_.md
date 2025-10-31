@@ -43,7 +43,7 @@
 | **domain** | **String** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
 | **groupIds** | **List** |  | [optional] [default to null] |
-| **viewCount** | **Double** |  | [optional] [default to null] |
+| **viewCount** | **Long** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

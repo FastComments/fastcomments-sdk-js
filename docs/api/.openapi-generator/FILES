@@ -1,7 +1,6 @@
 .openapi-generator-ignore
 README.md
 api/DefaultApi.md
-api/HiddenApi.md
 api/PublicApi.md
 model/APICreateUserBadgeResponse.md
 model/APIEmptyResponse.md

@@ -727,7 +727,7 @@ export interface PublicApiInterface {
     /**
      * 
      * @param {string} tenantId 
-     * @param {number} [pageSize] Defaults to 20.
+     * @param {number} [pageSize] 
      * @param {string} [afterId] 
      * @param {boolean} [includeContext] 
      * @param {number} [afterCreatedAt] 

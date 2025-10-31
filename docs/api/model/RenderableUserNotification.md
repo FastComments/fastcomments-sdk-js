@@ -8,7 +8,7 @@
 | **fromUserNames** | **List** |  | [optional] [default to null] |
 | **fromUserIds** | **List** |  | [optional] [default to null] |
 | **relatedIds** | **List** |  | [optional] [default to null] |
-| **count** | **Double** |  | [optional] [default to null] |
+| **count** | **Long** |  | [optional] [default to null] |
 | **optedOut** | **Boolean** |  | [default to null] |
 | **fromUserAvatarSrc** | **String** |  | [optional] [default to null] |
 | **fromUserId** | **String** |  | [optional] [default to null] |

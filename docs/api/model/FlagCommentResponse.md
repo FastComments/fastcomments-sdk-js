@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **statusCode** | **Double** |  | [optional] [default to null] |
+| **statusCode** | **Integer** |  | [optional] [default to null] |
 | **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **code** | **String** |  | [optional] [default to null] |
 | **reason** | **String** |  | [optional] [default to null] |
