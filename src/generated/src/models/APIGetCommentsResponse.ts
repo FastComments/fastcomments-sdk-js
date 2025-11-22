@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PickFCommentAPICommentFieldsKeys } from './PickFCommentAPICommentFieldsKeys';
+import type { APIComment } from './APIComment';
 import {
-    PickFCommentAPICommentFieldsKeysFromJSON,
-    PickFCommentAPICommentFieldsKeysFromJSONTyped,
-    PickFCommentAPICommentFieldsKeysToJSON,
-    PickFCommentAPICommentFieldsKeysToJSONTyped,
-} from './PickFCommentAPICommentFieldsKeys';
+    APICommentFromJSON,
+    APICommentFromJSONTyped,
+    APICommentToJSON,
+    APICommentToJSONTyped,
+} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -42,10 +42,10 @@ export interface APIGetCommentsResponse {
     status: APIStatus;
     /**
      * 
-     * @type {Array<PickFCommentAPICommentFieldsKeys>}
+     * @type {Array<APIComment>}
      * @memberof APIGetCommentsResponse
      */
-    comments: Array<PickFCommentAPICommentFieldsKeys>;
+    comments: Array<APIComment>;
 }
 
 
@@ -70,7 +70,7 @@ export function APIGetCommentsResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'comments': ((json['comments'] as Array<any>).map(PickFCommentAPICommentFieldsKeysFromJSON)),
+        'comments': ((json['comments'] as Array<any>).map(APICommentFromJSON)),
     };
 }
 
@@ -86,7 +86,7 @@ export function APIGetCommentsResponseToJSONTyped(value?: APIGetCommentsResponse
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'comments': ((value['comments'] as Array<any>).map(PickFCommentAPICommentFieldsKeysToJSON)),
+        'comments': ((value['comments'] as Array<any>).map(APICommentToJSON)),
     };
 }
 

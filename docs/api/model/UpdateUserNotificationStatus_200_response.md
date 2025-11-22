@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **matchedCount** | **Long** |  | [default to null] |
 | **modifiedCount** | **Long** |  | [default to null] |
 | **note** | **String** |  | [default to null] |

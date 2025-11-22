@@ -1,4 +1,4 @@
-# VoteDeleteResponse_status
+# RepeatCommentCheckIgnoredReason
 ## Properties
 
 | Name | Type | Description | Notes |

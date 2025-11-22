@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
-import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
 import type { FComment } from './FComment';
 import {
     FCommentFromJSON,
@@ -27,6 +20,13 @@ import {
     FCommentToJSON,
     FCommentToJSONTyped,
 } from './FComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { UserSessionInfo } from './UserSessionInfo';
 import {
     UserSessionInfoFromJSON,
@@ -43,10 +43,10 @@ import {
 export interface SaveCommentResponse {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof SaveCommentResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {FComment}
@@ -89,7 +89,7 @@ export function SaveCommentResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'comment': FCommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
@@ -107,7 +107,7 @@ export function SaveCommentResponseToJSONTyped(value?: SaveCommentResponse | nul
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'comment': FCommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],

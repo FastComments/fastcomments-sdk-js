@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { VoteResponse } from './VoteResponse';
 import {
     VoteResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     VoteResponseToJSON,
     VoteResponseToJSONTyped,
 } from './VoteResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface VoteComment200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof VoteComment200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -151,7 +151,7 @@ export function VoteComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'voteId': json['voteId'] == null ? undefined : json['voteId'],
         'isVerified': json['isVerified'] == null ? undefined : json['isVerified'],
         'user': json['user'] == null ? undefined : VoteResponseUserFromJSON(json['user']),
@@ -177,7 +177,7 @@ export function VoteComment200ResponseToJSONTyped(value?: VoteComment200Response
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'voteId': value['voteId'],
         'isVerified': value['isVerified'],
         'user': VoteResponseUserToJSON(value['user']),

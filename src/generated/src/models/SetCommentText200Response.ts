@@ -20,20 +20,20 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { SetCommentTextResult } from './SetCommentTextResult';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
-import type { PickFCommentApprovedOrCommentHTML } from './PickFCommentApprovedOrCommentHTML';
+    SetCommentTextResultFromJSON,
+    SetCommentTextResultFromJSONTyped,
+    SetCommentTextResultToJSON,
+    SetCommentTextResultToJSONTyped,
+} from './SetCommentTextResult';
+import type { APIStatus } from './APIStatus';
 import {
-    PickFCommentApprovedOrCommentHTMLFromJSON,
-    PickFCommentApprovedOrCommentHTMLFromJSONTyped,
-    PickFCommentApprovedOrCommentHTMLToJSON,
-    PickFCommentApprovedOrCommentHTMLToJSONTyped,
-} from './PickFCommentApprovedOrCommentHTML';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,16 +57,16 @@ import {
 export interface SetCommentText200Response {
     /**
      * 
-     * @type {PickFCommentApprovedOrCommentHTML}
+     * @type {SetCommentTextResult}
      * @memberof SetCommentText200Response
      */
-    comment: PickFCommentApprovedOrCommentHTML;
+    comment: SetCommentTextResult;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof SetCommentText200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -134,8 +134,8 @@ export function SetCommentText200ResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'comment': PickFCommentApprovedOrCommentHTMLFromJSON(json['comment']),
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'comment': SetCommentTextResultFromJSON(json['comment']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -157,8 +157,8 @@ export function SetCommentText200ResponseToJSONTyped(value?: SetCommentText200Re
 
     return {
         
-        'comment': PickFCommentApprovedOrCommentHTMLToJSON(value['comment']),
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'comment': SetCommentTextResultToJSON(value['comment']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

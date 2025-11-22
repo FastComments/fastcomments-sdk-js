@@ -27,13 +27,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { FeedPostsStatsResponse } from './FeedPostsStatsResponse';
 import {
     FeedPostsStatsResponseFromJSON,
@@ -41,6 +34,13 @@ import {
     FeedPostsStatsResponseToJSON,
     FeedPostsStatsResponseToJSONTyped,
 } from './FeedPostsStatsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface GetFeedPostsStats200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetFeedPostsStats200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {{ [key: string]: FeedPostStats; }}
@@ -134,7 +134,7 @@ export function GetFeedPostsStats200ResponseFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'stats': (mapValues(json['stats'], FeedPostStatsFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function GetFeedPostsStats200ResponseToJSONTyped(value?: GetFeedPostsStat
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'stats': (mapValues(value['stats'], FeedPostStatsToJSON)),
         'reason': value['reason'],
         'code': value['code'],

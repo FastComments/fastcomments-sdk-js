@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PickFCommentApprovedOrCommentHTML } from './PickFCommentApprovedOrCommentHTML';
+import type { SetCommentTextResult } from './SetCommentTextResult';
 import {
-    PickFCommentApprovedOrCommentHTMLFromJSON,
-    PickFCommentApprovedOrCommentHTMLFromJSONTyped,
-    PickFCommentApprovedOrCommentHTMLToJSON,
-    PickFCommentApprovedOrCommentHTMLToJSONTyped,
-} from './PickFCommentApprovedOrCommentHTML';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+    SetCommentTextResultFromJSON,
+    SetCommentTextResultFromJSONTyped,
+    SetCommentTextResultToJSON,
+    SetCommentTextResultToJSONTyped,
+} from './SetCommentTextResult';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -36,16 +36,16 @@ import {
 export interface PublicAPISetCommentTextResponse {
     /**
      * 
-     * @type {PickFCommentApprovedOrCommentHTML}
+     * @type {SetCommentTextResult}
      * @memberof PublicAPISetCommentTextResponse
      */
-    comment: PickFCommentApprovedOrCommentHTML;
+    comment: SetCommentTextResult;
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof PublicAPISetCommentTextResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
 }
 
 
@@ -69,8 +69,8 @@ export function PublicAPISetCommentTextResponseFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'comment': PickFCommentApprovedOrCommentHTMLFromJSON(json['comment']),
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'comment': SetCommentTextResultFromJSON(json['comment']),
+        'status': APIStatusFromJSON(json['status']),
     };
 }
 
@@ -85,8 +85,8 @@ export function PublicAPISetCommentTextResponseToJSONTyped(value?: PublicAPISetC
 
     return {
         
-        'comment': PickFCommentApprovedOrCommentHTMLToJSON(value['comment']),
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'comment': SetCommentTextResultToJSON(value['comment']),
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

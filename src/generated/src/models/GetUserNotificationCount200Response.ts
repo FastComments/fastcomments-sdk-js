@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { GetUserNotificationCountResponse } from './GetUserNotificationCountResponse';
 import {
     GetUserNotificationCountResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     GetUserNotificationCountResponseToJSON,
     GetUserNotificationCountResponseToJSONTyped,
 } from './GetUserNotificationCountResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface GetUserNotificationCount200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserNotificationCount200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {number}
@@ -127,7 +127,7 @@ export function GetUserNotificationCount200ResponseFromJSONTyped(json: any, igno
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'count': json['count'],
         'reason': json['reason'],
         'code': json['code'],
@@ -150,7 +150,7 @@ export function GetUserNotificationCount200ResponseToJSONTyped(value?: GetUserNo
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'count': value['count'],
         'reason': value['reason'],
         'code': value['code'],

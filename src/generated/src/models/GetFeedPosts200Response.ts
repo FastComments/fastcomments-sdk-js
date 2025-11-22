@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { GetFeedPostsResponse } from './GetFeedPostsResponse';
 import {
     GetFeedPostsResponseFromJSON,
@@ -41,6 +34,13 @@ import {
     FeedPostToJSON,
     FeedPostToJSONTyped,
 } from './FeedPost';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface GetFeedPosts200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetFeedPosts200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {Array<FeedPost>}
@@ -134,7 +134,7 @@ export function GetFeedPosts200ResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'feedPosts': ((json['feedPosts'] as Array<any>).map(FeedPostFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function GetFeedPosts200ResponseToJSONTyped(value?: GetFeedPosts200Respon
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'feedPosts': ((value['feedPosts'] as Array<any>).map(FeedPostToJSON)),
         'reason': value['reason'],
         'code': value['code'],

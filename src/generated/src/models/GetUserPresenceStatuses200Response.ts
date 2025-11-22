@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { GetUserPresenceStatusesResponse } from './GetUserPresenceStatusesResponse';
 import {
     GetUserPresenceStatusesResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     GetUserPresenceStatusesResponseToJSON,
     GetUserPresenceStatusesResponseToJSONTyped,
 } from './GetUserPresenceStatusesResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface GetUserPresenceStatuses200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserPresenceStatuses200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: boolean; }}
@@ -127,7 +127,7 @@ export function GetUserPresenceStatuses200ResponseFromJSONTyped(json: any, ignor
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'userIdsOnline': json['userIdsOnline'],
         'reason': json['reason'],
         'code': json['code'],
@@ -150,7 +150,7 @@ export function GetUserPresenceStatuses200ResponseToJSONTyped(value?: GetUserPre
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'userIdsOnline': value['userIdsOnline'],
         'reason': value['reason'],
         'code': value['code'],

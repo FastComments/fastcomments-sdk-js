@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **statusCode** | **Integer** |  | [optional] [default to null] |
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **translatedWarning** | **String** |  | [optional] [default to null] |

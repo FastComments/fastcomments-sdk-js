@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { BlockSuccess } from './BlockSuccess';
 import {
     BlockSuccessFromJSON,
@@ -34,6 +27,13 @@ import {
     BlockSuccessToJSON,
     BlockSuccessToJSONTyped,
 } from './BlockSuccess';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface BlockFromCommentPublic200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof BlockFromCommentPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: boolean; }}
@@ -127,7 +127,7 @@ export function BlockFromCommentPublic200ResponseFromJSONTyped(json: any, ignore
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'commentStatuses': json['commentStatuses'],
         'reason': json['reason'],
         'code': json['code'],
@@ -150,7 +150,7 @@ export function BlockFromCommentPublic200ResponseToJSONTyped(value?: BlockFromCo
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'commentStatuses': value['commentStatuses'],
         'reason': value['reason'],
         'code': value['code'],

@@ -46,6 +46,12 @@ export interface APICreateUserBadgeResponse {
      * @memberof APICreateUserBadgeResponse
      */
     userBadge: UserBadge;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof APICreateUserBadgeResponse
+     */
+    notes?: Array<string>;
 }
 
 
@@ -71,6 +77,7 @@ export function APICreateUserBadgeResponseFromJSONTyped(json: any, ignoreDiscrim
         
         'status': APIStatusFromJSON(json['status']),
         'userBadge': UserBadgeFromJSON(json['userBadge']),
+        'notes': json['notes'] == null ? undefined : json['notes'],
     };
 }
 
@@ -87,6 +94,7 @@ export function APICreateUserBadgeResponseToJSONTyped(value?: APICreateUserBadge
         
         'status': APIStatusToJSON(value['status']),
         'userBadge': UserBadgeToJSON(value['userBadge']),
+        'notes': value['notes'],
     };
 }
 

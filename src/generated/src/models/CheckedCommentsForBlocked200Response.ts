@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { CheckBlockedCommentsResponse } from './CheckBlockedCommentsResponse';
 import {
     CheckBlockedCommentsResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     CheckBlockedCommentsResponseToJSON,
     CheckBlockedCommentsResponseToJSONTyped,
 } from './CheckBlockedCommentsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -56,10 +56,10 @@ export interface CheckedCommentsForBlocked200Response {
     commentStatuses: { [key: string]: boolean; };
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof CheckedCommentsForBlocked200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -128,7 +128,7 @@ export function CheckedCommentsForBlocked200ResponseFromJSONTyped(json: any, ign
     return {
         
         'commentStatuses': json['commentStatuses'],
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -151,7 +151,7 @@ export function CheckedCommentsForBlocked200ResponseToJSONTyped(value?: CheckedC
     return {
         
         'commentStatuses': value['commentStatuses'],
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],
