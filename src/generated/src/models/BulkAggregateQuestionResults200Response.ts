@@ -27,13 +27,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface BulkAggregateQuestionResults200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof BulkAggregateQuestionResults200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: QuestionResultAggregationOverall; }}
@@ -134,7 +134,7 @@ export function BulkAggregateQuestionResults200ResponseFromJSONTyped(json: any, 
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'data': (mapValues(json['data'], QuestionResultAggregationOverallFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function BulkAggregateQuestionResults200ResponseToJSONTyped(value?: BulkA
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'data': (mapValues(value['data'], QuestionResultAggregationOverallToJSON)),
         'reason': value['reason'],
         'code': value['code'],

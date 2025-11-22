@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { UserReactsResponse } from './UserReactsResponse';
 import {
     UserReactsResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     UserReactsResponseToJSON,
     UserReactsResponseToJSONTyped,
 } from './UserReactsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface GetUserReactsPublic200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserReactsPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {{ [key: string]: { [key: string]: boolean; }; }}
@@ -127,7 +127,7 @@ export function GetUserReactsPublic200ResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reacts': json['reacts'],
         'reason': json['reason'],
         'code': json['code'],
@@ -150,7 +150,7 @@ export function GetUserReactsPublic200ResponseToJSONTyped(value?: GetUserReactsP
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reacts': value['reacts'],
         'reason': value['reason'],
         'code': value['code'],

@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { VoteDeleteResponse } from './VoteDeleteResponse';
 import {
     VoteDeleteResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     VoteDeleteResponseToJSON,
     VoteDeleteResponseToJSONTyped,
 } from './VoteDeleteResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface DeleteCommentVote200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof DeleteCommentVote200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {boolean}
@@ -126,7 +126,7 @@ export function DeleteCommentVote200ResponseFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'wasPendingVote': json['wasPendingVote'] == null ? undefined : json['wasPendingVote'],
         'reason': json['reason'],
         'code': json['code'],
@@ -149,7 +149,7 @@ export function DeleteCommentVote200ResponseToJSONTyped(value?: DeleteCommentVot
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'wasPendingVote': value['wasPendingVote'],
         'reason': value['reason'],
         'code': value['code'],

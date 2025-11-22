@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **myReacts** | [**Map**](map.md) |  | [optional] [default to null] |
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **feedPosts** | [**List**](FeedPost.md) |  | [default to null] |
 | **user** | [**UserSessionInfo**](UserSessionInfo.md) |  | [optional] [default to null] |
 | **urlIdWS** | **String** |  | [optional] [default to null] |

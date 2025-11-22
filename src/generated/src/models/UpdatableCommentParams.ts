@@ -13,300 +13,292 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PickFCommentAPICommentFieldsKeysMeta } from './PickFCommentAPICommentFieldsKeysMeta';
+import type { FCommentMeta } from './FCommentMeta';
 import {
-    PickFCommentAPICommentFieldsKeysMetaFromJSON,
-    PickFCommentAPICommentFieldsKeysMetaFromJSONTyped,
-    PickFCommentAPICommentFieldsKeysMetaToJSON,
-    PickFCommentAPICommentFieldsKeysMetaToJSONTyped,
-} from './PickFCommentAPICommentFieldsKeysMeta';
+    FCommentMetaFromJSON,
+    FCommentMetaFromJSONTyped,
+    FCommentMetaToJSON,
+    FCommentMetaToJSONTyped,
+} from './FCommentMeta';
 
 /**
- * From T, pick a set of properties whose keys are in the union K
+ * 
  * @export
- * @interface PickAPICommentUpdatableCommentFields
+ * @interface UpdatableCommentParams
  */
-export interface PickAPICommentUpdatableCommentFields {
-    /**
-     * 
-     * @type {Date}
-     * @memberof PickAPICommentUpdatableCommentFields
-     */
-    date: Date;
+export interface UpdatableCommentParams {
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    urlId: string;
+    urlId?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     urlIdRaw?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    url: string;
+    url?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    commenterEmail?: string;
+    commenterEmail?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    commenterName: string;
+    commenterName?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    commenterLink?: string;
+    commenterLink?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    comment: string;
+    comment?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    commentHTML: string;
+    commentHTML?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    parentId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
-     */
-    localDateString?: string;
+    parentId?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    localDateHours?: number;
+    date?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatableCommentParams
+     */
+    localDateString?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    votes?: number;
+    localDateHours?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    votesUp?: number;
+    votes?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    votesDown?: number;
+    votesUp?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdatableCommentParams
+     */
+    votesDown?: number | null;
     /**
      * 
      * @type {Date}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    expireAt?: Date;
+    expireAt?: Date | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    verified: boolean;
+    verified?: boolean;
     /**
      * 
      * @type {Date}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    verifiedDate?: Date;
+    verifiedDate?: Date | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     notificationSentForParent?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     notificationSentForParentTenant?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     reviewed?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     externalId?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    externalParentId?: string;
+    externalParentId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    avatarSrc?: string;
+    avatarSrc?: string | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     isSpam?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    approved: boolean;
+    approved?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     isDeleted?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     isDeletedUser?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     isByAdmin?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
     isByModerator?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    isPinned?: boolean;
+    isPinned?: boolean | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    isLocked?: boolean;
+    isLocked?: boolean | null;
     /**
      * 
      * @type {number}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    flagCount?: number;
+    flagCount?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
      */
-    displayLabel?: string;
+    displayLabel?: string | null;
     /**
      * 
-     * @type {PickFCommentAPICommentFieldsKeysMeta}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @type {FCommentMeta}
+     * @memberof UpdatableCommentParams
      */
-    meta?: PickFCommentAPICommentFieldsKeysMeta;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PickAPICommentUpdatableCommentFields
-     */
-    moderationGroupIds?: Array<string>;
+    meta?: FCommentMeta | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof PickAPICommentUpdatableCommentFields
+     * @memberof UpdatableCommentParams
+     */
+    moderationGroupIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdatableCommentParams
      */
     feedbackIds?: Array<string>;
 }
 
 /**
- * Check if a given object implements the PickAPICommentUpdatableCommentFields interface.
+ * Check if a given object implements the UpdatableCommentParams interface.
  */
-export function instanceOfPickAPICommentUpdatableCommentFields(value: object): value is PickAPICommentUpdatableCommentFields {
-    if (!('date' in value) || value['date'] === undefined) return false;
-    if (!('urlId' in value) || value['urlId'] === undefined) return false;
-    if (!('url' in value) || value['url'] === undefined) return false;
-    if (!('commenterName' in value) || value['commenterName'] === undefined) return false;
-    if (!('comment' in value) || value['comment'] === undefined) return false;
-    if (!('commentHTML' in value) || value['commentHTML'] === undefined) return false;
-    if (!('verified' in value) || value['verified'] === undefined) return false;
-    if (!('approved' in value) || value['approved'] === undefined) return false;
+export function instanceOfUpdatableCommentParams(value: object): value is UpdatableCommentParams {
     return true;
 }
 
-export function PickAPICommentUpdatableCommentFieldsFromJSON(json: any): PickAPICommentUpdatableCommentFields {
-    return PickAPICommentUpdatableCommentFieldsFromJSONTyped(json, false);
+export function UpdatableCommentParamsFromJSON(json: any): UpdatableCommentParams {
+    return UpdatableCommentParamsFromJSONTyped(json, false);
 }
 
-export function PickAPICommentUpdatableCommentFieldsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PickAPICommentUpdatableCommentFields {
+export function UpdatableCommentParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatableCommentParams {
     if (json == null) {
         return json;
     }
     return {
         
-        'date': (new Date(json['date'])),
-        'urlId': json['urlId'],
+        'urlId': json['urlId'] == null ? undefined : json['urlId'],
         'urlIdRaw': json['urlIdRaw'] == null ? undefined : json['urlIdRaw'],
-        'url': json['url'],
+        'url': json['url'] == null ? undefined : json['url'],
         'pageTitle': json['pageTitle'] == null ? undefined : json['pageTitle'],
         'userId': json['userId'] == null ? undefined : json['userId'],
         'commenterEmail': json['commenterEmail'] == null ? undefined : json['commenterEmail'],
-        'commenterName': json['commenterName'],
+        'commenterName': json['commenterName'] == null ? undefined : json['commenterName'],
         'commenterLink': json['commenterLink'] == null ? undefined : json['commenterLink'],
-        'comment': json['comment'],
-        'commentHTML': json['commentHTML'],
+        'comment': json['comment'] == null ? undefined : json['comment'],
+        'commentHTML': json['commentHTML'] == null ? undefined : json['commentHTML'],
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'date': json['date'] == null ? undefined : json['date'],
         'localDateString': json['localDateString'] == null ? undefined : json['localDateString'],
         'localDateHours': json['localDateHours'] == null ? undefined : json['localDateHours'],
         'votes': json['votes'] == null ? undefined : json['votes'],
         'votesUp': json['votesUp'] == null ? undefined : json['votesUp'],
         'votesDown': json['votesDown'] == null ? undefined : json['votesDown'],
         'expireAt': json['expireAt'] == null ? undefined : (new Date(json['expireAt'])),
-        'verified': json['verified'],
+        'verified': json['verified'] == null ? undefined : json['verified'],
         'verifiedDate': json['verifiedDate'] == null ? undefined : (new Date(json['verifiedDate'])),
         'notificationSentForParent': json['notificationSentForParent'] == null ? undefined : json['notificationSentForParent'],
         'notificationSentForParentTenant': json['notificationSentForParentTenant'] == null ? undefined : json['notificationSentForParentTenant'],
@@ -315,7 +307,7 @@ export function PickAPICommentUpdatableCommentFieldsFromJSONTyped(json: any, ign
         'externalParentId': json['externalParentId'] == null ? undefined : json['externalParentId'],
         'avatarSrc': json['avatarSrc'] == null ? undefined : json['avatarSrc'],
         'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
-        'approved': json['approved'],
+        'approved': json['approved'] == null ? undefined : json['approved'],
         'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
         'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
         'isByAdmin': json['isByAdmin'] == null ? undefined : json['isByAdmin'],
@@ -324,24 +316,23 @@ export function PickAPICommentUpdatableCommentFieldsFromJSONTyped(json: any, ign
         'isLocked': json['isLocked'] == null ? undefined : json['isLocked'],
         'flagCount': json['flagCount'] == null ? undefined : json['flagCount'],
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
-        'meta': json['meta'] == null ? undefined : PickFCommentAPICommentFieldsKeysMetaFromJSON(json['meta']),
+        'meta': json['meta'] == null ? undefined : FCommentMetaFromJSON(json['meta']),
         'moderationGroupIds': json['moderationGroupIds'] == null ? undefined : json['moderationGroupIds'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
     };
 }
 
-export function PickAPICommentUpdatableCommentFieldsToJSON(json: any): PickAPICommentUpdatableCommentFields {
-    return PickAPICommentUpdatableCommentFieldsToJSONTyped(json, false);
+export function UpdatableCommentParamsToJSON(json: any): UpdatableCommentParams {
+    return UpdatableCommentParamsToJSONTyped(json, false);
 }
 
-export function PickAPICommentUpdatableCommentFieldsToJSONTyped(value?: PickAPICommentUpdatableCommentFields | null, ignoreDiscriminator: boolean = false): any {
+export function UpdatableCommentParamsToJSONTyped(value?: UpdatableCommentParams | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'date': ((value['date']).toISOString()),
         'urlId': value['urlId'],
         'urlIdRaw': value['urlIdRaw'],
         'url': value['url'],
@@ -353,14 +344,15 @@ export function PickAPICommentUpdatableCommentFieldsToJSONTyped(value?: PickAPIC
         'comment': value['comment'],
         'commentHTML': value['commentHTML'],
         'parentId': value['parentId'],
+        'date': value['date'],
         'localDateString': value['localDateString'],
         'localDateHours': value['localDateHours'],
         'votes': value['votes'],
         'votesUp': value['votesUp'],
         'votesDown': value['votesDown'],
-        'expireAt': value['expireAt'] == null ? undefined : ((value['expireAt']).toISOString()),
+        'expireAt': value['expireAt'] == null ? undefined : ((value['expireAt'] as any).toISOString()),
         'verified': value['verified'],
-        'verifiedDate': value['verifiedDate'] == null ? undefined : ((value['verifiedDate']).toISOString()),
+        'verifiedDate': value['verifiedDate'] == null ? undefined : ((value['verifiedDate'] as any).toISOString()),
         'notificationSentForParent': value['notificationSentForParent'],
         'notificationSentForParentTenant': value['notificationSentForParentTenant'],
         'reviewed': value['reviewed'],
@@ -377,7 +369,7 @@ export function PickAPICommentUpdatableCommentFieldsToJSONTyped(value?: PickAPIC
         'isLocked': value['isLocked'],
         'flagCount': value['flagCount'],
         'displayLabel': value['displayLabel'],
-        'meta': PickFCommentAPICommentFieldsKeysMetaToJSON(value['meta']),
+        'meta': FCommentMetaToJSON(value['meta']),
         'moderationGroupIds': value['moderationGroupIds'],
         'feedbackIds': value['feedbackIds'],
     };

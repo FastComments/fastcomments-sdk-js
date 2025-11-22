@@ -20,13 +20,13 @@ import {
     RenderableUserNotificationToJSON,
     RenderableUserNotificationToJSONTyped,
 } from './RenderableUserNotification';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -60,10 +60,10 @@ export interface GetMyNotificationsResponse {
     notifications: Array<RenderableUserNotification>;
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof GetMyNotificationsResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
 }
 
 
@@ -93,7 +93,7 @@ export function GetMyNotificationsResponseFromJSONTyped(json: any, ignoreDiscrim
         'isSubscribed': json['isSubscribed'],
         'hasMore': json['hasMore'],
         'notifications': ((json['notifications'] as Array<any>).map(RenderableUserNotificationFromJSON)),
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
     };
 }
 
@@ -112,7 +112,7 @@ export function GetMyNotificationsResponseToJSONTyped(value?: GetMyNotifications
         'isSubscribed': value['isSubscribed'],
         'hasMore': value['hasMore'],
         'notifications': ((value['notifications'] as Array<any>).map(RenderableUserNotificationToJSON)),
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

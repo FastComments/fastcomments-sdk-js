@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { SaveCommentsResponseWithPresence } from './SaveCommentsResponseWithPresence';
 import {
     SaveCommentsResponseWithPresenceFromJSON,
@@ -41,6 +34,13 @@ import {
     PublicCommentToJSON,
     PublicCommentToJSONTyped,
 } from './PublicComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -64,10 +64,10 @@ import {
 export interface CreateCommentPublic200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof CreateCommentPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {PublicComment}
@@ -160,7 +160,7 @@ export function CreateCommentPublic200ResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'comment': PublicCommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
@@ -186,7 +186,7 @@ export function CreateCommentPublic200ResponseToJSONTyped(value?: CreateCommentP
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'comment': PublicCommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],

@@ -20,20 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIAuditLog } from './APIAuditLog';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
-import type { PickTenantAuditLogTenantAuditLogKeys } from './PickTenantAuditLogTenantAuditLogKeys';
-import {
-    PickTenantAuditLogTenantAuditLogKeysFromJSON,
-    PickTenantAuditLogTenantAuditLogKeysFromJSONTyped,
-    PickTenantAuditLogTenantAuditLogKeysToJSON,
-    PickTenantAuditLogTenantAuditLogKeysToJSONTyped,
-} from './PickTenantAuditLogTenantAuditLogKeys';
+    APIAuditLogFromJSON,
+    APIAuditLogFromJSONTyped,
+    APIAuditLogToJSON,
+    APIAuditLogToJSONTyped,
+} from './APIAuditLog';
 import type { GetAuditLogsResponse } from './GetAuditLogsResponse';
 import {
     GetAuditLogsResponseFromJSON,
@@ -41,6 +34,13 @@ import {
     GetAuditLogsResponseToJSON,
     GetAuditLogsResponseToJSONTyped,
 } from './GetAuditLogsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,16 +57,16 @@ import {
 export interface GetAuditLogs200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetAuditLogs200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
-     * @type {Array<PickTenantAuditLogTenantAuditLogKeys>}
+     * @type {Array<APIAuditLog>}
      * @memberof GetAuditLogs200Response
      */
-    auditLogs: Array<PickTenantAuditLogTenantAuditLogKeys>;
+    auditLogs: Array<APIAuditLog>;
     /**
      * 
      * @type {string}
@@ -134,8 +134,8 @@ export function GetAuditLogs200ResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
-        'auditLogs': ((json['auditLogs'] as Array<any>).map(PickTenantAuditLogTenantAuditLogKeysFromJSON)),
+        'status': APIStatusFromJSON(json['status']),
+        'auditLogs': ((json['auditLogs'] as Array<any>).map(APIAuditLogFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -157,8 +157,8 @@ export function GetAuditLogs200ResponseToJSONTyped(value?: GetAuditLogs200Respon
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
-        'auditLogs': ((value['auditLogs'] as Array<any>).map(PickTenantAuditLogTenantAuditLogKeysToJSON)),
+        'status': APIStatusToJSON(value['status']),
+        'auditLogs': ((value['auditLogs'] as Array<any>).map(APIAuditLogToJSON)),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

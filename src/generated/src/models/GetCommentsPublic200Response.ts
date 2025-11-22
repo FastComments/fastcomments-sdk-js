@@ -27,13 +27,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { PublicComment } from './PublicComment';
 import {
     PublicCommentFromJSON,
@@ -41,6 +34,13 @@ import {
     PublicCommentToJSON,
     PublicCommentToJSONTyped,
 } from './PublicComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -70,10 +70,10 @@ export interface GetCommentsPublic200Response {
     statusCode?: number;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetCommentsPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -276,7 +276,7 @@ export function GetCommentsPublic200ResponseFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'code': json['code'],
         'reason': json['reason'],
         'translatedWarning': json['translatedWarning'] == null ? undefined : json['translatedWarning'],
@@ -321,7 +321,7 @@ export function GetCommentsPublic200ResponseToJSONTyped(value?: GetCommentsPubli
     return {
         
         'statusCode': value['statusCode'],
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'code': value['code'],
         'reason': value['reason'],
         'translatedWarning': value['translatedWarning'],

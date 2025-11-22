@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.SUCCESS**](ImportedAPIStatus.SUCCESS.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **NotificationType** | [**Object**](.md) |  | [default to null] |
 | **userId** | **String** |  | [default to null] |
 | **userIdWS** | **String** |  | [default to null] |

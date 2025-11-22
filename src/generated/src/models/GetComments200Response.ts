@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { APIGetCommentsResponse } from './APIGetCommentsResponse';
 import {
     APIGetCommentsResponseFromJSON,
@@ -34,13 +27,20 @@ import {
     APIGetCommentsResponseToJSON,
     APIGetCommentsResponseToJSONTyped,
 } from './APIGetCommentsResponse';
-import type { PickFCommentAPICommentFieldsKeys } from './PickFCommentAPICommentFieldsKeys';
+import type { APIComment } from './APIComment';
 import {
-    PickFCommentAPICommentFieldsKeysFromJSON,
-    PickFCommentAPICommentFieldsKeysFromJSONTyped,
-    PickFCommentAPICommentFieldsKeysToJSON,
-    PickFCommentAPICommentFieldsKeysToJSONTyped,
-} from './PickFCommentAPICommentFieldsKeys';
+    APICommentFromJSON,
+    APICommentFromJSONTyped,
+    APICommentToJSON,
+    APICommentToJSONTyped,
+} from './APIComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,16 +57,16 @@ import {
 export interface GetComments200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetComments200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
-     * @type {Array<PickFCommentAPICommentFieldsKeys>}
+     * @type {Array<APIComment>}
      * @memberof GetComments200Response
      */
-    comments: Array<PickFCommentAPICommentFieldsKeys>;
+    comments: Array<APIComment>;
     /**
      * 
      * @type {string}
@@ -134,8 +134,8 @@ export function GetComments200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
-        'comments': ((json['comments'] as Array<any>).map(PickFCommentAPICommentFieldsKeysFromJSON)),
+        'status': APIStatusFromJSON(json['status']),
+        'comments': ((json['comments'] as Array<any>).map(APICommentFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -157,8 +157,8 @@ export function GetComments200ResponseToJSONTyped(value?: GetComments200Response
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
-        'comments': ((value['comments'] as Array<any>).map(PickFCommentAPICommentFieldsKeysToJSON)),
+        'status': APIStatusToJSON(value['status']),
+        'comments': ((value['comments'] as Array<any>).map(APICommentToJSON)),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

@@ -14,90 +14,90 @@
 
 import { mapValues } from '../runtime';
 /**
- * From T, pick a set of properties whose keys are in the union K
+ * 
  * @export
- * @interface PickTenantAuditLogTenantAuditLogKeys
+ * @interface APIAuditLog
  */
-export interface PickTenantAuditLogTenantAuditLogKeys {
+export interface APIAuditLog {
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
-     */
-    url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     userId?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     username?: string;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     resourceName: string;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
-    crudType: PickTenantAuditLogTenantAuditLogKeysCrudTypeEnum;
+    crudType: APIAuditLogCrudTypeEnum;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
-    from?: PickTenantAuditLogTenantAuditLogKeysFromEnum;
+    from?: APIAuditLogFromEnum;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
-    ip?: string;
+    url?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIAuditLog
+     */
+    ip?: string | null;
     /**
      * 
      * @type {Date}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     when?: Date;
     /**
      * 
      * @type {string}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     description?: string;
     /**
      * 
      * @type {Date}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
     serverStartDate?: Date;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: any; }}
-     * @memberof PickTenantAuditLogTenantAuditLogKeys
+     * @memberof APIAuditLog
      */
-    objectDetails?: { [key: string]: any; };
+    objectDetails?: { [key: string]: any; } | null;
 }
 
 /**
 * @export
 * @enum {string}
 */
-export enum PickTenantAuditLogTenantAuditLogKeysCrudTypeEnum {
+export enum APIAuditLogCrudTypeEnum {
     c = 'c',
     r = 'r',
     u = 'u',
@@ -108,7 +108,7 @@ export enum PickTenantAuditLogTenantAuditLogKeysCrudTypeEnum {
 * @export
 * @enum {string}
 */
-export enum PickTenantAuditLogTenantAuditLogKeysFromEnum {
+export enum APIAuditLogFromEnum {
     ui = 'ui',
     api = 'api',
     cron = 'cron'
@@ -116,32 +116,32 @@ export enum PickTenantAuditLogTenantAuditLogKeysFromEnum {
 
 
 /**
- * Check if a given object implements the PickTenantAuditLogTenantAuditLogKeys interface.
+ * Check if a given object implements the APIAuditLog interface.
  */
-export function instanceOfPickTenantAuditLogTenantAuditLogKeys(value: object): value is PickTenantAuditLogTenantAuditLogKeys {
+export function instanceOfAPIAuditLog(value: object): value is APIAuditLog {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('resourceName' in value) || value['resourceName'] === undefined) return false;
     if (!('crudType' in value) || value['crudType'] === undefined) return false;
     return true;
 }
 
-export function PickTenantAuditLogTenantAuditLogKeysFromJSON(json: any): PickTenantAuditLogTenantAuditLogKeys {
-    return PickTenantAuditLogTenantAuditLogKeysFromJSONTyped(json, false);
+export function APIAuditLogFromJSON(json: any): APIAuditLog {
+    return APIAuditLogFromJSONTyped(json, false);
 }
 
-export function PickTenantAuditLogTenantAuditLogKeysFromJSONTyped(json: any, ignoreDiscriminator: boolean): PickTenantAuditLogTenantAuditLogKeys {
+export function APIAuditLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): APIAuditLog {
     if (json == null) {
         return json;
     }
     return {
         
         'id': json['_id'],
-        'url': json['url'] == null ? undefined : json['url'],
         'userId': json['userId'] == null ? undefined : json['userId'],
         'username': json['username'] == null ? undefined : json['username'],
         'resourceName': json['resourceName'],
         'crudType': json['crudType'],
         'from': json['from'] == null ? undefined : json['from'],
+        'url': json['url'] == null ? undefined : json['url'],
         'ip': json['ip'] == null ? undefined : json['ip'],
         'when': json['when'] == null ? undefined : (new Date(json['when'])),
         'description': json['description'] == null ? undefined : json['description'],
@@ -150,11 +150,11 @@ export function PickTenantAuditLogTenantAuditLogKeysFromJSONTyped(json: any, ign
     };
 }
 
-export function PickTenantAuditLogTenantAuditLogKeysToJSON(json: any): PickTenantAuditLogTenantAuditLogKeys {
-    return PickTenantAuditLogTenantAuditLogKeysToJSONTyped(json, false);
+export function APIAuditLogToJSON(json: any): APIAuditLog {
+    return APIAuditLogToJSONTyped(json, false);
 }
 
-export function PickTenantAuditLogTenantAuditLogKeysToJSONTyped(value?: PickTenantAuditLogTenantAuditLogKeys | null, ignoreDiscriminator: boolean = false): any {
+export function APIAuditLogToJSONTyped(value?: APIAuditLog | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -162,12 +162,12 @@ export function PickTenantAuditLogTenantAuditLogKeysToJSONTyped(value?: PickTena
     return {
         
         '_id': value['id'],
-        'url': value['url'],
         'userId': value['userId'],
         'username': value['username'],
         'resourceName': value['resourceName'],
         'crudType': value['crudType'],
         'from': value['from'],
+        'url': value['url'],
         'ip': value['ip'],
         'when': value['when'] == null ? undefined : ((value['when']).toISOString()),
         'description': value['description'],

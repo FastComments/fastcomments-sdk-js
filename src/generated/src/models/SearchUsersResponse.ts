@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
-import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
 import type { UserSearchResult } from './UserSearchResult';
 import {
     UserSearchResultFromJSON,
@@ -27,6 +20,13 @@ import {
     UserSearchResultToJSON,
     UserSearchResultToJSONTyped,
 } from './UserSearchResult';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -36,10 +36,10 @@ import {
 export interface SearchUsersResponse {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof SearchUsersResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {Array<UserSearchResult>}
@@ -69,7 +69,7 @@ export function SearchUsersResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'users': ((json['users'] as Array<any>).map(UserSearchResultFromJSON)),
     };
 }
@@ -85,7 +85,7 @@ export function SearchUsersResponseToJSONTyped(value?: SearchUsersResponse | nul
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'users': ((value['users'] as Array<any>).map(UserSearchResultToJSON)),
     };
 }

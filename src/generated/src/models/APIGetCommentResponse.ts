@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PickFCommentAPICommentFieldsKeys } from './PickFCommentAPICommentFieldsKeys';
+import type { APIComment } from './APIComment';
 import {
-    PickFCommentAPICommentFieldsKeysFromJSON,
-    PickFCommentAPICommentFieldsKeysFromJSONTyped,
-    PickFCommentAPICommentFieldsKeysToJSON,
-    PickFCommentAPICommentFieldsKeysToJSONTyped,
-} from './PickFCommentAPICommentFieldsKeys';
+    APICommentFromJSON,
+    APICommentFromJSONTyped,
+    APICommentToJSON,
+    APICommentToJSONTyped,
+} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -42,10 +42,10 @@ export interface APIGetCommentResponse {
     status: APIStatus;
     /**
      * 
-     * @type {PickFCommentAPICommentFieldsKeys}
+     * @type {APIComment}
      * @memberof APIGetCommentResponse
      */
-    comment: PickFCommentAPICommentFieldsKeys;
+    comment: APIComment;
 }
 
 
@@ -70,7 +70,7 @@ export function APIGetCommentResponseFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'comment': PickFCommentAPICommentFieldsKeysFromJSON(json['comment']),
+        'comment': APICommentFromJSON(json['comment']),
     };
 }
 
@@ -86,7 +86,7 @@ export function APIGetCommentResponseToJSONTyped(value?: APIGetCommentResponse |
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'comment': PickFCommentAPICommentFieldsKeysToJSON(value['comment']),
+        'comment': APICommentToJSON(value['comment']),
     };
 }
 

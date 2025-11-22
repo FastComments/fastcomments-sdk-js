@@ -45,16 +45,10 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ImportedAPIStatus.SUCCESS": {
-				"enum": [
-					"success"
-				],
-				"type": "string"
-			},
 			"SearchUsersResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"users": {
 						"items": {
@@ -68,12 +62,6 @@
 					"users"
 				],
 				"type": "object"
-			},
-			"ImportedAPIStatus.FAILED": {
-				"enum": [
-					"failed"
-				],
-				"type": "string"
 			},
 			"CommentHTMLRenderingMode": {
 				"enum": [
@@ -399,6 +387,9 @@
 					"readonly": {
 						"type": "boolean"
 					},
+					"noNewRootComments": {
+						"type": "boolean"
+					},
 					"requireSSO": {
 						"type": "boolean"
 					},
@@ -478,7 +469,7 @@
 			"APIError": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.FAILED"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"reason": {
 						"type": "string"
@@ -523,7 +514,7 @@
 			"GetUserPresenceStatusesResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"userIdsOnline": {
 						"$ref": "#/components/schemas/Record_string.boolean_"
@@ -674,7 +665,7 @@
 						"type": "array"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -688,7 +679,7 @@
 			"ResetUserNotificationsResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"code": {
 						"type": "string",
@@ -707,7 +698,7 @@
 			"GetUserNotificationCountResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"count": {
 						"type": "integer",
@@ -745,7 +736,7 @@
 			"HeaderState": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"NotificationType": {
 						"$ref": "#/components/schemas/EnumAsObject_typeofNotificationType_"
@@ -776,7 +767,7 @@
 			"UserNotificationWriteResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"matchedCount": {
 						"type": "integer",
@@ -798,7 +789,7 @@
 			"IgnoredResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"note": {
 						"type": "string",
@@ -874,7 +865,7 @@
 			"APIEmptyResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -1127,7 +1118,7 @@
 			"GetPublicFeedPostsResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"feedPosts": {
 						"items": {
@@ -1416,7 +1407,7 @@
 						"type": "array"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -1608,95 +1599,74 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_Omit_FComment.date_.PublicCommentPubSubFieldsKeys_": {
+			"UserId": {
+				"type": "string"
+			},
+			"FDomain": {
+				"type": "string"
+			},
+			"PubSubCommentBase": {
 				"properties": {
-					"date": {},
 					"_id": {
 						"type": "string"
 					},
 					"tenantId": {
 						"type": "string"
 					},
-					"urlId": {
-						"type": "string"
-					},
-					"url": {
-						"type": "string"
-					},
-					"pageTitle": {
-						"type": "string"
-					},
 					"userId": {
-						"type": "string"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UserId"
+							}
+						],
+						"nullable": true
 					},
-					"anonUserId": {
+					"urlId": {
 						"type": "string"
 					},
 					"commenterName": {
 						"type": "string"
 					},
 					"commenterLink": {
+						"type": "string",
+						"nullable": true
+					},
+					"commentHTML": {
 						"type": "string"
 					},
 					"comment": {
 						"type": "string"
 					},
-					"commentHTML": {
-						"type": "string"
-					},
 					"parentId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"votes": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesUp": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesDown": {
 						"type": "integer",
-						"format": "int32"
-					},
-					"expireAt": {
-						"type": "string",
-						"format": "date-time"
+						"format": "int32",
+						"nullable": true
 					},
 					"verified": {
 						"type": "boolean"
 					},
-					"reviewed": {
-						"type": "boolean"
-					},
 					"avatarSrc": {
-						"type": "string"
-					},
-					"isSpam": {
-						"type": "boolean"
+						"type": "string",
+						"nullable": true
 					},
 					"hasImages": {
 						"type": "boolean"
 					},
 					"hasLinks": {
-						"type": "boolean"
-					},
-					"hasCode": {
-						"type": "boolean"
-					},
-					"approved": {
-						"type": "boolean"
-					},
-					"locale": {
-						"type": "string"
-					},
-					"isDeleted": {
-						"type": "boolean"
-					},
-					"isDeletedUser": {
-						"type": "boolean"
-					},
-					"isBannedUser": {
 						"type": "boolean"
 					},
 					"isByAdmin": {
@@ -1706,30 +1676,46 @@
 						"type": "boolean"
 					},
 					"isPinned": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"isLocked": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
-					"flagCount": {
-						"type": "integer",
-						"format": "int32"
+					"displayLabel": {
+						"type": "string",
+						"nullable": true
 					},
 					"rating": {
 						"type": "number",
-						"format": "double"
-					},
-					"displayLabel": {
-						"type": "string"
+						"format": "double",
+						"nullable": true
 					},
 					"badges": {
 						"items": {
 							"$ref": "#/components/schemas/CommentUserBadgeInfo"
 						},
-						"type": "array"
+						"type": "array",
+						"nullable": true
 					},
-					"domain": {
-						"type": "string"
+					"viewCount": {
+						"type": "integer",
+						"format": "int64",
+						"nullable": true
+					},
+					"isDeleted": {
+						"type": "boolean"
+					},
+					"isDeletedUser": {
+						"type": "boolean"
+					},
+					"isSpam": {
+						"type": "boolean"
+					},
+					"anonUserId": {
+						"type": "string",
+						"nullable": true
 					},
 					"feedbackIds": {
 						"items": {
@@ -1737,37 +1723,74 @@
 						},
 						"type": "array"
 					},
+					"flagCount": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"domain": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/FDomain"
+							}
+						],
+						"nullable": true
+					},
+					"url": {
+						"type": "string"
+					},
+					"pageTitle": {
+						"type": "string",
+						"nullable": true
+					},
+					"expireAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"reviewed": {
+						"type": "boolean"
+					},
+					"hasCode": {
+						"type": "boolean"
+					},
+					"approved": {
+						"type": "boolean"
+					},
+					"locale": {
+						"type": "string",
+						"nullable": true
+					},
+					"isBannedUser": {
+						"type": "boolean"
+					},
 					"groupIds": {
 						"items": {
 							"type": "string"
 						},
-						"type": "array"
-					},
-					"viewCount": {
-						"type": "integer",
-						"format": "int64"
+						"type": "array",
+						"nullable": true
 					}
 				},
 				"required": [
-					"date",
 					"_id",
 					"tenantId",
 					"urlId",
-					"url",
 					"commenterName",
-					"comment",
 					"commentHTML",
+					"comment",
 					"verified",
+					"url",
 					"approved",
 					"locale"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
 			"PubSubComment": {
 				"allOf": [
 					{
-						"$ref": "#/components/schemas/Pick_Omit_FComment.date_.PublicCommentPubSubFieldsKeys_"
+						"$ref": "#/components/schemas/PubSubCommentBase"
 					},
 					{
 						"properties": {
@@ -1888,7 +1911,7 @@
 			"PublicAPIGetCommentTextResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"commentText": {
 						"type": "string"
@@ -1904,29 +1927,29 @@
 				],
 				"type": "object"
 			},
-			"Pick_FComment.approved-or-commentHTML_": {
+			"SetCommentTextResult": {
 				"properties": {
-					"commentHTML": {
-						"type": "string"
-					},
 					"approved": {
 						"type": "boolean"
+					},
+					"commentHTML": {
+						"type": "string"
 					}
 				},
 				"required": [
-					"commentHTML",
-					"approved"
+					"approved",
+					"commentHTML"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
 			"PublicAPISetCommentTextResponse": {
 				"properties": {
 					"comment": {
-						"$ref": "#/components/schemas/Pick_FComment.approved-or-commentHTML_"
+						"$ref": "#/components/schemas/SetCommentTextResult"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -2058,65 +2081,65 @@
 						"type": "object"
 					},
 					{
-						"$ref": "#/components/schemas/Pick_FComment.PublicCommentFieldsKeys_"
+						"$ref": "#/components/schemas/PublicCommentBase"
 					}
 				]
 			},
-			"Pick_FComment.PublicCommentFieldsKeys_": {
+			"PublicCommentBase": {
 				"properties": {
-					"date": {
-						"type": "string",
-						"format": "date-time"
-					},
 					"_id": {
 						"type": "string"
 					},
 					"userId": {
-						"type": "string"
-					},
-					"anonUserId": {
-						"type": "string"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UserId"
+							}
+						],
+						"nullable": true
 					},
 					"commenterName": {
 						"type": "string"
 					},
 					"commenterLink": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"commentHTML": {
 						"type": "string"
 					},
 					"parentId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
 					},
 					"votes": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesUp": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesDown": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"verified": {
 						"type": "boolean"
 					},
 					"avatarSrc": {
-						"type": "string"
-					},
-					"isSpam": {
-						"type": "boolean"
+						"type": "string",
+						"nullable": true
 					},
 					"hasImages": {
-						"type": "boolean"
-					},
-					"isDeleted": {
-						"type": "boolean"
-					},
-					"isDeletedUser": {
 						"type": "boolean"
 					},
 					"isByAdmin": {
@@ -2126,23 +2149,46 @@
 						"type": "boolean"
 					},
 					"isPinned": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"isLocked": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
+					},
+					"displayLabel": {
+						"type": "string",
+						"nullable": true
 					},
 					"rating": {
 						"type": "number",
-						"format": "double"
-					},
-					"displayLabel": {
-						"type": "string"
+						"format": "double",
+						"nullable": true
 					},
 					"badges": {
 						"items": {
 							"$ref": "#/components/schemas/CommentUserBadgeInfo"
 						},
-						"type": "array"
+						"type": "array",
+						"nullable": true
+					},
+					"viewCount": {
+						"type": "integer",
+						"format": "int64",
+						"nullable": true
+					},
+					"isDeleted": {
+						"type": "boolean"
+					},
+					"isDeletedUser": {
+						"type": "boolean"
+					},
+					"isSpam": {
+						"type": "boolean"
+					},
+					"anonUserId": {
+						"type": "string",
+						"nullable": true
 					},
 					"feedbackIds": {
 						"items": {
@@ -2150,26 +2196,25 @@
 						},
 						"type": "array"
 					},
-					"viewCount": {
-						"type": "integer",
-						"format": "int64"
-					},
 					"requiresVerification": {
 						"type": "boolean"
 					},
 					"editKey": {
 						"type": "string"
+					},
+					"approved": {
+						"type": "boolean"
 					}
 				},
 				"required": [
-					"date",
 					"_id",
 					"commenterName",
 					"commentHTML",
+					"date",
 					"verified"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
 			"Record_string.any_": {
 				"properties": {},
@@ -2305,7 +2350,7 @@
 			"SaveCommentResponseOptimized": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"comment": {
 						"$ref": "#/components/schemas/PublicComment"
@@ -2468,38 +2513,39 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_FComment.isDeleted-or-commentHTML-or-commenterName-or-userId_": {
+			"DeletedCommentResultComment": {
 				"properties": {
-					"userId": {
+					"isDeleted": {
+						"type": "boolean"
+					},
+					"commentHTML": {
 						"type": "string"
 					},
 					"commenterName": {
 						"type": "string"
 					},
-					"commentHTML": {
-						"type": "string"
-					},
-					"isDeleted": {
-						"type": "boolean"
+					"userId": {
+						"type": "string",
+						"nullable": true
 					}
 				},
 				"required": [
-					"commenterName",
-					"commentHTML"
+					"commentHTML",
+					"commenterName"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
 			"PublicAPIDeleteCommentResponse": {
 				"properties": {
 					"comment": {
-						"$ref": "#/components/schemas/Pick_FComment.isDeleted-or-commentHTML-or-commenterName-or-userId_"
+						"$ref": "#/components/schemas/DeletedCommentResultComment"
 					},
 					"hardRemoved": {
 						"type": "boolean"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -2514,7 +2560,7 @@
 						"$ref": "#/components/schemas/Record_string.boolean_"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -2538,10 +2584,7 @@
 					"status": {
 						"anyOf": [
 							{
-								"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
-							},
-							{
-								"$ref": "#/components/schemas/ImportedAPIStatus.FAILED"
+								"$ref": "#/components/schemas/APIStatus"
 							},
 							{
 								"type": "string",
@@ -2604,14 +2647,7 @@
 			"VoteDeleteResponse": {
 				"properties": {
 					"status": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
-							},
-							{
-								"$ref": "#/components/schemas/ImportedAPIStatus.FAILED"
-							}
-						]
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"wasPendingVote": {
 						"type": "boolean"
@@ -2626,7 +2662,7 @@
 			"GetCommentVoteUserNamesSuccessResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"voteUserNames": {
 						"items": {
@@ -2652,7 +2688,7 @@
 						"$ref": "#/components/schemas/CommentPositions"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -2664,7 +2700,7 @@
 			"BlockSuccess": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"commentStatuses": {
 						"$ref": "#/components/schemas/Record_string.boolean_"
@@ -2697,7 +2733,7 @@
 			"UnblockSuccess": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"commentStatuses": {
 						"$ref": "#/components/schemas/Record_string.boolean_"
@@ -3330,6 +3366,10 @@
 					"code": {
 						"type": "string"
 					},
+					"commentsUpdated": {
+						"type": "integer",
+						"format": "int64"
+					},
 					"page": {
 						"$ref": "#/components/schemas/APIPage"
 					},
@@ -3509,6 +3549,12 @@
 					},
 					"userBadge": {
 						"$ref": "#/components/schemas/UserBadge"
+					},
+					"notes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -3802,15 +3848,266 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"UserId": {
-				"type": "string"
+			"CommentLogType": {
+				"enum": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15,
+					16,
+					17,
+					18,
+					19,
+					20,
+					21,
+					22,
+					23,
+					24,
+					25,
+					26,
+					27,
+					28,
+					29,
+					30,
+					31,
+					32,
+					33,
+					34,
+					35,
+					36,
+					37,
+					38,
+					39,
+					40,
+					41,
+					42,
+					43,
+					44,
+					45,
+					46,
+					47,
+					48,
+					49,
+					50,
+					51,
+					52,
+					53,
+					54
+				],
+				"type": "number"
 			},
-			"FDomain": {
-				"type": "string"
+			"RepeatCommentHandlingAction": {
+				"enum": [
+					0,
+					1,
+					2
+				],
+				"type": "number"
 			},
-			"CommentLog": {
-				"items": {},
-				"type": "array"
+			"RepeatCommentCheckIgnoredReason": {
+				"enum": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6
+				],
+				"type": "number"
+			},
+			"CommentLogData": {
+				"properties": {
+					"clearContent": {
+						"type": "boolean"
+					},
+					"isDeletedUser": {
+						"type": "boolean"
+					},
+					"phrase": {
+						"type": "string"
+					},
+					"badWord": {
+						"type": "string"
+					},
+					"word": {
+						"type": "string"
+					},
+					"locale": {
+						"type": "string"
+					},
+					"tenantBadgeId": {
+						"type": "string"
+					},
+					"badgeId": {
+						"type": "string"
+					},
+					"wasLoggedIn": {
+						"type": "boolean"
+					},
+					"foundUser": {
+						"type": "boolean"
+					},
+					"verified": {
+						"type": "boolean"
+					},
+					"engine": {
+						"type": "string"
+					},
+					"engineResponse": {
+						"type": "string"
+					},
+					"engineTokens": {
+						"type": "number",
+						"format": "double"
+					},
+					"trustFactor": {
+						"type": "number",
+						"format": "double"
+					},
+					"rule": {
+						"$ref": "#/components/schemas/SpamRule"
+					},
+					"userId": {
+						"type": "string"
+					},
+					"subscribers": {
+						"type": "number",
+						"format": "double"
+					},
+					"notificationCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"votesBefore": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesUpBefore": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesDownBefore": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesAfter": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesUpAfter": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesDownAfter": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"repeatAction": {
+						"$ref": "#/components/schemas/RepeatCommentHandlingAction"
+					},
+					"reason": {
+						"$ref": "#/components/schemas/RepeatCommentCheckIgnoredReason"
+					},
+					"otherData": {},
+					"spamBefore": {
+						"type": "boolean"
+					},
+					"spamAfter": {
+						"type": "boolean"
+					},
+					"permanentFlag": {
+						"type": "string",
+						"enum": [
+							"permanent"
+						],
+						"nullable": false
+					},
+					"approvedBefore": {
+						"type": "boolean"
+					},
+					"approvedAfter": {
+						"type": "boolean"
+					},
+					"reviewedBefore": {
+						"type": "boolean"
+					},
+					"reviewedAfter": {
+						"type": "boolean"
+					},
+					"textBefore": {
+						"type": "string"
+					},
+					"textAfter": {
+						"type": "string"
+					},
+					"expireBefore": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"expireAfter": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"flagCountBefore": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"trustFactorBefore": {
+						"type": "number",
+						"format": "double"
+					},
+					"trustFactorAfter": {
+						"type": "number",
+						"format": "double"
+					},
+					"referencedCommentId": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommentLogEntry": {
+				"properties": {
+					"d": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"t": {
+						"$ref": "#/components/schemas/CommentLogType"
+					},
+					"da": {
+						"$ref": "#/components/schemas/CommentLogData"
+					}
+				},
+				"required": [
+					"d",
+					"t"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"FComment": {
 				"properties": {
@@ -4090,7 +4387,7 @@
 					},
 					"logs": {
 						"items": {
-							"$ref": "#/components/schemas/CommentLog"
+							"$ref": "#/components/schemas/CommentLogEntry"
 						},
 						"type": "array",
 						"nullable": true
@@ -4385,44 +4682,31 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_FComment.APICommentFieldsKeys_": {
+			"APICommentBase": {
 				"properties": {
-					"date": {
-						"type": "string",
-						"format": "date-time"
-					},
 					"_id": {
 						"type": "string"
 					},
-					"tenantId": {
-						"type": "string"
-					},
-					"urlId": {
-						"type": "string"
-					},
-					"urlIdRaw": {
-						"type": "string"
-					},
-					"url": {
-						"type": "string"
-					},
-					"pageTitle": {
-						"type": "string"
-					},
-					"userId": {
-						"type": "string"
+					"aiDeterminedSpam": {
+						"type": "boolean"
 					},
 					"anonUserId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
-					"commenterEmail": {
-						"type": "string"
+					"approved": {
+						"type": "boolean"
 					},
-					"commenterName": {
-						"type": "string"
+					"avatarSrc": {
+						"type": "string",
+						"nullable": true
 					},
-					"commenterLink": {
-						"type": "string"
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserBadgeInfo"
+						},
+						"type": "array",
+						"nullable": true
 					},
 					"comment": {
 						"type": "string"
@@ -4430,61 +4714,62 @@
 					"commentHTML": {
 						"type": "string"
 					},
-					"parentId": {
+					"commenterEmail": {
+						"type": "string",
+						"nullable": true
+					},
+					"commenterLink": {
+						"type": "string",
+						"nullable": true
+					},
+					"commenterName": {
 						"type": "string"
 					},
-					"localDateString": {
-						"type": "string"
-					},
-					"localDateHours": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"votes": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"votesUp": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"votesDown": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"expireAt": {
+					"date": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
-					"verified": {
-						"type": "boolean"
-					},
-					"verifiedDate": {
+					"displayLabel": {
 						"type": "string",
-						"format": "date-time"
+						"nullable": true
 					},
-					"notificationSentForParent": {
-						"type": "boolean"
-					},
-					"notificationSentForParentTenant": {
-						"type": "boolean"
-					},
-					"reviewed": {
-						"type": "boolean"
+					"domain": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/FDomain"
+							}
+						],
+						"nullable": true
 					},
 					"externalId": {
 						"type": "string"
 					},
 					"externalParentId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
-					"avatarSrc": {
-						"type": "string"
+					"expireAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
 					},
-					"isSpam": {
-						"type": "boolean"
+					"feedbackIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
-					"aiDeterminedSpam": {
+					"flagCount": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"fromProductId": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"hasCode": {
 						"type": "boolean"
 					},
 					"hasImages": {
@@ -4493,20 +4778,11 @@
 					"hasLinks": {
 						"type": "boolean"
 					},
-					"hasCode": {
-						"type": "boolean"
-					},
-					"approved": {
-						"type": "boolean"
-					},
-					"locale": {
-						"type": "string"
-					},
-					"isDeleted": {
-						"type": "boolean"
-					},
-					"isDeletedUser": {
-						"type": "boolean"
+					"hashTags": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserHashTagInfo"
+						},
+						"type": "array"
 					},
 					"isByAdmin": {
 						"type": "boolean"
@@ -4514,26 +4790,41 @@
 					"isByModerator": {
 						"type": "boolean"
 					},
-					"isPinned": {
+					"isDeleted": {
 						"type": "boolean"
+					},
+					"isDeletedUser": {
+						"type": "boolean"
+					},
+					"isPinned": {
+						"type": "boolean",
+						"nullable": true
 					},
 					"isLocked": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"isSpam": {
 						"type": "boolean"
 					},
-					"flagCount": {
+					"localDateHours": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
-					"rating": {
-						"type": "number",
-						"format": "double"
+					"localDateString": {
+						"type": "string",
+						"nullable": true
 					},
-					"displayLabel": {
-						"type": "string"
+					"locale": {
+						"type": "string",
+						"nullable": true
 					},
-					"fromProductId": {
-						"type": "integer",
-						"format": "int32"
+					"mentions": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserMentionInfo"
+						},
+						"type": "array"
 					},
 					"meta": {
 						"properties": {
@@ -4545,60 +4836,117 @@
 							}
 						},
 						"additionalProperties": {},
-						"type": "object"
-					},
-					"mentions": {
-						"items": {
-							"$ref": "#/components/schemas/CommentUserMentionInfo"
-						},
-						"type": "array"
-					},
-					"hashTags": {
-						"items": {
-							"$ref": "#/components/schemas/CommentUserHashTagInfo"
-						},
-						"type": "array"
-					},
-					"badges": {
-						"items": {
-							"$ref": "#/components/schemas/CommentUserBadgeInfo"
-						},
-						"type": "array"
-					},
-					"domain": {
-						"type": "string"
+						"type": "object",
+						"nullable": true
 					},
 					"moderationGroupIds": {
 						"items": {
 							"type": "string"
 						},
-						"type": "array"
+						"type": "array",
+						"nullable": true
 					},
-					"feedbackIds": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+					"notificationSentForParent": {
+						"type": "boolean"
+					},
+					"notificationSentForParentTenant": {
+						"type": "boolean"
+					},
+					"pageTitle": {
+						"type": "string",
+						"nullable": true
+					},
+					"parentId": {
+						"type": "string",
+						"nullable": true
+					},
+					"rating": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"reviewed": {
+						"type": "boolean"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"urlId": {
+						"type": "string"
+					},
+					"urlIdRaw": {
+						"type": "string"
+					},
+					"userId": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UserId"
+							}
+						],
+						"nullable": true
+					},
+					"verified": {
+						"type": "boolean"
+					},
+					"verifiedDate": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"votes": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"votesDown": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"votesUp": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
 					}
 				},
 				"required": [
-					"date",
 					"_id",
-					"tenantId",
-					"urlId",
-					"url",
-					"commenterName",
+					"approved",
 					"comment",
 					"commentHTML",
-					"verified",
-					"approved",
-					"locale"
+					"commenterName",
+					"date",
+					"locale",
+					"tenantId",
+					"url",
+					"urlId",
+					"verified"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
 			"APIComment": {
-				"$ref": "#/components/schemas/Pick_FComment.APICommentFieldsKeys_"
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/APICommentBase"
+					},
+					{
+						"properties": {
+							"date": {
+								"type": "number",
+								"format": "double",
+								"nullable": true
+							}
+						},
+						"required": [
+							"date"
+						],
+						"type": "object"
+					}
+				]
 			},
 			"APIGetCommentResponse": {
 				"properties": {
@@ -4635,12 +4983,8 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_APIComment.UpdatableCommentFields_": {
+			"UpdatableCommentParams": {
 				"properties": {
-					"date": {
-						"type": "string",
-						"format": "date-time"
-					},
 					"urlId": {
 						"type": "string"
 					},
@@ -4651,19 +4995,27 @@
 						"type": "string"
 					},
 					"pageTitle": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"userId": {
-						"type": "string"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UserId"
+							}
+						],
+						"nullable": true
 					},
 					"commenterEmail": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"commenterName": {
 						"type": "string"
 					},
 					"commenterLink": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"comment": {
 						"type": "string"
@@ -4672,37 +5024,50 @@
 						"type": "string"
 					},
 					"parentId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
+					},
+					"date": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
 					},
 					"localDateString": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"localDateHours": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votes": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesUp": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"votesDown": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"expireAt": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"verified": {
 						"type": "boolean"
 					},
 					"verifiedDate": {
 						"type": "string",
-						"format": "date-time"
+						"format": "date-time",
+						"nullable": true
 					},
 					"notificationSentForParent": {
 						"type": "boolean"
@@ -4717,10 +5082,12 @@
 						"type": "string"
 					},
 					"externalParentId": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"avatarSrc": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"isSpam": {
 						"type": "boolean"
@@ -4741,17 +5108,21 @@
 						"type": "boolean"
 					},
 					"isPinned": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"isLocked": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"flagCount": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"nullable": true
 					},
 					"displayLabel": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"meta": {
 						"properties": {
@@ -4763,13 +5134,15 @@
 							}
 						},
 						"additionalProperties": {},
-						"type": "object"
+						"type": "object",
+						"nullable": true
 					},
 					"moderationGroupIds": {
 						"items": {
 							"type": "string"
 						},
-						"type": "array"
+						"type": "array",
+						"nullable": true
 					},
 					"feedbackIds": {
 						"items": {
@@ -4778,21 +5151,8 @@
 						"type": "array"
 					}
 				},
-				"required": [
-					"date",
-					"urlId",
-					"url",
-					"commenterName",
-					"comment",
-					"commentHTML",
-					"verified",
-					"approved"
-				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"UpdatableCommentParams": {
-				"$ref": "#/components/schemas/Pick_APIComment.UpdatableCommentFields_"
+				"additionalProperties": false
 			},
 			"DeleteCommentAction": {
 				"type": "string",
@@ -4808,7 +5168,7 @@
 						"$ref": "#/components/schemas/DeleteCommentAction"
 					},
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					}
 				},
 				"required": [
@@ -4820,7 +5180,7 @@
 			"SaveCommentResponse": {
 				"properties": {
 					"status": {
-						"$ref": "#/components/schemas/ImportedAPIStatus.SUCCESS"
+						"$ref": "#/components/schemas/APIStatus"
 					},
 					"comment": {
 						"$ref": "#/components/schemas/FComment"
@@ -5036,12 +5396,9 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_TenantAuditLog.TenantAuditLogKeys_": {
+			"APIAuditLog": {
 				"properties": {
 					"_id": {
-						"type": "string"
-					},
-					"url": {
 						"type": "string"
 					},
 					"userId": {
@@ -5071,8 +5428,13 @@
 							"cron"
 						]
 					},
+					"url": {
+						"type": "string",
+						"nullable": true
+					},
 					"ip": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"when": {
 						"type": "string",
@@ -5086,7 +5448,12 @@
 						"format": "date-time"
 					},
 					"objectDetails": {
-						"$ref": "#/components/schemas/Record_string.any_"
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Record_string.any_"
+							}
+						],
+						"nullable": true
 					}
 				},
 				"required": [
@@ -5095,10 +5462,7 @@
 					"crudType"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"APIAuditLog": {
-				"$ref": "#/components/schemas/Pick_TenantAuditLog.TenantAuditLogKeys_"
+				"additionalProperties": false
 			},
 			"GetAuditLogsResponse": {
 				"properties": {
