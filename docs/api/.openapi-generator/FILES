@@ -2,6 +2,9 @@
 README.md
 api/DefaultApi.md
 api/PublicApi.md
+model/APIAuditLog.md
+model/APIComment.md
+model/APICommentBase.md
 model/APICreateUserBadgeResponse.md
 model/APIEmptyResponse.md
 model/APIEmptySuccessResponse.md
@@ -46,6 +49,9 @@ model/CombineCommentsWithQuestionResults_200_response.md
 model/CombineQuestionResultsWithCommentsResponse.md
 model/CommentData.md
 model/CommentHTMLRenderingMode.md
+model/CommentLogData.md
+model/CommentLogEntry.md
+model/CommentLogType.md
 model/CommentQuestionResultsRenderingType.md
 model/CommentQuestionsRequired.md
 model/CommentTextUpdateRequest.md
@@ -79,6 +85,7 @@ model/DeleteFeedPostPublic_200_response_anyOf.md
 model/DeletePageAPIResponse.md
 model/DeleteSSOUserAPIResponse.md
 model/DeleteSubscriptionAPIResponse.md
+model/DeletedCommentResultComment.md
 model/EventLogEntry.md
 model/FComment.md
 model/FComment_meta.md
@@ -135,8 +142,6 @@ model/GifRating.md
 model/HeaderState.md
 model/IgnoredResponse.md
 model/ImageContentProfanityLevel.md
-model/ImportedAPIStatus.FAILED.md
-model/ImportedAPIStatus.SUCCESS.md
 model/LiveEvent.md
 model/LiveEventType.md
 model/LiveEvent_extraInfo.md
@@ -149,22 +154,16 @@ model/NotificationType.md
 model/PatchDomainConfigParams.md
 model/PatchPageAPIResponse.md
 model/PatchSSOUserAPIResponse.md
-model/Pick_APIComment.UpdatableCommentFields_.md
-model/Pick_FComment.APICommentFieldsKeys_.md
-model/Pick_FComment.PublicCommentFieldsKeys_.md
-model/Pick_FComment.approved-or-commentHTML_.md
-model/Pick_FComment.isDeleted-or-commentHTML-or-commenterName-or-userId_.md
-model/Pick_FComment_APICommentFieldsKeys__meta.md
-model/Pick_Omit_FComment.date_.PublicCommentPubSubFieldsKeys_.md
-model/Pick_TenantAuditLog.TenantAuditLogKeys_.md
 model/PinComment_200_response.md
 model/PubSubComment.md
+model/PubSubCommentBase.md
 model/PubSubVote.md
 model/PublicAPIDeleteCommentResponse.md
 model/PublicAPIGetCommentTextResponse.md
 model/PublicAPISetCommentTextResponse.md
 model/PublicBlockFromCommentParams.md
 model/PublicComment.md
+model/PublicCommentBase.md
 model/PublicFeedPostsResponse.md
 model/PutSSOUserAPIResponse.md
 model/QueryPredicate.md
@@ -181,6 +180,8 @@ model/ReactFeedPostResponse.md
 model/Record_string__before_string_or_null__after_string_or_null___value.md
 model/Record_string_string_or_number__value.md
 model/RenderableUserNotification.md
+model/RepeatCommentCheckIgnoredReason.md
+model/RepeatCommentHandlingAction.md
 model/ResetUserNotificationsResponse.md
 model/ResetUserNotifications_200_response.md
 model/SORT_DIR.md
@@ -191,6 +192,7 @@ model/SaveComment_200_response.md
 model/SaveCommentsResponseWithPresence.md
 model/SearchUsersResponse.md
 model/SearchUsers_200_response.md
+model/SetCommentTextResult.md
 model/SetCommentText_200_response.md
 model/SizePreset.md
 model/SortDirections.md
@@ -198,6 +200,7 @@ model/SpamRule.md
 model/UnBlockCommentPublic_200_response.md
 model/UnBlockFromCommentParams.md
 model/UnblockSuccess.md
+model/UpdatableCommentParams.md
 model/UpdateAPIPageData.md
 model/UpdateAPISSOUserData.md
 model/UpdateDomainConfigParams.md
@@ -217,7 +220,6 @@ model/UserSessionInfo.md
 model/VoteBodyParams.md
 model/VoteComment_200_response.md
 model/VoteDeleteResponse.md
-model/VoteDeleteResponse_status.md
 model/VoteResponse.md
 model/VoteResponseUser.md
 model/VoteResponse_status.md

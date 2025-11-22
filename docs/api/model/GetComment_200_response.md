@@ -3,8 +3,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
-| **comment** | [**Pick_FComment.APICommentFieldsKeys_**](Pick_FComment.APICommentFieldsKeys_.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
+| **comment** | [**APIComment**](APIComment.md) |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |

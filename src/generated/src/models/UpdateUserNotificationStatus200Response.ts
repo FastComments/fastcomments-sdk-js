@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { UserNotificationWriteResponse } from './UserNotificationWriteResponse';
 import {
     UserNotificationWriteResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     UserNotificationWriteResponseToJSON,
     UserNotificationWriteResponseToJSONTyped,
 } from './UserNotificationWriteResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface UpdateUserNotificationStatus200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof UpdateUserNotificationStatus200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {number}
@@ -156,7 +156,7 @@ export function UpdateUserNotificationStatus200ResponseFromJSONTyped(json: any, 
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'matchedCount': json['matchedCount'],
         'modifiedCount': json['modifiedCount'],
         'note': json['note'],
@@ -181,7 +181,7 @@ export function UpdateUserNotificationStatus200ResponseToJSONTyped(value?: Updat
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'matchedCount': value['matchedCount'],
         'modifiedCount': value['modifiedCount'],
         'note': value['note'],

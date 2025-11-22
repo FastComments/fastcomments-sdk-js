@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { UserSearchResult } from './UserSearchResult';
 import {
     UserSearchResultFromJSON,
@@ -34,6 +27,13 @@ import {
     UserSearchResultToJSON,
     UserSearchResultToJSONTyped,
 } from './UserSearchResult';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface SearchUsers200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof SearchUsers200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {Array<UserSearchResult>}
@@ -134,7 +134,7 @@ export function SearchUsers200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'users': ((json['users'] as Array<any>).map(UserSearchResultFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function SearchUsers200ResponseToJSONTyped(value?: SearchUsers200Response
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'users': ((value['users'] as Array<any>).map(UserSearchResultToJSON)),
         'reason': value['reason'],
         'code': value['code'],

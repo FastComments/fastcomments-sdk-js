@@ -3,8 +3,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
-| **auditLogs** | [**List**](Pick_TenantAuditLog.TenantAuditLogKeys_.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
+| **auditLogs** | [**List**](APIAuditLog.md) |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |

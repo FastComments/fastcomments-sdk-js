@@ -27,13 +27,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { FeedPost } from './FeedPost';
 import {
     FeedPostFromJSON,
@@ -41,6 +34,13 @@ import {
     FeedPostToJSON,
     FeedPostToJSONTyped,
 } from './FeedPost';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -70,10 +70,10 @@ export interface GetFeedPostsPublic200Response {
     myReacts?: { [key: string]: { [key: string]: boolean; }; };
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetFeedPostsPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {Array<FeedPost>}
@@ -172,7 +172,7 @@ export function GetFeedPostsPublic200ResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'myReacts': json['myReacts'] == null ? undefined : json['myReacts'],
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'feedPosts': ((json['feedPosts'] as Array<any>).map(FeedPostFromJSON)),
         'user': json['user'] == null ? undefined : UserSessionInfoFromJSON(json['user']),
         'urlIdWS': json['urlIdWS'] == null ? undefined : json['urlIdWS'],
@@ -200,7 +200,7 @@ export function GetFeedPostsPublic200ResponseToJSONTyped(value?: GetFeedPostsPub
     return {
         
         'myReacts': value['myReacts'],
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'feedPosts': ((value['feedPosts'] as Array<any>).map(FeedPostToJSON)),
         'user': UserSessionInfoToJSON(value['user']),
         'urlIdWS': value['urlIdWS'],

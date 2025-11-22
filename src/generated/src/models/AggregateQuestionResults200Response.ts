@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { AggregateQuestionResultsResponse } from './AggregateQuestionResultsResponse';
 import {
     AggregateQuestionResultsResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     AggregateQuestionResultsResponseToJSON,
     AggregateQuestionResultsResponseToJSONTyped,
 } from './AggregateQuestionResultsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface AggregateQuestionResults200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof AggregateQuestionResults200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {QuestionResultAggregationOverall}
@@ -134,7 +134,7 @@ export function AggregateQuestionResults200ResponseFromJSONTyped(json: any, igno
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'data': QuestionResultAggregationOverallFromJSON(json['data']),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function AggregateQuestionResults200ResponseToJSONTyped(value?: Aggregate
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'data': QuestionResultAggregationOverallToJSON(value['data']),
         'reason': value['reason'],
         'code': value['code'],

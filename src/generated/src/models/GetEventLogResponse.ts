@@ -20,13 +20,13 @@ import {
     EventLogEntryToJSON,
     EventLogEntryToJSONTyped,
 } from './EventLogEntry';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface GetEventLogResponse {
     events: Array<EventLogEntry>;
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof GetEventLogResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
 }
 
 
@@ -70,7 +70,7 @@ export function GetEventLogResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'events': ((json['events'] as Array<any>).map(EventLogEntryFromJSON)),
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
     };
 }
 
@@ -86,7 +86,7 @@ export function GetEventLogResponseToJSONTyped(value?: GetEventLogResponse | nul
     return {
         
         'events': ((value['events'] as Array<any>).map(EventLogEntryToJSON)),
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

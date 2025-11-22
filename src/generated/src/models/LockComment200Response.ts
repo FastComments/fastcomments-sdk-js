@@ -27,13 +27,13 @@ import {
     APIEmptyResponseToJSON,
     APIEmptyResponseToJSONTyped,
 } from './APIEmptyResponse';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface LockComment200Response {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof LockComment200Response
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -120,7 +120,7 @@ export function LockComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -142,7 +142,7 @@ export function LockComment200ResponseToJSONTyped(value?: LockComment200Response
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

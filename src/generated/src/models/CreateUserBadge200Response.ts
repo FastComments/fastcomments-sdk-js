@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { UserBadge } from './UserBadge';
 import {
     UserBadgeFromJSON,
@@ -41,6 +34,13 @@ import {
     APICreateUserBadgeResponseToJSON,
     APICreateUserBadgeResponseToJSONTyped,
 } from './APICreateUserBadgeResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,16 +57,22 @@ import {
 export interface CreateUserBadge200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof CreateUserBadge200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {UserBadge}
      * @memberof CreateUserBadge200Response
      */
     userBadge: UserBadge;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateUserBadge200Response
+     */
+    notes?: Array<string>;
     /**
      * 
      * @type {string}
@@ -134,8 +140,9 @@ export function CreateUserBadge200ResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'userBadge': UserBadgeFromJSON(json['userBadge']),
+        'notes': json['notes'] == null ? undefined : json['notes'],
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -157,8 +164,9 @@ export function CreateUserBadge200ResponseToJSONTyped(value?: CreateUserBadge200
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'userBadge': UserBadgeToJSON(value['userBadge']),
+        'notes': value['notes'],
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

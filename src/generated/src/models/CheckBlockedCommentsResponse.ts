@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface CheckBlockedCommentsResponse {
     commentStatuses: { [key: string]: boolean; };
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof CheckBlockedCommentsResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
 }
 
 
@@ -63,7 +63,7 @@ export function CheckBlockedCommentsResponseFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'commentStatuses': json['commentStatuses'],
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
     };
 }
 
@@ -79,7 +79,7 @@ export function CheckBlockedCommentsResponseToJSONTyped(value?: CheckBlockedComm
     return {
         
         'commentStatuses': value['commentStatuses'],
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

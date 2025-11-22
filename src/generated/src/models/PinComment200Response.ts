@@ -27,13 +27,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { RecordStringBeforeStringOrNullAfterStringOrNullValue } from './RecordStringBeforeStringOrNullAfterStringOrNullValue';
 import {
     RecordStringBeforeStringOrNullAfterStringOrNullValueFromJSON,
@@ -41,6 +34,13 @@ import {
     RecordStringBeforeStringOrNullAfterStringOrNullValueToJSON,
     RecordStringBeforeStringOrNullAfterStringOrNullValueToJSONTyped,
 } from './RecordStringBeforeStringOrNullAfterStringOrNullValue';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -63,10 +63,10 @@ export interface PinComment200Response {
     commentPositions: { [key: string]: RecordStringBeforeStringOrNullAfterStringOrNullValue; };
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof PinComment200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -135,7 +135,7 @@ export function PinComment200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'commentPositions': (mapValues(json['commentPositions'], RecordStringBeforeStringOrNullAfterStringOrNullValueFromJSON)),
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -158,7 +158,7 @@ export function PinComment200ResponseToJSONTyped(value?: PinComment200Response |
     return {
         
         'commentPositions': (mapValues(value['commentPositions'], RecordStringBeforeStringOrNullAfterStringOrNullValueToJSON)),
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

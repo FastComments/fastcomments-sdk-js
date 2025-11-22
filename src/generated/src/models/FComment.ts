@@ -34,6 +34,13 @@ import {
     FCommentMetaToJSON,
     FCommentMetaToJSONTyped,
 } from './FCommentMeta';
+import type { CommentLogEntry } from './CommentLogEntry';
+import {
+    CommentLogEntryFromJSON,
+    CommentLogEntryFromJSONTyped,
+    CommentLogEntryToJSON,
+    CommentLogEntryToJSONTyped,
+} from './CommentLogEntry';
 import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
 import {
     CommentUserBadgeInfoFromJSON,
@@ -446,10 +453,10 @@ export interface FComment {
     feedbackIds?: Array<string>;
     /**
      * 
-     * @type {Array<Array<any>>}
+     * @type {Array<CommentLogEntry>}
      * @memberof FComment
      */
-    logs?: Array<Array<any>> | null;
+    logs?: Array<CommentLogEntry> | null;
     /**
      * 
      * @type {Array<string>}
@@ -570,7 +577,7 @@ export function FCommentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'autoplayJobId': json['autoplayJobId'] == null ? undefined : json['autoplayJobId'],
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
-        'logs': json['logs'] == null ? undefined : json['logs'],
+        'logs': json['logs'] == null ? undefined : ((json['logs'] as Array<any>).map(CommentLogEntryFromJSON)),
         'groupIds': json['groupIds'] == null ? undefined : json['groupIds'],
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
@@ -655,7 +662,7 @@ export function FCommentToJSONTyped(value?: FComment | null, ignoreDiscriminator
         'autoplayJobId': value['autoplayJobId'],
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
-        'logs': value['logs'],
+        'logs': value['logs'] == null ? undefined : ((value['logs'] as Array<any>).map(CommentLogEntryToJSON)),
         'groupIds': value['groupIds'],
         'viewCount': value['viewCount'],
         'requiresVerification': value['requiresVerification'],

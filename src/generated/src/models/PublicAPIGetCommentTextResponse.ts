@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -29,10 +29,10 @@ import {
 export interface PublicAPIGetCommentTextResponse {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof PublicAPIGetCommentTextResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -69,7 +69,7 @@ export function PublicAPIGetCommentTextResponseFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'commentText': json['commentText'],
         'sanitizedCommentText': json['sanitizedCommentText'],
     };
@@ -86,7 +86,7 @@ export function PublicAPIGetCommentTextResponseToJSONTyped(value?: PublicAPIGetC
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'commentText': value['commentText'],
         'sanitizedCommentText': value['sanitizedCommentText'],
     };

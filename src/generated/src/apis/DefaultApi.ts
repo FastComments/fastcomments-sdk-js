@@ -64,13 +64,13 @@ import type {
   PatchDomainConfigParams,
   PatchPageAPIResponse,
   PatchSSOUserAPIResponse,
-  PickAPICommentUpdatableCommentFields,
   PutSSOUserAPIResponse,
   SORTDIR,
   SaveComment200Response,
   SortDirections,
   UnBlockCommentPublic200Response,
   UnBlockFromCommentParams,
+  UpdatableCommentParams,
   UpdateAPIPageData,
   UpdateAPISSOUserData,
   UpdateDomainConfigParams,
@@ -176,8 +176,6 @@ import {
     PatchPageAPIResponseToJSON,
     PatchSSOUserAPIResponseFromJSON,
     PatchSSOUserAPIResponseToJSON,
-    PickAPICommentUpdatableCommentFieldsFromJSON,
-    PickAPICommentUpdatableCommentFieldsToJSON,
     PutSSOUserAPIResponseFromJSON,
     PutSSOUserAPIResponseToJSON,
     SORTDIRFromJSON,
@@ -190,6 +188,8 @@ import {
     UnBlockCommentPublic200ResponseToJSON,
     UnBlockFromCommentParamsFromJSON,
     UnBlockFromCommentParamsToJSON,
+    UpdatableCommentParamsFromJSON,
+    UpdatableCommentParamsToJSON,
     UpdateAPIPageDataFromJSON,
     UpdateAPIPageDataToJSON,
     UpdateAPISSOUserDataFromJSON,
@@ -498,7 +498,7 @@ export interface UnFlagCommentRequest {
 export interface UpdateCommentRequest {
     tenantId: string;
     id: string;
-    body: PickAPICommentUpdatableCommentFields;
+    updatableCommentParams: UpdatableCommentParams;
     contextUserId?: string;
     doSpamCheck?: boolean;
     isLive?: boolean;
@@ -1218,7 +1218,7 @@ export interface DefaultApiInterface {
      * 
      * @param {string} tenantId 
      * @param {string} id 
-     * @param {PickAPICommentUpdatableCommentFields} body 
+     * @param {UpdatableCommentParams} updatableCommentParams 
      * @param {string} [contextUserId] 
      * @param {boolean} [doSpamCheck] 
      * @param {boolean} [isLive] 
@@ -3649,10 +3649,10 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             );
         }
 
-        if (requestParameters['body'] == null) {
+        if (requestParameters['updatableCommentParams'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling updateComment().'
+                'updatableCommentParams',
+                'Required parameter "updatableCommentParams" was null or undefined when calling updateComment().'
             );
         }
 
@@ -3687,7 +3687,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: UpdatableCommentParamsToJSON(requestParameters['updatableCommentParams']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FlagCommentPublic200ResponseFromJSON(jsonValue));

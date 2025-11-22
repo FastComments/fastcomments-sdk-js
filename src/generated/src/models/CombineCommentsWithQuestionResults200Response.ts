@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { CombineQuestionResultsWithCommentsResponse } from './CombineQuestionResultsWithCommentsResponse';
 import {
     CombineQuestionResultsWithCommentsResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     CombineQuestionResultsWithCommentsResponseToJSON,
     CombineQuestionResultsWithCommentsResponseToJSONTyped,
 } from './CombineQuestionResultsWithCommentsResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { FindCommentsByRangeResponse } from './FindCommentsByRangeResponse';
 import {
     FindCommentsByRangeResponseFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface CombineCommentsWithQuestionResults200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof CombineCommentsWithQuestionResults200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {FindCommentsByRangeResponse}
@@ -134,7 +134,7 @@ export function CombineCommentsWithQuestionResults200ResponseFromJSONTyped(json:
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'data': FindCommentsByRangeResponseFromJSON(json['data']),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function CombineCommentsWithQuestionResults200ResponseToJSONTyped(value?:
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'data': FindCommentsByRangeResponseToJSON(value['data']),
         'reason': value['reason'],
         'code': value['code'],

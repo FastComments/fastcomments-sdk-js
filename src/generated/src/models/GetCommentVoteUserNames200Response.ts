@@ -27,13 +27,13 @@ import {
     GetCommentVoteUserNamesSuccessResponseToJSON,
     GetCommentVoteUserNamesSuccessResponseToJSONTyped,
 } from './GetCommentVoteUserNamesSuccessResponse';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface GetCommentVoteUserNames200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetCommentVoteUserNames200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {Array<string>}
@@ -134,7 +134,7 @@ export function GetCommentVoteUserNames200ResponseFromJSONTyped(json: any, ignor
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'voteUserNames': json['voteUserNames'],
         'hasMore': json['hasMore'],
         'reason': json['reason'],
@@ -158,7 +158,7 @@ export function GetCommentVoteUserNames200ResponseToJSONTyped(value?: GetComment
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'voteUserNames': value['voteUserNames'],
         'hasMore': value['hasMore'],
         'reason': value['reason'],

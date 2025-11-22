@@ -4,7 +4,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **commentPositions** | [**Map**](Record_string__before_string_or_null__after_string_or_null___value.md) | Construct a type with a set of properties K of type T | [default to null] |
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |

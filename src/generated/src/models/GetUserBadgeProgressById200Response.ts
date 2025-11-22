@@ -27,13 +27,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface GetUserBadgeProgressById200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserBadgeProgressById200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {UserBadgeProgress}
@@ -134,7 +134,7 @@ export function GetUserBadgeProgressById200ResponseFromJSONTyped(json: any, igno
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'userBadgeProgress': UserBadgeProgressFromJSON(json['userBadgeProgress']),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function GetUserBadgeProgressById200ResponseToJSONTyped(value?: GetUserBa
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'userBadgeProgress': UserBadgeProgressToJSON(value['userBadgeProgress']),
         'reason': value['reason'],
         'code': value['code'],

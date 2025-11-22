@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -29,10 +29,10 @@ import {
 export interface ResetUserNotificationsResponse {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof ResetUserNotificationsResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -68,7 +68,7 @@ export function ResetUserNotificationsResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'code': json['code'] == null ? undefined : json['code'],
     };
 }
@@ -84,7 +84,7 @@ export function ResetUserNotificationsResponseToJSONTyped(value?: ResetUserNotif
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'code': value['code'],
     };
 }

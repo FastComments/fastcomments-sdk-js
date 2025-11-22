@@ -3,8 +3,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **comment** | [**Pick_FComment.approved-or-commentHTML_**](Pick_FComment.approved-or-commentHTML_.md) |  | [default to null] |
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **comment** | [**SetCommentTextResult**](SetCommentTextResult.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
 | **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |

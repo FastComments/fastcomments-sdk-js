@@ -20,13 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -36,10 +36,10 @@ import {
 export interface APIError {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof APIError
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -106,7 +106,7 @@ export function APIErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -128,7 +128,7 @@ export function APIErrorToJSONTyped(value?: APIError | null, ignoreDiscriminator
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

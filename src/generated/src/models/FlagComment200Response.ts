@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { FlagCommentResponse } from './FlagCommentResponse';
 import {
     FlagCommentResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     FlagCommentResponseToJSON,
     FlagCommentResponseToJSONTyped,
 } from './FlagCommentResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -56,10 +56,10 @@ export interface FlagComment200Response {
     statusCode?: number;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof FlagComment200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -133,7 +133,7 @@ export function FlagComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'code': json['code'],
         'reason': json['reason'],
         'wasUnapproved': json['wasUnapproved'] == null ? undefined : json['wasUnapproved'],
@@ -157,7 +157,7 @@ export function FlagComment200ResponseToJSONTyped(value?: FlagComment200Response
     return {
         
         'statusCode': value['statusCode'],
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'code': value['code'],
         'reason': value['reason'],
         'wasUnapproved': value['wasUnapproved'],

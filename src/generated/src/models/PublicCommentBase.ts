@@ -22,273 +22,281 @@ import {
 } from './CommentUserBadgeInfo';
 
 /**
- * From T, pick a set of properties whose keys are in the union K
+ * 
  * @export
- * @interface PickFCommentPublicCommentFieldsKeys
+ * @interface PublicCommentBase
  */
-export interface PickFCommentPublicCommentFieldsKeys {
-    /**
-     * 
-     * @type {Date}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    date: Date;
+export interface PublicCommentBase {
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    anonUserId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     commenterName: string;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    commenterLink?: string;
+    commenterLink?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     commentHTML: string;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    parentId?: string;
+    parentId?: string | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PublicCommentBase
+     */
+    date: Date | null;
     /**
      * 
      * @type {number}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    votes?: number;
+    votes?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    votesUp?: number;
+    votesUp?: number | null;
     /**
      * 
      * @type {number}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    votesDown?: number;
+    votesDown?: number | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     verified: boolean;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    avatarSrc?: string;
+    avatarSrc?: string | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    isSpam?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     hasImages?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    isDeleted?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    isDeletedUser?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     isByAdmin?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     isByModerator?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    isPinned?: boolean;
+    isPinned?: boolean | null;
     /**
      * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    isLocked?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    rating?: number;
+    isLocked?: boolean | null;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    displayLabel?: string;
+    displayLabel?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublicCommentBase
+     */
+    rating?: number | null;
     /**
      * 
      * @type {Array<CommentUserBadgeInfo>}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
-    badges?: Array<CommentUserBadgeInfo>;
+    badges?: Array<CommentUserBadgeInfo> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublicCommentBase
+     */
+    viewCount?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicCommentBase
+     */
+    isDeleted?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicCommentBase
+     */
+    isDeletedUser?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicCommentBase
+     */
+    isSpam?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicCommentBase
+     */
+    anonUserId?: string | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     feedbackIds?: Array<string>;
     /**
      * 
-     * @type {number}
-     * @memberof PickFCommentPublicCommentFieldsKeys
-     */
-    viewCount?: number;
-    /**
-     * 
      * @type {boolean}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     requiresVerification?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof PickFCommentPublicCommentFieldsKeys
+     * @memberof PublicCommentBase
      */
     editKey?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicCommentBase
+     */
+    approved?: boolean;
 }
 
 /**
- * Check if a given object implements the PickFCommentPublicCommentFieldsKeys interface.
+ * Check if a given object implements the PublicCommentBase interface.
  */
-export function instanceOfPickFCommentPublicCommentFieldsKeys(value: object): value is PickFCommentPublicCommentFieldsKeys {
-    if (!('date' in value) || value['date'] === undefined) return false;
+export function instanceOfPublicCommentBase(value: object): value is PublicCommentBase {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('commenterName' in value) || value['commenterName'] === undefined) return false;
     if (!('commentHTML' in value) || value['commentHTML'] === undefined) return false;
+    if (!('date' in value) || value['date'] === undefined) return false;
     if (!('verified' in value) || value['verified'] === undefined) return false;
     return true;
 }
 
-export function PickFCommentPublicCommentFieldsKeysFromJSON(json: any): PickFCommentPublicCommentFieldsKeys {
-    return PickFCommentPublicCommentFieldsKeysFromJSONTyped(json, false);
+export function PublicCommentBaseFromJSON(json: any): PublicCommentBase {
+    return PublicCommentBaseFromJSONTyped(json, false);
 }
 
-export function PickFCommentPublicCommentFieldsKeysFromJSONTyped(json: any, ignoreDiscriminator: boolean): PickFCommentPublicCommentFieldsKeys {
+export function PublicCommentBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PublicCommentBase {
     if (json == null) {
         return json;
     }
     return {
         
-        'date': (new Date(json['date'])),
         'id': json['_id'],
         'userId': json['userId'] == null ? undefined : json['userId'],
-        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'commenterName': json['commenterName'],
         'commenterLink': json['commenterLink'] == null ? undefined : json['commenterLink'],
         'commentHTML': json['commentHTML'],
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'date': (json['date'] == null ? null : new Date(json['date'])),
         'votes': json['votes'] == null ? undefined : json['votes'],
         'votesUp': json['votesUp'] == null ? undefined : json['votesUp'],
         'votesDown': json['votesDown'] == null ? undefined : json['votesDown'],
         'verified': json['verified'],
         'avatarSrc': json['avatarSrc'] == null ? undefined : json['avatarSrc'],
-        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
         'hasImages': json['hasImages'] == null ? undefined : json['hasImages'],
-        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
-        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
         'isByAdmin': json['isByAdmin'] == null ? undefined : json['isByAdmin'],
         'isByModerator': json['isByModerator'] == null ? undefined : json['isByModerator'],
         'isPinned': json['isPinned'] == null ? undefined : json['isPinned'],
         'isLocked': json['isLocked'] == null ? undefined : json['isLocked'],
-        'rating': json['rating'] == null ? undefined : json['rating'],
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
+        'rating': json['rating'] == null ? undefined : json['rating'],
         'badges': json['badges'] == null ? undefined : ((json['badges'] as Array<any>).map(CommentUserBadgeInfoFromJSON)),
-        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
+        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
+        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
+        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
+        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
+        'approved': json['approved'] == null ? undefined : json['approved'],
     };
 }
 
-export function PickFCommentPublicCommentFieldsKeysToJSON(json: any): PickFCommentPublicCommentFieldsKeys {
-    return PickFCommentPublicCommentFieldsKeysToJSONTyped(json, false);
+export function PublicCommentBaseToJSON(json: any): PublicCommentBase {
+    return PublicCommentBaseToJSONTyped(json, false);
 }
 
-export function PickFCommentPublicCommentFieldsKeysToJSONTyped(value?: PickFCommentPublicCommentFieldsKeys | null, ignoreDiscriminator: boolean = false): any {
+export function PublicCommentBaseToJSONTyped(value?: PublicCommentBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'date': ((value['date']).toISOString()),
         '_id': value['id'],
         'userId': value['userId'],
-        'anonUserId': value['anonUserId'],
         'commenterName': value['commenterName'],
         'commenterLink': value['commenterLink'],
         'commentHTML': value['commentHTML'],
         'parentId': value['parentId'],
+        'date': (value['date'] == null ? null : (value['date'] as any).toISOString()),
         'votes': value['votes'],
         'votesUp': value['votesUp'],
         'votesDown': value['votesDown'],
         'verified': value['verified'],
         'avatarSrc': value['avatarSrc'],
-        'isSpam': value['isSpam'],
         'hasImages': value['hasImages'],
-        'isDeleted': value['isDeleted'],
-        'isDeletedUser': value['isDeletedUser'],
         'isByAdmin': value['isByAdmin'],
         'isByModerator': value['isByModerator'],
         'isPinned': value['isPinned'],
         'isLocked': value['isLocked'],
-        'rating': value['rating'],
         'displayLabel': value['displayLabel'],
+        'rating': value['rating'],
         'badges': value['badges'] == null ? undefined : ((value['badges'] as Array<any>).map(CommentUserBadgeInfoToJSON)),
-        'feedbackIds': value['feedbackIds'],
         'viewCount': value['viewCount'],
+        'isDeleted': value['isDeleted'],
+        'isDeletedUser': value['isDeletedUser'],
+        'isSpam': value['isSpam'],
+        'anonUserId': value['anonUserId'],
+        'feedbackIds': value['feedbackIds'],
         'requiresVerification': value['requiresVerification'],
         'editKey': value['editKey'],
+        'approved': value['approved'],
     };
 }
 

@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { VoteDeleteResponseStatus } from './VoteDeleteResponseStatus';
+import type { APIStatus } from './APIStatus';
 import {
-    VoteDeleteResponseStatusFromJSON,
-    VoteDeleteResponseStatusFromJSONTyped,
-    VoteDeleteResponseStatusToJSON,
-    VoteDeleteResponseStatusToJSONTyped,
-} from './VoteDeleteResponseStatus';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -29,10 +29,10 @@ import {
 export interface VoteDeleteResponse {
     /**
      * 
-     * @type {VoteDeleteResponseStatus}
+     * @type {APIStatus}
      * @memberof VoteDeleteResponse
      */
-    status: VoteDeleteResponseStatus;
+    status: APIStatus;
     /**
      * 
      * @type {boolean}
@@ -40,6 +40,8 @@ export interface VoteDeleteResponse {
      */
     wasPendingVote?: boolean;
 }
+
+
 
 /**
  * Check if a given object implements the VoteDeleteResponse interface.
@@ -59,7 +61,7 @@ export function VoteDeleteResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'status': VoteDeleteResponseStatusFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'wasPendingVote': json['wasPendingVote'] == null ? undefined : json['wasPendingVote'],
     };
 }
@@ -75,7 +77,7 @@ export function VoteDeleteResponseToJSONTyped(value?: VoteDeleteResponse | null,
 
     return {
         
-        'status': VoteDeleteResponseStatusToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'wasPendingVote': value['wasPendingVote'],
     };
 }

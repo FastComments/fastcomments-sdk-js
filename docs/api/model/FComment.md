@@ -69,7 +69,7 @@
 | **autoplayJobId** | **String** |  | [optional] [default to null] |
 | **autoplayDelayMS** | **Long** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
-| **logs** | [**List**](array.md) |  | [optional] [default to null] |
+| **logs** | [**List**](CommentLogEntry.md) |  | [optional] [default to null] |
 | **groupIds** | **List** |  | [optional] [default to null] |
 | **viewCount** | **Long** |  | [optional] [default to null] |
 | **requiresVerification** | **Boolean** |  | [optional] [default to null] |

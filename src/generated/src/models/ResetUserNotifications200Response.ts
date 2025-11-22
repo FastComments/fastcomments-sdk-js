@@ -20,13 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { ResetUserNotificationsResponse } from './ResetUserNotificationsResponse';
 import {
     ResetUserNotificationsResponseFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface ResetUserNotifications200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof ResetUserNotifications200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -120,7 +120,7 @@ export function ResetUserNotifications200ResponseFromJSONTyped(json: any, ignore
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'code': json['code'],
         'reason': json['reason'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -142,7 +142,7 @@ export function ResetUserNotifications200ResponseToJSONTyped(value?: ResetUserNo
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'code': value['code'],
         'reason': value['reason'],
         'secondaryCode': value['secondaryCode'],

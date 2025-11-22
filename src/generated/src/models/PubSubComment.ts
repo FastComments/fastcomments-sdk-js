@@ -32,12 +32,6 @@ export interface PubSubComment {
      * @type {string}
      * @memberof PubSubComment
      */
-    date: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
     id: string;
     /**
      * 
@@ -50,31 +44,13 @@ export interface PubSubComment {
      * @type {string}
      * @memberof PubSubComment
      */
+    userId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
     urlId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    url: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    pageTitle?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    anonUserId?: string;
     /**
      * 
      * @type {string}
@@ -86,13 +62,7 @@ export interface PubSubComment {
      * @type {string}
      * @memberof PubSubComment
      */
-    commenterLink?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    comment: string;
+    commenterLink?: string | null;
     /**
      * 
      * @type {string}
@@ -104,31 +74,31 @@ export interface PubSubComment {
      * @type {string}
      * @memberof PubSubComment
      */
-    parentId?: string;
+    comment: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    parentId?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PubSubComment
      */
-    votes?: number;
+    votes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PubSubComment
      */
-    votesUp?: number;
+    votesUp?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PubSubComment
      */
-    votesDown?: number;
-    /**
-     * 
-     * @type {Date}
-     * @memberof PubSubComment
-     */
-    expireAt?: Date;
+    votesDown?: number | null;
     /**
      * 
      * @type {boolean}
@@ -137,22 +107,10 @@ export interface PubSubComment {
     verified: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    reviewed?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof PubSubComment
      */
-    avatarSrc?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    isSpam?: boolean;
+    avatarSrc?: string | null;
     /**
      * 
      * @type {boolean}
@@ -170,19 +128,49 @@ export interface PubSubComment {
      * @type {boolean}
      * @memberof PubSubComment
      */
-    hasCode?: boolean;
+    isByAdmin?: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof PubSubComment
      */
-    approved: boolean;
+    isByModerator?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    isPinned?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    isLocked?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof PubSubComment
      */
-    locale: string;
+    displayLabel?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PubSubComment
+     */
+    rating?: number | null;
+    /**
+     * 
+     * @type {Array<CommentUserBadgeInfo>}
+     * @memberof PubSubComment
+     */
+    badges?: Array<CommentUserBadgeInfo> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PubSubComment
+     */
+    viewCount?: number | null;
     /**
      * 
      * @type {boolean}
@@ -200,61 +188,13 @@ export interface PubSubComment {
      * @type {boolean}
      * @memberof PubSubComment
      */
-    isBannedUser?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    isByAdmin?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    isByModerator?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    isPinned?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PubSubComment
-     */
-    isLocked?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PubSubComment
-     */
-    flagCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PubSubComment
-     */
-    rating?: number;
+    isSpam?: boolean;
     /**
      * 
      * @type {string}
      * @memberof PubSubComment
      */
-    displayLabel?: string;
-    /**
-     * 
-     * @type {Array<CommentUserBadgeInfo>}
-     * @memberof PubSubComment
-     */
-    badges?: Array<CommentUserBadgeInfo>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PubSubComment
-     */
-    domain?: string;
+    anonUserId?: string | null;
     /**
      * 
      * @type {Array<string>}
@@ -263,16 +203,70 @@ export interface PubSubComment {
     feedbackIds?: Array<string>;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof PubSubComment
-     */
-    groupIds?: Array<string>;
-    /**
-     * 
      * @type {number}
      * @memberof PubSubComment
      */
-    viewCount?: number;
+    flagCount?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    domain?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    url: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    pageTitle?: string | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PubSubComment
+     */
+    expireAt?: Date | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    reviewed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    hasCode?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    approved: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    locale: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PubSubComment
+     */
+    isBannedUser?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PubSubComment
+     */
+    groupIds?: Array<string> | null;
     /**
      * 
      * @type {boolean}
@@ -285,23 +279,29 @@ export interface PubSubComment {
      * @memberof PubSubComment
      */
     hidden?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PubSubComment
+     */
+    date: string;
 }
 
 /**
  * Check if a given object implements the PubSubComment interface.
  */
 export function instanceOfPubSubComment(value: object): value is PubSubComment {
-    if (!('date' in value) || value['date'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('tenantId' in value) || value['tenantId'] === undefined) return false;
     if (!('urlId' in value) || value['urlId'] === undefined) return false;
-    if (!('url' in value) || value['url'] === undefined) return false;
     if (!('commenterName' in value) || value['commenterName'] === undefined) return false;
-    if (!('comment' in value) || value['comment'] === undefined) return false;
     if (!('commentHTML' in value) || value['commentHTML'] === undefined) return false;
+    if (!('comment' in value) || value['comment'] === undefined) return false;
     if (!('verified' in value) || value['verified'] === undefined) return false;
+    if (!('url' in value) || value['url'] === undefined) return false;
     if (!('approved' in value) || value['approved'] === undefined) return false;
     if (!('locale' in value) || value['locale'] === undefined) return false;
+    if (!('date' in value) || value['date'] === undefined) return false;
     return true;
 }
 
@@ -315,49 +315,49 @@ export function PubSubCommentFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'date': json['date'],
         'id': json['_id'],
         'tenantId': json['tenantId'],
-        'urlId': json['urlId'],
-        'url': json['url'],
-        'pageTitle': json['pageTitle'] == null ? undefined : json['pageTitle'],
         'userId': json['userId'] == null ? undefined : json['userId'],
-        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
+        'urlId': json['urlId'],
         'commenterName': json['commenterName'],
         'commenterLink': json['commenterLink'] == null ? undefined : json['commenterLink'],
-        'comment': json['comment'],
         'commentHTML': json['commentHTML'],
+        'comment': json['comment'],
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'votes': json['votes'] == null ? undefined : json['votes'],
         'votesUp': json['votesUp'] == null ? undefined : json['votesUp'],
         'votesDown': json['votesDown'] == null ? undefined : json['votesDown'],
-        'expireAt': json['expireAt'] == null ? undefined : (new Date(json['expireAt'])),
         'verified': json['verified'],
-        'reviewed': json['reviewed'] == null ? undefined : json['reviewed'],
         'avatarSrc': json['avatarSrc'] == null ? undefined : json['avatarSrc'],
-        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
         'hasImages': json['hasImages'] == null ? undefined : json['hasImages'],
         'hasLinks': json['hasLinks'] == null ? undefined : json['hasLinks'],
-        'hasCode': json['hasCode'] == null ? undefined : json['hasCode'],
-        'approved': json['approved'],
-        'locale': json['locale'],
-        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
-        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
-        'isBannedUser': json['isBannedUser'] == null ? undefined : json['isBannedUser'],
         'isByAdmin': json['isByAdmin'] == null ? undefined : json['isByAdmin'],
         'isByModerator': json['isByModerator'] == null ? undefined : json['isByModerator'],
         'isPinned': json['isPinned'] == null ? undefined : json['isPinned'],
         'isLocked': json['isLocked'] == null ? undefined : json['isLocked'],
-        'flagCount': json['flagCount'] == null ? undefined : json['flagCount'],
-        'rating': json['rating'] == null ? undefined : json['rating'],
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
+        'rating': json['rating'] == null ? undefined : json['rating'],
         'badges': json['badges'] == null ? undefined : ((json['badges'] as Array<any>).map(CommentUserBadgeInfoFromJSON)),
-        'domain': json['domain'] == null ? undefined : json['domain'],
-        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
-        'groupIds': json['groupIds'] == null ? undefined : json['groupIds'],
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
+        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
+        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
+        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
+        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
+        'flagCount': json['flagCount'] == null ? undefined : json['flagCount'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
+        'url': json['url'],
+        'pageTitle': json['pageTitle'] == null ? undefined : json['pageTitle'],
+        'expireAt': json['expireAt'] == null ? undefined : (new Date(json['expireAt'])),
+        'reviewed': json['reviewed'] == null ? undefined : json['reviewed'],
+        'hasCode': json['hasCode'] == null ? undefined : json['hasCode'],
+        'approved': json['approved'],
+        'locale': json['locale'],
+        'isBannedUser': json['isBannedUser'] == null ? undefined : json['isBannedUser'],
+        'groupIds': json['groupIds'] == null ? undefined : json['groupIds'],
         'isLive': json['isLive'] == null ? undefined : json['isLive'],
         'hidden': json['hidden'] == null ? undefined : json['hidden'],
+        'date': json['date'],
     };
 }
 
@@ -372,49 +372,49 @@ export function PubSubCommentToJSONTyped(value?: PubSubComment | null, ignoreDis
 
     return {
         
-        'date': value['date'],
         '_id': value['id'],
         'tenantId': value['tenantId'],
-        'urlId': value['urlId'],
-        'url': value['url'],
-        'pageTitle': value['pageTitle'],
         'userId': value['userId'],
-        'anonUserId': value['anonUserId'],
+        'urlId': value['urlId'],
         'commenterName': value['commenterName'],
         'commenterLink': value['commenterLink'],
-        'comment': value['comment'],
         'commentHTML': value['commentHTML'],
+        'comment': value['comment'],
         'parentId': value['parentId'],
         'votes': value['votes'],
         'votesUp': value['votesUp'],
         'votesDown': value['votesDown'],
-        'expireAt': value['expireAt'] == null ? undefined : ((value['expireAt']).toISOString()),
         'verified': value['verified'],
-        'reviewed': value['reviewed'],
         'avatarSrc': value['avatarSrc'],
-        'isSpam': value['isSpam'],
         'hasImages': value['hasImages'],
         'hasLinks': value['hasLinks'],
-        'hasCode': value['hasCode'],
-        'approved': value['approved'],
-        'locale': value['locale'],
-        'isDeleted': value['isDeleted'],
-        'isDeletedUser': value['isDeletedUser'],
-        'isBannedUser': value['isBannedUser'],
         'isByAdmin': value['isByAdmin'],
         'isByModerator': value['isByModerator'],
         'isPinned': value['isPinned'],
         'isLocked': value['isLocked'],
-        'flagCount': value['flagCount'],
-        'rating': value['rating'],
         'displayLabel': value['displayLabel'],
+        'rating': value['rating'],
         'badges': value['badges'] == null ? undefined : ((value['badges'] as Array<any>).map(CommentUserBadgeInfoToJSON)),
-        'domain': value['domain'],
-        'feedbackIds': value['feedbackIds'],
-        'groupIds': value['groupIds'],
         'viewCount': value['viewCount'],
+        'isDeleted': value['isDeleted'],
+        'isDeletedUser': value['isDeletedUser'],
+        'isSpam': value['isSpam'],
+        'anonUserId': value['anonUserId'],
+        'feedbackIds': value['feedbackIds'],
+        'flagCount': value['flagCount'],
+        'domain': value['domain'],
+        'url': value['url'],
+        'pageTitle': value['pageTitle'],
+        'expireAt': value['expireAt'] == null ? undefined : ((value['expireAt'] as any).toISOString()),
+        'reviewed': value['reviewed'],
+        'hasCode': value['hasCode'],
+        'approved': value['approved'],
+        'locale': value['locale'],
+        'isBannedUser': value['isBannedUser'],
+        'groupIds': value['groupIds'],
         'isLive': value['isLive'],
         'hidden': value['hidden'],
+        'date': value['date'],
     };
 }
 

@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { FComment } from './FComment';
 import {
     FCommentFromJSON,
@@ -34,6 +27,13 @@ import {
     FCommentToJSON,
     FCommentToJSONTyped,
 } from './FComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -64,10 +64,10 @@ import {
 export interface SaveComment200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof SaveComment200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {FComment}
@@ -154,7 +154,7 @@ export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'comment': FCommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
@@ -179,7 +179,7 @@ export function SaveComment200ResponseToJSONTyped(value?: SaveComment200Response
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'comment': FCommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],
