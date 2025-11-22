@@ -29,12 +29,6 @@ import {
 export interface PublicComment {
     /**
      * 
-     * @type {Date}
-     * @memberof PublicComment
-     */
-    date: Date;
-    /**
-     * 
      * @type {string}
      * @memberof PublicComment
      */
@@ -44,13 +38,7 @@ export interface PublicComment {
      * @type {string}
      * @memberof PublicComment
      */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PublicComment
-     */
-    anonUserId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {string}
@@ -62,7 +50,7 @@ export interface PublicComment {
      * @type {string}
      * @memberof PublicComment
      */
-    commenterLink?: string;
+    commenterLink?: string | null;
     /**
      * 
      * @type {string}
@@ -74,25 +62,31 @@ export interface PublicComment {
      * @type {string}
      * @memberof PublicComment
      */
-    parentId?: string;
+    parentId?: string | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PublicComment
+     */
+    date: Date | null;
     /**
      * 
      * @type {number}
      * @memberof PublicComment
      */
-    votes?: number;
+    votes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PublicComment
      */
-    votesUp?: number;
+    votesUp?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PublicComment
      */
-    votesDown?: number;
+    votesDown?: number | null;
     /**
      * 
      * @type {boolean}
@@ -104,31 +98,13 @@ export interface PublicComment {
      * @type {string}
      * @memberof PublicComment
      */
-    avatarSrc?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PublicComment
-     */
-    isSpam?: boolean;
+    avatarSrc?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof PublicComment
      */
     hasImages?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PublicComment
-     */
-    isDeleted?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PublicComment
-     */
-    isDeletedUser?: boolean;
     /**
      * 
      * @type {boolean}
@@ -146,43 +122,67 @@ export interface PublicComment {
      * @type {boolean}
      * @memberof PublicComment
      */
-    isPinned?: boolean;
+    isPinned?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof PublicComment
      */
-    isLocked?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PublicComment
-     */
-    rating?: number;
+    isLocked?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof PublicComment
      */
-    displayLabel?: string;
+    displayLabel?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublicComment
+     */
+    rating?: number | null;
     /**
      * 
      * @type {Array<CommentUserBadgeInfo>}
      * @memberof PublicComment
      */
-    badges?: Array<CommentUserBadgeInfo>;
+    badges?: Array<CommentUserBadgeInfo> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublicComment
+     */
+    viewCount?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicComment
+     */
+    isDeleted?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicComment
+     */
+    isDeletedUser?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicComment
+     */
+    isSpam?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicComment
+     */
+    anonUserId?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof PublicComment
      */
     feedbackIds?: Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PublicComment
-     */
-    viewCount?: number;
     /**
      * 
      * @type {boolean}
@@ -195,6 +195,12 @@ export interface PublicComment {
      * @memberof PublicComment
      */
     editKey?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PublicComment
+     */
+    approved?: boolean;
     /**
      * 
      * @type {boolean}
@@ -261,10 +267,10 @@ export interface PublicComment {
  * Check if a given object implements the PublicComment interface.
  */
 export function instanceOfPublicComment(value: object): value is PublicComment {
-    if (!('date' in value) || value['date'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('commenterName' in value) || value['commenterName'] === undefined) return false;
     if (!('commentHTML' in value) || value['commentHTML'] === undefined) return false;
+    if (!('date' in value) || value['date'] === undefined) return false;
     if (!('verified' in value) || value['verified'] === undefined) return false;
     return true;
 }
@@ -279,34 +285,35 @@ export function PublicCommentFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'date': (new Date(json['date'])),
         'id': json['_id'],
         'userId': json['userId'] == null ? undefined : json['userId'],
-        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'commenterName': json['commenterName'],
         'commenterLink': json['commenterLink'] == null ? undefined : json['commenterLink'],
         'commentHTML': json['commentHTML'],
         'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'date': (json['date'] == null ? null : new Date(json['date'])),
         'votes': json['votes'] == null ? undefined : json['votes'],
         'votesUp': json['votesUp'] == null ? undefined : json['votesUp'],
         'votesDown': json['votesDown'] == null ? undefined : json['votesDown'],
         'verified': json['verified'],
         'avatarSrc': json['avatarSrc'] == null ? undefined : json['avatarSrc'],
-        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
         'hasImages': json['hasImages'] == null ? undefined : json['hasImages'],
-        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
-        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
         'isByAdmin': json['isByAdmin'] == null ? undefined : json['isByAdmin'],
         'isByModerator': json['isByModerator'] == null ? undefined : json['isByModerator'],
         'isPinned': json['isPinned'] == null ? undefined : json['isPinned'],
         'isLocked': json['isLocked'] == null ? undefined : json['isLocked'],
-        'rating': json['rating'] == null ? undefined : json['rating'],
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
+        'rating': json['rating'] == null ? undefined : json['rating'],
         'badges': json['badges'] == null ? undefined : ((json['badges'] as Array<any>).map(CommentUserBadgeInfoFromJSON)),
-        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
+        'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
+        'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
+        'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
+        'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
+        'approved': json['approved'] == null ? undefined : json['approved'],
         'isUnread': json['isUnread'] == null ? undefined : json['isUnread'],
         'myVoteId': json['myVoteId'] == null ? undefined : json['myVoteId'],
         'isVotedDown': json['isVotedDown'] == null ? undefined : json['isVotedDown'],
@@ -331,34 +338,35 @@ export function PublicCommentToJSONTyped(value?: PublicComment | null, ignoreDis
 
     return {
         
-        'date': ((value['date']).toISOString()),
         '_id': value['id'],
         'userId': value['userId'],
-        'anonUserId': value['anonUserId'],
         'commenterName': value['commenterName'],
         'commenterLink': value['commenterLink'],
         'commentHTML': value['commentHTML'],
         'parentId': value['parentId'],
+        'date': (value['date'] == null ? null : (value['date'] as any).toISOString()),
         'votes': value['votes'],
         'votesUp': value['votesUp'],
         'votesDown': value['votesDown'],
         'verified': value['verified'],
         'avatarSrc': value['avatarSrc'],
-        'isSpam': value['isSpam'],
         'hasImages': value['hasImages'],
-        'isDeleted': value['isDeleted'],
-        'isDeletedUser': value['isDeletedUser'],
         'isByAdmin': value['isByAdmin'],
         'isByModerator': value['isByModerator'],
         'isPinned': value['isPinned'],
         'isLocked': value['isLocked'],
-        'rating': value['rating'],
         'displayLabel': value['displayLabel'],
+        'rating': value['rating'],
         'badges': value['badges'] == null ? undefined : ((value['badges'] as Array<any>).map(CommentUserBadgeInfoToJSON)),
-        'feedbackIds': value['feedbackIds'],
         'viewCount': value['viewCount'],
+        'isDeleted': value['isDeleted'],
+        'isDeletedUser': value['isDeletedUser'],
+        'isSpam': value['isSpam'],
+        'anonUserId': value['anonUserId'],
+        'feedbackIds': value['feedbackIds'],
         'requiresVerification': value['requiresVerification'],
         'editKey': value['editKey'],
+        'approved': value['approved'],
         'isUnread': value['isUnread'],
         'myVoteId': value['myVoteId'],
         'isVotedDown': value['isVotedDown'],

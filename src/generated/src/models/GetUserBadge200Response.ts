@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { UserBadge } from './UserBadge';
 import {
     UserBadgeFromJSON,
@@ -34,6 +27,13 @@ import {
     UserBadgeToJSON,
     UserBadgeToJSONTyped,
 } from './UserBadge';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface GetUserBadge200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserBadge200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {UserBadge}
@@ -134,7 +134,7 @@ export function GetUserBadge200ResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'userBadge': UserBadgeFromJSON(json['userBadge']),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function GetUserBadge200ResponseToJSONTyped(value?: GetUserBadge200Respon
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'userBadge': UserBadgeToJSON(value['userBadge']),
         'reason': value['reason'],
         'code': value['code'],

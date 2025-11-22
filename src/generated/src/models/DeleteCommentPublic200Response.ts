@@ -20,13 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -34,6 +34,13 @@ import {
     APIErrorToJSON,
     APIErrorToJSONTyped,
 } from './APIError';
+import type { DeletedCommentResultComment } from './DeletedCommentResultComment';
+import {
+    DeletedCommentResultCommentFromJSON,
+    DeletedCommentResultCommentFromJSONTyped,
+    DeletedCommentResultCommentToJSON,
+    DeletedCommentResultCommentToJSONTyped,
+} from './DeletedCommentResultComment';
 import type { PublicAPIDeleteCommentResponse } from './PublicAPIDeleteCommentResponse';
 import {
     PublicAPIDeleteCommentResponseFromJSON,
@@ -41,13 +48,6 @@ import {
     PublicAPIDeleteCommentResponseToJSON,
     PublicAPIDeleteCommentResponseToJSONTyped,
 } from './PublicAPIDeleteCommentResponse';
-import type { PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserId } from './PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserId';
-import {
-    PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdFromJSON,
-    PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdFromJSONTyped,
-    PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdToJSON,
-    PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdToJSONTyped,
-} from './PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserId';
 
 /**
  * 
@@ -57,10 +57,10 @@ import {
 export interface DeleteCommentPublic200Response {
     /**
      * 
-     * @type {PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserId}
+     * @type {DeletedCommentResultComment}
      * @memberof DeleteCommentPublic200Response
      */
-    comment?: PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserId;
+    comment?: DeletedCommentResultComment;
     /**
      * 
      * @type {boolean}
@@ -69,10 +69,10 @@ export interface DeleteCommentPublic200Response {
     hardRemoved: boolean;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof DeleteCommentPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -140,9 +140,9 @@ export function DeleteCommentPublic200ResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'comment': json['comment'] == null ? undefined : PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdFromJSON(json['comment']),
+        'comment': json['comment'] == null ? undefined : DeletedCommentResultCommentFromJSON(json['comment']),
         'hardRemoved': json['hardRemoved'],
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -164,9 +164,9 @@ export function DeleteCommentPublic200ResponseToJSONTyped(value?: DeleteCommentP
 
     return {
         
-        'comment': PickFCommentIsDeletedOrCommentHTMLOrCommenterNameOrUserIdToJSON(value['comment']),
+        'comment': DeletedCommentResultCommentToJSON(value['comment']),
         'hardRemoved': value['hardRemoved'],
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

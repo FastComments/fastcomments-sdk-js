@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **voteId** | **String** |  | [optional] [default to null] |
 | **isVerified** | **Boolean** |  | [optional] [default to null] |
 | **user** | [**VoteResponseUser**](VoteResponseUser.md) |  | [optional] [default to null] |

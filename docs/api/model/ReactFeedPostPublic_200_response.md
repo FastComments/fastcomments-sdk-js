@@ -3,7 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **status** | [**ImportedAPIStatus.FAILED**](ImportedAPIStatus.FAILED.md) |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 | **reactType** | **String** |  | [default to null] |
 | **isUndo** | **Boolean** |  | [default to null] |
 | **reason** | **String** |  | [default to null] |

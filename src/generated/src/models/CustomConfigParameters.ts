@@ -435,6 +435,12 @@ export interface CustomConfigParameters {
      * @type {boolean}
      * @memberof CustomConfigParameters
      */
+    noNewRootComments?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
     requireSSO?: boolean;
     /**
      * 
@@ -623,6 +629,7 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'noStyles': json['noStyles'] == null ? undefined : json['noStyles'],
         'pageSize': json['pageSize'] == null ? undefined : json['pageSize'],
         'readonly': json['readonly'] == null ? undefined : json['readonly'],
+        'noNewRootComments': json['noNewRootComments'] == null ? undefined : json['noNewRootComments'],
         'requireSSO': json['requireSSO'] == null ? undefined : json['requireSSO'],
         'enableResizeHandle': json['enableResizeHandle'] == null ? undefined : json['enableResizeHandle'],
         'restrictedLinkDomains': json['restrictedLinkDomains'] == null ? undefined : json['restrictedLinkDomains'],
@@ -709,6 +716,7 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'noStyles': value['noStyles'],
         'pageSize': value['pageSize'],
         'readonly': value['readonly'],
+        'noNewRootComments': value['noNewRootComments'],
         'requireSSO': value['requireSSO'],
         'enableResizeHandle': value['enableResizeHandle'],
         'restrictedLinkDomains': value['restrictedLinkDomains'],

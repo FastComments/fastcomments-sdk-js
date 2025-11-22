@@ -20,13 +20,13 @@ import {
     DeleteCommentActionToJSON,
     DeleteCommentActionToJSONTyped,
 } from './DeleteCommentAction';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface DeleteCommentResult {
     action: DeleteCommentAction;
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof DeleteCommentResult
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
 }
 
 
@@ -70,7 +70,7 @@ export function DeleteCommentResultFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'action': DeleteCommentActionFromJSON(json['action']),
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
     };
 }
 
@@ -86,7 +86,7 @@ export function DeleteCommentResultToJSONTyped(value?: DeleteCommentResult | nul
     return {
         
         'action': DeleteCommentActionToJSON(value['action']),
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

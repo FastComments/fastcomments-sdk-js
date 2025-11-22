@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { GetMyNotificationsResponse } from './GetMyNotificationsResponse';
 import {
     GetMyNotificationsResponseFromJSON,
@@ -41,6 +34,13 @@ import {
     RenderableUserNotificationToJSON,
     RenderableUserNotificationToJSONTyped,
 } from './RenderableUserNotification';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -81,10 +81,10 @@ export interface GetUserNotifications200Response {
     notifications: Array<RenderableUserNotification>;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserNotifications200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -158,7 +158,7 @@ export function GetUserNotifications200ResponseFromJSONTyped(json: any, ignoreDi
         'isSubscribed': json['isSubscribed'],
         'hasMore': json['hasMore'],
         'notifications': ((json['notifications'] as Array<any>).map(RenderableUserNotificationFromJSON)),
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -184,7 +184,7 @@ export function GetUserNotifications200ResponseToJSONTyped(value?: GetUserNotifi
         'isSubscribed': value['isSubscribed'],
         'hasMore': value['hasMore'],
         'notifications': ((value['notifications'] as Array<any>).map(RenderableUserNotificationToJSON)),
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

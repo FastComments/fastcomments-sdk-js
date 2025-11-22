@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { PublicAPIGetCommentTextResponse } from './PublicAPIGetCommentTextResponse';
 import {
     PublicAPIGetCommentTextResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     PublicAPIGetCommentTextResponseToJSON,
     PublicAPIGetCommentTextResponseToJSONTyped,
 } from './PublicAPIGetCommentTextResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface GetCommentText200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetCommentText200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -134,7 +134,7 @@ export function GetCommentText200ResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'commentText': json['commentText'],
         'sanitizedCommentText': json['sanitizedCommentText'],
         'reason': json['reason'],
@@ -158,7 +158,7 @@ export function GetCommentText200ResponseToJSONTyped(value?: GetCommentText200Re
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'commentText': value['commentText'],
         'sanitizedCommentText': value['sanitizedCommentText'],
         'reason': value['reason'],

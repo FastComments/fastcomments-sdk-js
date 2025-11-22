@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { ReactFeedPostResponse } from './ReactFeedPostResponse';
 import {
     ReactFeedPostResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     ReactFeedPostResponseToJSON,
     ReactFeedPostResponseToJSONTyped,
 } from './ReactFeedPostResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -50,10 +50,10 @@ import {
 export interface ReactFeedPostPublic200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof ReactFeedPostPublic200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -134,7 +134,7 @@ export function ReactFeedPostPublic200ResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reactType': json['reactType'],
         'isUndo': json['isUndo'],
         'reason': json['reason'],
@@ -158,7 +158,7 @@ export function ReactFeedPostPublic200ResponseToJSONTyped(value?: ReactFeedPostP
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reactType': value['reactType'],
         'isUndo': value['isUndo'],
         'reason': value['reason'],

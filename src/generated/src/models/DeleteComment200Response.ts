@@ -27,13 +27,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { DeleteCommentAction } from './DeleteCommentAction';
 import {
     DeleteCommentActionFromJSON,
@@ -41,6 +34,13 @@ import {
     DeleteCommentActionToJSON,
     DeleteCommentActionToJSONTyped,
 } from './DeleteCommentAction';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -63,10 +63,10 @@ export interface DeleteComment200Response {
     action: DeleteCommentAction;
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof DeleteComment200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {string}
@@ -135,7 +135,7 @@ export function DeleteComment200ResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'action': DeleteCommentActionFromJSON(json['action']),
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -158,7 +158,7 @@ export function DeleteComment200ResponseToJSONTyped(value?: DeleteComment200Resp
     return {
         
         'action': DeleteCommentActionToJSON(value['action']),
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

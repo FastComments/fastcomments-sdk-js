@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
-import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
 import type { PublicComment } from './PublicComment';
 import {
     PublicCommentFromJSON,
@@ -27,6 +20,13 @@ import {
     PublicCommentToJSON,
     PublicCommentToJSONTyped,
 } from './PublicComment';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { UserSessionInfo } from './UserSessionInfo';
 import {
     UserSessionInfoFromJSON,
@@ -43,10 +43,10 @@ import {
 export interface SaveCommentsResponseWithPresence {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof SaveCommentsResponseWithPresence
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {PublicComment}
@@ -95,7 +95,7 @@ export function SaveCommentsResponseWithPresenceFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'comment': PublicCommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
@@ -114,7 +114,7 @@ export function SaveCommentsResponseWithPresenceToJSONTyped(value?: SaveComments
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'comment': PublicCommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],

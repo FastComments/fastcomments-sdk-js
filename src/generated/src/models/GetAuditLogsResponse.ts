@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PickTenantAuditLogTenantAuditLogKeys } from './PickTenantAuditLogTenantAuditLogKeys';
+import type { APIAuditLog } from './APIAuditLog';
 import {
-    PickTenantAuditLogTenantAuditLogKeysFromJSON,
-    PickTenantAuditLogTenantAuditLogKeysFromJSONTyped,
-    PickTenantAuditLogTenantAuditLogKeysToJSON,
-    PickTenantAuditLogTenantAuditLogKeysToJSONTyped,
-} from './PickTenantAuditLogTenantAuditLogKeys';
+    APIAuditLogFromJSON,
+    APIAuditLogFromJSONTyped,
+    APIAuditLogToJSON,
+    APIAuditLogToJSONTyped,
+} from './APIAuditLog';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -42,10 +42,10 @@ export interface GetAuditLogsResponse {
     status: APIStatus;
     /**
      * 
-     * @type {Array<PickTenantAuditLogTenantAuditLogKeys>}
+     * @type {Array<APIAuditLog>}
      * @memberof GetAuditLogsResponse
      */
-    auditLogs: Array<PickTenantAuditLogTenantAuditLogKeys>;
+    auditLogs: Array<APIAuditLog>;
 }
 
 
@@ -70,7 +70,7 @@ export function GetAuditLogsResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'auditLogs': ((json['auditLogs'] as Array<any>).map(PickTenantAuditLogTenantAuditLogKeysFromJSON)),
+        'auditLogs': ((json['auditLogs'] as Array<any>).map(APIAuditLogFromJSON)),
     };
 }
 
@@ -86,7 +86,7 @@ export function GetAuditLogsResponseToJSONTyped(value?: GetAuditLogsResponse | n
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'auditLogs': ((value['auditLogs'] as Array<any>).map(PickTenantAuditLogTenantAuditLogKeysToJSON)),
+        'auditLogs': ((value['auditLogs'] as Array<any>).map(APIAuditLogToJSON)),
     };
 }
 

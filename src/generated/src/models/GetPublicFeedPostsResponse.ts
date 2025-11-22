@@ -20,13 +20,13 @@ import {
     FeedPostToJSON,
     FeedPostToJSONTyped,
 } from './FeedPost';
-import type { ImportedAPIStatusSUCCESS } from './ImportedAPIStatusSUCCESS';
+import type { APIStatus } from './APIStatus';
 import {
-    ImportedAPIStatusSUCCESSFromJSON,
-    ImportedAPIStatusSUCCESSFromJSONTyped,
-    ImportedAPIStatusSUCCESSToJSON,
-    ImportedAPIStatusSUCCESSToJSONTyped,
-} from './ImportedAPIStatusSUCCESS';
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { UserSessionInfo } from './UserSessionInfo';
 import {
     UserSessionInfoFromJSON,
@@ -43,10 +43,10 @@ import {
 export interface GetPublicFeedPostsResponse {
     /**
      * 
-     * @type {ImportedAPIStatusSUCCESS}
+     * @type {APIStatus}
      * @memberof GetPublicFeedPostsResponse
      */
-    status: ImportedAPIStatusSUCCESS;
+    status: APIStatus;
     /**
      * 
      * @type {Array<FeedPost>}
@@ -82,7 +82,7 @@ export function GetPublicFeedPostsResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'status': ImportedAPIStatusSUCCESSFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'feedPosts': ((json['feedPosts'] as Array<any>).map(FeedPostFromJSON)),
         'user': json['user'] == null ? undefined : UserSessionInfoFromJSON(json['user']),
     };
@@ -99,7 +99,7 @@ export function GetPublicFeedPostsResponseToJSONTyped(value?: GetPublicFeedPosts
 
     return {
         
-        'status': ImportedAPIStatusSUCCESSToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'feedPosts': ((value['feedPosts'] as Array<any>).map(FeedPostToJSON)),
         'user': UserSessionInfoToJSON(value['user']),
     };

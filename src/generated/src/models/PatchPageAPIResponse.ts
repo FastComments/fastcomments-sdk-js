@@ -41,6 +41,12 @@ export interface PatchPageAPIResponse {
     code?: string;
     /**
      * 
+     * @type {number}
+     * @memberof PatchPageAPIResponse
+     */
+    commentsUpdated?: number;
+    /**
+     * 
      * @type {APIPage}
      * @memberof PatchPageAPIResponse
      */
@@ -73,6 +79,7 @@ export function PatchPageAPIResponseFromJSONTyped(json: any, ignoreDiscriminator
         
         'reason': json['reason'] == null ? undefined : json['reason'],
         'code': json['code'] == null ? undefined : json['code'],
+        'commentsUpdated': json['commentsUpdated'] == null ? undefined : json['commentsUpdated'],
         'page': json['page'] == null ? undefined : APIPageFromJSON(json['page']),
         'status': json['status'],
     };
@@ -91,6 +98,7 @@ export function PatchPageAPIResponseToJSONTyped(value?: PatchPageAPIResponse | n
         
         'reason': value['reason'],
         'code': value['code'],
+        'commentsUpdated': value['commentsUpdated'],
         'page': APIPageToJSON(value['page']),
         'status': value['status'],
     };

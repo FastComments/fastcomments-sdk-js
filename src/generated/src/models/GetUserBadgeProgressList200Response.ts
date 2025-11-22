@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { ImportedAPIStatusFAILED } from './ImportedAPIStatusFAILED';
-import {
-    ImportedAPIStatusFAILEDFromJSON,
-    ImportedAPIStatusFAILEDFromJSONTyped,
-    ImportedAPIStatusFAILEDToJSON,
-    ImportedAPIStatusFAILEDToJSONTyped,
-} from './ImportedAPIStatusFAILED';
 import type { APIGetUserBadgeProgressListResponse } from './APIGetUserBadgeProgressListResponse';
 import {
     APIGetUserBadgeProgressListResponseFromJSON,
@@ -34,6 +27,13 @@ import {
     APIGetUserBadgeProgressListResponseToJSON,
     APIGetUserBadgeProgressListResponseToJSONTyped,
 } from './APIGetUserBadgeProgressListResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -57,10 +57,10 @@ import {
 export interface GetUserBadgeProgressList200Response {
     /**
      * 
-     * @type {ImportedAPIStatusFAILED}
+     * @type {APIStatus}
      * @memberof GetUserBadgeProgressList200Response
      */
-    status: ImportedAPIStatusFAILED;
+    status: APIStatus;
     /**
      * 
      * @type {Array<UserBadgeProgress>}
@@ -134,7 +134,7 @@ export function GetUserBadgeProgressList200ResponseFromJSONTyped(json: any, igno
     }
     return {
         
-        'status': ImportedAPIStatusFAILEDFromJSON(json['status']),
+        'status': APIStatusFromJSON(json['status']),
         'userBadgeProgresses': ((json['userBadgeProgresses'] as Array<any>).map(UserBadgeProgressFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -157,7 +157,7 @@ export function GetUserBadgeProgressList200ResponseToJSONTyped(value?: GetUserBa
 
     return {
         
-        'status': ImportedAPIStatusFAILEDToJSON(value['status']),
+        'status': APIStatusToJSON(value['status']),
         'userBadgeProgresses': ((value['userBadgeProgresses'] as Array<any>).map(UserBadgeProgressToJSON)),
         'reason': value['reason'],
         'code': value['code'],
