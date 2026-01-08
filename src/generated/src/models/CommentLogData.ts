@@ -299,6 +299,24 @@ export interface CommentLogData {
      * @memberof CommentLogData
      */
     referencedCommentId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    invalidLocale?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    detectedLocale?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    detectedLanguage?: string;
 }
 
 /**
@@ -370,6 +388,9 @@ export function CommentLogDataFromJSONTyped(json: any, ignoreDiscriminator: bool
         'trustFactorBefore': json['trustFactorBefore'] == null ? undefined : json['trustFactorBefore'],
         'trustFactorAfter': json['trustFactorAfter'] == null ? undefined : json['trustFactorAfter'],
         'referencedCommentId': json['referencedCommentId'] == null ? undefined : json['referencedCommentId'],
+        'invalidLocale': json['invalidLocale'] == null ? undefined : json['invalidLocale'],
+        'detectedLocale': json['detectedLocale'] == null ? undefined : json['detectedLocale'],
+        'detectedLanguage': json['detectedLanguage'] == null ? undefined : json['detectedLanguage'],
     };
 }
 
@@ -427,6 +448,9 @@ export function CommentLogDataToJSONTyped(value?: CommentLogData | null, ignoreD
         'trustFactorBefore': value['trustFactorBefore'],
         'trustFactorAfter': value['trustFactorAfter'],
         'referencedCommentId': value['referencedCommentId'],
+        'invalidLocale': value['invalidLocale'],
+        'detectedLocale': value['detectedLocale'],
+        'detectedLanguage': value['detectedLanguage'],
     };
 }
 

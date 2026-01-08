@@ -342,7 +342,7 @@ export interface ResetUserNotificationsRequest {
 export interface SearchUsersRequest {
     tenantId: string;
     urlId: string;
-    usernameStartsWith: string;
+    usernameStartsWith?: string;
     mentionGroupIds?: Array<string>;
     sso?: string;
 }
@@ -863,7 +863,7 @@ export interface PublicApiInterface {
      * 
      * @param {string} tenantId 
      * @param {string} urlId 
-     * @param {string} usernameStartsWith 
+     * @param {string} [usernameStartsWith] 
      * @param {Array<string>} [mentionGroupIds] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -2504,13 +2504,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             throw new runtime.RequiredError(
                 'urlId',
                 'Required parameter "urlId" was null or undefined when calling searchUsers().'
-            );
-        }
-
-        if (requestParameters['usernameStartsWith'] == null) {
-            throw new runtime.RequiredError(
-                'usernameStartsWith',
-                'Required parameter "usernameStartsWith" was null or undefined when calling searchUsers().'
             );
         }
 
