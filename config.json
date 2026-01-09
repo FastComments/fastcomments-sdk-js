@@ -1,6 +1,6 @@
 {
   "npmName": "@fastcomments/fastcomments-sdk",
-  "npmVersion": "3.1.0",
+  "npmVersion": "3.2.0",
   "npmRepository": "https://registry.npmjs.org/",
   "npmDescription": "FastComments API Client - A SDK for interacting with the FastComments API",
   "gitUserId": "fastcomments",
@@ -22,5 +22,5 @@
   "apiPackage": "api",
   "modelPackage": "model",
   "packageName": "@fastcomments/fastcomments-sdk",
-  "packageVersion": "3.1.0"
+  "packageVersion": "3.2.0"
 }

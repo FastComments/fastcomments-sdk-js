@@ -105,8 +105,6 @@ model/CreateTenantUser_200_response.md
 model/CreateTenant_200_response.md
 model/CreateUserBadgeParams.md
 model/CreateUserBadge_200_response.md
-model/CreateVoteResponse.md
-model/CreateVote_200_response.md
 model/CustomConfigParameters.md
 model/CustomEmailTemplate.md
 model/DeleteCommentAction.md
@@ -121,8 +119,6 @@ model/DeleteHashTag_request.md
 model/DeletePageAPIResponse.md
 model/DeleteSSOUserAPIResponse.md
 model/DeleteSubscriptionAPIResponse.md
-model/DeleteVoteResponse.md
-model/DeleteVote_200_response.md
 model/DeletedCommentResultComment.md
 model/DigestEmailFrequency.md
 model/EmailTemplateDefinition.md

@@ -110,8 +110,6 @@ src/models/CreateTenantUserBody.ts
 src/models/CreateTenantUserResponse.ts
 src/models/CreateUserBadge200Response.ts
 src/models/CreateUserBadgeParams.ts
-src/models/CreateVote200Response.ts
-src/models/CreateVoteResponse.ts
 src/models/CustomConfigParameters.ts
 src/models/CustomEmailTemplate.ts
 src/models/DeleteComment200Response.ts
@@ -126,8 +124,6 @@ src/models/DeleteHashTagRequest.ts
 src/models/DeletePageAPIResponse.ts
 src/models/DeleteSSOUserAPIResponse.ts
 src/models/DeleteSubscriptionAPIResponse.ts
-src/models/DeleteVote200Response.ts
-src/models/DeleteVoteResponse.ts
 src/models/DeletedCommentResultComment.ts
 src/models/DigestEmailFrequency.ts
 src/models/EmailTemplateDefinition.ts
