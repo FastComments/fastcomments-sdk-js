@@ -55,14 +55,13 @@ import type {
   CreateTenantUserBody,
   CreateUserBadge200Response,
   CreateUserBadgeParams,
-  CreateVote200Response,
   DeleteComment200Response,
+  DeleteCommentVote200Response,
   DeleteDomainConfig200Response,
   DeleteHashTagRequest,
   DeletePageAPIResponse,
   DeleteSSOUserAPIResponse,
   DeleteSubscriptionAPIResponse,
-  DeleteVote200Response,
   FeedPost,
   FlagComment200Response,
   FlagCommentPublic200Response,
@@ -137,6 +136,7 @@ import type {
   UpdateTenantUserBody,
   UpdateUserBadge200Response,
   UpdateUserBadgeParams,
+  VoteComment200Response,
 } from '../models/index';
 import {
     AddDomainConfig200ResponseFromJSON,
@@ -219,10 +219,10 @@ import {
     CreateUserBadge200ResponseToJSON,
     CreateUserBadgeParamsFromJSON,
     CreateUserBadgeParamsToJSON,
-    CreateVote200ResponseFromJSON,
-    CreateVote200ResponseToJSON,
     DeleteComment200ResponseFromJSON,
     DeleteComment200ResponseToJSON,
+    DeleteCommentVote200ResponseFromJSON,
+    DeleteCommentVote200ResponseToJSON,
     DeleteDomainConfig200ResponseFromJSON,
     DeleteDomainConfig200ResponseToJSON,
     DeleteHashTagRequestFromJSON,
@@ -233,8 +233,6 @@ import {
     DeleteSSOUserAPIResponseToJSON,
     DeleteSubscriptionAPIResponseFromJSON,
     DeleteSubscriptionAPIResponseToJSON,
-    DeleteVote200ResponseFromJSON,
-    DeleteVote200ResponseToJSON,
     FeedPostFromJSON,
     FeedPostToJSON,
     FlagComment200ResponseFromJSON,
@@ -383,6 +381,8 @@ import {
     UpdateUserBadge200ResponseToJSON,
     UpdateUserBadgeParamsFromJSON,
     UpdateUserBadgeParamsToJSON,
+    VoteComment200ResponseFromJSON,
+    VoteComment200ResponseToJSON,
 } from '../models/index';
 
 export interface AddDomainConfigRequest {
@@ -1388,11 +1388,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateVote200Response>>;
+    createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteComment200Response>>;
 
     /**
      */
-    createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateVote200Response>;
+    createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteComment200Response>;
 
     /**
      * 
@@ -1652,11 +1652,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVote200Response>>;
+    deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentVote200Response>>;
 
     /**
      */
-    deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteVote200Response>;
+    deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentVote200Response>;
 
     /**
      * 
@@ -3781,7 +3781,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateVote200Response>> {
+    async createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteComment200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3838,12 +3838,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateVote200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => VoteComment200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateVote200Response> {
+    async createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteComment200Response> {
         const response = await this.createVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4671,7 +4671,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVote200Response>> {
+    async deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentVote200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4709,12 +4709,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteVote200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCommentVote200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteVote200Response> {
+    async deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentVote200Response> {
         const response = await this.deleteVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
