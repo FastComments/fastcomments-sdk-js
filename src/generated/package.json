@@ -1,6 +1,6 @@
 {
   "name": "@fastcomments/fastcomments-sdk",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "OpenAPI client for @fastcomments/fastcomments-sdk",
   "author": "OpenAPI-Generator",
   "repository": {
