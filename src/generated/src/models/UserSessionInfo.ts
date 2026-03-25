@@ -89,6 +89,12 @@ export interface UserSessionInfo {
     isAnonSession?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof UserSessionInfo
+     */
+    needsTOS?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof UserSessionInfo
      */
@@ -134,6 +140,7 @@ export function UserSessionInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
         'groupIds': json['groupIds'] == null ? undefined : json['groupIds'],
         'hasBlockedUsers': json['hasBlockedUsers'] == null ? undefined : json['hasBlockedUsers'],
         'isAnonSession': json['isAnonSession'] == null ? undefined : json['isAnonSession'],
+        'needsTOS': json['needsTOS'] == null ? undefined : json['needsTOS'],
         'sessionId': json['sessionId'] == null ? undefined : json['sessionId'],
         'username': json['username'] == null ? undefined : json['username'],
         'websiteUrl': json['websiteUrl'] == null ? undefined : json['websiteUrl'],
@@ -161,6 +168,7 @@ export function UserSessionInfoToJSONTyped(value?: UserSessionInfo | null, ignor
         'groupIds': value['groupIds'],
         'hasBlockedUsers': value['hasBlockedUsers'],
         'isAnonSession': value['isAnonSession'],
+        'needsTOS': value['needsTOS'],
         'sessionId': value['sessionId'],
         'username': value['username'],
         'websiteUrl': value['websiteUrl'],

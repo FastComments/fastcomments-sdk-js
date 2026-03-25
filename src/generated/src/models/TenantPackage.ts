@@ -135,6 +135,12 @@ export interface TenantPackage {
     maxMonthlyEventLogRequests: number;
     /**
      * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    maxCustomCollectionSize: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof TenantPackage
      */
@@ -181,6 +187,12 @@ export interface TenantPackage {
      * @memberof TenantPackage
      */
     enableSAML?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TenantPackage
+     */
+    enableCanvasLTI?: boolean;
     /**
      * 
      * @type {number}
@@ -356,6 +368,7 @@ export function instanceOfTenantPackage(value: object): value is TenantPackage {
     if (!('maxDomains' in value) || value['maxDomains'] === undefined) return false;
     if (!('maxWhiteLabeledTenants' in value) || value['maxWhiteLabeledTenants'] === undefined) return false;
     if (!('maxMonthlyEventLogRequests' in value) || value['maxMonthlyEventLogRequests'] === undefined) return false;
+    if (!('maxCustomCollectionSize' in value) || value['maxCustomCollectionSize'] === undefined) return false;
     if (!('hasWhiteLabeling' in value) || value['hasWhiteLabeling'] === undefined) return false;
     if (!('hasDebranding' in value) || value['hasDebranding'] === undefined) return false;
     if (!('hasLLMSpamDetection' in value) || value['hasLLMSpamDetection'] === undefined) return false;
@@ -395,6 +408,7 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'maxDomains': json['maxDomains'],
         'maxWhiteLabeledTenants': json['maxWhiteLabeledTenants'],
         'maxMonthlyEventLogRequests': json['maxMonthlyEventLogRequests'],
+        'maxCustomCollectionSize': json['maxCustomCollectionSize'],
         'hasWhiteLabeling': json['hasWhiteLabeling'],
         'hasDebranding': json['hasDebranding'],
         'hasLLMSpamDetection': json['hasLLMSpamDetection'],
@@ -403,6 +417,7 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'hasAuditing': json['hasAuditing'],
         'hasFlexPricing': json['hasFlexPricing'],
         'enableSAML': json['enableSAML'] == null ? undefined : json['enableSAML'],
+        'enableCanvasLTI': json['enableCanvasLTI'] == null ? undefined : json['enableCanvasLTI'],
         'flexPageLoadCostCents': json['flexPageLoadCostCents'] == null ? undefined : json['flexPageLoadCostCents'],
         'flexPageLoadUnit': json['flexPageLoadUnit'] == null ? undefined : json['flexPageLoadUnit'],
         'flexCommentCostCents': json['flexCommentCostCents'] == null ? undefined : json['flexCommentCostCents'],
@@ -461,6 +476,7 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'maxDomains': value['maxDomains'],
         'maxWhiteLabeledTenants': value['maxWhiteLabeledTenants'],
         'maxMonthlyEventLogRequests': value['maxMonthlyEventLogRequests'],
+        'maxCustomCollectionSize': value['maxCustomCollectionSize'],
         'hasWhiteLabeling': value['hasWhiteLabeling'],
         'hasDebranding': value['hasDebranding'],
         'hasLLMSpamDetection': value['hasLLMSpamDetection'],
@@ -469,6 +485,7 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'hasAuditing': value['hasAuditing'],
         'hasFlexPricing': value['hasFlexPricing'],
         'enableSAML': value['enableSAML'],
+        'enableCanvasLTI': value['enableCanvasLTI'],
         'flexPageLoadCostCents': value['flexPageLoadCostCents'],
         'flexPageLoadUnit': value['flexPageLoadUnit'],
         'flexCommentCostCents': value['flexCommentCostCents'],

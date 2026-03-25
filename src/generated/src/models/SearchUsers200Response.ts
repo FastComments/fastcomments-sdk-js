@@ -20,6 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
+import type { SearchUsersSectionedResponse } from './SearchUsersSectionedResponse';
+import {
+    SearchUsersSectionedResponseFromJSON,
+    SearchUsersSectionedResponseFromJSONTyped,
+    SearchUsersSectionedResponseToJSON,
+    SearchUsersSectionedResponseToJSONTyped,
+} from './SearchUsersSectionedResponse';
 import type { UserSearchResult } from './UserSearchResult';
 import {
     UserSearchResultFromJSON,
@@ -34,6 +41,13 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
+import type { UserSearchSectionResult } from './UserSearchSectionResult';
+import {
+    UserSearchSectionResultFromJSON,
+    UserSearchSectionResultFromJSONTyped,
+    UserSearchSectionResultToJSON,
+    UserSearchSectionResultToJSONTyped,
+} from './UserSearchSectionResult';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -61,6 +75,12 @@ export interface SearchUsers200Response {
      * @memberof SearchUsers200Response
      */
     status: APIStatus;
+    /**
+     * 
+     * @type {Array<UserSearchSectionResult>}
+     * @memberof SearchUsers200Response
+     */
+    sections: Array<UserSearchSectionResult>;
     /**
      * 
      * @type {Array<UserSearchResult>}
@@ -118,6 +138,7 @@ export interface SearchUsers200Response {
  */
 export function instanceOfSearchUsers200Response(value: object): value is SearchUsers200Response {
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('sections' in value) || value['sections'] === undefined) return false;
     if (!('users' in value) || value['users'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
@@ -135,6 +156,7 @@ export function SearchUsers200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'status': APIStatusFromJSON(json['status']),
+        'sections': ((json['sections'] as Array<any>).map(UserSearchSectionResultFromJSON)),
         'users': ((json['users'] as Array<any>).map(UserSearchResultFromJSON)),
         'reason': json['reason'],
         'code': json['code'],
@@ -158,6 +180,7 @@ export function SearchUsers200ResponseToJSONTyped(value?: SearchUsers200Response
     return {
         
         'status': APIStatusToJSON(value['status']),
+        'sections': ((value['sections'] as Array<any>).map(UserSearchSectionResultToJSON)),
         'users': ((value['users'] as Array<any>).map(UserSearchResultToJSON)),
         'reason': value['reason'],
         'code': value['code'],

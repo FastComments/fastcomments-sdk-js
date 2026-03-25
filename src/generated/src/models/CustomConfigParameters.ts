@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TOSConfig } from './TOSConfig';
+import {
+    TOSConfigFromJSON,
+    TOSConfigFromJSONTyped,
+    TOSConfigToJSON,
+    TOSConfigToJSONTyped,
+} from './TOSConfig';
+import type { MentionAutoCompleteMode } from './MentionAutoCompleteMode';
+import {
+    MentionAutoCompleteModeFromJSON,
+    MentionAutoCompleteModeFromJSONTyped,
+    MentionAutoCompleteModeToJSON,
+    MentionAutoCompleteModeToJSONTyped,
+} from './MentionAutoCompleteMode';
 import type { CommentQuestionResultsRenderingType } from './CommentQuestionResultsRenderingType';
 import {
     CommentQuestionResultsRenderingTypeFromJSON,
@@ -267,6 +281,18 @@ export interface CustomConfigParameters {
      * @type {boolean}
      * @memberof CustomConfigParameters
      */
+    disableProfileComments?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    disableProfileDirectMessages?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
     disableProfiles?: boolean;
     /**
      * 
@@ -408,6 +434,12 @@ export interface CustomConfigParameters {
     noCustomConfig?: boolean;
     /**
      * 
+     * @type {MentionAutoCompleteMode}
+     * @memberof CustomConfigParameters
+     */
+    mentionAutoCompleteMode?: MentionAutoCompleteMode | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof CustomConfigParameters
      */
@@ -528,6 +560,12 @@ export interface CustomConfigParameters {
     widgetQuestionResultsStyle?: CommentQuestionResultsRenderingType;
     /**
      * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    widgetQuestionShowBreakdown?: boolean;
+    /**
+     * 
      * @type {QuestionRenderingType}
      * @memberof CustomConfigParameters
      */
@@ -556,6 +594,42 @@ export interface CustomConfigParameters {
      * @memberof CustomConfigParameters
      */
     wrap?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomConfigParameters
+     */
+    ticketBaseUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomConfigParameters
+     */
+    ticketKBSearchEndpoint?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    ticketFileUploadsEnabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomConfigParameters
+     */
+    ticketMaxFileSize?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CustomConfigParameters
+     */
+    ticketAutoAssignUserIds?: Array<string>;
+    /**
+     * 
+     * @type {TOSConfig}
+     * @memberof CustomConfigParameters
+     */
+    tos?: TOSConfig;
 }
 
 
@@ -601,6 +675,8 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'disableEmailInputs': json['disableEmailInputs'] == null ? undefined : json['disableEmailInputs'],
         'disableLiveCommenting': json['disableLiveCommenting'] == null ? undefined : json['disableLiveCommenting'],
         'disableNotificationBell': json['disableNotificationBell'] == null ? undefined : json['disableNotificationBell'],
+        'disableProfileComments': json['disableProfileComments'] == null ? undefined : json['disableProfileComments'],
+        'disableProfileDirectMessages': json['disableProfileDirectMessages'] == null ? undefined : json['disableProfileDirectMessages'],
         'disableProfiles': json['disableProfiles'] == null ? undefined : json['disableProfiles'],
         'disableSuccessMessage': json['disableSuccessMessage'] == null ? undefined : json['disableSuccessMessage'],
         'disableToolbar': json['disableToolbar'] == null ? undefined : json['disableToolbar'],
@@ -625,6 +701,7 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'maxCommentCharacterLength': json['maxCommentCharacterLength'] == null ? undefined : json['maxCommentCharacterLength'],
         'maxCommentCreatedCountPUPM': json['maxCommentCreatedCountPUPM'] == null ? undefined : json['maxCommentCreatedCountPUPM'],
         'noCustomConfig': json['noCustomConfig'] == null ? undefined : json['noCustomConfig'],
+        'mentionAutoCompleteMode': json['mentionAutoCompleteMode'] == null ? undefined : MentionAutoCompleteModeFromJSON(json['mentionAutoCompleteMode']),
         'noImageUploads': json['noImageUploads'] == null ? undefined : json['noImageUploads'],
         'noStyles': json['noStyles'] == null ? undefined : json['noStyles'],
         'pageSize': json['pageSize'] == null ? undefined : json['pageSize'],
@@ -645,11 +722,18 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'voteStyle': json['voteStyle'] == null ? undefined : VoteStyleFromJSON(json['voteStyle']),
         'widgetQuestionId': json['widgetQuestionId'] == null ? undefined : json['widgetQuestionId'],
         'widgetQuestionResultsStyle': json['widgetQuestionResultsStyle'] == null ? undefined : CommentQuestionResultsRenderingTypeFromJSON(json['widgetQuestionResultsStyle']),
+        'widgetQuestionShowBreakdown': json['widgetQuestionShowBreakdown'] == null ? undefined : json['widgetQuestionShowBreakdown'],
         'widgetQuestionStyle': json['widgetQuestionStyle'] == null ? undefined : QuestionRenderingTypeFromJSON(json['widgetQuestionStyle']),
         'widgetQuestionWhenToSave': json['widgetQuestionWhenToSave'] == null ? undefined : QuestionWhenSaveFromJSON(json['widgetQuestionWhenToSave']),
         'widgetQuestionsRequired': json['widgetQuestionsRequired'] == null ? undefined : CommentQuestionsRequiredFromJSON(json['widgetQuestionsRequired']),
         'widgetSubQuestionVisibility': json['widgetSubQuestionVisibility'] == null ? undefined : QuestionSubQuestionVisibilityFromJSON(json['widgetSubQuestionVisibility']),
         'wrap': json['wrap'] == null ? undefined : json['wrap'],
+        'ticketBaseUrl': json['ticketBaseUrl'] == null ? undefined : json['ticketBaseUrl'],
+        'ticketKBSearchEndpoint': json['ticketKBSearchEndpoint'] == null ? undefined : json['ticketKBSearchEndpoint'],
+        'ticketFileUploadsEnabled': json['ticketFileUploadsEnabled'] == null ? undefined : json['ticketFileUploadsEnabled'],
+        'ticketMaxFileSize': json['ticketMaxFileSize'] == null ? undefined : json['ticketMaxFileSize'],
+        'ticketAutoAssignUserIds': json['ticketAutoAssignUserIds'] == null ? undefined : json['ticketAutoAssignUserIds'],
+        'tos': json['tos'] == null ? undefined : TOSConfigFromJSON(json['tos']),
     };
 }
 
@@ -688,6 +772,8 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'disableEmailInputs': value['disableEmailInputs'],
         'disableLiveCommenting': value['disableLiveCommenting'],
         'disableNotificationBell': value['disableNotificationBell'],
+        'disableProfileComments': value['disableProfileComments'],
+        'disableProfileDirectMessages': value['disableProfileDirectMessages'],
         'disableProfiles': value['disableProfiles'],
         'disableSuccessMessage': value['disableSuccessMessage'],
         'disableToolbar': value['disableToolbar'],
@@ -712,6 +798,7 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'maxCommentCharacterLength': value['maxCommentCharacterLength'],
         'maxCommentCreatedCountPUPM': value['maxCommentCreatedCountPUPM'],
         'noCustomConfig': value['noCustomConfig'],
+        'mentionAutoCompleteMode': MentionAutoCompleteModeToJSON(value['mentionAutoCompleteMode']),
         'noImageUploads': value['noImageUploads'],
         'noStyles': value['noStyles'],
         'pageSize': value['pageSize'],
@@ -732,11 +819,18 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'voteStyle': VoteStyleToJSON(value['voteStyle']),
         'widgetQuestionId': value['widgetQuestionId'],
         'widgetQuestionResultsStyle': CommentQuestionResultsRenderingTypeToJSON(value['widgetQuestionResultsStyle']),
+        'widgetQuestionShowBreakdown': value['widgetQuestionShowBreakdown'],
         'widgetQuestionStyle': QuestionRenderingTypeToJSON(value['widgetQuestionStyle']),
         'widgetQuestionWhenToSave': QuestionWhenSaveToJSON(value['widgetQuestionWhenToSave']),
         'widgetQuestionsRequired': CommentQuestionsRequiredToJSON(value['widgetQuestionsRequired']),
         'widgetSubQuestionVisibility': QuestionSubQuestionVisibilityToJSON(value['widgetSubQuestionVisibility']),
         'wrap': value['wrap'],
+        'ticketBaseUrl': value['ticketBaseUrl'],
+        'ticketKBSearchEndpoint': value['ticketKBSearchEndpoint'],
+        'ticketFileUploadsEnabled': value['ticketFileUploadsEnabled'],
+        'ticketMaxFileSize': value['ticketMaxFileSize'],
+        'ticketAutoAssignUserIds': value['ticketAutoAssignUserIds'],
+        'tos': TOSConfigToJSON(value['tos']),
     };
 }
 

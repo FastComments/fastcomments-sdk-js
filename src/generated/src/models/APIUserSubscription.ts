@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface APIUserSubscription {
     /**
      * 
+     * @type {number}
+     * @memberof APIUserSubscription
+     */
+    notificationFrequency?: number;
+    /**
+     * 
      * @type {Date}
      * @memberof APIUserSubscription
      */
@@ -83,6 +89,7 @@ export function APIUserSubscriptionFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'notificationFrequency': json['notificationFrequency'] == null ? undefined : json['notificationFrequency'],
         'createdAt': (new Date(json['createdAt'])),
         'pageTitle': json['pageTitle'] == null ? undefined : json['pageTitle'],
         'url': json['url'] == null ? undefined : json['url'],
@@ -104,6 +111,7 @@ export function APIUserSubscriptionToJSONTyped(value?: APIUserSubscription | nul
 
     return {
         
+        'notificationFrequency': value['notificationFrequency'],
         'createdAt': ((value['createdAt']).toISOString()),
         'pageTitle': value['pageTitle'],
         'url': value['url'],

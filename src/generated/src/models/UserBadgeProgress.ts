@@ -67,6 +67,12 @@ export interface UserBadgeProgress {
      * @memberof UserBadgeProgress
      */
     progress: { [key: string]: number; };
+    /**
+     * 
+     * @type {Date}
+     * @memberof UserBadgeProgress
+     */
+    tosAcceptedAt?: Date;
 }
 
 /**
@@ -100,6 +106,7 @@ export function UserBadgeProgressFromJSONTyped(json: any, ignoreDiscriminator: b
         'autoTrustFactor': json['autoTrustFactor'] == null ? undefined : json['autoTrustFactor'],
         'manualTrustFactor': json['manualTrustFactor'] == null ? undefined : json['manualTrustFactor'],
         'progress': json['progress'],
+        'tosAcceptedAt': json['tosAcceptedAt'] == null ? undefined : (new Date(json['tosAcceptedAt'])),
     };
 }
 
@@ -122,6 +129,7 @@ export function UserBadgeProgressToJSONTyped(value?: UserBadgeProgress | null, i
         'autoTrustFactor': value['autoTrustFactor'],
         'manualTrustFactor': value['manualTrustFactor'],
         'progress': value['progress'],
+        'tosAcceptedAt': value['tosAcceptedAt'] == null ? undefined : ((value['tosAcceptedAt']).toISOString()),
     };
 }
 

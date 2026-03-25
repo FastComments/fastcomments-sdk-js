@@ -481,6 +481,12 @@ export interface FComment {
      * @memberof FComment
      */
     editKey?: string;
+    /**
+     * 
+     * @type {Date}
+     * @memberof FComment
+     */
+    tosAcceptedAt?: Date;
 }
 
 /**
@@ -582,6 +588,7 @@ export function FCommentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
+        'tosAcceptedAt': json['tosAcceptedAt'] == null ? undefined : (new Date(json['tosAcceptedAt'])),
     };
 }
 
@@ -667,6 +674,7 @@ export function FCommentToJSONTyped(value?: FComment | null, ignoreDiscriminator
         'viewCount': value['viewCount'],
         'requiresVerification': value['requiresVerification'],
         'editKey': value['editKey'],
+        'tosAcceptedAt': value['tosAcceptedAt'] == null ? undefined : ((value['tosAcceptedAt']).toISOString()),
     };
 }
 

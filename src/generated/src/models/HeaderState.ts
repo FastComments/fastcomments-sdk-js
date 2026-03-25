@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { HeaderAccountNotification } from './HeaderAccountNotification';
+import {
+    HeaderAccountNotificationFromJSON,
+    HeaderAccountNotificationFromJSONTyped,
+    HeaderAccountNotificationToJSON,
+    HeaderAccountNotificationToJSONTyped,
+} from './HeaderAccountNotification';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -64,6 +71,12 @@ export interface HeaderState {
      * @memberof HeaderState
      */
     notificationCounts: Array<NotificationAndCount>;
+    /**
+     * 
+     * @type {Array<HeaderAccountNotification>}
+     * @memberof HeaderState
+     */
+    accountNotifications: Array<HeaderAccountNotification>;
 }
 
 
@@ -77,6 +90,7 @@ export function instanceOfHeaderState(value: object): value is HeaderState {
     if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('userIdWS' in value) || value['userIdWS'] === undefined) return false;
     if (!('notificationCounts' in value) || value['notificationCounts'] === undefined) return false;
+    if (!('accountNotifications' in value) || value['accountNotifications'] === undefined) return false;
     return true;
 }
 
@@ -95,6 +109,7 @@ export function HeaderStateFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'userId': json['userId'],
         'userIdWS': json['userIdWS'],
         'notificationCounts': ((json['notificationCounts'] as Array<any>).map(NotificationAndCountFromJSON)),
+        'accountNotifications': ((json['accountNotifications'] as Array<any>).map(HeaderAccountNotificationFromJSON)),
     };
 }
 
@@ -114,6 +129,7 @@ export function HeaderStateToJSONTyped(value?: HeaderState | null, ignoreDiscrim
         'userId': value['userId'],
         'userIdWS': value['userIdWS'],
         'notificationCounts': ((value['notificationCounts'] as Array<any>).map(NotificationAndCountToJSON)),
+        'accountNotifications': ((value['accountNotifications'] as Array<any>).map(HeaderAccountNotificationToJSON)),
     };
 }
 

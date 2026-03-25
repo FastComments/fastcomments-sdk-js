@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface CreateAPIUserSubscriptionData {
     /**
      * 
+     * @type {number}
+     * @memberof CreateAPIUserSubscriptionData
+     */
+    notificationFrequency?: number;
+    /**
+     * 
      * @type {string}
      * @memberof CreateAPIUserSubscriptionData
      */
@@ -69,6 +75,7 @@ export function CreateAPIUserSubscriptionDataFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'notificationFrequency': json['notificationFrequency'] == null ? undefined : json['notificationFrequency'],
         'pageTitle': json['pageTitle'] == null ? undefined : json['pageTitle'],
         'url': json['url'] == null ? undefined : json['url'],
         'urlId': json['urlId'],
@@ -88,6 +95,7 @@ export function CreateAPIUserSubscriptionDataToJSONTyped(value?: CreateAPIUserSu
 
     return {
         
+        'notificationFrequency': value['notificationFrequency'],
         'pageTitle': value['pageTitle'],
         'url': value['url'],
         'urlId': value['urlId'],

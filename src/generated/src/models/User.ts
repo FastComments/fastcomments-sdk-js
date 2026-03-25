@@ -71,6 +71,18 @@ export interface User {
     pendingEmail?: string;
     /**
      * 
+     * @type {string}
+     * @memberof User
+     */
+    backupEmail?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    pendingBackupEmail?: string;
+    /**
+     * 
      * @type {number}
      * @memberof User
      */
@@ -203,6 +215,12 @@ export interface User {
     isAPIAdmin?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof User
+     */
+    isSiteAdmin?: boolean;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof User
      */
@@ -231,6 +249,30 @@ export interface User {
      * @memberof User
      */
     digestEmailFrequency?: DigestEmailFrequency;
+    /**
+     * 
+     * @type {number}
+     * @memberof User
+     */
+    notificationFrequency?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof User
+     */
+    adminNotificationFrequency?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof User
+     */
+    lastTenantNotificationSentDate?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof User
+     */
+    lastReplyNotificationSentDate?: Date;
     /**
      * 
      * @type {boolean}
@@ -333,6 +375,12 @@ export interface User {
      * @memberof User
      */
     hasTwoFactor?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    isEmailSuppressed?: boolean;
 }
 
 
@@ -370,6 +418,8 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'websiteUrl': json['websiteUrl'] == null ? undefined : json['websiteUrl'],
         'email': json['email'],
         'pendingEmail': json['pendingEmail'] == null ? undefined : json['pendingEmail'],
+        'backupEmail': json['backupEmail'] == null ? undefined : json['backupEmail'],
+        'pendingBackupEmail': json['pendingBackupEmail'] == null ? undefined : json['pendingBackupEmail'],
         'signUpDate': json['signUpDate'],
         'createdFromUrlId': json['createdFromUrlId'] == null ? undefined : json['createdFromUrlId'],
         'createdFromTenantId': json['createdFromTenantId'],
@@ -392,11 +442,16 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'isManageDataAdmin': json['isManageDataAdmin'] == null ? undefined : json['isManageDataAdmin'],
         'isCommentModeratorAdmin': json['isCommentModeratorAdmin'] == null ? undefined : json['isCommentModeratorAdmin'],
         'isAPIAdmin': json['isAPIAdmin'] == null ? undefined : json['isAPIAdmin'],
+        'isSiteAdmin': json['isSiteAdmin'] == null ? undefined : json['isSiteAdmin'],
         'moderatorIds': json['moderatorIds'] == null ? undefined : json['moderatorIds'],
         'isImpersonator': json['isImpersonator'] == null ? undefined : json['isImpersonator'],
         'isCouponManager': json['isCouponManager'] == null ? undefined : json['isCouponManager'],
         'locale': json['locale'] == null ? undefined : json['locale'],
         'digestEmailFrequency': json['digestEmailFrequency'] == null ? undefined : DigestEmailFrequencyFromJSON(json['digestEmailFrequency']),
+        'notificationFrequency': json['notificationFrequency'] == null ? undefined : json['notificationFrequency'],
+        'adminNotificationFrequency': json['adminNotificationFrequency'] == null ? undefined : json['adminNotificationFrequency'],
+        'lastTenantNotificationSentDate': json['lastTenantNotificationSentDate'] == null ? undefined : (new Date(json['lastTenantNotificationSentDate'])),
+        'lastReplyNotificationSentDate': json['lastReplyNotificationSentDate'] == null ? undefined : (new Date(json['lastReplyNotificationSentDate'])),
         'ignoredAddToMySiteMessages': json['ignoredAddToMySiteMessages'] == null ? undefined : json['ignoredAddToMySiteMessages'],
         'lastLoginDate': json['lastLoginDate'] == null ? undefined : (new Date(json['lastLoginDate'])),
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
@@ -414,6 +469,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'countryFlag': json['countryFlag'] == null ? undefined : json['countryFlag'],
         'socialLinks': json['socialLinks'] == null ? undefined : json['socialLinks'],
         'hasTwoFactor': json['hasTwoFactor'] == null ? undefined : json['hasTwoFactor'],
+        'isEmailSuppressed': json['isEmailSuppressed'] == null ? undefined : json['isEmailSuppressed'],
     };
 }
 
@@ -435,6 +491,8 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'websiteUrl': value['websiteUrl'],
         'email': value['email'],
         'pendingEmail': value['pendingEmail'],
+        'backupEmail': value['backupEmail'],
+        'pendingBackupEmail': value['pendingBackupEmail'],
         'signUpDate': value['signUpDate'],
         'createdFromUrlId': value['createdFromUrlId'],
         'createdFromTenantId': value['createdFromTenantId'],
@@ -457,11 +515,16 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'isManageDataAdmin': value['isManageDataAdmin'],
         'isCommentModeratorAdmin': value['isCommentModeratorAdmin'],
         'isAPIAdmin': value['isAPIAdmin'],
+        'isSiteAdmin': value['isSiteAdmin'],
         'moderatorIds': value['moderatorIds'],
         'isImpersonator': value['isImpersonator'],
         'isCouponManager': value['isCouponManager'],
         'locale': value['locale'],
         'digestEmailFrequency': DigestEmailFrequencyToJSON(value['digestEmailFrequency']),
+        'notificationFrequency': value['notificationFrequency'],
+        'adminNotificationFrequency': value['adminNotificationFrequency'],
+        'lastTenantNotificationSentDate': value['lastTenantNotificationSentDate'] == null ? undefined : ((value['lastTenantNotificationSentDate']).toISOString()),
+        'lastReplyNotificationSentDate': value['lastReplyNotificationSentDate'] == null ? undefined : ((value['lastReplyNotificationSentDate']).toISOString()),
         'ignoredAddToMySiteMessages': value['ignoredAddToMySiteMessages'],
         'lastLoginDate': value['lastLoginDate'] == null ? undefined : ((value['lastLoginDate']).toISOString()),
         'displayLabel': value['displayLabel'],
@@ -479,6 +542,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'countryFlag': value['countryFlag'],
         'socialLinks': value['socialLinks'],
         'hasTwoFactor': value['hasTwoFactor'],
+        'isEmailSuppressed': value['isEmailSuppressed'],
     };
 }
 

@@ -117,6 +117,12 @@ export interface CreateTenantPackageBody {
     maxMonthlyEventLogRequests?: number;
     /**
      * 
+     * @type {number}
+     * @memberof CreateTenantPackageBody
+     */
+    maxCustomCollectionSize?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof CreateTenantPackageBody
      */
@@ -355,6 +361,7 @@ export function CreateTenantPackageBodyFromJSONTyped(json: any, ignoreDiscrimina
         'maxDomains': json['maxDomains'],
         'maxWhiteLabeledTenants': json['maxWhiteLabeledTenants'] == null ? undefined : json['maxWhiteLabeledTenants'],
         'maxMonthlyEventLogRequests': json['maxMonthlyEventLogRequests'] == null ? undefined : json['maxMonthlyEventLogRequests'],
+        'maxCustomCollectionSize': json['maxCustomCollectionSize'] == null ? undefined : json['maxCustomCollectionSize'],
         'hasWhiteLabeling': json['hasWhiteLabeling'] == null ? undefined : json['hasWhiteLabeling'],
         'hasDebranding': json['hasDebranding'],
         'hasLLMSpamDetection': json['hasLLMSpamDetection'] == null ? undefined : json['hasLLMSpamDetection'],
@@ -417,6 +424,7 @@ export function CreateTenantPackageBodyToJSONTyped(value?: CreateTenantPackageBo
         'maxDomains': value['maxDomains'],
         'maxWhiteLabeledTenants': value['maxWhiteLabeledTenants'],
         'maxMonthlyEventLogRequests': value['maxMonthlyEventLogRequests'],
+        'maxCustomCollectionSize': value['maxCustomCollectionSize'],
         'hasWhiteLabeling': value['hasWhiteLabeling'],
         'hasDebranding': value['hasDebranding'],
         'hasLLMSpamDetection': value['hasLLMSpamDetection'],

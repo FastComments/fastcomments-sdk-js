@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FCommentMeta } from './FCommentMeta';
+import type { APICommentBaseMeta } from './APICommentBaseMeta';
 import {
-    FCommentMetaFromJSON,
-    FCommentMetaFromJSONTyped,
-    FCommentMetaToJSON,
-    FCommentMetaToJSONTyped,
-} from './FCommentMeta';
+    APICommentBaseMetaFromJSON,
+    APICommentBaseMetaFromJSONTyped,
+    APICommentBaseMetaToJSON,
+    APICommentBaseMetaToJSONTyped,
+} from './APICommentBaseMeta';
 
 /**
  * 
@@ -245,10 +245,10 @@ export interface UpdatableCommentParams {
     displayLabel?: string | null;
     /**
      * 
-     * @type {FCommentMeta}
+     * @type {APICommentBaseMeta}
      * @memberof UpdatableCommentParams
      */
-    meta?: FCommentMeta | null;
+    meta?: APICommentBaseMeta | null;
     /**
      * 
      * @type {Array<string>}
@@ -316,7 +316,7 @@ export function UpdatableCommentParamsFromJSONTyped(json: any, ignoreDiscriminat
         'isLocked': json['isLocked'] == null ? undefined : json['isLocked'],
         'flagCount': json['flagCount'] == null ? undefined : json['flagCount'],
         'displayLabel': json['displayLabel'] == null ? undefined : json['displayLabel'],
-        'meta': json['meta'] == null ? undefined : FCommentMetaFromJSON(json['meta']),
+        'meta': json['meta'] == null ? undefined : APICommentBaseMetaFromJSON(json['meta']),
         'moderationGroupIds': json['moderationGroupIds'] == null ? undefined : json['moderationGroupIds'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
     };
@@ -369,7 +369,7 @@ export function UpdatableCommentParamsToJSONTyped(value?: UpdatableCommentParams
         'isLocked': value['isLocked'],
         'flagCount': value['flagCount'],
         'displayLabel': value['displayLabel'],
-        'meta': FCommentMetaToJSON(value['meta']),
+        'meta': APICommentBaseMetaToJSON(value['meta']),
         'moderationGroupIds': value['moderationGroupIds'],
         'feedbackIds': value['feedbackIds'],
     };

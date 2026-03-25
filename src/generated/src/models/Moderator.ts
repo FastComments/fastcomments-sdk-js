@@ -127,6 +127,12 @@ export interface Moderator {
      * @memberof Moderator
      */
     moderationGroupIds: Array<string> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Moderator
+     */
+    isEmailSuppressed?: boolean;
 }
 
 /**
@@ -182,6 +188,7 @@ export function ModeratorFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'verificationId': json['verificationId'],
         'createdAt': (new Date(json['createdAt'])),
         'moderationGroupIds': json['moderationGroupIds'] == null ? null : json['moderationGroupIds'],
+        'isEmailSuppressed': json['isEmailSuppressed'] == null ? undefined : json['isEmailSuppressed'],
     };
 }
 
@@ -214,6 +221,7 @@ export function ModeratorToJSONTyped(value?: Moderator | null, ignoreDiscriminat
         'verificationId': value['verificationId'],
         'createdAt': ((value['createdAt']).toISOString()),
         'moderationGroupIds': value['moderationGroupIds'],
+        'isEmailSuppressed': value['isEmailSuppressed'],
     };
 }
 

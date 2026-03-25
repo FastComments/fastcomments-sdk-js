@@ -87,6 +87,12 @@ export interface ReplaceTenantPackageBody {
     maxDomains: number;
     /**
      * 
+     * @type {number}
+     * @memberof ReplaceTenantPackageBody
+     */
+    maxCustomCollectionSize?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof ReplaceTenantPackageBody
      */
@@ -244,6 +250,7 @@ export function ReplaceTenantPackageBodyFromJSONTyped(json: any, ignoreDiscrimin
         'maxSSOUsers': json['maxSSOUsers'],
         'maxModerators': json['maxModerators'],
         'maxDomains': json['maxDomains'],
+        'maxCustomCollectionSize': json['maxCustomCollectionSize'] == null ? undefined : json['maxCustomCollectionSize'],
         'hasDebranding': json['hasDebranding'],
         'forWhoText': json['forWhoText'],
         'featureTaglines': json['featureTaglines'],
@@ -288,6 +295,7 @@ export function ReplaceTenantPackageBodyToJSONTyped(value?: ReplaceTenantPackage
         'maxSSOUsers': value['maxSSOUsers'],
         'maxModerators': value['maxModerators'],
         'maxDomains': value['maxDomains'],
+        'maxCustomCollectionSize': value['maxCustomCollectionSize'],
         'hasDebranding': value['hasDebranding'],
         'forWhoText': value['forWhoText'],
         'featureTaglines': value['featureTaglines'],

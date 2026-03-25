@@ -30,6 +30,8 @@ import type {
   BulkAggregateQuestionResults200Response,
   BulkAggregateQuestionResultsRequest,
   BulkCreateHashTagsBody,
+  ChangeTicketState200Response,
+  ChangeTicketStateBody,
   CombineCommentsWithQuestionResults200Response,
   CreateAPIPageData,
   CreateAPISSOUserData,
@@ -53,6 +55,8 @@ import type {
   CreateTenantPackageBody,
   CreateTenantUser200Response,
   CreateTenantUserBody,
+  CreateTicket200Response,
+  CreateTicketBody,
   CreateUserBadge200Response,
   CreateUserBadgeParams,
   DeleteComment200Response,
@@ -100,6 +104,8 @@ import type {
   GetTenantUser200Response,
   GetTenantUsers200Response,
   GetTenants200Response,
+  GetTicket200Response,
+  GetTickets200Response,
   GetUser200Response,
   GetUserBadge200Response,
   GetUserBadgeProgressById200Response,
@@ -124,6 +130,7 @@ import type {
   UpdatableCommentParams,
   UpdateAPIPageData,
   UpdateAPISSOUserData,
+  UpdateAPIUserSubscriptionData,
   UpdateDomainConfigParams,
   UpdateEmailTemplateBody,
   UpdateHashTagBody,
@@ -131,6 +138,7 @@ import type {
   UpdateNotificationBody,
   UpdateQuestionConfigBody,
   UpdateQuestionResultBody,
+  UpdateSubscriptionAPIResponse,
   UpdateTenantBody,
   UpdateTenantPackageBody,
   UpdateTenantUserBody,
@@ -169,6 +177,10 @@ import {
     BulkAggregateQuestionResultsRequestToJSON,
     BulkCreateHashTagsBodyFromJSON,
     BulkCreateHashTagsBodyToJSON,
+    ChangeTicketState200ResponseFromJSON,
+    ChangeTicketState200ResponseToJSON,
+    ChangeTicketStateBodyFromJSON,
+    ChangeTicketStateBodyToJSON,
     CombineCommentsWithQuestionResults200ResponseFromJSON,
     CombineCommentsWithQuestionResults200ResponseToJSON,
     CreateAPIPageDataFromJSON,
@@ -215,6 +227,10 @@ import {
     CreateTenantUser200ResponseToJSON,
     CreateTenantUserBodyFromJSON,
     CreateTenantUserBodyToJSON,
+    CreateTicket200ResponseFromJSON,
+    CreateTicket200ResponseToJSON,
+    CreateTicketBodyFromJSON,
+    CreateTicketBodyToJSON,
     CreateUserBadge200ResponseFromJSON,
     CreateUserBadge200ResponseToJSON,
     CreateUserBadgeParamsFromJSON,
@@ -309,6 +325,10 @@ import {
     GetTenantUsers200ResponseToJSON,
     GetTenants200ResponseFromJSON,
     GetTenants200ResponseToJSON,
+    GetTicket200ResponseFromJSON,
+    GetTicket200ResponseToJSON,
+    GetTickets200ResponseFromJSON,
+    GetTickets200ResponseToJSON,
     GetUser200ResponseFromJSON,
     GetUser200ResponseToJSON,
     GetUserBadge200ResponseFromJSON,
@@ -357,6 +377,8 @@ import {
     UpdateAPIPageDataToJSON,
     UpdateAPISSOUserDataFromJSON,
     UpdateAPISSOUserDataToJSON,
+    UpdateAPIUserSubscriptionDataFromJSON,
+    UpdateAPIUserSubscriptionDataToJSON,
     UpdateDomainConfigParamsFromJSON,
     UpdateDomainConfigParamsToJSON,
     UpdateEmailTemplateBodyFromJSON,
@@ -371,6 +393,8 @@ import {
     UpdateQuestionConfigBodyToJSON,
     UpdateQuestionResultBodyFromJSON,
     UpdateQuestionResultBodyToJSON,
+    UpdateSubscriptionAPIResponseFromJSON,
+    UpdateSubscriptionAPIResponseToJSON,
     UpdateTenantBodyFromJSON,
     UpdateTenantBodyToJSON,
     UpdateTenantPackageBodyFromJSON,
@@ -441,6 +465,13 @@ export interface BulkAggregateQuestionResultsOperationRequest {
     forceRecalculate?: boolean;
 }
 
+export interface ChangeTicketStateRequest {
+    tenantId: string;
+    userId: string;
+    id: string;
+    changeTicketStateBody: ChangeTicketStateBody;
+}
+
 export interface CombineCommentsWithQuestionResultsRequest {
     tenantId: string;
     questionId?: string;
@@ -500,6 +531,12 @@ export interface CreateTenantPackageRequest {
 export interface CreateTenantUserRequest {
     tenantId: string;
     createTenantUserBody: CreateTenantUserBody;
+}
+
+export interface CreateTicketRequest {
+    tenantId: string;
+    userId: string;
+    createTicketBody: CreateTicketBody;
 }
 
 export interface CreateUserBadgeRequest {
@@ -845,6 +882,20 @@ export interface GetTenantsRequest {
     skip?: number;
 }
 
+export interface GetTicketRequest {
+    tenantId: string;
+    id: string;
+    userId?: string;
+}
+
+export interface GetTicketsRequest {
+    tenantId: string;
+    userId?: string;
+    state?: number;
+    skip?: number;
+    limit?: number;
+}
+
 export interface GetUserRequest {
     tenantId: string;
     id: string;
@@ -1042,6 +1093,13 @@ export interface UpdateQuestionResultRequest {
     updateQuestionResultBody: UpdateQuestionResultBody;
 }
 
+export interface UpdateSubscriptionRequest {
+    tenantId: string;
+    id: string;
+    updateAPIUserSubscriptionData: UpdateAPIUserSubscriptionData;
+    userId?: string;
+}
+
 export interface UpdateTenantRequest {
     tenantId: string;
     id: string;
@@ -1215,6 +1273,22 @@ export interface DefaultApiInterface {
     /**
      * 
      * @param {string} tenantId 
+     * @param {string} userId 
+     * @param {string} id 
+     * @param {ChangeTicketStateBody} changeTicketStateBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketState200Response>>;
+
+    /**
+     */
+    changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketState200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
      * @param {string} [questionId] 
      * @param {Array<string>} [questionIds] 
      * @param {string} [urlId] 
@@ -1362,6 +1436,21 @@ export interface DefaultApiInterface {
     /**
      */
     createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUser200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} userId 
+     * @param {CreateTicketBody} createTicketBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicket200Response>>;
+
+    /**
+     */
+    createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicket200Response>;
 
     /**
      * 
@@ -2215,6 +2304,38 @@ export interface DefaultApiInterface {
      * 
      * @param {string} tenantId 
      * @param {string} id 
+     * @param {string} [userId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicket200Response>>;
+
+    /**
+     */
+    getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicket200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} [userId] 
+     * @param {number} [state] 
+     * @param {number} [skip] 
+     * @param {number} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTickets200Response>>;
+
+    /**
+     */
+    getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTickets200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -2677,6 +2798,22 @@ export interface DefaultApiInterface {
     /**
      */
     updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentPublic200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {UpdateAPIUserSubscriptionData} updateAPIUserSubscriptionData 
+     * @param {string} [userId] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSubscriptionAPIResponse>>;
+
+    /**
+     */
+    updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateSubscriptionAPIResponse>;
 
     /**
      * 
@@ -3199,6 +3336,73 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async bulkAggregateQuestionResults(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkAggregateQuestionResults200Response> {
         const response = await this.bulkAggregateQuestionResultsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketState200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling changeTicketState().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling changeTicketState().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling changeTicketState().'
+            );
+        }
+
+        if (requestParameters['changeTicketStateBody'] == null) {
+            throw new runtime.RequiredError(
+                'changeTicketStateBody',
+                'Required parameter "changeTicketStateBody" was null or undefined when calling changeTicketState().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/tickets/{id}/state`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ChangeTicketStateBodyToJSON(requestParameters['changeTicketStateBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChangeTicketState200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketState200Response> {
+        const response = await this.changeTicketStateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3727,6 +3931,66 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUser200Response> {
         const response = await this.createTenantUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicket200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling createTicket().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling createTicket().'
+            );
+        }
+
+        if (requestParameters['createTicketBody'] == null) {
+            throw new runtime.RequiredError(
+                'createTicketBody',
+                'Required parameter "createTicketBody" was null or undefined when calling createTicket().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/tickets`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateTicketBodyToJSON(requestParameters['createTicketBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTicket200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicket200Response> {
+        const response = await this.createTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6512,6 +6776,111 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
+    async getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicket200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getTicket().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getTicket().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/tickets/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTicket200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicket200Response> {
+        const response = await this.getTicketRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTickets200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getTickets().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/tickets`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTickets200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTickets200Response> {
+        const response = await this.getTicketsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUser200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
@@ -8175,6 +8544,66 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentPublic200Response> {
         const response = await this.updateQuestionResultRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSubscriptionAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling updateSubscription().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling updateSubscription().'
+            );
+        }
+
+        if (requestParameters['updateAPIUserSubscriptionData'] == null) {
+            throw new runtime.RequiredError(
+                'updateAPIUserSubscriptionData',
+                'Required parameter "updateAPIUserSubscriptionData" was null or undefined when calling updateSubscription().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/subscriptions/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateAPIUserSubscriptionDataToJSON(requestParameters['updateAPIUserSubscriptionData']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSubscriptionAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateSubscriptionAPIResponse> {
+        const response = await this.updateSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

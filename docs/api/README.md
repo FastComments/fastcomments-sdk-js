@@ -16,6 +16,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**aggregateQuestionResults**](Apis/DefaultApi.md#aggregatequestionresults) | **GET** /api/v1/question-results-aggregation |  |
 *DefaultApi* | [**blockUserFromComment**](Apis/DefaultApi.md#blockuserfromcomment) | **POST** /api/v1/comments/{id}/block |  |
 *DefaultApi* | [**bulkAggregateQuestionResults**](Apis/DefaultApi.md#bulkaggregatequestionresults) | **POST** /api/v1/question-results-aggregation/bulk |  |
+*DefaultApi* | [**changeTicketState**](Apis/DefaultApi.md#changeticketstate) | **PATCH** /api/v1/tickets/{id}/state |  |
 *DefaultApi* | [**combineCommentsWithQuestionResults**](Apis/DefaultApi.md#combinecommentswithquestionresults) | **GET** /api/v1/question-results-aggregation/combine/comments |  |
 *DefaultApi* | [**createEmailTemplate**](Apis/DefaultApi.md#createemailtemplate) | **POST** /api/v1/email-templates |  |
 *DefaultApi* | [**createFeedPost**](Apis/DefaultApi.md#createfeedpost) | **POST** /api/v1/feed-posts |  |
@@ -26,6 +27,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**createTenant**](Apis/DefaultApi.md#createtenant) | **POST** /api/v1/tenants |  |
 *DefaultApi* | [**createTenantPackage**](Apis/DefaultApi.md#createtenantpackage) | **POST** /api/v1/tenant-packages |  |
 *DefaultApi* | [**createTenantUser**](Apis/DefaultApi.md#createtenantuser) | **POST** /api/v1/tenant-users |  |
+*DefaultApi* | [**createTicket**](Apis/DefaultApi.md#createticket) | **POST** /api/v1/tickets |  |
 *DefaultApi* | [**createUserBadge**](Apis/DefaultApi.md#createuserbadge) | **POST** /api/v1/user-badges |  |
 *DefaultApi* | [**createVote**](Apis/DefaultApi.md#createvote) | **POST** /api/v1/votes |  |
 *DefaultApi* | [**deleteComment**](Apis/DefaultApi.md#deletecomment) | **DELETE** /api/v1/comments/{id} |  |
@@ -82,6 +84,8 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getTenantUser**](Apis/DefaultApi.md#gettenantuser) | **GET** /api/v1/tenant-users/{id} |  |
 *DefaultApi* | [**getTenantUsers**](Apis/DefaultApi.md#gettenantusers) | **GET** /api/v1/tenant-users |  |
 *DefaultApi* | [**getTenants**](Apis/DefaultApi.md#gettenants) | **GET** /api/v1/tenants |  |
+*DefaultApi* | [**getTicket**](Apis/DefaultApi.md#getticket) | **GET** /api/v1/tickets/{id} |  |
+*DefaultApi* | [**getTickets**](Apis/DefaultApi.md#gettickets) | **GET** /api/v1/tickets |  |
 *DefaultApi* | [**getUser**](Apis/DefaultApi.md#getuser) | **GET** /api/v1/users/{id} |  |
 *DefaultApi* | [**getUserBadge**](Apis/DefaultApi.md#getuserbadge) | **GET** /api/v1/user-badges/{id} |  |
 *DefaultApi* | [**getUserBadgeProgressById**](Apis/DefaultApi.md#getuserbadgeprogressbyid) | **GET** /api/v1/user-badge-progress/{id} |  |
@@ -112,6 +116,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**updateNotification**](Apis/DefaultApi.md#updatenotification) | **PATCH** /api/v1/notifications/{id} |  |
 *DefaultApi* | [**updateQuestionConfig**](Apis/DefaultApi.md#updatequestionconfig) | **PATCH** /api/v1/question-configs/{id} |  |
 *DefaultApi* | [**updateQuestionResult**](Apis/DefaultApi.md#updatequestionresult) | **PATCH** /api/v1/question-results/{id} |  |
+*DefaultApi* | [**updateSubscription**](Apis/DefaultApi.md#updatesubscription) | **PATCH** /api/v1/subscriptions/{id} |  |
 *DefaultApi* | [**updateTenant**](Apis/DefaultApi.md#updatetenant) | **PATCH** /api/v1/tenants/{id} |  |
 *DefaultApi* | [**updateTenantPackage**](Apis/DefaultApi.md#updatetenantpackage) | **PATCH** /api/v1/tenant-packages/{id} |  |
 *DefaultApi* | [**updateTenantUser**](Apis/DefaultApi.md#updatetenantuser) | **PATCH** /api/v1/tenant-users/{id} |  |
@@ -159,6 +164,7 @@ All URIs are relative to *https://fastcomments.com*
  - [APIAuditLog](./model/APIAuditLog.md)
  - [APIComment](./model/APIComment.md)
  - [APICommentBase](./model/APICommentBase.md)
+ - [APICommentBase_meta](./model/APICommentBase_meta.md)
  - [APICreateUserBadgeResponse](./model/APICreateUserBadgeResponse.md)
  - [APIDomainConfiguration](./model/APIDomainConfiguration.md)
  - [APIEmptyResponse](./model/APIEmptyResponse.md)
@@ -175,6 +181,9 @@ All URIs are relative to *https://fastcomments.com*
  - [APIStatus](./model/APIStatus.md)
  - [APITenant](./model/APITenant.md)
  - [APITenantDailyUsage](./model/APITenantDailyUsage.md)
+ - [APITicket](./model/APITicket.md)
+ - [APITicketDetail](./model/APITicketDetail.md)
+ - [APITicketFile](./model/APITicketFile.md)
  - [APIUserSubscription](./model/APIUserSubscription.md)
  - [AddDomainConfigParams](./model/AddDomainConfigParams.md)
  - [AddDomainConfig_200_response](./model/AddDomainConfig_200_response.md)
@@ -206,6 +215,9 @@ All URIs are relative to *https://fastcomments.com*
  - [BulkCreateHashTagsBody_tags_inner](./model/BulkCreateHashTagsBody_tags_inner.md)
  - [BulkCreateHashTagsResponse](./model/BulkCreateHashTagsResponse.md)
  - [ChangeCommentPinStatusResponse](./model/ChangeCommentPinStatusResponse.md)
+ - [ChangeTicketStateBody](./model/ChangeTicketStateBody.md)
+ - [ChangeTicketStateResponse](./model/ChangeTicketStateResponse.md)
+ - [ChangeTicketState_200_response](./model/ChangeTicketState_200_response.md)
  - [CheckBlockedCommentsResponse](./model/CheckBlockedCommentsResponse.md)
  - [CheckedCommentsForBlocked_200_response](./model/CheckedCommentsForBlocked_200_response.md)
  - [CombineCommentsWithQuestionResults_200_response](./model/CombineCommentsWithQuestionResults_200_response.md)
@@ -257,6 +269,9 @@ All URIs are relative to *https://fastcomments.com*
  - [CreateTenantUserResponse](./model/CreateTenantUserResponse.md)
  - [CreateTenantUser_200_response](./model/CreateTenantUser_200_response.md)
  - [CreateTenant_200_response](./model/CreateTenant_200_response.md)
+ - [CreateTicketBody](./model/CreateTicketBody.md)
+ - [CreateTicketResponse](./model/CreateTicketResponse.md)
+ - [CreateTicket_200_response](./model/CreateTicket_200_response.md)
  - [CreateUserBadgeParams](./model/CreateUserBadgeParams.md)
  - [CreateUserBadge_200_response](./model/CreateUserBadge_200_response.md)
  - [CustomConfigParameters](./model/CustomConfigParameters.md)
@@ -365,6 +380,10 @@ All URIs are relative to *https://fastcomments.com*
  - [GetTenant_200_response](./model/GetTenant_200_response.md)
  - [GetTenantsResponse](./model/GetTenantsResponse.md)
  - [GetTenants_200_response](./model/GetTenants_200_response.md)
+ - [GetTicketResponse](./model/GetTicketResponse.md)
+ - [GetTicket_200_response](./model/GetTicket_200_response.md)
+ - [GetTicketsResponse](./model/GetTicketsResponse.md)
+ - [GetTickets_200_response](./model/GetTickets_200_response.md)
  - [GetUserBadgeProgressById_200_response](./model/GetUserBadgeProgressById_200_response.md)
  - [GetUserBadgeProgressList_200_response](./model/GetUserBadgeProgressList_200_response.md)
  - [GetUserBadge_200_response](./model/GetUserBadge_200_response.md)
@@ -382,6 +401,7 @@ All URIs are relative to *https://fastcomments.com*
  - [GetVotesResponse](./model/GetVotesResponse.md)
  - [GetVotes_200_response](./model/GetVotes_200_response.md)
  - [GifRating](./model/GifRating.md)
+ - [HeaderAccountNotification](./model/HeaderAccountNotification.md)
  - [HeaderState](./model/HeaderState.md)
  - [IgnoredResponse](./model/IgnoredResponse.md)
  - [ImageContentProfanityLevel](./model/ImageContentProfanityLevel.md)
@@ -391,6 +411,7 @@ All URIs are relative to *https://fastcomments.com*
  - [LiveEvent_extraInfo](./model/LiveEvent_extraInfo.md)
  - [LockComment_200_response](./model/LockComment_200_response.md)
  - [MediaAsset](./model/MediaAsset.md)
+ - [MentionAutoCompleteMode](./model/MentionAutoCompleteMode.md)
  - [MetaItem](./model/MetaItem.md)
  - [Moderator](./model/Moderator.md)
  - [NotificationAndCount](./model/NotificationAndCount.md)
@@ -446,12 +467,14 @@ All URIs are relative to *https://fastcomments.com*
  - [SaveComment_200_response](./model/SaveComment_200_response.md)
  - [SaveCommentsResponseWithPresence](./model/SaveCommentsResponseWithPresence.md)
  - [SearchUsersResponse](./model/SearchUsersResponse.md)
+ - [SearchUsersSectionedResponse](./model/SearchUsersSectionedResponse.md)
  - [SearchUsers_200_response](./model/SearchUsers_200_response.md)
  - [SetCommentTextResult](./model/SetCommentTextResult.md)
  - [SetCommentText_200_response](./model/SetCommentText_200_response.md)
  - [SizePreset](./model/SizePreset.md)
  - [SortDirections](./model/SortDirections.md)
  - [SpamRule](./model/SpamRule.md)
+ - [TOSConfig](./model/TOSConfig.md)
  - [TenantHashTag](./model/TenantHashTag.md)
  - [TenantPackage](./model/TenantPackage.md)
  - [UnBlockCommentPublic_200_response](./model/UnBlockCommentPublic_200_response.md)
@@ -460,6 +483,7 @@ All URIs are relative to *https://fastcomments.com*
  - [UpdatableCommentParams](./model/UpdatableCommentParams.md)
  - [UpdateAPIPageData](./model/UpdateAPIPageData.md)
  - [UpdateAPISSOUserData](./model/UpdateAPISSOUserData.md)
+ - [UpdateAPIUserSubscriptionData](./model/UpdateAPIUserSubscriptionData.md)
  - [UpdateDomainConfigParams](./model/UpdateDomainConfigParams.md)
  - [UpdateEmailTemplateBody](./model/UpdateEmailTemplateBody.md)
  - [UpdateFeedPostParams](./model/UpdateFeedPostParams.md)
@@ -469,6 +493,7 @@ All URIs are relative to *https://fastcomments.com*
  - [UpdateNotificationBody](./model/UpdateNotificationBody.md)
  - [UpdateQuestionConfigBody](./model/UpdateQuestionConfigBody.md)
  - [UpdateQuestionResultBody](./model/UpdateQuestionResultBody.md)
+ - [UpdateSubscriptionAPIResponse](./model/UpdateSubscriptionAPIResponse.md)
  - [UpdateTenantBody](./model/UpdateTenantBody.md)
  - [UpdateTenantPackageBody](./model/UpdateTenantPackageBody.md)
  - [UpdateTenantUserBody](./model/UpdateTenantUserBody.md)
@@ -485,6 +510,8 @@ All URIs are relative to *https://fastcomments.com*
  - [UserPresenceData](./model/UserPresenceData.md)
  - [UserReactsResponse](./model/UserReactsResponse.md)
  - [UserSearchResult](./model/UserSearchResult.md)
+ - [UserSearchSection](./model/UserSearchSection.md)
+ - [UserSearchSectionResult](./model/UserSearchSectionResult.md)
  - [UserSessionInfo](./model/UserSessionInfo.md)
  - [VoteBodyParams](./model/VoteBodyParams.md)
  - [VoteComment_200_response](./model/VoteComment_200_response.md)

@@ -25,6 +25,12 @@ export interface FCommentMeta {
      * @type {string}
      * @memberof FCommentMeta
      */
+    wpId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FCommentMeta
+     */
     wpUserId?: string;
     /**
      * 
@@ -52,6 +58,7 @@ export function FCommentMetaFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
             ...json,
+        'wpId': json['wpId'] == null ? undefined : json['wpId'],
         'wpUserId': json['wpUserId'] == null ? undefined : json['wpUserId'],
         'wpPostId': json['wpPostId'] == null ? undefined : json['wpPostId'],
     };
@@ -69,6 +76,7 @@ export function FCommentMetaToJSONTyped(value?: FCommentMeta | null, ignoreDiscr
     return {
         
             ...value,
+        'wpId': value['wpId'],
         'wpUserId': value['wpUserId'],
         'wpPostId': value['wpPostId'],
     };

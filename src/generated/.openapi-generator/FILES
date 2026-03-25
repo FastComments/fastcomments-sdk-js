@@ -10,6 +10,7 @@ src/index.ts
 src/models/APIAuditLog.ts
 src/models/APIComment.ts
 src/models/APICommentBase.ts
+src/models/APICommentBaseMeta.ts
 src/models/APICreateUserBadgeResponse.ts
 src/models/APIDomainConfiguration.ts
 src/models/APIEmptyResponse.ts
@@ -26,6 +27,9 @@ src/models/APISSOUser.ts
 src/models/APIStatus.ts
 src/models/APITenant.ts
 src/models/APITenantDailyUsage.ts
+src/models/APITicket.ts
+src/models/APITicketDetail.ts
+src/models/APITicketFile.ts
 src/models/APIUserSubscription.ts
 src/models/AddDomainConfig200Response.ts
 src/models/AddDomainConfig200ResponseAnyOf.ts
@@ -57,6 +61,9 @@ src/models/BulkCreateHashTagsBody.ts
 src/models/BulkCreateHashTagsBodyTagsInner.ts
 src/models/BulkCreateHashTagsResponse.ts
 src/models/ChangeCommentPinStatusResponse.ts
+src/models/ChangeTicketState200Response.ts
+src/models/ChangeTicketStateBody.ts
+src/models/ChangeTicketStateResponse.ts
 src/models/CheckBlockedCommentsResponse.ts
 src/models/CheckedCommentsForBlocked200Response.ts
 src/models/CombineCommentsWithQuestionResults200Response.ts
@@ -108,6 +115,9 @@ src/models/CreateTenantResponse.ts
 src/models/CreateTenantUser200Response.ts
 src/models/CreateTenantUserBody.ts
 src/models/CreateTenantUserResponse.ts
+src/models/CreateTicket200Response.ts
+src/models/CreateTicketBody.ts
+src/models/CreateTicketResponse.ts
 src/models/CreateUserBadge200Response.ts
 src/models/CreateUserBadgeParams.ts
 src/models/CustomConfigParameters.ts
@@ -216,6 +226,10 @@ src/models/GetTenantUsers200Response.ts
 src/models/GetTenantUsersResponse.ts
 src/models/GetTenants200Response.ts
 src/models/GetTenantsResponse.ts
+src/models/GetTicket200Response.ts
+src/models/GetTicketResponse.ts
+src/models/GetTickets200Response.ts
+src/models/GetTicketsResponse.ts
 src/models/GetUser200Response.ts
 src/models/GetUserBadge200Response.ts
 src/models/GetUserBadgeProgressById200Response.ts
@@ -233,6 +247,7 @@ src/models/GetVotesForUser200Response.ts
 src/models/GetVotesForUserResponse.ts
 src/models/GetVotesResponse.ts
 src/models/GifRating.ts
+src/models/HeaderAccountNotification.ts
 src/models/HeaderState.ts
 src/models/IgnoredResponse.ts
 src/models/ImageContentProfanityLevel.ts
@@ -242,6 +257,7 @@ src/models/LiveEventExtraInfo.ts
 src/models/LiveEventType.ts
 src/models/LockComment200Response.ts
 src/models/MediaAsset.ts
+src/models/MentionAutoCompleteMode.ts
 src/models/MetaItem.ts
 src/models/Moderator.ts
 src/models/NotificationAndCount.ts
@@ -298,11 +314,13 @@ src/models/SaveCommentResponseOptimized.ts
 src/models/SaveCommentsResponseWithPresence.ts
 src/models/SearchUsers200Response.ts
 src/models/SearchUsersResponse.ts
+src/models/SearchUsersSectionedResponse.ts
 src/models/SetCommentText200Response.ts
 src/models/SetCommentTextResult.ts
 src/models/SizePreset.ts
 src/models/SortDirections.ts
 src/models/SpamRule.ts
+src/models/TOSConfig.ts
 src/models/TenantHashTag.ts
 src/models/TenantPackage.ts
 src/models/UnBlockCommentPublic200Response.ts
@@ -311,6 +329,7 @@ src/models/UnblockSuccess.ts
 src/models/UpdatableCommentParams.ts
 src/models/UpdateAPIPageData.ts
 src/models/UpdateAPISSOUserData.ts
+src/models/UpdateAPIUserSubscriptionData.ts
 src/models/UpdateDomainConfigParams.ts
 src/models/UpdateEmailTemplateBody.ts
 src/models/UpdateFeedPostParams.ts
@@ -320,6 +339,7 @@ src/models/UpdateModeratorBody.ts
 src/models/UpdateNotificationBody.ts
 src/models/UpdateQuestionConfigBody.ts
 src/models/UpdateQuestionResultBody.ts
+src/models/UpdateSubscriptionAPIResponse.ts
 src/models/UpdateTenantBody.ts
 src/models/UpdateTenantPackageBody.ts
 src/models/UpdateTenantUserBody.ts
@@ -336,6 +356,8 @@ src/models/UserNotificationWriteResponse.ts
 src/models/UserPresenceData.ts
 src/models/UserReactsResponse.ts
 src/models/UserSearchResult.ts
+src/models/UserSearchSection.ts
+src/models/UserSearchSectionResult.ts
 src/models/UserSessionInfo.ts
 src/models/VoteBodyParams.ts
 src/models/VoteComment200Response.ts

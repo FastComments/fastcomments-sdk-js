@@ -127,6 +127,12 @@ export interface UserBadge {
      * @memberof UserBadge
      */
     order?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserBadge
+     */
+    urlId?: string | null;
 }
 
 /**
@@ -176,6 +182,7 @@ export function UserBadgeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'displayedOnComments': json['displayedOnComments'],
         'receivedAt': (new Date(json['receivedAt'])),
         'order': json['order'] == null ? undefined : json['order'],
+        'urlId': json['urlId'] == null ? undefined : json['urlId'],
     };
 }
 
@@ -208,6 +215,7 @@ export function UserBadgeToJSONTyped(value?: UserBadge | null, ignoreDiscriminat
         'displayedOnComments': value['displayedOnComments'],
         'receivedAt': ((value['receivedAt']).toISOString()),
         'order': value['order'],
+        'urlId': value['urlId'],
     };
 }
 

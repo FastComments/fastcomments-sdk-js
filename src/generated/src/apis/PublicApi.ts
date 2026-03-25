@@ -345,6 +345,7 @@ export interface SearchUsersRequest {
     usernameStartsWith?: string;
     mentionGroupIds?: Array<string>;
     sso?: string;
+    searchSection?: SearchUsersSearchSectionEnum;
 }
 
 export interface SetCommentTextRequest {
@@ -866,6 +867,7 @@ export interface PublicApiInterface {
      * @param {string} [usernameStartsWith] 
      * @param {Array<string>} [mentionGroupIds] 
      * @param {string} [sso] 
+     * @param {'fast' | 'site'} [searchSection] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -2525,6 +2527,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             queryParameters['sso'] = requestParameters['sso'];
         }
 
+        if (requestParameters['searchSection'] != null) {
+            queryParameters['searchSection'] = requestParameters['searchSection'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -3178,6 +3184,14 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
 }
 
+/**
+  * @export
+  * @enum {string}
+  */
+export enum SearchUsersSearchSectionEnum {
+    fast = 'fast',
+    site = 'site'
+}
 /**
   * @export
   * @enum {string}

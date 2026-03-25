@@ -190,6 +190,12 @@ export interface CreateCommentParams {
      * @type {boolean}
      * @memberof CreateCommentParams
      */
+    tos?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCommentParams
+     */
     approved?: boolean;
     /**
      * 
@@ -293,6 +299,7 @@ export function CreateCommentParamsFromJSONTyped(json: any, ignoreDiscriminator:
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], RecordStringStringOrNumberValueFromJSON)),
+        'tos': json['tos'] == null ? undefined : json['tos'],
         'approved': json['approved'] == null ? undefined : json['approved'],
         'domain': json['domain'] == null ? undefined : json['domain'],
         'ip': json['ip'] == null ? undefined : json['ip'],
@@ -341,6 +348,7 @@ export function CreateCommentParamsToJSONTyped(value?: CreateCommentParams | nul
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
         'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], RecordStringStringOrNumberValueToJSON)),
+        'tos': value['tos'],
         'approved': value['approved'],
         'domain': value['domain'],
         'ip': value['ip'],

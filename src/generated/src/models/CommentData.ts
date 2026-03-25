@@ -185,6 +185,12 @@ export interface CommentData {
      * @memberof CommentData
      */
     questionValues?: { [key: string]: RecordStringStringOrNumberValue; };
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommentData
+     */
+    tos?: boolean;
 }
 
 /**
@@ -232,6 +238,7 @@ export function CommentDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], RecordStringStringOrNumberValueFromJSON)),
+        'tos': json['tos'] == null ? undefined : json['tos'],
     };
 }
 
@@ -270,6 +277,7 @@ export function CommentDataToJSONTyped(value?: CommentData | null, ignoreDiscrim
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
         'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], RecordStringStringOrNumberValueToJSON)),
+        'tos': value['tos'],
     };
 }
 

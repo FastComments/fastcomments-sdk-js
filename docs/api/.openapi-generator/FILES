@@ -5,6 +5,7 @@ api/PublicApi.md
 model/APIAuditLog.md
 model/APIComment.md
 model/APICommentBase.md
+model/APICommentBase_meta.md
 model/APICreateUserBadgeResponse.md
 model/APIDomainConfiguration.md
 model/APIEmptyResponse.md
@@ -21,6 +22,9 @@ model/APISSOUser.md
 model/APIStatus.md
 model/APITenant.md
 model/APITenantDailyUsage.md
+model/APITicket.md
+model/APITicketDetail.md
+model/APITicketFile.md
 model/APIUserSubscription.md
 model/AddDomainConfigParams.md
 model/AddDomainConfig_200_response.md
@@ -52,6 +56,9 @@ model/BulkCreateHashTagsBody.md
 model/BulkCreateHashTagsBody_tags_inner.md
 model/BulkCreateHashTagsResponse.md
 model/ChangeCommentPinStatusResponse.md
+model/ChangeTicketStateBody.md
+model/ChangeTicketStateResponse.md
+model/ChangeTicketState_200_response.md
 model/CheckBlockedCommentsResponse.md
 model/CheckedCommentsForBlocked_200_response.md
 model/CombineCommentsWithQuestionResults_200_response.md
@@ -103,6 +110,9 @@ model/CreateTenantUserBody.md
 model/CreateTenantUserResponse.md
 model/CreateTenantUser_200_response.md
 model/CreateTenant_200_response.md
+model/CreateTicketBody.md
+model/CreateTicketResponse.md
+model/CreateTicket_200_response.md
 model/CreateUserBadgeParams.md
 model/CreateUserBadge_200_response.md
 model/CustomConfigParameters.md
@@ -211,6 +221,10 @@ model/GetTenantUsers_200_response.md
 model/GetTenant_200_response.md
 model/GetTenantsResponse.md
 model/GetTenants_200_response.md
+model/GetTicketResponse.md
+model/GetTicket_200_response.md
+model/GetTicketsResponse.md
+model/GetTickets_200_response.md
 model/GetUserBadgeProgressById_200_response.md
 model/GetUserBadgeProgressList_200_response.md
 model/GetUserBadge_200_response.md
@@ -228,6 +242,7 @@ model/GetVotesForUser_200_response.md
 model/GetVotesResponse.md
 model/GetVotes_200_response.md
 model/GifRating.md
+model/HeaderAccountNotification.md
 model/HeaderState.md
 model/IgnoredResponse.md
 model/ImageContentProfanityLevel.md
@@ -237,6 +252,7 @@ model/LiveEventType.md
 model/LiveEvent_extraInfo.md
 model/LockComment_200_response.md
 model/MediaAsset.md
+model/MentionAutoCompleteMode.md
 model/MetaItem.md
 model/Moderator.md
 model/NotificationAndCount.md
@@ -292,12 +308,14 @@ model/SaveCommentResponseOptimized.md
 model/SaveComment_200_response.md
 model/SaveCommentsResponseWithPresence.md
 model/SearchUsersResponse.md
+model/SearchUsersSectionedResponse.md
 model/SearchUsers_200_response.md
 model/SetCommentTextResult.md
 model/SetCommentText_200_response.md
 model/SizePreset.md
 model/SortDirections.md
 model/SpamRule.md
+model/TOSConfig.md
 model/TenantHashTag.md
 model/TenantPackage.md
 model/UnBlockCommentPublic_200_response.md
@@ -306,6 +324,7 @@ model/UnblockSuccess.md
 model/UpdatableCommentParams.md
 model/UpdateAPIPageData.md
 model/UpdateAPISSOUserData.md
+model/UpdateAPIUserSubscriptionData.md
 model/UpdateDomainConfigParams.md
 model/UpdateEmailTemplateBody.md
 model/UpdateFeedPostParams.md
@@ -315,6 +334,7 @@ model/UpdateModeratorBody.md
 model/UpdateNotificationBody.md
 model/UpdateQuestionConfigBody.md
 model/UpdateQuestionResultBody.md
+model/UpdateSubscriptionAPIResponse.md
 model/UpdateTenantBody.md
 model/UpdateTenantPackageBody.md
 model/UpdateTenantUserBody.md
@@ -331,6 +351,8 @@ model/UserNotificationWriteResponse.md
 model/UserPresenceData.md
 model/UserReactsResponse.md
 model/UserSearchResult.md
+model/UserSearchSection.md
+model/UserSearchSectionResult.md
 model/UserSessionInfo.md
 model/VoteBodyParams.md
 model/VoteComment_200_response.md

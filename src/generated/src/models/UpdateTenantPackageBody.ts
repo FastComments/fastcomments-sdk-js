@@ -87,6 +87,12 @@ export interface UpdateTenantPackageBody {
     maxDomains?: number;
     /**
      * 
+     * @type {number}
+     * @memberof UpdateTenantPackageBody
+     */
+    maxCustomCollectionSize?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof UpdateTenantPackageBody
      */
@@ -235,6 +241,7 @@ export function UpdateTenantPackageBodyFromJSONTyped(json: any, ignoreDiscrimina
         'maxSSOUsers': json['maxSSOUsers'] == null ? undefined : json['maxSSOUsers'],
         'maxModerators': json['maxModerators'] == null ? undefined : json['maxModerators'],
         'maxDomains': json['maxDomains'] == null ? undefined : json['maxDomains'],
+        'maxCustomCollectionSize': json['maxCustomCollectionSize'] == null ? undefined : json['maxCustomCollectionSize'],
         'hasDebranding': json['hasDebranding'] == null ? undefined : json['hasDebranding'],
         'hasWhiteLabeling': json['hasWhiteLabeling'] == null ? undefined : json['hasWhiteLabeling'],
         'forWhoText': json['forWhoText'] == null ? undefined : json['forWhoText'],
@@ -280,6 +287,7 @@ export function UpdateTenantPackageBodyToJSONTyped(value?: UpdateTenantPackageBo
         'maxSSOUsers': value['maxSSOUsers'],
         'maxModerators': value['maxModerators'],
         'maxDomains': value['maxDomains'],
+        'maxCustomCollectionSize': value['maxCustomCollectionSize'],
         'hasDebranding': value['hasDebranding'],
         'hasWhiteLabeling': value['hasWhiteLabeling'],
         'forWhoText': value['forWhoText'],

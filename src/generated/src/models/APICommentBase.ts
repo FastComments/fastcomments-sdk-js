@@ -27,13 +27,13 @@ import {
     CommentUserMentionInfoToJSON,
     CommentUserMentionInfoToJSONTyped,
 } from './CommentUserMentionInfo';
-import type { FCommentMeta } from './FCommentMeta';
+import type { APICommentBaseMeta } from './APICommentBaseMeta';
 import {
-    FCommentMetaFromJSON,
-    FCommentMetaFromJSONTyped,
-    FCommentMetaToJSON,
-    FCommentMetaToJSONTyped,
-} from './FCommentMeta';
+    APICommentBaseMetaFromJSON,
+    APICommentBaseMetaFromJSONTyped,
+    APICommentBaseMetaToJSON,
+    APICommentBaseMetaToJSONTyped,
+} from './APICommentBaseMeta';
 import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
 import {
     CommentUserBadgeInfoFromJSON,
@@ -260,10 +260,10 @@ export interface APICommentBase {
     mentions?: Array<CommentUserMentionInfo>;
     /**
      * 
-     * @type {FCommentMeta}
+     * @type {APICommentBaseMeta}
      * @memberof APICommentBase
      */
-    meta?: FCommentMeta | null;
+    meta?: APICommentBaseMeta | null;
     /**
      * 
      * @type {Array<string>}
@@ -431,7 +431,7 @@ export function APICommentBaseFromJSONTyped(json: any, ignoreDiscriminator: bool
         'localDateString': json['localDateString'] == null ? undefined : json['localDateString'],
         'locale': json['locale'],
         'mentions': json['mentions'] == null ? undefined : ((json['mentions'] as Array<any>).map(CommentUserMentionInfoFromJSON)),
-        'meta': json['meta'] == null ? undefined : FCommentMetaFromJSON(json['meta']),
+        'meta': json['meta'] == null ? undefined : APICommentBaseMetaFromJSON(json['meta']),
         'moderationGroupIds': json['moderationGroupIds'] == null ? undefined : json['moderationGroupIds'],
         'notificationSentForParent': json['notificationSentForParent'] == null ? undefined : json['notificationSentForParent'],
         'notificationSentForParentTenant': json['notificationSentForParentTenant'] == null ? undefined : json['notificationSentForParentTenant'],
@@ -498,7 +498,7 @@ export function APICommentBaseToJSONTyped(value?: APICommentBase | null, ignoreD
         'localDateString': value['localDateString'],
         'locale': value['locale'],
         'mentions': value['mentions'] == null ? undefined : ((value['mentions'] as Array<any>).map(CommentUserMentionInfoToJSON)),
-        'meta': FCommentMetaToJSON(value['meta']),
+        'meta': APICommentBaseMetaToJSON(value['meta']),
         'moderationGroupIds': value['moderationGroupIds'],
         'notificationSentForParent': value['notificationSentForParent'],
         'notificationSentForParentTenant': value['notificationSentForParentTenant'],
