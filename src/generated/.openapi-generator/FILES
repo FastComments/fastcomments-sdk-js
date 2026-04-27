@@ -161,6 +161,7 @@ src/models/GetCommentText200Response.ts
 src/models/GetCommentVoteUserNames200Response.ts
 src/models/GetCommentVoteUserNamesSuccessResponse.ts
 src/models/GetComments200Response.ts
+src/models/GetCommentsForUserResponse.ts
 src/models/GetCommentsPublic200Response.ts
 src/models/GetCommentsResponsePublicComment.ts
 src/models/GetCommentsResponseWithPresencePublicComment.ts
@@ -230,6 +231,7 @@ src/models/GetTicket200Response.ts
 src/models/GetTicketResponse.ts
 src/models/GetTickets200Response.ts
 src/models/GetTicketsResponse.ts
+src/models/GetTranslationsResponse.ts
 src/models/GetUser200Response.ts
 src/models/GetUserBadge200Response.ts
 src/models/GetUserBadgeProgressById200Response.ts
@@ -246,7 +248,9 @@ src/models/GetVotes200Response.ts
 src/models/GetVotesForUser200Response.ts
 src/models/GetVotesForUserResponse.ts
 src/models/GetVotesResponse.ts
+src/models/GifGetLargeResponse.ts
 src/models/GifRating.ts
+src/models/GifSearchResponse.ts
 src/models/HeaderAccountNotification.ts
 src/models/HeaderState.ts
 src/models/IgnoredResponse.ts
