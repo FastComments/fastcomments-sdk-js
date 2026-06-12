@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { APIComment } from './APIComment';
-import {
-    APICommentFromJSON,
-    APICommentFromJSONTyped,
-    APICommentToJSON,
-    APICommentToJSONTyped,
-} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -41,91 +34,72 @@ import {
     APIErrorToJSON,
     APIErrorToJSONTyped,
 } from './APIError';
-import type { APISaveCommentResponse } from './APISaveCommentResponse';
+import type { GifGetLargeResponse } from './GifGetLargeResponse';
 import {
-    APISaveCommentResponseFromJSON,
-    APISaveCommentResponseFromJSONTyped,
-    APISaveCommentResponseToJSON,
-    APISaveCommentResponseToJSONTyped,
-} from './APISaveCommentResponse';
-import type { UserSessionInfo } from './UserSessionInfo';
-import {
-    UserSessionInfoFromJSON,
-    UserSessionInfoFromJSONTyped,
-    UserSessionInfoToJSON,
-    UserSessionInfoToJSONTyped,
-} from './UserSessionInfo';
+    GifGetLargeResponseFromJSON,
+    GifGetLargeResponseFromJSONTyped,
+    GifGetLargeResponseToJSON,
+    GifGetLargeResponseToJSONTyped,
+} from './GifGetLargeResponse';
 
 /**
  * 
  * @export
- * @interface SaveComment200Response
+ * @interface GetLarge200Response
  */
-export interface SaveComment200Response {
+export interface GetLarge200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetLarge200Response
+     */
+    src: string;
     /**
      * 
      * @type {APIStatus}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     status: APIStatus;
     /**
      * 
-     * @type {APIComment}
-     * @memberof SaveComment200Response
-     */
-    comment: APIComment;
-    /**
-     * 
-     * @type {UserSessionInfo}
-     * @memberof SaveComment200Response
-     */
-    user: UserSessionInfo | null;
-    /**
-     * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: object; }}
-     * @memberof SaveComment200Response
-     */
-    moduleData?: { [key: string]: object; };
-    /**
-     * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     reason: string;
     /**
      * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     secondaryCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     bannedUntil?: number;
     /**
      * 
      * @type {number}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     maxCharacterLength?: number;
     /**
      * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     translatedError?: string;
     /**
      * 
      * @type {CustomConfigParameters}
-     * @memberof SaveComment200Response
+     * @memberof GetLarge200Response
      */
     customConfig?: CustomConfigParameters;
 }
@@ -133,31 +107,28 @@ export interface SaveComment200Response {
 
 
 /**
- * Check if a given object implements the SaveComment200Response interface.
+ * Check if a given object implements the GetLarge200Response interface.
  */
-export function instanceOfSaveComment200Response(value: object): value is SaveComment200Response {
+export function instanceOfGetLarge200Response(value: object): value is GetLarge200Response {
+    if (!('src' in value) || value['src'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('comment' in value) || value['comment'] === undefined) return false;
-    if (!('user' in value) || value['user'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
-export function SaveComment200ResponseFromJSON(json: any): SaveComment200Response {
-    return SaveComment200ResponseFromJSONTyped(json, false);
+export function GetLarge200ResponseFromJSON(json: any): GetLarge200Response {
+    return GetLarge200ResponseFromJSONTyped(json, false);
 }
 
-export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveComment200Response {
+export function GetLarge200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLarge200Response {
     if (json == null) {
         return json;
     }
     return {
         
+        'src': json['src'],
         'status': APIStatusFromJSON(json['status']),
-        'comment': APICommentFromJSON(json['comment']),
-        'user': UserSessionInfoFromJSON(json['user']),
-        'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
         'reason': json['reason'],
         'code': json['code'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
@@ -168,21 +139,19 @@ export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function SaveComment200ResponseToJSON(json: any): SaveComment200Response {
-    return SaveComment200ResponseToJSONTyped(json, false);
+export function GetLarge200ResponseToJSON(json: any): GetLarge200Response {
+    return GetLarge200ResponseToJSONTyped(json, false);
 }
 
-export function SaveComment200ResponseToJSONTyped(value?: SaveComment200Response | null, ignoreDiscriminator: boolean = false): any {
+export function GetLarge200ResponseToJSONTyped(value?: GetLarge200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'src': value['src'],
         'status': APIStatusToJSON(value['status']),
-        'comment': APICommentToJSON(value['comment']),
-        'user': UserSessionInfoToJSON(value['user']),
-        'moduleData': value['moduleData'],
         'reason': value['reason'],
         'code': value['code'],
         'secondaryCode': value['secondaryCode'],

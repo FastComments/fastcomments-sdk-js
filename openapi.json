@@ -1034,6 +1034,80 @@
 					"CrossPlatform"
 				]
 			},
+			"GetTranslationsResponse": {
+				"properties": {
+					"translations": {
+						"$ref": "#/components/schemas/Record_string.string_"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"translations",
+					"status"
+				],
+				"type": "object"
+			},
+			"GifSearchResponse": {
+				"properties": {
+					"images": {
+						"items": {
+							"items": {
+								"anyOf": [
+									{
+										"type": "string"
+									},
+									{
+										"type": "number",
+										"format": "double"
+									}
+								]
+							},
+							"type": "array"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"images",
+					"status"
+				],
+				"type": "object"
+			},
+			"GifSearchInternalError": {
+				"properties": {
+					"code": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"code",
+					"status"
+				],
+				"type": "object"
+			},
+			"GifGetLargeResponse": {
+				"properties": {
+					"src": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"src",
+					"status"
+				],
+				"type": "object"
+			},
 			"APIEmptyResponse": {
 				"properties": {
 					"status": {
@@ -1609,7 +1683,11 @@
 					"dfr",
 					"new-feed-post",
 					"updated-feed-post",
-					"deleted-feed-post"
+					"deleted-feed-post",
+					"new-ticket",
+					"updated-ticket-state",
+					"updated-ticket-assignment",
+					"deleted-ticket"
 				],
 				"type": "string"
 			},
@@ -1991,10 +2069,12 @@
 				"additionalProperties": {
 					"properties": {
 						"after": {
-							"type": "string"
+							"type": "string",
+							"nullable": true
 						},
 						"before": {
-							"type": "string"
+							"type": "string",
+							"nullable": true
 						}
 					},
 					"required": [
@@ -2072,6 +2152,10 @@
 							"type": "string"
 						},
 						"type": "array"
+					},
+					"sc": {
+						"type": "integer",
+						"format": "int32"
 					},
 					"changes": {
 						"$ref": "#/components/schemas/Int32Map"
@@ -2680,6 +2764,9 @@
 					},
 					"tos": {
 						"type": "boolean"
+					},
+					"botId": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -3745,6 +3832,18 @@
 				],
 				"type": "integer"
 			},
+			"ImportedAgentApprovalNotificationFrequency": {
+				"enum": [
+					-1,
+					0,
+					1,
+					2
+				],
+				"type": "integer"
+			},
+			"AgentApprovalNotificationFrequency": {
+				"$ref": "#/components/schemas/ImportedAgentApprovalNotificationFrequency"
+			},
 			"User": {
 				"properties": {
 					"_id": {
@@ -3877,6 +3976,9 @@
 					"adminNotificationFrequency": {
 						"type": "number",
 						"format": "double"
+					},
+					"agentApprovalNotificationFrequency": {
+						"$ref": "#/components/schemas/AgentApprovalNotificationFrequency"
 					},
 					"lastTenantNotificationSentDate": {
 						"type": "string",
@@ -5309,6 +5411,9 @@
 						"type": "string",
 						"format": "date-time"
 					},
+					"templateId": {
+						"type": "string"
+					},
 					"monthlyCostUSD": {
 						"type": "number",
 						"format": "double",
@@ -5477,6 +5582,14 @@
 						"type": "number",
 						"format": "double"
 					},
+					"flexLLMCostCents": {
+						"type": "number",
+						"format": "double"
+					},
+					"flexLLMUnit": {
+						"type": "number",
+						"format": "double"
+					},
 					"flexMinimumCostCents": {
 						"type": "number",
 						"format": "double"
@@ -5503,6 +5616,21 @@
 					},
 					"isSSOBillingMonthlyActiveUsers": {
 						"type": "boolean"
+					},
+					"hasAIAgents": {
+						"type": "boolean"
+					},
+					"maxAIAgents": {
+						"type": "number",
+						"format": "double"
+					},
+					"aiAgentDailyBudgetCents": {
+						"type": "number",
+						"format": "double"
+					},
+					"aiAgentMonthlyBudgetCents": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
@@ -5750,11 +5878,11 @@
 						"type": "number",
 						"format": "double"
 					},
-					"flexChatGPTCostCents": {
+					"flexLLMCostCents": {
 						"type": "number",
 						"format": "double"
 					},
-					"flexChatGPTUnit": {
+					"flexLLMUnit": {
 						"type": "number",
 						"format": "double"
 					},
@@ -7128,6 +7256,9 @@
 					"tosAcceptedAt": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"botId": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -8511,7 +8642,7 @@
 			},
 			"APICommentBase": {
 				"properties": {
-					"_id": {
+					"id": {
 						"type": "string"
 					},
 					"aiDeterminedSpam": {
@@ -8740,7 +8871,7 @@
 					}
 				},
 				"required": [
-					"_id",
+					"id",
 					"approved",
 					"comment",
 					"commentHTML",
@@ -9004,13 +9135,13 @@
 				],
 				"type": "object"
 			},
-			"SaveCommentResponse": {
+			"APISaveCommentResponse": {
 				"properties": {
 					"status": {
 						"$ref": "#/components/schemas/APIStatus"
 					},
 					"comment": {
-						"$ref": "#/components/schemas/FComment"
+						"$ref": "#/components/schemas/APIComment"
 					},
 					"user": {
 						"allOf": [
@@ -9131,6 +9262,9 @@
 					},
 					"tos": {
 						"type": "boolean"
+					},
+					"botId": {
+						"type": "string"
 					},
 					"approved": {
 						"type": "boolean"
@@ -9536,78 +9670,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"GetTranslationsResponse": {
-				"properties": {
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					},
-					"code": {
-						"type": "string"
-					},
-					"reason": {
-						"type": "string"
-					},
-					"translations": {
-						"properties": {},
-						"additionalProperties": {
-							"type": "string"
-						},
-						"type": "object"
-					}
-				},
-				"required": [
-					"status"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GifSearchResponse": {
-				"properties": {
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					},
-					"code": {
-						"type": "string"
-					},
-					"reason": {
-						"type": "string"
-					},
-					"images": {
-						"description": "Array of [src, width, height] tuples; OpenAPI 3.0 cannot express heterogeneous tuples so consumers must read index 0 as a URL and indices 1 and 2 as numeric dimensions.",
-						"items": {
-							"type": "array",
-							"items": {}
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"status"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GifGetLargeResponse": {
-				"properties": {
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					},
-					"code": {
-						"type": "string"
-					},
-					"reason": {
-						"type": "string"
-					},
-					"src": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"status"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"GetCommentsForUserResponse": {
 				"properties": {
 					"status": {
@@ -9692,6 +9754,63 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"GetPageReactsResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"counts": {
+						"additionalProperties": {
+							"type": "number"
+						},
+						"type": "object"
+					},
+					"reactedIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"GetPageReactUsersResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"userNames": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"PageReactWriteResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"code": {
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
 			}
 		},
 		"securitySchemes": {
@@ -9708,387 +9827,6 @@
 		"contact": {}
 	},
 	"paths": {
-		"/translations/{namespace}/{component}": {
-			"get": {
-				"operationId": "GetTranslations",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetTranslationsResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "namespace",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "path",
-						"name": "component",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "locale",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "useFullTranslationIds",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					}
-				]
-			}
-		},
-		"/gifs/trending/{tenantId}": {
-			"get": {
-				"operationId": "GetGifsTrending",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GifSearchResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "tenantId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "locale",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "rating",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "page",
-						"required": false,
-						"schema": {
-							"format": "int32",
-							"type": "integer"
-						}
-					}
-				]
-			}
-		},
-		"/gifs/search/{tenantId}": {
-			"get": {
-				"operationId": "GetGifsSearch",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GifSearchResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "tenantId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "search",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "locale",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "rating",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "page",
-						"required": false,
-						"schema": {
-							"format": "int32",
-							"type": "integer"
-						}
-					}
-				]
-			}
-		},
-		"/gifs/get-large/{tenantId}": {
-			"get": {
-				"operationId": "GetGifLarge",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GifGetLargeResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "tenantId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "largeInternalURLSanitized",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/auth/logout": {
-			"put": {
-				"operationId": "LogoutPublic",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/APIEmptyResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/comments-for-user": {
-			"get": {
-				"operationId": "GetCommentsForUser",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetCommentsForUserResponse"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Public"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userId",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "tenantId",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "urlId",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "page",
-						"required": false,
-						"schema": {
-							"format": "int32",
-							"type": "integer"
-						}
-					},
-					{
-						"in": "query",
-						"name": "direction",
-						"required": false,
-						"schema": {
-							"$ref": "#/components/schemas/SortDirections"
-						}
-					},
-					{
-						"in": "query",
-						"name": "lastGenDate",
-						"required": false,
-						"schema": {
-							"format": "int64",
-							"type": "integer"
-						}
-					},
-					{
-						"in": "query",
-						"name": "repliesToUserId",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "fetchPageForCommentId",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "includei10n",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					},
-					{
-						"in": "query",
-						"name": "useFullTranslationIds",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					},
-					{
-						"in": "query",
-						"name": "locale",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "includeConfig",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					},
-					{
-						"in": "query",
-						"name": "includeNotificationCount",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					},
-					{
-						"in": "query",
-						"name": "countAll",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
-					},
-					{
-						"in": "query",
-						"name": "sso",
-						"required": false,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
 		"/user-search/{tenantId}": {
 			"get": {
 				"operationId": "SearchUsers",
@@ -10832,6 +10570,291 @@
 						}
 					}
 				}
+			}
+		},
+		"/translations/{namespace}/{component}": {
+			"get": {
+				"operationId": "GetTranslations",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GetTranslationsResponse"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "namespace",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "component",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "useFullTranslationIds",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				]
+			}
+		},
+		"/gifs/trending/{tenantId}": {
+			"get": {
+				"operationId": "GetTrending",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GifSearchResponse"
+										},
+										{
+											"$ref": "#/components/schemas/GifSearchInternalError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "rating",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/gifs/search/{tenantId}": {
+			"get": {
+				"operationId": "Search",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GifSearchResponse"
+										},
+										{
+											"$ref": "#/components/schemas/GifSearchInternalError"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "rating",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/gifs/get-large/{tenantId}": {
+			"get": {
+				"operationId": "GetLarge",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GifGetLargeResponse"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "largeInternalURLSanitized",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/flag-comment/{commentId}": {
@@ -12755,6 +12778,28 @@
 						}
 					}
 				}
+			}
+		},
+		"/auth/logout": {
+			"put": {
+				"operationId": "Logout",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/api/v1/subscriptions": {
@@ -18785,7 +18830,7 @@
 								"schema": {
 									"anyOf": [
 										{
-											"$ref": "#/components/schemas/SaveCommentResponse"
+											"$ref": "#/components/schemas/APISaveCommentResponse"
 										},
 										{
 											"$ref": "#/components/schemas/APIError"
@@ -18867,7 +18912,7 @@
 									"items": {
 										"anyOf": [
 											{
-												"$ref": "#/components/schemas/SaveCommentResponse"
+												"$ref": "#/components/schemas/APISaveCommentResponse"
 											},
 											{
 												"$ref": "#/components/schemas/APIError"
@@ -19354,6 +19399,367 @@
 						}
 					}
 				}
+			}
+		},
+		"/comments-for-user": {
+			"get": {
+				"operationId": "GetCommentsForUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetCommentsForUserResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
+					},
+					{
+						"in": "query",
+						"name": "direction",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/SortDirections"
+						}
+					},
+					{
+						"in": "query",
+						"name": "lastGenDate",
+						"required": false,
+						"schema": {
+							"format": "int64",
+							"type": "integer"
+						}
+					},
+					{
+						"in": "query",
+						"name": "repliesToUserId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "fetchPageForCommentId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includei10n",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "useFullTranslationIds",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeConfig",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeNotificationCount",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "countAll",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/page-reacts/v2/{tenantId}": {
+			"get": {
+				"operationId": "GetPageReacts",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPageReactsResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"security": [],
+				"tags": [
+					"Public"
+				]
+			},
+			"post": {
+				"operationId": "AddPageReact",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "title",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PageReactWriteResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"security": [],
+				"tags": [
+					"Public"
+				]
+			},
+			"delete": {
+				"operationId": "DeletePageReact",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PageReactWriteResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"security": [],
+				"tags": [
+					"Public"
+				]
+			}
+		},
+		"/page-reacts/v2/{tenantId}/list": {
+			"get": {
+				"operationId": "GetPageReactUsers",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPageReactUsersResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"security": [],
+				"tags": [
+					"Public"
+				]
 			}
 		}
 	},

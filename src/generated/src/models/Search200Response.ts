@@ -20,13 +20,6 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { APIComment } from './APIComment';
-import {
-    APICommentFromJSON,
-    APICommentFromJSONTyped,
-    APICommentToJSON,
-    APICommentToJSONTyped,
-} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -34,6 +27,13 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
+import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
+import {
+    GifSearchResponseImagesInnerInnerFromJSON,
+    GifSearchResponseImagesInnerInnerFromJSONTyped,
+    GifSearchResponseImagesInnerInnerToJSON,
+    GifSearchResponseImagesInnerInnerToJSONTyped,
+} from './GifSearchResponseImagesInnerInner';
 import type { APIError } from './APIError';
 import {
     APIErrorFromJSON,
@@ -41,91 +41,79 @@ import {
     APIErrorToJSON,
     APIErrorToJSONTyped,
 } from './APIError';
-import type { APISaveCommentResponse } from './APISaveCommentResponse';
+import type { GifSearchInternalError } from './GifSearchInternalError';
 import {
-    APISaveCommentResponseFromJSON,
-    APISaveCommentResponseFromJSONTyped,
-    APISaveCommentResponseToJSON,
-    APISaveCommentResponseToJSONTyped,
-} from './APISaveCommentResponse';
-import type { UserSessionInfo } from './UserSessionInfo';
+    GifSearchInternalErrorFromJSON,
+    GifSearchInternalErrorFromJSONTyped,
+    GifSearchInternalErrorToJSON,
+    GifSearchInternalErrorToJSONTyped,
+} from './GifSearchInternalError';
+import type { GifSearchResponse } from './GifSearchResponse';
 import {
-    UserSessionInfoFromJSON,
-    UserSessionInfoFromJSONTyped,
-    UserSessionInfoToJSON,
-    UserSessionInfoToJSONTyped,
-} from './UserSessionInfo';
+    GifSearchResponseFromJSON,
+    GifSearchResponseFromJSONTyped,
+    GifSearchResponseToJSON,
+    GifSearchResponseToJSONTyped,
+} from './GifSearchResponse';
 
 /**
  * 
  * @export
- * @interface SaveComment200Response
+ * @interface Search200Response
  */
-export interface SaveComment200Response {
+export interface Search200Response {
+    /**
+     * 
+     * @type {Array<Array<GifSearchResponseImagesInnerInner>>}
+     * @memberof Search200Response
+     */
+    images: Array<Array<GifSearchResponseImagesInnerInner>>;
     /**
      * 
      * @type {APIStatus}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     status: APIStatus;
     /**
      * 
-     * @type {APIComment}
-     * @memberof SaveComment200Response
-     */
-    comment: APIComment;
-    /**
-     * 
-     * @type {UserSessionInfo}
-     * @memberof SaveComment200Response
-     */
-    user: UserSessionInfo | null;
-    /**
-     * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: object; }}
-     * @memberof SaveComment200Response
-     */
-    moduleData?: { [key: string]: object; };
-    /**
-     * 
      * @type {string}
-     * @memberof SaveComment200Response
-     */
-    reason: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
+     */
+    reason: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Search200Response
      */
     secondaryCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     bannedUntil?: number;
     /**
      * 
      * @type {number}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     maxCharacterLength?: number;
     /**
      * 
      * @type {string}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     translatedError?: string;
     /**
      * 
      * @type {CustomConfigParameters}
-     * @memberof SaveComment200Response
+     * @memberof Search200Response
      */
     customConfig?: CustomConfigParameters;
 }
@@ -133,33 +121,30 @@ export interface SaveComment200Response {
 
 
 /**
- * Check if a given object implements the SaveComment200Response interface.
+ * Check if a given object implements the Search200Response interface.
  */
-export function instanceOfSaveComment200Response(value: object): value is SaveComment200Response {
+export function instanceOfSearch200Response(value: object): value is Search200Response {
+    if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('comment' in value) || value['comment'] === undefined) return false;
-    if (!('user' in value) || value['user'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
+    if (!('reason' in value) || value['reason'] === undefined) return false;
     return true;
 }
 
-export function SaveComment200ResponseFromJSON(json: any): SaveComment200Response {
-    return SaveComment200ResponseFromJSONTyped(json, false);
+export function Search200ResponseFromJSON(json: any): Search200Response {
+    return Search200ResponseFromJSONTyped(json, false);
 }
 
-export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveComment200Response {
+export function Search200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): Search200Response {
     if (json == null) {
         return json;
     }
     return {
         
+        'images': json['images'],
         'status': APIStatusFromJSON(json['status']),
-        'comment': APICommentFromJSON(json['comment']),
-        'user': UserSessionInfoFromJSON(json['user']),
-        'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
-        'reason': json['reason'],
         'code': json['code'],
+        'reason': json['reason'],
         'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
         'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
         'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
@@ -168,23 +153,21 @@ export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function SaveComment200ResponseToJSON(json: any): SaveComment200Response {
-    return SaveComment200ResponseToJSONTyped(json, false);
+export function Search200ResponseToJSON(json: any): Search200Response {
+    return Search200ResponseToJSONTyped(json, false);
 }
 
-export function SaveComment200ResponseToJSONTyped(value?: SaveComment200Response | null, ignoreDiscriminator: boolean = false): any {
+export function Search200ResponseToJSONTyped(value?: Search200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'images': value['images'],
         'status': APIStatusToJSON(value['status']),
-        'comment': APICommentToJSON(value['comment']),
-        'user': UserSessionInfoToJSON(value['user']),
-        'moduleData': value['moduleData'],
-        'reason': value['reason'],
         'code': value['code'],
+        'reason': value['reason'],
         'secondaryCode': value['secondaryCode'],
         'bannedUntil': value['bannedUntil'],
         'maxCharacterLength': value['maxCharacterLength'],

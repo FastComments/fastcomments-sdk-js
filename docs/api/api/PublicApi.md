@@ -4,6 +4,7 @@ All URIs are relative to *https://fastcomments.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addPageReact**](PublicApi.md#addPageReact) | **POST** /page-reacts/v2/{tenantId} |  |
 | [**blockFromCommentPublic**](PublicApi.md#blockFromCommentPublic) | **POST** /block-from-comment/{commentId} |  |
 | [**checkedCommentsForBlocked**](PublicApi.md#checkedCommentsForBlocked) | **GET** /check-blocked-comments |  |
 | [**createCommentPublic**](PublicApi.md#createCommentPublic) | **POST** /comments/{tenantId} |  |
@@ -11,23 +12,32 @@ All URIs are relative to *https://fastcomments.com*
 | [**deleteCommentPublic**](PublicApi.md#deleteCommentPublic) | **DELETE** /comments/{tenantId}/{commentId} |  |
 | [**deleteCommentVote**](PublicApi.md#deleteCommentVote) | **DELETE** /comments/{tenantId}/{commentId}/vote/{voteId} |  |
 | [**deleteFeedPostPublic**](PublicApi.md#deleteFeedPostPublic) | **DELETE** /feed-posts/{tenantId}/{postId} |  |
+| [**deletePageReact**](PublicApi.md#deletePageReact) | **DELETE** /page-reacts/v2/{tenantId} |  |
 | [**flagCommentPublic**](PublicApi.md#flagCommentPublic) | **POST** /flag-comment/{commentId} |  |
 | [**getCommentText**](PublicApi.md#getCommentText) | **GET** /comments/{tenantId}/{commentId}/text |  |
 | [**getCommentVoteUserNames**](PublicApi.md#getCommentVoteUserNames) | **GET** /comments/{tenantId}/{commentId}/votes |  |
+| [**getCommentsForUser**](PublicApi.md#getCommentsForUser) | **GET** /comments-for-user |  |
 | [**getCommentsPublic**](PublicApi.md#getCommentsPublic) | **GET** /comments/{tenantId} |  |
 | [**getEventLog**](PublicApi.md#getEventLog) | **GET** /event-log/{tenantId} |  |
 | [**getFeedPostsPublic**](PublicApi.md#getFeedPostsPublic) | **GET** /feed-posts/{tenantId} |  |
 | [**getFeedPostsStats**](PublicApi.md#getFeedPostsStats) | **GET** /feed-posts/{tenantId}/stats |  |
 | [**getGlobalEventLog**](PublicApi.md#getGlobalEventLog) | **GET** /event-log/global/{tenantId} |  |
+| [**getLarge**](PublicApi.md#getLarge) | **GET** /gifs/get-large/{tenantId} |  |
+| [**getPageReactUsers**](PublicApi.md#getPageReactUsers) | **GET** /page-reacts/v2/{tenantId}/list |  |
+| [**getPageReacts**](PublicApi.md#getPageReacts) | **GET** /page-reacts/v2/{tenantId} |  |
+| [**getTranslations**](PublicApi.md#getTranslations) | **GET** /translations/{namespace}/{component} |  |
+| [**getTrending**](PublicApi.md#getTrending) | **GET** /gifs/trending/{tenantId} |  |
 | [**getUserNotificationCount**](PublicApi.md#getUserNotificationCount) | **GET** /user-notifications/get-count |  |
 | [**getUserNotifications**](PublicApi.md#getUserNotifications) | **GET** /user-notifications |  |
 | [**getUserPresenceStatuses**](PublicApi.md#getUserPresenceStatuses) | **GET** /user-presence-status |  |
 | [**getUserReactsPublic**](PublicApi.md#getUserReactsPublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
 | [**lockComment**](PublicApi.md#lockComment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
+| [**logout**](PublicApi.md#logout) | **PUT** /auth/logout |  |
 | [**pinComment**](PublicApi.md#pinComment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
 | [**reactFeedPostPublic**](PublicApi.md#reactFeedPostPublic) | **POST** /feed-posts/{tenantId}/react/{postId} |  |
 | [**resetUserNotificationCount**](PublicApi.md#resetUserNotificationCount) | **POST** /user-notifications/reset-count |  |
 | [**resetUserNotifications**](PublicApi.md#resetUserNotifications) | **POST** /user-notifications/reset |  |
+| [**search**](PublicApi.md#search) | **GET** /gifs/search/{tenantId} |  |
 | [**searchUsers**](PublicApi.md#searchUsers) | **GET** /user-search/{tenantId} |  |
 | [**setCommentText**](PublicApi.md#setCommentText) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
 | [**unBlockCommentPublic**](PublicApi.md#unBlockCommentPublic) | **DELETE** /block-from-comment/{commentId} |  |
@@ -40,6 +50,35 @@ All URIs are relative to *https://fastcomments.com*
 | [**uploadImage**](PublicApi.md#uploadImage) | **POST** /upload-image/{tenantId} |  |
 | [**voteComment**](PublicApi.md#voteComment) | **POST** /comments/{tenantId}/{commentId}/vote |  |
 
+
+<a name="addPageReact"></a>
+# **addPageReact**
+> PageReactWriteResponse addPageReact(tenantId, urlId, id, title, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+| **title** | **String**|  | [optional] [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**PageReactWriteResponse**](../model/PageReactWriteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 <a name="blockFromCommentPublic"></a>
 # **blockFromCommentPublic**
@@ -242,6 +281,34 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="deletePageReact"></a>
+# **deletePageReact**
+> PageReactWriteResponse deletePageReact(tenantId, urlId, id, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**PageReactWriteResponse**](../model/PageReactWriteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="flagCommentPublic"></a>
 # **flagCommentPublic**
 > FlagCommentPublic_200_response flagCommentPublic(tenantId, commentId, isFlagged, sso)
@@ -316,6 +383,45 @@ No authorization required
 ### Return type
 
 [**GetCommentVoteUserNames_200_response**](../model/GetCommentVoteUserNames_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getCommentsForUser"></a>
+# **getCommentsForUser**
+> GetCommentsForUserResponse getCommentsForUser(userId, tenantId, urlId, page, direction, lastGenDate, repliesToUserId, fetchPageForCommentId, includei10n, useFullTranslationIds, locale, includeConfig, includeNotificationCount, countAll, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **tenantId** | **String**|  | [optional] [default to null] |
+| **urlId** | **String**|  | [optional] [default to null] |
+| **page** | **Integer**|  | [optional] [default to null] |
+| **direction** | [**SortDirections**](../model/.md)|  | [optional] [default to null] [enum: OF, NF, MR] |
+| **lastGenDate** | **Long**|  | [optional] [default to null] |
+| **repliesToUserId** | **String**|  | [optional] [default to null] |
+| **fetchPageForCommentId** | **String**|  | [optional] [default to null] |
+| **includei10n** | **Boolean**|  | [optional] [default to null] |
+| **useFullTranslationIds** | **Boolean**|  | [optional] [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **includeConfig** | **Boolean**|  | [optional] [default to null] |
+| **includeNotificationCount** | **Boolean**|  | [optional] [default to null] |
+| **countAll** | **Boolean**|  | [optional] [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetCommentsForUserResponse**](../model/GetCommentsForUserResponse.md)
 
 ### Authorization
 
@@ -502,6 +608,143 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getLarge"></a>
+# **getLarge**
+> GetLarge_200_response getLarge(tenantId, largeInternalURLSanitized)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **largeInternalURLSanitized** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetLarge_200_response**](../model/GetLarge_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPageReactUsers"></a>
+# **getPageReactUsers**
+> GetPageReactUsersResponse getPageReactUsers(tenantId, urlId, id, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetPageReactUsersResponse**](../model/GetPageReactUsersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPageReacts"></a>
+# **getPageReacts**
+> GetPageReactsResponse getPageReacts(tenantId, urlId, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetPageReactsResponse**](../model/GetPageReactsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getTranslations"></a>
+# **getTranslations**
+> GetTranslations_200_response getTranslations(namespace, component, locale, useFullTranslationIds)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **namespace** | **String**|  | [default to null] |
+| **component** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **useFullTranslationIds** | **Boolean**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetTranslations_200_response**](../model/GetTranslations_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getTrending"></a>
+# **getTrending**
+> GetTrending_200_response getTrending(tenantId, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetTrending_200_response**](../model/GetTrending_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getUserNotificationCount"></a>
 # **getUserNotificationCount**
 > GetUserNotificationCount_200_response getUserNotificationCount(tenantId, sso)
@@ -644,6 +887,28 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="logout"></a>
+# **logout**
+> APIEmptyResponse logout()
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**APIEmptyResponse**](../model/APIEmptyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="pinComment"></a>
 # **pinComment**
 > PinComment_200_response pinComment(tenantId, commentId, broadcastId, sso)
@@ -674,7 +939,7 @@ No authorization required
 
 <a name="reactFeedPostPublic"></a>
 # **reactFeedPostPublic**
-> ReactFeedPostPublic_200_response reactFeedPostPublic(tenantId, postId, ReactBodyParams, isUndo, broadcastId, sso)
+> ReactFeedPostPublic_200_response reactFeedPostPublic(tenantId, postId, ReactBodyParams, isUndo, broadcastId, urlId, sso)
 
 
 
@@ -687,6 +952,7 @@ No authorization required
 | **ReactBodyParams** | [**ReactBodyParams**](../model/ReactBodyParams.md)|  | |
 | **isUndo** | **Boolean**|  | [optional] [default to null] |
 | **broadcastId** | **String**|  | [optional] [default to null] |
+| **urlId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
 ### Return type
@@ -749,6 +1015,35 @@ No authorization required
 ### Return type
 
 [**ResetUserNotifications_200_response**](../model/ResetUserNotifications_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="search"></a>
+# **search**
+> Search_200_response search(tenantId, search, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **search** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**Search_200_response**](../model/Search_200_response.md)
 
 ### Authorization
 

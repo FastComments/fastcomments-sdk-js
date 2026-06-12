@@ -396,7 +396,7 @@ export function APICommentBaseFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'id': json['_id'],
+        'id': json['id'],
         'aiDeterminedSpam': json['aiDeterminedSpam'] == null ? undefined : json['aiDeterminedSpam'],
         'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'approved': json['approved'],
@@ -463,7 +463,7 @@ export function APICommentBaseToJSONTyped(value?: APICommentBase | null, ignoreD
 
     return {
         
-        '_id': value['id'],
+        'id': value['id'],
         'aiDeterminedSpam': value['aiDeterminedSpam'],
         'anonUserId': value['anonUserId'],
         'approved': value['approved'],

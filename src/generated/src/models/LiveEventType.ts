@@ -34,7 +34,11 @@ export enum LiveEventType {
     dfr = 'dfr',
     new_feed_post = 'new-feed-post',
     updated_feed_post = 'updated-feed-post',
-    deleted_feed_post = 'deleted-feed-post'
+    deleted_feed_post = 'deleted-feed-post',
+    new_ticket = 'new-ticket',
+    updated_ticket_state = 'updated-ticket-state',
+    updated_ticket_assignment = 'updated-ticket-assignment',
+    deleted_ticket = 'deleted-ticket'
 }
 
 

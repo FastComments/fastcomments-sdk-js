@@ -24,19 +24,19 @@ import {
 /**
  * 
  * @export
- * @interface GifGetLargeResponse
+ * @interface GifSearchInternalError
  */
-export interface GifGetLargeResponse {
+export interface GifSearchInternalError {
     /**
      * 
      * @type {string}
-     * @memberof GifGetLargeResponse
+     * @memberof GifSearchInternalError
      */
-    src: string;
+    code: string;
     /**
      * 
      * @type {APIStatus}
-     * @memberof GifGetLargeResponse
+     * @memberof GifSearchInternalError
      */
     status: APIStatus;
 }
@@ -44,41 +44,41 @@ export interface GifGetLargeResponse {
 
 
 /**
- * Check if a given object implements the GifGetLargeResponse interface.
+ * Check if a given object implements the GifSearchInternalError interface.
  */
-export function instanceOfGifGetLargeResponse(value: object): value is GifGetLargeResponse {
-    if (!('src' in value) || value['src'] === undefined) return false;
+export function instanceOfGifSearchInternalError(value: object): value is GifSearchInternalError {
+    if (!('code' in value) || value['code'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
-export function GifGetLargeResponseFromJSON(json: any): GifGetLargeResponse {
-    return GifGetLargeResponseFromJSONTyped(json, false);
+export function GifSearchInternalErrorFromJSON(json: any): GifSearchInternalError {
+    return GifSearchInternalErrorFromJSONTyped(json, false);
 }
 
-export function GifGetLargeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GifGetLargeResponse {
+export function GifSearchInternalErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): GifSearchInternalError {
     if (json == null) {
         return json;
     }
     return {
         
-        'src': json['src'],
+        'code': json['code'],
         'status': APIStatusFromJSON(json['status']),
     };
 }
 
-export function GifGetLargeResponseToJSON(json: any): GifGetLargeResponse {
-    return GifGetLargeResponseToJSONTyped(json, false);
+export function GifSearchInternalErrorToJSON(json: any): GifSearchInternalError {
+    return GifSearchInternalErrorToJSONTyped(json, false);
 }
 
-export function GifGetLargeResponseToJSONTyped(value?: GifGetLargeResponse | null, ignoreDiscriminator: boolean = false): any {
+export function GifSearchInternalErrorToJSONTyped(value?: GifSearchInternalError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
-        'src': value['src'],
+        'code': value['code'],
         'status': APIStatusToJSON(value['status']),
     };
 }

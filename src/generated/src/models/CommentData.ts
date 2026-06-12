@@ -27,13 +27,13 @@ import {
     CommentUserMentionInfoToJSON,
     CommentUserMentionInfoToJSONTyped,
 } from './CommentUserMentionInfo';
-import type { RecordStringStringOrNumberValue } from './RecordStringStringOrNumberValue';
+import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
 import {
-    RecordStringStringOrNumberValueFromJSON,
-    RecordStringStringOrNumberValueFromJSONTyped,
-    RecordStringStringOrNumberValueToJSON,
-    RecordStringStringOrNumberValueToJSONTyped,
-} from './RecordStringStringOrNumberValue';
+    GifSearchResponseImagesInnerInnerFromJSON,
+    GifSearchResponseImagesInnerInnerFromJSONTyped,
+    GifSearchResponseImagesInnerInnerToJSON,
+    GifSearchResponseImagesInnerInnerToJSONTyped,
+} from './GifSearchResponseImagesInnerInner';
 
 /**
  * 
@@ -181,16 +181,22 @@ export interface CommentData {
     feedbackIds?: Array<string>;
     /**
      * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: RecordStringStringOrNumberValue; }}
+     * @type {{ [key: string]: GifSearchResponseImagesInnerInner; }}
      * @memberof CommentData
      */
-    questionValues?: { [key: string]: RecordStringStringOrNumberValue; };
+    questionValues?: { [key: string]: GifSearchResponseImagesInnerInner; };
     /**
      * 
      * @type {boolean}
      * @memberof CommentData
      */
     tos?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentData
+     */
+    botId?: string;
 }
 
 /**
@@ -237,8 +243,9 @@ export function CommentDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'fromOfflineRestore': json['fromOfflineRestore'] == null ? undefined : json['fromOfflineRestore'],
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
-        'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], RecordStringStringOrNumberValueFromJSON)),
+        'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], GifSearchResponseImagesInnerInnerFromJSON)),
         'tos': json['tos'] == null ? undefined : json['tos'],
+        'botId': json['botId'] == null ? undefined : json['botId'],
     };
 }
 
@@ -276,8 +283,9 @@ export function CommentDataToJSONTyped(value?: CommentData | null, ignoreDiscrim
         'fromOfflineRestore': value['fromOfflineRestore'],
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
-        'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], RecordStringStringOrNumberValueToJSON)),
+        'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], GifSearchResponseImagesInnerInnerToJSON)),
         'tos': value['tos'],
+        'botId': value['botId'],
     };
 }
 

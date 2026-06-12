@@ -487,6 +487,12 @@ export interface FComment {
      * @memberof FComment
      */
     tosAcceptedAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof FComment
+     */
+    botId?: string;
 }
 
 /**
@@ -589,6 +595,7 @@ export function FCommentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
         'tosAcceptedAt': json['tosAcceptedAt'] == null ? undefined : (new Date(json['tosAcceptedAt'])),
+        'botId': json['botId'] == null ? undefined : json['botId'],
     };
 }
 
@@ -675,6 +682,7 @@ export function FCommentToJSONTyped(value?: FComment | null, ignoreDiscriminator
         'requiresVerification': value['requiresVerification'],
         'editKey': value['editKey'],
         'tosAcceptedAt': value['tosAcceptedAt'] == null ? undefined : ((value['tosAcceptedAt']).toISOString()),
+        'botId': value['botId'],
     };
 }
 

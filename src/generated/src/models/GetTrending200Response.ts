@@ -27,43 +27,64 @@ import {
     GifSearchResponseImagesInnerInnerToJSON,
     GifSearchResponseImagesInnerInnerToJSONTyped,
 } from './GifSearchResponseImagesInnerInner';
+import type { GifSearchInternalError } from './GifSearchInternalError';
+import {
+    GifSearchInternalErrorFromJSON,
+    GifSearchInternalErrorFromJSONTyped,
+    GifSearchInternalErrorToJSON,
+    GifSearchInternalErrorToJSONTyped,
+} from './GifSearchInternalError';
+import type { GifSearchResponse } from './GifSearchResponse';
+import {
+    GifSearchResponseFromJSON,
+    GifSearchResponseFromJSONTyped,
+    GifSearchResponseToJSON,
+    GifSearchResponseToJSONTyped,
+} from './GifSearchResponse';
 
 /**
  * 
  * @export
- * @interface GifSearchResponse
+ * @interface GetTrending200Response
  */
-export interface GifSearchResponse {
+export interface GetTrending200Response {
     /**
      * 
      * @type {Array<Array<GifSearchResponseImagesInnerInner>>}
-     * @memberof GifSearchResponse
+     * @memberof GetTrending200Response
      */
     images: Array<Array<GifSearchResponseImagesInnerInner>>;
     /**
      * 
      * @type {APIStatus}
-     * @memberof GifSearchResponse
+     * @memberof GetTrending200Response
      */
     status: APIStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTrending200Response
+     */
+    code: string;
 }
 
 
 
 /**
- * Check if a given object implements the GifSearchResponse interface.
+ * Check if a given object implements the GetTrending200Response interface.
  */
-export function instanceOfGifSearchResponse(value: object): value is GifSearchResponse {
+export function instanceOfGetTrending200Response(value: object): value is GetTrending200Response {
     if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
-export function GifSearchResponseFromJSON(json: any): GifSearchResponse {
-    return GifSearchResponseFromJSONTyped(json, false);
+export function GetTrending200ResponseFromJSON(json: any): GetTrending200Response {
+    return GetTrending200ResponseFromJSONTyped(json, false);
 }
 
-export function GifSearchResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GifSearchResponse {
+export function GetTrending200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTrending200Response {
     if (json == null) {
         return json;
     }
@@ -71,14 +92,15 @@ export function GifSearchResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'images': json['images'],
         'status': APIStatusFromJSON(json['status']),
+        'code': json['code'],
     };
 }
 
-export function GifSearchResponseToJSON(json: any): GifSearchResponse {
-    return GifSearchResponseToJSONTyped(json, false);
+export function GetTrending200ResponseToJSON(json: any): GetTrending200Response {
+    return GetTrending200ResponseToJSONTyped(json, false);
 }
 
-export function GifSearchResponseToJSONTyped(value?: GifSearchResponse | null, ignoreDiscriminator: boolean = false): any {
+export function GetTrending200ResponseToJSONTyped(value?: GetTrending200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -87,6 +109,7 @@ export function GifSearchResponseToJSONTyped(value?: GifSearchResponse | null, i
         
         'images': value['images'],
         'status': APIStatusToJSON(value['status']),
+        'code': value['code'],
     };
 }
 

@@ -270,13 +270,13 @@ export interface CreateTenantPackageBody {
      * @type {number}
      * @memberof CreateTenantPackageBody
      */
-    flexChatGPTCostCents?: number;
+    flexLLMCostCents?: number;
     /**
      * 
      * @type {number}
      * @memberof CreateTenantPackageBody
      */
-    flexChatGPTUnit?: number;
+    flexLLMUnit?: number;
     /**
      * 
      * @type {number}
@@ -386,8 +386,8 @@ export function CreateTenantPackageBodyFromJSONTyped(json: any, ignoreDiscrimina
         'flexAdminUnit': json['flexAdminUnit'] == null ? undefined : json['flexAdminUnit'],
         'flexDomainCostCents': json['flexDomainCostCents'] == null ? undefined : json['flexDomainCostCents'],
         'flexDomainUnit': json['flexDomainUnit'] == null ? undefined : json['flexDomainUnit'],
-        'flexChatGPTCostCents': json['flexChatGPTCostCents'] == null ? undefined : json['flexChatGPTCostCents'],
-        'flexChatGPTUnit': json['flexChatGPTUnit'] == null ? undefined : json['flexChatGPTUnit'],
+        'flexLLMCostCents': json['flexLLMCostCents'] == null ? undefined : json['flexLLMCostCents'],
+        'flexLLMUnit': json['flexLLMUnit'] == null ? undefined : json['flexLLMUnit'],
         'flexMinimumCostCents': json['flexMinimumCostCents'] == null ? undefined : json['flexMinimumCostCents'],
         'flexManagedTenantCostCents': json['flexManagedTenantCostCents'] == null ? undefined : json['flexManagedTenantCostCents'],
         'flexSSOAdminCostCents': json['flexSSOAdminCostCents'] == null ? undefined : json['flexSSOAdminCostCents'],
@@ -449,8 +449,8 @@ export function CreateTenantPackageBodyToJSONTyped(value?: CreateTenantPackageBo
         'flexAdminUnit': value['flexAdminUnit'],
         'flexDomainCostCents': value['flexDomainCostCents'],
         'flexDomainUnit': value['flexDomainUnit'],
-        'flexChatGPTCostCents': value['flexChatGPTCostCents'],
-        'flexChatGPTUnit': value['flexChatGPTUnit'],
+        'flexLLMCostCents': value['flexLLMCostCents'],
+        'flexLLMUnit': value['flexLLMUnit'],
         'flexMinimumCostCents': value['flexMinimumCostCents'],
         'flexManagedTenantCostCents': value['flexManagedTenantCostCents'],
         'flexSSOAdminCostCents': value['flexSSOAdminCostCents'],

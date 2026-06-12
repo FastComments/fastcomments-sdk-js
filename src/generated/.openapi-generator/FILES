@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 README.md
 package.json
 src/apis/DefaultApi.ts
@@ -24,6 +23,7 @@ src/models/APIGetUserBadgeResponse.ts
 src/models/APIGetUserBadgesResponse.ts
 src/models/APIPage.ts
 src/models/APISSOUser.ts
+src/models/APISaveCommentResponse.ts
 src/models/APIStatus.ts
 src/models/APITenant.ts
 src/models/APITenantDailyUsage.ts
@@ -185,6 +185,7 @@ src/models/GetFeedPostsResponse.ts
 src/models/GetFeedPostsStats200Response.ts
 src/models/GetHashTags200Response.ts
 src/models/GetHashTagsResponse.ts
+src/models/GetLarge200Response.ts
 src/models/GetModerator200Response.ts
 src/models/GetModeratorResponse.ts
 src/models/GetModerators200Response.ts
@@ -195,6 +196,8 @@ src/models/GetNotificationCountResponse.ts
 src/models/GetNotifications200Response.ts
 src/models/GetNotificationsResponse.ts
 src/models/GetPageByURLIdAPIResponse.ts
+src/models/GetPageReactUsersResponse.ts
+src/models/GetPageReactsResponse.ts
 src/models/GetPagesAPIResponse.ts
 src/models/GetPendingWebhookEventCount200Response.ts
 src/models/GetPendingWebhookEventCountResponse.ts
@@ -231,7 +234,9 @@ src/models/GetTicket200Response.ts
 src/models/GetTicketResponse.ts
 src/models/GetTickets200Response.ts
 src/models/GetTicketsResponse.ts
+src/models/GetTranslations200Response.ts
 src/models/GetTranslationsResponse.ts
+src/models/GetTrending200Response.ts
 src/models/GetUser200Response.ts
 src/models/GetUserBadge200Response.ts
 src/models/GetUserBadgeProgressById200Response.ts
@@ -250,11 +255,14 @@ src/models/GetVotesForUserResponse.ts
 src/models/GetVotesResponse.ts
 src/models/GifGetLargeResponse.ts
 src/models/GifRating.ts
+src/models/GifSearchInternalError.ts
 src/models/GifSearchResponse.ts
+src/models/GifSearchResponseImagesInnerInner.ts
 src/models/HeaderAccountNotification.ts
 src/models/HeaderState.ts
 src/models/IgnoredResponse.ts
 src/models/ImageContentProfanityLevel.ts
+src/models/ImportedAgentApprovalNotificationFrequency.ts
 src/models/ImportedSiteType.ts
 src/models/LiveEvent.ts
 src/models/LiveEventExtraInfo.ts
@@ -267,6 +275,7 @@ src/models/Moderator.ts
 src/models/NotificationAndCount.ts
 src/models/NotificationObjectType.ts
 src/models/NotificationType.ts
+src/models/PageReactWriteResponse.ts
 src/models/PatchDomainConfigParams.ts
 src/models/PatchHashTag200Response.ts
 src/models/PatchPageAPIResponse.ts
@@ -299,7 +308,6 @@ src/models/ReactBodyParams.ts
 src/models/ReactFeedPostPublic200Response.ts
 src/models/ReactFeedPostResponse.ts
 src/models/RecordStringBeforeStringOrNullAfterStringOrNullValue.ts
-src/models/RecordStringStringOrNumberValue.ts
 src/models/RenderEmailTemplate200Response.ts
 src/models/RenderEmailTemplateBody.ts
 src/models/RenderEmailTemplateResponse.ts
@@ -313,9 +321,9 @@ src/models/ResetUserNotificationsResponse.ts
 src/models/SORTDIR.ts
 src/models/SSOSecurityLevel.ts
 src/models/SaveComment200Response.ts
-src/models/SaveCommentResponse.ts
 src/models/SaveCommentResponseOptimized.ts
 src/models/SaveCommentsResponseWithPresence.ts
+src/models/Search200Response.ts
 src/models/SearchUsers200Response.ts
 src/models/SearchUsersResponse.ts
 src/models/SearchUsersSectionedResponse.ts
