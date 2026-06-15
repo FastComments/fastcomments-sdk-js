@@ -118,6 +118,9 @@ model/CreateTicketResponse.md
 model/CreateTicket_200_response.md
 model/CreateUserBadgeParams.md
 model/CreateUserBadge_200_response.md
+model/CreateV1PageReact.md
+model/CreateV1PageReact_200_response.md
+model/CreateV2PageReact_200_response.md
 model/CustomConfigParameters.md
 model/CustomEmailTemplate.md
 model/DeleteCommentAction.md
@@ -132,6 +135,8 @@ model/DeleteHashTag_request.md
 model/DeletePageAPIResponse.md
 model/DeleteSSOUserAPIResponse.md
 model/DeleteSubscriptionAPIResponse.md
+model/DeleteV1PageReact_200_response.md
+model/DeleteV2PageReact_200_response.md
 model/DeletedCommentResultComment.md
 model/DigestEmailFrequency.md
 model/EmailTemplateDefinition.md
@@ -158,6 +163,8 @@ model/GetCommentText_200_response.md
 model/GetCommentVoteUserNamesSuccessResponse.md
 model/GetCommentVoteUserNames_200_response.md
 model/GetComment_200_response.md
+model/GetCommentsForUserResponse.md
+model/GetCommentsForUser_200_response.md
 model/GetCommentsPublic_200_response.md
 model/GetCommentsResponseWithPresence_PublicComment_.md
 model/GetCommentsResponse_PublicComment_.md
@@ -250,6 +257,12 @@ model/GetUserReactsPublic_200_response.md
 model/GetUserResponse.md
 model/GetUser_200_response.md
 model/GetUsersInfo_200_response.md
+model/GetV1PageLikes.md
+model/GetV1PageLikes_200_response.md
+model/GetV2PageReactUsersResponse.md
+model/GetV2PageReactUsers_200_response.md
+model/GetV2PageReacts.md
+model/GetV2PageReacts_200_response.md
 model/GetVotesForUserResponse.md
 model/GetVotesForUser_200_response.md
 model/GetVotesResponse.md

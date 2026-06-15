@@ -8,12 +8,17 @@ All URIs are relative to *https://fastcomments.com*
 | [**checkedCommentsForBlocked**](PublicApi.md#checkedCommentsForBlocked) | **GET** /check-blocked-comments |  |
 | [**createCommentPublic**](PublicApi.md#createCommentPublic) | **POST** /comments/{tenantId} |  |
 | [**createFeedPostPublic**](PublicApi.md#createFeedPostPublic) | **POST** /feed-posts/{tenantId} |  |
+| [**createV1PageReact**](PublicApi.md#createV1PageReact) | **POST** /page-reacts/v1/likes/{tenantId} |  |
+| [**createV2PageReact**](PublicApi.md#createV2PageReact) | **POST** /page-reacts/v2/{tenantId} |  |
 | [**deleteCommentPublic**](PublicApi.md#deleteCommentPublic) | **DELETE** /comments/{tenantId}/{commentId} |  |
 | [**deleteCommentVote**](PublicApi.md#deleteCommentVote) | **DELETE** /comments/{tenantId}/{commentId}/vote/{voteId} |  |
 | [**deleteFeedPostPublic**](PublicApi.md#deleteFeedPostPublic) | **DELETE** /feed-posts/{tenantId}/{postId} |  |
+| [**deleteV1PageReact**](PublicApi.md#deleteV1PageReact) | **DELETE** /page-reacts/v1/likes/{tenantId} |  |
+| [**deleteV2PageReact**](PublicApi.md#deleteV2PageReact) | **DELETE** /page-reacts/v2/{tenantId} |  |
 | [**flagCommentPublic**](PublicApi.md#flagCommentPublic) | **POST** /flag-comment/{commentId} |  |
 | [**getCommentText**](PublicApi.md#getCommentText) | **GET** /comments/{tenantId}/{commentId}/text |  |
 | [**getCommentVoteUserNames**](PublicApi.md#getCommentVoteUserNames) | **GET** /comments/{tenantId}/{commentId}/votes |  |
+| [**getCommentsForUser**](PublicApi.md#getCommentsForUser) | **GET** /comments-for-user |  |
 | [**getCommentsPublic**](PublicApi.md#getCommentsPublic) | **GET** /comments/{tenantId} |  |
 | [**getEventLog**](PublicApi.md#getEventLog) | **GET** /event-log/{tenantId} |  |
 | [**getFeedPostsPublic**](PublicApi.md#getFeedPostsPublic) | **GET** /feed-posts/{tenantId} |  |
@@ -31,6 +36,9 @@ All URIs are relative to *https://fastcomments.com*
 | [**getUserPresenceStatuses**](PublicApi.md#getUserPresenceStatuses) | **GET** /user-presence-status |  |
 | [**getUserReactsPublic**](PublicApi.md#getUserReactsPublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
 | [**getUsersInfo**](PublicApi.md#getUsersInfo) | **GET** /pages/{tenantId}/users/info |  |
+| [**getV1PageLikes**](PublicApi.md#getV1PageLikes) | **GET** /page-reacts/v1/likes/{tenantId} |  |
+| [**getV2PageReactUsers**](PublicApi.md#getV2PageReactUsers) | **GET** /page-reacts/v2/{tenantId}/list |  |
+| [**getV2PageReacts**](PublicApi.md#getV2PageReacts) | **GET** /page-reacts/v2/{tenantId} |  |
 | [**lockComment**](PublicApi.md#lockComment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
 | [**logoutPublic**](PublicApi.md#logoutPublic) | **PUT** /auth/logout |  |
 | [**pinComment**](PublicApi.md#pinComment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
@@ -163,6 +171,61 @@ No authorization required
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="createV1PageReact"></a>
+# **createV1PageReact**
+> CreateV1PageReact_200_response createV1PageReact(tenantId, urlId, title)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **title** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**CreateV1PageReact_200_response**](../model/CreateV1PageReact_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="createV2PageReact"></a>
+# **createV2PageReact**
+> CreateV2PageReact_200_response createV2PageReact(tenantId, urlId, id, title)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+| **title** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**CreateV2PageReact_200_response**](../model/CreateV2PageReact_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="deleteCommentPublic"></a>
 # **deleteCommentPublic**
 > DeleteCommentPublic_200_response deleteCommentPublic(tenantId, commentId, broadcastId, editKey, sso)
@@ -251,6 +314,59 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="deleteV1PageReact"></a>
+# **deleteV1PageReact**
+> DeleteV1PageReact_200_response deleteV1PageReact(tenantId, urlId)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+
+### Return type
+
+[**DeleteV1PageReact_200_response**](../model/DeleteV1PageReact_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="deleteV2PageReact"></a>
+# **deleteV2PageReact**
+> DeleteV2PageReact_200_response deleteV2PageReact(tenantId, urlId, id)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+
+### Return type
+
+[**DeleteV2PageReact_200_response**](../model/DeleteV2PageReact_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="flagCommentPublic"></a>
 # **flagCommentPublic**
 > FlagCommentPublic_200_response flagCommentPublic(tenantId, commentId, isFlagged, sso)
@@ -325,6 +441,37 @@ No authorization required
 ### Return type
 
 [**GetCommentVoteUserNames_200_response**](../model/GetCommentVoteUserNames_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getCommentsForUser"></a>
+# **getCommentsForUser**
+> GetCommentsForUser_200_response getCommentsForUser(userId, direction, repliesToUserId, page, includei10n, locale, isCrawler)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **direction** | [**SortDirections**](../model/.md)|  | [optional] [default to null] [enum: OF, NF, MR] |
+| **repliesToUserId** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+| **includei10n** | **Boolean**|  | [optional] [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **isCrawler** | **Boolean**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetCommentsForUser_200_response**](../model/GetCommentsForUser_200_response.md)
 
 ### Authorization
 
@@ -848,6 +995,85 @@ No authorization required
 ### Return type
 
 [**GetUsersInfo_200_response**](../model/GetUsersInfo_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getV1PageLikes"></a>
+# **getV1PageLikes**
+> GetV1PageLikes_200_response getV1PageLikes(tenantId, urlId)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetV1PageLikes_200_response**](../model/GetV1PageLikes_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getV2PageReactUsers"></a>
+# **getV2PageReactUsers**
+> GetV2PageReactUsers_200_response getV2PageReactUsers(tenantId, urlId, id)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetV2PageReactUsers_200_response**](../model/GetV2PageReactUsers_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getV2PageReacts"></a>
+# **getV2PageReacts**
+> GetV2PageReacts_200_response getV2PageReacts(tenantId, urlId)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetV2PageReacts_200_response**](../model/GetV2PageReacts_200_response.md)
 
 ### Authorization
 

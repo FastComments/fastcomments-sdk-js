@@ -123,6 +123,9 @@ src/models/CreateTicketBody.ts
 src/models/CreateTicketResponse.ts
 src/models/CreateUserBadge200Response.ts
 src/models/CreateUserBadgeParams.ts
+src/models/CreateV1PageReact.ts
+src/models/CreateV1PageReact200Response.ts
+src/models/CreateV2PageReact200Response.ts
 src/models/CustomConfigParameters.ts
 src/models/CustomEmailTemplate.ts
 src/models/DeleteComment200Response.ts
@@ -137,6 +140,8 @@ src/models/DeleteHashTagRequest.ts
 src/models/DeletePageAPIResponse.ts
 src/models/DeleteSSOUserAPIResponse.ts
 src/models/DeleteSubscriptionAPIResponse.ts
+src/models/DeleteV1PageReact200Response.ts
+src/models/DeleteV2PageReact200Response.ts
 src/models/DeletedCommentResultComment.ts
 src/models/DigestEmailFrequency.ts
 src/models/EmailTemplateDefinition.ts
@@ -164,6 +169,8 @@ src/models/GetCommentText200Response.ts
 src/models/GetCommentVoteUserNames200Response.ts
 src/models/GetCommentVoteUserNamesSuccessResponse.ts
 src/models/GetComments200Response.ts
+src/models/GetCommentsForUser200Response.ts
+src/models/GetCommentsForUserResponse.ts
 src/models/GetCommentsPublic200Response.ts
 src/models/GetCommentsResponsePublicComment.ts
 src/models/GetCommentsResponseWithPresencePublicComment.ts
@@ -255,6 +262,12 @@ src/models/GetUserPresenceStatusesResponse.ts
 src/models/GetUserReactsPublic200Response.ts
 src/models/GetUserResponse.ts
 src/models/GetUsersInfo200Response.ts
+src/models/GetV1PageLikes.ts
+src/models/GetV1PageLikes200Response.ts
+src/models/GetV2PageReactUsers200Response.ts
+src/models/GetV2PageReactUsersResponse.ts
+src/models/GetV2PageReacts.ts
+src/models/GetV2PageReacts200Response.ts
 src/models/GetVotes200Response.ts
 src/models/GetVotesForUser200Response.ts
 src/models/GetVotesForUserResponse.ts

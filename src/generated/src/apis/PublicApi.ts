@@ -24,12 +24,17 @@ import type {
   CreateCommentPublic200Response,
   CreateFeedPostParams,
   CreateFeedPostPublic200Response,
+  CreateV1PageReact200Response,
+  CreateV2PageReact200Response,
   DeleteCommentPublic200Response,
   DeleteCommentVote200Response,
   DeleteFeedPostPublic200Response,
+  DeleteV1PageReact200Response,
+  DeleteV2PageReact200Response,
   FlagCommentPublic200Response,
   GetCommentText200Response,
   GetCommentVoteUserNames200Response,
+  GetCommentsForUser200Response,
   GetCommentsPublic200Response,
   GetEventLog200Response,
   GetFeedPostsPublic200Response,
@@ -46,6 +51,9 @@ import type {
   GetUserPresenceStatuses200Response,
   GetUserReactsPublic200Response,
   GetUsersInfo200Response,
+  GetV1PageLikes200Response,
+  GetV2PageReactUsers200Response,
+  GetV2PageReacts200Response,
   LockComment200Response,
   PagesSortBy,
   PinComment200Response,
@@ -83,18 +91,28 @@ import {
     CreateFeedPostParamsToJSON,
     CreateFeedPostPublic200ResponseFromJSON,
     CreateFeedPostPublic200ResponseToJSON,
+    CreateV1PageReact200ResponseFromJSON,
+    CreateV1PageReact200ResponseToJSON,
+    CreateV2PageReact200ResponseFromJSON,
+    CreateV2PageReact200ResponseToJSON,
     DeleteCommentPublic200ResponseFromJSON,
     DeleteCommentPublic200ResponseToJSON,
     DeleteCommentVote200ResponseFromJSON,
     DeleteCommentVote200ResponseToJSON,
     DeleteFeedPostPublic200ResponseFromJSON,
     DeleteFeedPostPublic200ResponseToJSON,
+    DeleteV1PageReact200ResponseFromJSON,
+    DeleteV1PageReact200ResponseToJSON,
+    DeleteV2PageReact200ResponseFromJSON,
+    DeleteV2PageReact200ResponseToJSON,
     FlagCommentPublic200ResponseFromJSON,
     FlagCommentPublic200ResponseToJSON,
     GetCommentText200ResponseFromJSON,
     GetCommentText200ResponseToJSON,
     GetCommentVoteUserNames200ResponseFromJSON,
     GetCommentVoteUserNames200ResponseToJSON,
+    GetCommentsForUser200ResponseFromJSON,
+    GetCommentsForUser200ResponseToJSON,
     GetCommentsPublic200ResponseFromJSON,
     GetCommentsPublic200ResponseToJSON,
     GetEventLog200ResponseFromJSON,
@@ -127,6 +145,12 @@ import {
     GetUserReactsPublic200ResponseToJSON,
     GetUsersInfo200ResponseFromJSON,
     GetUsersInfo200ResponseToJSON,
+    GetV1PageLikes200ResponseFromJSON,
+    GetV1PageLikes200ResponseToJSON,
+    GetV2PageReactUsers200ResponseFromJSON,
+    GetV2PageReactUsers200ResponseToJSON,
+    GetV2PageReacts200ResponseFromJSON,
+    GetV2PageReacts200ResponseToJSON,
     LockComment200ResponseFromJSON,
     LockComment200ResponseToJSON,
     PagesSortByFromJSON,
@@ -192,6 +216,19 @@ export interface CreateFeedPostPublicRequest {
     sso?: string;
 }
 
+export interface CreateV1PageReactRequest {
+    tenantId: string;
+    urlId: string;
+    title?: string;
+}
+
+export interface CreateV2PageReactRequest {
+    tenantId: string;
+    urlId: string;
+    id: string;
+    title?: string;
+}
+
 export interface DeleteCommentPublicRequest {
     tenantId: string;
     commentId: string;
@@ -217,6 +254,17 @@ export interface DeleteFeedPostPublicRequest {
     sso?: string;
 }
 
+export interface DeleteV1PageReactRequest {
+    tenantId: string;
+    urlId: string;
+}
+
+export interface DeleteV2PageReactRequest {
+    tenantId: string;
+    urlId: string;
+    id: string;
+}
+
 export interface FlagCommentPublicRequest {
     tenantId: string;
     commentId: string;
@@ -236,6 +284,16 @@ export interface GetCommentVoteUserNamesRequest {
     commentId: string;
     dir: number;
     sso?: string;
+}
+
+export interface GetCommentsForUserRequest {
+    userId?: string;
+    direction?: SortDirections;
+    repliesToUserId?: string;
+    page?: number;
+    includei10n?: boolean;
+    locale?: string;
+    isCrawler?: boolean;
 }
 
 export interface GetCommentsPublicRequest {
@@ -386,6 +444,22 @@ export interface GetUserReactsPublicRequest {
 export interface GetUsersInfoRequest {
     tenantId: string;
     ids: string;
+}
+
+export interface GetV1PageLikesRequest {
+    tenantId: string;
+    urlId: string;
+}
+
+export interface GetV2PageReactUsersRequest {
+    tenantId: string;
+    urlId: string;
+    id: string;
+}
+
+export interface GetV2PageReactsRequest {
+    tenantId: string;
+    urlId: string;
 }
 
 export interface LockCommentRequest {
@@ -589,6 +663,37 @@ export interface PublicApiInterface {
     /**
      * 
      * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {string} [title] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact200Response>>;
+
+    /**
+     */
+    createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {string} id 
+     * @param {string} [title] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV2PageReact200Response>>;
+
+    /**
+     */
+    createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV2PageReact200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
      * @param {string} commentId 
      * @param {string} broadcastId 
      * @param {string} [editKey] 
@@ -641,6 +746,35 @@ export interface PublicApiInterface {
     /**
      * 
      * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV1PageReact200Response>>;
+
+    /**
+     */
+    deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV1PageReact200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV2PageReact200Response>>;
+
+    /**
+     */
+    deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV2PageReact200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
      * @param {string} commentId 
      * @param {boolean} isFlagged 
      * @param {string} [sso] 
@@ -685,6 +819,25 @@ export interface PublicApiInterface {
     /**
      */
     getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNames200Response>;
+
+    /**
+     * 
+     * @param {string} [userId] 
+     * @param {SortDirections} [direction] 
+     * @param {string} [repliesToUserId] 
+     * @param {number} [page] 
+     * @param {boolean} [includei10n] 
+     * @param {string} [locale] 
+     * @param {boolean} [isCrawler] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUser200Response>>;
+
+    /**
+     */
+    getCommentsForUser(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUser200Response>;
 
     /**
      *  req tenantId urlId
@@ -996,6 +1149,49 @@ export interface PublicApiInterface {
      * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
      */
     getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfo200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikes200Response>>;
+
+    /**
+     */
+    getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikes200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsers200Response>>;
+
+    /**
+     */
+    getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsers200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReacts200Response>>;
+
+    /**
+     */
+    getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReacts200Response>;
 
     /**
      * 
@@ -1517,6 +1713,109 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
+    async createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling createV1PageReact().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling createV1PageReact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v1/likes/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReact200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact200Response> {
+        const response = await this.createV1PageReactRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV2PageReact200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling createV2PageReact().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling createV2PageReact().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling createV2PageReact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v2/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV2PageReact200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV2PageReact200Response> {
+        const response = await this.createV2PageReactRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async deleteCommentPublicRaw(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentPublic200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
@@ -1695,6 +1994,101 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
+    async deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV1PageReact200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling deleteV1PageReact().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling deleteV1PageReact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v1/likes/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteV1PageReact200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV1PageReact200Response> {
+        const response = await this.deleteV1PageReactRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV2PageReact200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling deleteV2PageReact().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling deleteV2PageReact().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteV2PageReact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v2/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteV2PageReact200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV2PageReact200Response> {
+        const response = await this.deleteV2PageReactRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async flagCommentPublicRaw(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentPublic200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
@@ -1846,6 +2240,58 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNames200Response> {
         const response = await this.getCommentVoteUserNamesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUser200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['direction'] != null) {
+            queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['repliesToUserId'] != null) {
+            queryParameters['repliesToUserId'] = requestParameters['repliesToUserId'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['includei10n'] != null) {
+            queryParameters['includei10n'] = requestParameters['includei10n'];
+        }
+
+        if (requestParameters['locale'] != null) {
+            queryParameters['locale'] = requestParameters['locale'];
+        }
+
+        if (requestParameters['isCrawler'] != null) {
+            queryParameters['isCrawler'] = requestParameters['isCrawler'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/comments-for-user`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsForUser200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getCommentsForUser(requestParameters: GetCommentsForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUser200Response> {
+        const response = await this.getCommentsForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2837,6 +3283,143 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfo200Response> {
         const response = await this.getUsersInfoRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikes200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getV1PageLikes().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getV1PageLikes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v1/likes/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV1PageLikes200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikes200Response> {
+        const response = await this.getV1PageLikesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsers200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getV2PageReactUsers().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getV2PageReactUsers().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getV2PageReactUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v2/{tenantId}/list`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReactUsers200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsers200Response> {
+        const response = await this.getV2PageReactUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReacts200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getV2PageReacts().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getV2PageReacts().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/page-reacts/v2/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReacts200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReacts200Response> {
+        const response = await this.getV2PageReactsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
