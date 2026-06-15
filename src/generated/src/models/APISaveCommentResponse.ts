@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FComment } from './FComment';
+import type { APIComment } from './APIComment';
 import {
-    FCommentFromJSON,
-    FCommentFromJSONTyped,
-    FCommentToJSON,
-    FCommentToJSONTyped,
-} from './FComment';
+    APICommentFromJSON,
+    APICommentFromJSONTyped,
+    APICommentToJSON,
+    APICommentToJSONTyped,
+} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -38,31 +38,31 @@ import {
 /**
  * 
  * @export
- * @interface SaveCommentResponse
+ * @interface APISaveCommentResponse
  */
-export interface SaveCommentResponse {
+export interface APISaveCommentResponse {
     /**
      * 
      * @type {APIStatus}
-     * @memberof SaveCommentResponse
+     * @memberof APISaveCommentResponse
      */
     status: APIStatus;
     /**
      * 
-     * @type {FComment}
-     * @memberof SaveCommentResponse
+     * @type {APIComment}
+     * @memberof APISaveCommentResponse
      */
-    comment: FComment;
+    comment: APIComment;
     /**
      * 
      * @type {UserSessionInfo}
-     * @memberof SaveCommentResponse
+     * @memberof APISaveCommentResponse
      */
     user: UserSessionInfo | null;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: any; }}
-     * @memberof SaveCommentResponse
+     * @memberof APISaveCommentResponse
      */
     moduleData?: { [key: string]: any; };
 }
@@ -70,37 +70,37 @@ export interface SaveCommentResponse {
 
 
 /**
- * Check if a given object implements the SaveCommentResponse interface.
+ * Check if a given object implements the APISaveCommentResponse interface.
  */
-export function instanceOfSaveCommentResponse(value: object): value is SaveCommentResponse {
+export function instanceOfAPISaveCommentResponse(value: object): value is APISaveCommentResponse {
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('comment' in value) || value['comment'] === undefined) return false;
     if (!('user' in value) || value['user'] === undefined) return false;
     return true;
 }
 
-export function SaveCommentResponseFromJSON(json: any): SaveCommentResponse {
-    return SaveCommentResponseFromJSONTyped(json, false);
+export function APISaveCommentResponseFromJSON(json: any): APISaveCommentResponse {
+    return APISaveCommentResponseFromJSONTyped(json, false);
 }
 
-export function SaveCommentResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveCommentResponse {
+export function APISaveCommentResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): APISaveCommentResponse {
     if (json == null) {
         return json;
     }
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'comment': FCommentFromJSON(json['comment']),
+        'comment': APICommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
     };
 }
 
-export function SaveCommentResponseToJSON(json: any): SaveCommentResponse {
-    return SaveCommentResponseToJSONTyped(json, false);
+export function APISaveCommentResponseToJSON(json: any): APISaveCommentResponse {
+    return APISaveCommentResponseToJSONTyped(json, false);
 }
 
-export function SaveCommentResponseToJSONTyped(value?: SaveCommentResponse | null, ignoreDiscriminator: boolean = false): any {
+export function APISaveCommentResponseToJSONTyped(value?: APISaveCommentResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -108,7 +108,7 @@ export function SaveCommentResponseToJSONTyped(value?: SaveCommentResponse | nul
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'comment': FCommentToJSON(value['comment']),
+        'comment': APICommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],
     };

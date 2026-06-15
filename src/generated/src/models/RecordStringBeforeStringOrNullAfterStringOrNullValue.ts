@@ -24,13 +24,13 @@ export interface RecordStringBeforeStringOrNullAfterStringOrNullValue {
      * @type {string}
      * @memberof RecordStringBeforeStringOrNullAfterStringOrNullValue
      */
-    after: string;
+    after: string | null;
     /**
      * 
      * @type {string}
      * @memberof RecordStringBeforeStringOrNullAfterStringOrNullValue
      */
-    before: string;
+    before: string | null;
 }
 
 /**

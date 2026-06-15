@@ -60,6 +60,7 @@
 | **readonly** | **Boolean** |  | [optional] [default to null] |
 | **noNewRootComments** | **Boolean** |  | [optional] [default to null] |
 | **requireSSO** | **Boolean** |  | [optional] [default to null] |
+| **enableFChat** | **Boolean** |  | [optional] [default to null] |
 | **enableResizeHandle** | **Boolean** |  | [optional] [default to null] |
 | **restrictedLinkDomains** | **List** |  | [optional] [default to null] |
 | **showBadgesInTopBar** | **Boolean** |  | [optional] [default to null] |
@@ -80,6 +81,8 @@
 | **widgetQuestionsRequired** | [**CommentQuestionsRequired**](CommentQuestionsRequired.md) |  | [optional] [default to null] |
 | **widgetSubQuestionVisibility** | [**QuestionSubQuestionVisibility**](QuestionSubQuestionVisibility.md) |  | [optional] [default to null] |
 | **wrap** | **Boolean** |  | [optional] [default to null] |
+| **usersListLocation** | [**UsersListLocation**](UsersListLocation.md) |  | [optional] [default to null] |
+| **usersListIncludeOffline** | **Boolean** |  | [optional] [default to null] |
 | **ticketBaseUrl** | **String** |  | [optional] [default to null] |
 | **ticketKBSearchEndpoint** | **String** |  | [optional] [default to null] |
 | **ticketFileUploadsEnabled** | **Boolean** |  | [optional] [default to null] |

@@ -1,8 +1,10 @@
-# Record_string_string_or_number__value
+# GifGetLargeResponse
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+| **src** | **String** |  | [default to null] |
+| **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -252,7 +252,7 @@ All URIs are relative to *https://fastcomments.com*
 
 <a name="aggregate"></a>
 # **aggregate**
-> AggregationResponse aggregate(tenantId, AggregationRequest, parentTenantId, includeStats)
+> Aggregate_200_response aggregate(tenantId, AggregationRequest, parentTenantId, includeStats)
 
 
 
@@ -269,7 +269,7 @@ All URIs are relative to *https://fastcomments.com*
 
 ### Return type
 
-[**AggregationResponse**](../model/AggregationResponse.md)
+[**Aggregate_200_response**](../model/Aggregate_200_response.md)
 
 ### Authorization
 
@@ -1340,7 +1340,7 @@ All URIs are relative to *https://fastcomments.com*
 
 <a name="getComments"></a>
 # **getComments**
-> GetComments_200_response getComments(tenantId, page, limit, skip, asTree, skipChildren, limitChildren, maxTreeDepth, urlId, userId, anonUserId, contextUserId, hashTag, parentId, direction)
+> GetComments_200_response getComments(tenantId, page, limit, skip, asTree, skipChildren, limitChildren, maxTreeDepth, urlId, userId, anonUserId, contextUserId, hashTag, parentId, direction, fromDate, toDate)
 
 
 
@@ -1363,6 +1363,8 @@ All URIs are relative to *https://fastcomments.com*
 | **hashTag** | **String**|  | [optional] [default to null] |
 | **parentId** | **String**|  | [optional] [default to null] |
 | **direction** | [**SortDirections**](../model/.md)|  | [optional] [default to null] [enum: OF, NF, MR] |
+| **fromDate** | **Long**|  | [optional] [default to null] |
+| **toDate** | **Long**|  | [optional] [default to null] |
 
 ### Return type
 

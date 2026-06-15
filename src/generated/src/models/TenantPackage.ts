@@ -45,6 +45,12 @@ export interface TenantPackage {
     createdAt: Date;
     /**
      * 
+     * @type {string}
+     * @memberof TenantPackage
+     */
+    templateId?: string;
+    /**
+     * 
      * @type {number}
      * @memberof TenantPackage
      */
@@ -306,6 +312,18 @@ export interface TenantPackage {
      * @type {number}
      * @memberof TenantPackage
      */
+    flexLLMCostCents?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    flexLLMUnit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
     flexMinimumCostCents?: number;
     /**
      * 
@@ -343,6 +361,30 @@ export interface TenantPackage {
      * @memberof TenantPackage
      */
     isSSOBillingMonthlyActiveUsers?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TenantPackage
+     */
+    hasAIAgents?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    maxAIAgents?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    aiAgentDailyBudgetCents?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    aiAgentMonthlyBudgetCents?: number;
 }
 
 /**
@@ -393,6 +435,7 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'name': json['name'],
         'tenantId': json['tenantId'],
         'createdAt': (new Date(json['createdAt'])),
+        'templateId': json['templateId'] == null ? undefined : json['templateId'],
         'monthlyCostUSD': json['monthlyCostUSD'],
         'yearlyCostUSD': json['yearlyCostUSD'],
         'monthlyStripePlanId': json['monthlyStripePlanId'],
@@ -436,6 +479,8 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'flexDomainUnit': json['flexDomainUnit'] == null ? undefined : json['flexDomainUnit'],
         'flexChatGPTCostCents': json['flexChatGPTCostCents'] == null ? undefined : json['flexChatGPTCostCents'],
         'flexChatGPTUnit': json['flexChatGPTUnit'] == null ? undefined : json['flexChatGPTUnit'],
+        'flexLLMCostCents': json['flexLLMCostCents'] == null ? undefined : json['flexLLMCostCents'],
+        'flexLLMUnit': json['flexLLMUnit'] == null ? undefined : json['flexLLMUnit'],
         'flexMinimumCostCents': json['flexMinimumCostCents'] == null ? undefined : json['flexMinimumCostCents'],
         'flexManagedTenantCostCents': json['flexManagedTenantCostCents'] == null ? undefined : json['flexManagedTenantCostCents'],
         'flexSSOAdminCostCents': json['flexSSOAdminCostCents'] == null ? undefined : json['flexSSOAdminCostCents'],
@@ -443,6 +488,10 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'flexSSOModeratorCostCents': json['flexSSOModeratorCostCents'] == null ? undefined : json['flexSSOModeratorCostCents'],
         'flexSSOModeratorUnit': json['flexSSOModeratorUnit'] == null ? undefined : json['flexSSOModeratorUnit'],
         'isSSOBillingMonthlyActiveUsers': json['isSSOBillingMonthlyActiveUsers'] == null ? undefined : json['isSSOBillingMonthlyActiveUsers'],
+        'hasAIAgents': json['hasAIAgents'] == null ? undefined : json['hasAIAgents'],
+        'maxAIAgents': json['maxAIAgents'] == null ? undefined : json['maxAIAgents'],
+        'aiAgentDailyBudgetCents': json['aiAgentDailyBudgetCents'] == null ? undefined : json['aiAgentDailyBudgetCents'],
+        'aiAgentMonthlyBudgetCents': json['aiAgentMonthlyBudgetCents'] == null ? undefined : json['aiAgentMonthlyBudgetCents'],
     };
 }
 
@@ -461,6 +510,7 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'name': value['name'],
         'tenantId': value['tenantId'],
         'createdAt': ((value['createdAt']).toISOString()),
+        'templateId': value['templateId'],
         'monthlyCostUSD': value['monthlyCostUSD'],
         'yearlyCostUSD': value['yearlyCostUSD'],
         'monthlyStripePlanId': value['monthlyStripePlanId'],
@@ -504,6 +554,8 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'flexDomainUnit': value['flexDomainUnit'],
         'flexChatGPTCostCents': value['flexChatGPTCostCents'],
         'flexChatGPTUnit': value['flexChatGPTUnit'],
+        'flexLLMCostCents': value['flexLLMCostCents'],
+        'flexLLMUnit': value['flexLLMUnit'],
         'flexMinimumCostCents': value['flexMinimumCostCents'],
         'flexManagedTenantCostCents': value['flexManagedTenantCostCents'],
         'flexSSOAdminCostCents': value['flexSSOAdminCostCents'],
@@ -511,6 +563,10 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'flexSSOModeratorCostCents': value['flexSSOModeratorCostCents'],
         'flexSSOModeratorUnit': value['flexSSOModeratorUnit'],
         'isSSOBillingMonthlyActiveUsers': value['isSSOBillingMonthlyActiveUsers'],
+        'hasAIAgents': value['hasAIAgents'],
+        'maxAIAgents': value['maxAIAgents'],
+        'aiAgentDailyBudgetCents': value['aiAgentDailyBudgetCents'],
+        'aiAgentMonthlyBudgetCents': value['aiAgentMonthlyBudgetCents'],
     };
 }
 

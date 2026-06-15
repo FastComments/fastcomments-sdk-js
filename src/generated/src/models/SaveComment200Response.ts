@@ -20,13 +20,13 @@ import {
     CustomConfigParametersToJSON,
     CustomConfigParametersToJSONTyped,
 } from './CustomConfigParameters';
-import type { FComment } from './FComment';
+import type { APIComment } from './APIComment';
 import {
-    FCommentFromJSON,
-    FCommentFromJSONTyped,
-    FCommentToJSON,
-    FCommentToJSONTyped,
-} from './FComment';
+    APICommentFromJSON,
+    APICommentFromJSONTyped,
+    APICommentToJSON,
+    APICommentToJSONTyped,
+} from './APIComment';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -41,13 +41,13 @@ import {
     APIErrorToJSON,
     APIErrorToJSONTyped,
 } from './APIError';
-import type { SaveCommentResponse } from './SaveCommentResponse';
+import type { APISaveCommentResponse } from './APISaveCommentResponse';
 import {
-    SaveCommentResponseFromJSON,
-    SaveCommentResponseFromJSONTyped,
-    SaveCommentResponseToJSON,
-    SaveCommentResponseToJSONTyped,
-} from './SaveCommentResponse';
+    APISaveCommentResponseFromJSON,
+    APISaveCommentResponseFromJSONTyped,
+    APISaveCommentResponseToJSON,
+    APISaveCommentResponseToJSONTyped,
+} from './APISaveCommentResponse';
 import type { UserSessionInfo } from './UserSessionInfo';
 import {
     UserSessionInfoFromJSON,
@@ -70,10 +70,10 @@ export interface SaveComment200Response {
     status: APIStatus;
     /**
      * 
-     * @type {FComment}
+     * @type {APIComment}
      * @memberof SaveComment200Response
      */
-    comment: FComment;
+    comment: APIComment;
     /**
      * 
      * @type {UserSessionInfo}
@@ -155,7 +155,7 @@ export function SaveComment200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'comment': FCommentFromJSON(json['comment']),
+        'comment': APICommentFromJSON(json['comment']),
         'user': UserSessionInfoFromJSON(json['user']),
         'moduleData': json['moduleData'] == null ? undefined : json['moduleData'],
         'reason': json['reason'],
@@ -180,7 +180,7 @@ export function SaveComment200ResponseToJSONTyped(value?: SaveComment200Response
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'comment': FCommentToJSON(value['comment']),
+        'comment': APICommentToJSON(value['comment']),
         'user': UserSessionInfoToJSON(value['user']),
         'moduleData': value['moduleData'],
         'reason': value['reason'],

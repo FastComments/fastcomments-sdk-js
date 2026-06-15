@@ -20,6 +20,13 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
+import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
+import {
+    GifSearchResponseImagesInnerInnerFromJSON,
+    GifSearchResponseImagesInnerInnerFromJSONTyped,
+    GifSearchResponseImagesInnerInnerToJSON,
+    GifSearchResponseImagesInnerInnerToJSONTyped,
+} from './GifSearchResponseImagesInnerInner';
 
 /**
  * 
@@ -29,28 +36,16 @@ import {
 export interface GifSearchResponse {
     /**
      * 
+     * @type {Array<Array<GifSearchResponseImagesInnerInner>>}
+     * @memberof GifSearchResponse
+     */
+    images: Array<Array<GifSearchResponseImagesInnerInner>>;
+    /**
+     * 
      * @type {APIStatus}
      * @memberof GifSearchResponse
      */
     status: APIStatus;
-    /**
-     * 
-     * @type {string}
-     * @memberof GifSearchResponse
-     */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GifSearchResponse
-     */
-    reason?: string;
-    /**
-     * Array of [src, width, height] tuples; OpenAPI 3.0 cannot express heterogeneous tuples so consumers must read index 0 as a URL and indices 1 and 2 as numeric dimensions.
-     * @type {Array<Array<any>>}
-     * @memberof GifSearchResponse
-     */
-    images?: Array<Array<any>>;
 }
 
 
@@ -59,6 +54,7 @@ export interface GifSearchResponse {
  * Check if a given object implements the GifSearchResponse interface.
  */
 export function instanceOfGifSearchResponse(value: object): value is GifSearchResponse {
+    if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -73,10 +69,8 @@ export function GifSearchResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'images': json['images'],
         'status': APIStatusFromJSON(json['status']),
-        'code': json['code'] == null ? undefined : json['code'],
-        'reason': json['reason'] == null ? undefined : json['reason'],
-        'images': json['images'] == null ? undefined : json['images'],
     };
 }
 
@@ -91,10 +85,8 @@ export function GifSearchResponseToJSONTyped(value?: GifSearchResponse | null, i
 
     return {
         
-        'status': APIStatusToJSON(value['status']),
-        'code': value['code'],
-        'reason': value['reason'],
         'images': value['images'],
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

@@ -21,10 +21,10 @@ import type {
   AddHashTagsBulk200Response,
   AddPageAPIResponse,
   AddSSOUserAPIResponse,
+  Aggregate200Response,
   AggregateQuestionResults200Response,
   AggregateTimeBucket,
   AggregationRequest,
-  AggregationResponse,
   BlockFromCommentParams,
   BlockFromCommentPublic200Response,
   BulkAggregateQuestionResults200Response,
@@ -159,14 +159,14 @@ import {
     AddPageAPIResponseToJSON,
     AddSSOUserAPIResponseFromJSON,
     AddSSOUserAPIResponseToJSON,
+    Aggregate200ResponseFromJSON,
+    Aggregate200ResponseToJSON,
     AggregateQuestionResults200ResponseFromJSON,
     AggregateQuestionResults200ResponseToJSON,
     AggregateTimeBucketFromJSON,
     AggregateTimeBucketToJSON,
     AggregationRequestFromJSON,
     AggregationRequestToJSON,
-    AggregationResponseFromJSON,
-    AggregationResponseToJSON,
     BlockFromCommentParamsFromJSON,
     BlockFromCommentParamsToJSON,
     BlockFromCommentPublic200ResponseFromJSON,
@@ -696,6 +696,8 @@ export interface GetCommentsRequest {
     hashTag?: string;
     parentId?: string;
     direction?: SortDirections;
+    fromDate?: number;
+    toDate?: number;
 }
 
 export interface GetDomainConfigRequest {
@@ -1212,12 +1214,12 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    aggregateRaw(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregationResponse>>;
+    aggregateRaw(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Aggregate200Response>>;
 
     /**
      * Aggregates documents by grouping them (if groupBy is provided) and applying multiple operations. Different operations (e.g. sum, countDistinct, avg, etc.) are supported.
      */
-    aggregate(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregationResponse>;
+    aggregate(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Aggregate200Response>;
 
     /**
      * 
@@ -1826,6 +1828,8 @@ export interface DefaultApiInterface {
      * @param {string} [hashTag] 
      * @param {string} [parentId] 
      * @param {SortDirections} [direction] 
+     * @param {number} [fromDate] 
+     * @param {number} [toDate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
@@ -3103,7 +3107,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
      * Aggregates documents by grouping them (if groupBy is provided) and applying multiple operations. Different operations (e.g. sum, countDistinct, avg, etc.) are supported.
      */
-    async aggregateRaw(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregationResponse>> {
+    async aggregateRaw(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Aggregate200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3148,13 +3152,13 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: AggregationRequestToJSON(requestParameters['aggregationRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AggregationResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => Aggregate200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Aggregates documents by grouping them (if groupBy is provided) and applying multiple operations. Different operations (e.g. sum, countDistinct, avg, etc.) are supported.
      */
-    async aggregate(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregationResponse> {
+    async aggregate(requestParameters: AggregateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Aggregate200Response> {
         const response = await this.aggregateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5258,6 +5262,14 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
         if (requestParameters['direction'] != null) {
             queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['fromDate'] != null) {
+            queryParameters['fromDate'] = requestParameters['fromDate'];
+        }
+
+        if (requestParameters['toDate'] != null) {
+            queryParameters['toDate'] = requestParameters['toDate'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

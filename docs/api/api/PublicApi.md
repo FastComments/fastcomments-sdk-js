@@ -19,15 +19,24 @@ All URIs are relative to *https://fastcomments.com*
 | [**getFeedPostsPublic**](PublicApi.md#getFeedPostsPublic) | **GET** /feed-posts/{tenantId} |  |
 | [**getFeedPostsStats**](PublicApi.md#getFeedPostsStats) | **GET** /feed-posts/{tenantId}/stats |  |
 | [**getGlobalEventLog**](PublicApi.md#getGlobalEventLog) | **GET** /event-log/global/{tenantId} |  |
+| [**getLarge**](PublicApi.md#getLarge) | **GET** /gifs/get-large/{tenantId} |  |
+| [**getOfflineUsers**](PublicApi.md#getOfflineUsers) | **GET** /pages/{tenantId}/users/offline |  |
+| [**getOnlineUsers**](PublicApi.md#getOnlineUsers) | **GET** /pages/{tenantId}/users/online |  |
+| [**getPagesPublic**](PublicApi.md#getPagesPublic) | **GET** /pages/{tenantId} |  |
+| [**getTranslations**](PublicApi.md#getTranslations) | **GET** /translations/{namespace}/{component} |  |
+| [**getTrending**](PublicApi.md#getTrending) | **GET** /gifs/trending/{tenantId} |  |
 | [**getUserNotificationCount**](PublicApi.md#getUserNotificationCount) | **GET** /user-notifications/get-count |  |
 | [**getUserNotifications**](PublicApi.md#getUserNotifications) | **GET** /user-notifications |  |
 | [**getUserPresenceStatuses**](PublicApi.md#getUserPresenceStatuses) | **GET** /user-presence-status |  |
 | [**getUserReactsPublic**](PublicApi.md#getUserReactsPublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
+| [**getUsersInfo**](PublicApi.md#getUsersInfo) | **GET** /pages/{tenantId}/users/info |  |
 | [**lockComment**](PublicApi.md#lockComment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
+| [**logout**](PublicApi.md#logout) | **PUT** /auth/logout |  |
 | [**pinComment**](PublicApi.md#pinComment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
 | [**reactFeedPostPublic**](PublicApi.md#reactFeedPostPublic) | **POST** /feed-posts/{tenantId}/react/{postId} |  |
 | [**resetUserNotificationCount**](PublicApi.md#resetUserNotificationCount) | **POST** /user-notifications/reset-count |  |
 | [**resetUserNotifications**](PublicApi.md#resetUserNotifications) | **POST** /user-notifications/reset |  |
+| [**search**](PublicApi.md#search) | **GET** /gifs/search/{tenantId} |  |
 | [**searchUsers**](PublicApi.md#searchUsers) | **GET** /user-search/{tenantId} |  |
 | [**setCommentText**](PublicApi.md#setCommentText) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
 | [**unBlockCommentPublic**](PublicApi.md#unBlockCommentPublic) | **DELETE** /block-from-comment/{commentId} |  |
@@ -396,7 +405,7 @@ No authorization required
 | **urlId** | **String**|  | [default to null] |
 | **userIdWS** | **String**|  | [default to null] |
 | **startTime** | **Long**|  | [default to null] |
-| **endTime** | **Long**|  | [default to null] |
+| **endTime** | **Long**|  | [optional] [default to null] |
 
 ### Return type
 
@@ -487,11 +496,185 @@ No authorization required
 | **urlId** | **String**|  | [default to null] |
 | **userIdWS** | **String**|  | [default to null] |
 | **startTime** | **Long**|  | [default to null] |
-| **endTime** | **Long**|  | [default to null] |
+| **endTime** | **Long**|  | [optional] [default to null] |
 
 ### Return type
 
 [**GetEventLog_200_response**](../model/GetEventLog_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getLarge"></a>
+# **getLarge**
+> GetLarge_200_response getLarge(tenantId, largeInternalURLSanitized)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **largeInternalURLSanitized** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetLarge_200_response**](../model/GetLarge_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getOfflineUsers"></a>
+# **getOfflineUsers**
+> GetOfflineUsers_200_response getOfflineUsers(tenantId, urlId, afterName, afterUserId)
+
+
+
+    Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \&quot;Members\&quot; section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**| Page URL identifier (cleaned server-side). | [default to null] |
+| **afterName** | **String**| Cursor: pass nextAfterName from the previous response. | [optional] [default to null] |
+| **afterUserId** | **String**| Cursor tiebreaker: pass nextAfterUserId from the previous response. Required when afterName is set so name-ties don&#39;t drop entries. | [optional] [default to null] |
+
+### Return type
+
+[**GetOfflineUsers_200_response**](../model/GetOfflineUsers_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getOnlineUsers"></a>
+# **getOnlineUsers**
+> GetOnlineUsers_200_response getOnlineUsers(tenantId, urlId, afterName, afterUserId)
+
+
+
+    Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don&#39;t enumerate).
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**| Page URL identifier (cleaned server-side). | [default to null] |
+| **afterName** | **String**| Cursor: pass nextAfterName from the previous response. | [optional] [default to null] |
+| **afterUserId** | **String**| Cursor tiebreaker: pass nextAfterUserId from the previous response. Required when afterName is set so name-ties don&#39;t drop entries. | [optional] [default to null] |
+
+### Return type
+
+[**GetOnlineUsers_200_response**](../model/GetOnlineUsers_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPagesPublic"></a>
+# **getPagesPublic**
+> GetPagesPublic_200_response getPagesPublic(tenantId, cursor, limit, q, sortBy, hasComments)
+
+
+
+    List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires &#x60;enableFChat&#x60; to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user&#39;s group access.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **cursor** | **String**| Opaque pagination cursor returned as &#x60;nextCursor&#x60; from a prior request. Tied to the same &#x60;sortBy&#x60;. | [optional] [default to null] |
+| **limit** | **Integer**| 1..200, default 50 | [optional] [default to null] |
+| **q** | **String**| Optional case-insensitive title prefix filter. | [optional] [default to null] |
+| **sortBy** | [**PagesSortBy**](../model/.md)| Sort order. &#x60;updatedAt&#x60; (default, newest first), &#x60;commentCount&#x60; (most comments first), or &#x60;title&#x60; (alphabetical). | [optional] [default to null] [enum: updatedAt, commentCount, title] |
+| **hasComments** | **Boolean**| If true, only return pages with at least one comment. | [optional] [default to null] |
+
+### Return type
+
+[**GetPagesPublic_200_response**](../model/GetPagesPublic_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getTranslations"></a>
+# **getTranslations**
+> GetTranslations_200_response getTranslations(namespace, component, locale, useFullTranslationIds)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **namespace** | **String**|  | [default to null] |
+| **component** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **useFullTranslationIds** | **Boolean**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetTranslations_200_response**](../model/GetTranslations_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getTrending"></a>
+# **getTrending**
+> GetTrending_200_response getTrending(tenantId, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetTrending_200_response**](../model/GetTrending_200_response.md)
 
 ### Authorization
 
@@ -530,7 +713,7 @@ No authorization required
 
 <a name="getUserNotifications"></a>
 # **getUserNotifications**
-> GetUserNotifications_200_response getUserNotifications(tenantId, pageSize, afterId, includeContext, afterCreatedAt, unreadOnly, dmOnly, noDm, includeTranslations, sso)
+> GetUserNotifications_200_response getUserNotifications(tenantId, urlId, pageSize, afterId, includeContext, afterCreatedAt, unreadOnly, dmOnly, noDm, includeTranslations, includeTenantNotifications, sso)
 
 
 
@@ -539,6 +722,7 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**| Used to determine whether the current page is subscribed. | [optional] [default to null] |
 | **pageSize** | **Integer**|  | [optional] [default to null] |
 | **afterId** | **String**|  | [optional] [default to null] |
 | **includeContext** | **Boolean**|  | [optional] [default to null] |
@@ -547,6 +731,7 @@ No authorization required
 | **dmOnly** | **Boolean**|  | [optional] [default to null] |
 | **noDm** | **Boolean**|  | [optional] [default to null] |
 | **includeTranslations** | **Boolean**|  | [optional] [default to null] |
+| **includeTenantNotifications** | **Boolean**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
 ### Return type
@@ -616,6 +801,34 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getUsersInfo"></a>
+# **getUsersInfo**
+> GetUsersInfo_200_response getUsersInfo(tenantId, ids)
+
+
+
+    Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **ids** | **String**| Comma-delimited userIds. | [default to null] |
+
+### Return type
+
+[**GetUsersInfo_200_response**](../model/GetUsersInfo_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="lockComment"></a>
 # **lockComment**
 > LockComment_200_response lockComment(tenantId, commentId, broadcastId, sso)
@@ -634,6 +847,28 @@ No authorization required
 ### Return type
 
 [**LockComment_200_response**](../model/LockComment_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="logout"></a>
+# **logout**
+> APIEmptyResponse logout()
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**APIEmptyResponse**](../model/APIEmptyResponse.md)
 
 ### Authorization
 
@@ -749,6 +984,35 @@ No authorization required
 ### Return type
 
 [**ResetUserNotifications_200_response**](../model/ResetUserNotifications_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="search"></a>
+# **search**
+> Search_200_response search(tenantId, search, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **search** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**Search_200_response**](../model/Search_200_response.md)
 
 ### Authorization
 

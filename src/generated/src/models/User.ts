@@ -20,6 +20,13 @@ import {
     DigestEmailFrequencyToJSON,
     DigestEmailFrequencyToJSONTyped,
 } from './DigestEmailFrequency';
+import type { ImportedAgentApprovalNotificationFrequency } from './ImportedAgentApprovalNotificationFrequency';
+import {
+    ImportedAgentApprovalNotificationFrequencyFromJSON,
+    ImportedAgentApprovalNotificationFrequencyFromJSONTyped,
+    ImportedAgentApprovalNotificationFrequencyToJSON,
+    ImportedAgentApprovalNotificationFrequencyToJSONTyped,
+} from './ImportedAgentApprovalNotificationFrequency';
 
 /**
  * 
@@ -263,6 +270,12 @@ export interface User {
     adminNotificationFrequency?: number;
     /**
      * 
+     * @type {ImportedAgentApprovalNotificationFrequency}
+     * @memberof User
+     */
+    agentApprovalNotificationFrequency?: ImportedAgentApprovalNotificationFrequency;
+    /**
+     * 
      * @type {Date}
      * @memberof User
      */
@@ -450,6 +463,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'digestEmailFrequency': json['digestEmailFrequency'] == null ? undefined : DigestEmailFrequencyFromJSON(json['digestEmailFrequency']),
         'notificationFrequency': json['notificationFrequency'] == null ? undefined : json['notificationFrequency'],
         'adminNotificationFrequency': json['adminNotificationFrequency'] == null ? undefined : json['adminNotificationFrequency'],
+        'agentApprovalNotificationFrequency': json['agentApprovalNotificationFrequency'] == null ? undefined : ImportedAgentApprovalNotificationFrequencyFromJSON(json['agentApprovalNotificationFrequency']),
         'lastTenantNotificationSentDate': json['lastTenantNotificationSentDate'] == null ? undefined : (new Date(json['lastTenantNotificationSentDate'])),
         'lastReplyNotificationSentDate': json['lastReplyNotificationSentDate'] == null ? undefined : (new Date(json['lastReplyNotificationSentDate'])),
         'ignoredAddToMySiteMessages': json['ignoredAddToMySiteMessages'] == null ? undefined : json['ignoredAddToMySiteMessages'],
@@ -523,6 +537,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'digestEmailFrequency': DigestEmailFrequencyToJSON(value['digestEmailFrequency']),
         'notificationFrequency': value['notificationFrequency'],
         'adminNotificationFrequency': value['adminNotificationFrequency'],
+        'agentApprovalNotificationFrequency': ImportedAgentApprovalNotificationFrequencyToJSON(value['agentApprovalNotificationFrequency']),
         'lastTenantNotificationSentDate': value['lastTenantNotificationSentDate'] == null ? undefined : ((value['lastTenantNotificationSentDate']).toISOString()),
         'lastReplyNotificationSentDate': value['lastReplyNotificationSentDate'] == null ? undefined : ((value['lastReplyNotificationSentDate']).toISOString()),
         'ignoredAddToMySiteMessages': value['ignoredAddToMySiteMessages'],

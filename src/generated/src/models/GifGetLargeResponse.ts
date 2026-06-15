@@ -29,28 +29,16 @@ import {
 export interface GifGetLargeResponse {
     /**
      * 
+     * @type {string}
+     * @memberof GifGetLargeResponse
+     */
+    src: string;
+    /**
+     * 
      * @type {APIStatus}
      * @memberof GifGetLargeResponse
      */
     status: APIStatus;
-    /**
-     * 
-     * @type {string}
-     * @memberof GifGetLargeResponse
-     */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GifGetLargeResponse
-     */
-    reason?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GifGetLargeResponse
-     */
-    src?: string;
 }
 
 
@@ -59,6 +47,7 @@ export interface GifGetLargeResponse {
  * Check if a given object implements the GifGetLargeResponse interface.
  */
 export function instanceOfGifGetLargeResponse(value: object): value is GifGetLargeResponse {
+    if (!('src' in value) || value['src'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -73,10 +62,8 @@ export function GifGetLargeResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'src': json['src'],
         'status': APIStatusFromJSON(json['status']),
-        'code': json['code'] == null ? undefined : json['code'],
-        'reason': json['reason'] == null ? undefined : json['reason'],
-        'src': json['src'] == null ? undefined : json['src'],
     };
 }
 
@@ -91,10 +78,8 @@ export function GifGetLargeResponseToJSONTyped(value?: GifGetLargeResponse | nul
 
     return {
         
-        'status': APIStatusToJSON(value['status']),
-        'code': value['code'],
-        'reason': value['reason'],
         'src': value['src'],
+        'status': APIStatusToJSON(value['status']),
     };
 }
 

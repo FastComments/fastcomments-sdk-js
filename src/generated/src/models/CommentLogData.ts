@@ -133,6 +133,12 @@ export interface CommentLogData {
     trustFactor?: number;
     /**
      * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    source?: string;
+    /**
+     * 
      * @type {SpamRule}
      * @memberof CommentLogData
      */
@@ -360,6 +366,7 @@ export function CommentLogDataFromJSONTyped(json: any, ignoreDiscriminator: bool
         'engineResponse': json['engineResponse'] == null ? undefined : json['engineResponse'],
         'engineTokens': json['engineTokens'] == null ? undefined : json['engineTokens'],
         'trustFactor': json['trustFactor'] == null ? undefined : json['trustFactor'],
+        'source': json['source'] == null ? undefined : json['source'],
         'rule': json['rule'] == null ? undefined : SpamRuleFromJSON(json['rule']),
         'userId': json['userId'] == null ? undefined : json['userId'],
         'subscribers': json['subscribers'] == null ? undefined : json['subscribers'],
@@ -420,6 +427,7 @@ export function CommentLogDataToJSONTyped(value?: CommentLogData | null, ignoreD
         'engineResponse': value['engineResponse'],
         'engineTokens': value['engineTokens'],
         'trustFactor': value['trustFactor'],
+        'source': value['source'],
         'rule': SpamRuleToJSON(value['rule']),
         'userId': value['userId'],
         'subscribers': value['subscribers'],
