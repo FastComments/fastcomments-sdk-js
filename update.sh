@@ -1,18 +1,32 @@
 #!/bin/bash
 
+set -euo pipefail
+
 npm i
 
-# Remove previously generated code
-rm -rvf ./src/generated
+SPEC_FILE="./openapi.json"
 
-# Try to download the OpenAPI spec from the running FastComments server
-if wget -q http://localhost:3001/js/swagger.json -O ./openapi.json; then
+# Try to download a fresh OpenAPI spec from the running FastComments server.
+# Fetch to a temp file first and validate it before touching the committed spec,
+# so a failed/empty fetch can never clobber ./openapi.json or wipe ./src/generated.
+TMP_SPEC="$(mktemp)"
+trap 'rm -f "$TMP_SPEC"' EXIT
+
+if wget -q http://localhost:3001/js/swagger.json -O "$TMP_SPEC" \
+    && [ -s "$TMP_SPEC" ] \
+    && npm exec -- node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))" "$TMP_SPEC" >/dev/null 2>&1; then
     echo "Downloaded OpenAPI spec from running server"
-    SPEC_FILE="./openapi.json"
+    mv "$TMP_SPEC" "$SPEC_FILE"
 else
-    echo "Server not running, using local OpenAPI spec"
-    SPEC_FILE="./openapi.yaml"
+    echo "Could not fetch a valid spec from the server; using committed $SPEC_FILE"
+    if [ ! -s "$SPEC_FILE" ]; then
+        echo "ERROR: $SPEC_FILE is missing or empty and the server is unavailable. Aborting." >&2
+        exit 1
+    fi
 fi
+
+# Only remove generated output once we know we have a valid spec to regenerate from.
+rm -rvf ./src/generated
 
 # Generate the TypeScript client
 npm exec -- @openapitools/openapi-generator-cli generate \
