@@ -30,19 +30,24 @@ import type {
   FlagCommentPublic200Response,
   GetCommentText200Response,
   GetCommentVoteUserNames200Response,
-  GetCommentsForUserResponse,
   GetCommentsPublic200Response,
   GetEventLog200Response,
   GetFeedPostsPublic200Response,
   GetFeedPostsStats200Response,
-  GetTranslationsResponse,
+  GetGifLarge200Response,
+  GetGifsSearch200Response,
+  GetGifsTrending200Response,
+  GetOfflineUsers200Response,
+  GetOnlineUsers200Response,
+  GetPagesPublic200Response,
+  GetTranslations200Response,
   GetUserNotificationCount200Response,
   GetUserNotifications200Response,
   GetUserPresenceStatuses200Response,
   GetUserReactsPublic200Response,
-  GifGetLargeResponse,
-  GifSearchResponse,
+  GetUsersInfo200Response,
   LockComment200Response,
+  PagesSortBy,
   PinComment200Response,
   PublicBlockFromCommentParams,
   ReactBodyParams,
@@ -90,8 +95,6 @@ import {
     GetCommentText200ResponseToJSON,
     GetCommentVoteUserNames200ResponseFromJSON,
     GetCommentVoteUserNames200ResponseToJSON,
-    GetCommentsForUserResponseFromJSON,
-    GetCommentsForUserResponseToJSON,
     GetCommentsPublic200ResponseFromJSON,
     GetCommentsPublic200ResponseToJSON,
     GetEventLog200ResponseFromJSON,
@@ -100,8 +103,20 @@ import {
     GetFeedPostsPublic200ResponseToJSON,
     GetFeedPostsStats200ResponseFromJSON,
     GetFeedPostsStats200ResponseToJSON,
-    GetTranslationsResponseFromJSON,
-    GetTranslationsResponseToJSON,
+    GetGifLarge200ResponseFromJSON,
+    GetGifLarge200ResponseToJSON,
+    GetGifsSearch200ResponseFromJSON,
+    GetGifsSearch200ResponseToJSON,
+    GetGifsTrending200ResponseFromJSON,
+    GetGifsTrending200ResponseToJSON,
+    GetOfflineUsers200ResponseFromJSON,
+    GetOfflineUsers200ResponseToJSON,
+    GetOnlineUsers200ResponseFromJSON,
+    GetOnlineUsers200ResponseToJSON,
+    GetPagesPublic200ResponseFromJSON,
+    GetPagesPublic200ResponseToJSON,
+    GetTranslations200ResponseFromJSON,
+    GetTranslations200ResponseToJSON,
     GetUserNotificationCount200ResponseFromJSON,
     GetUserNotificationCount200ResponseToJSON,
     GetUserNotifications200ResponseFromJSON,
@@ -110,12 +125,12 @@ import {
     GetUserPresenceStatuses200ResponseToJSON,
     GetUserReactsPublic200ResponseFromJSON,
     GetUserReactsPublic200ResponseToJSON,
-    GifGetLargeResponseFromJSON,
-    GifGetLargeResponseToJSON,
-    GifSearchResponseFromJSON,
-    GifSearchResponseToJSON,
+    GetUsersInfo200ResponseFromJSON,
+    GetUsersInfo200ResponseToJSON,
     LockComment200ResponseFromJSON,
     LockComment200ResponseToJSON,
+    PagesSortByFromJSON,
+    PagesSortByToJSON,
     PinComment200ResponseFromJSON,
     PinComment200ResponseToJSON,
     PublicBlockFromCommentParamsFromJSON,
@@ -223,24 +238,6 @@ export interface GetCommentVoteUserNamesRequest {
     sso?: string;
 }
 
-export interface GetCommentsForUserRequest {
-    userId?: string;
-    tenantId?: string;
-    urlId?: string;
-    page?: number;
-    direction?: SortDirections;
-    lastGenDate?: number;
-    repliesToUserId?: string;
-    fetchPageForCommentId?: string;
-    includei10n?: boolean;
-    useFullTranslationIds?: boolean;
-    locale?: string;
-    includeConfig?: boolean;
-    includeNotificationCount?: boolean;
-    countAll?: boolean;
-    sso?: string;
-}
-
 export interface GetCommentsPublicRequest {
     tenantId: string;
     urlId: string;
@@ -277,7 +274,7 @@ export interface GetEventLogRequest {
     urlId: string;
     userIdWS: string;
     startTime: number;
-    endTime: number;
+    endTime?: number;
 }
 
 export interface GetFeedPostsPublicRequest {
@@ -321,7 +318,30 @@ export interface GetGlobalEventLogRequest {
     urlId: string;
     userIdWS: string;
     startTime: number;
-    endTime: number;
+    endTime?: number;
+}
+
+export interface GetOfflineUsersRequest {
+    tenantId: string;
+    urlId: string;
+    afterName?: string;
+    afterUserId?: string;
+}
+
+export interface GetOnlineUsersRequest {
+    tenantId: string;
+    urlId: string;
+    afterName?: string;
+    afterUserId?: string;
+}
+
+export interface GetPagesPublicRequest {
+    tenantId: string;
+    cursor?: string;
+    limit?: number;
+    q?: string;
+    sortBy?: PagesSortBy;
+    hasComments?: boolean;
 }
 
 export interface GetTranslationsRequest {
@@ -338,6 +358,7 @@ export interface GetUserNotificationCountRequest {
 
 export interface GetUserNotificationsRequest {
     tenantId: string;
+    urlId?: string;
     pageSize?: number;
     afterId?: string;
     includeContext?: boolean;
@@ -346,6 +367,7 @@ export interface GetUserNotificationsRequest {
     dmOnly?: boolean;
     noDm?: boolean;
     includeTranslations?: boolean;
+    includeTenantNotifications?: boolean;
     sso?: string;
 }
 
@@ -359,6 +381,11 @@ export interface GetUserReactsPublicRequest {
     tenantId: string;
     postIds?: Array<string>;
     sso?: string;
+}
+
+export interface GetUsersInfoRequest {
+    tenantId: string;
+    ids: string;
 }
 
 export interface LockCommentRequest {
@@ -381,7 +408,6 @@ export interface ReactFeedPostPublicRequest {
     reactBodyParams: ReactBodyParams;
     isUndo?: boolean;
     broadcastId?: string;
-    urlId?: string;
     sso?: string;
 }
 
@@ -661,33 +687,6 @@ export interface PublicApiInterface {
     getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNames200Response>;
 
     /**
-     * 
-     * @param {string} [userId] 
-     * @param {string} [tenantId] 
-     * @param {string} [urlId] 
-     * @param {number} [page] 
-     * @param {SortDirections} [direction] 
-     * @param {number} [lastGenDate] 
-     * @param {string} [repliesToUserId] 
-     * @param {string} [fetchPageForCommentId] 
-     * @param {boolean} [includei10n] 
-     * @param {boolean} [useFullTranslationIds] 
-     * @param {string} [locale] 
-     * @param {boolean} [includeConfig] 
-     * @param {boolean} [includeNotificationCount] 
-     * @param {boolean} [countAll] 
-     * @param {string} [sso] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PublicApiInterface
-     */
-    getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse>>;
-
-    /**
-     */
-    getCommentsForUser(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse>;
-
-    /**
      *  req tenantId urlId
      * @param {string} tenantId 
      * @param {string} urlId 
@@ -734,7 +733,7 @@ export interface PublicApiInterface {
      * @param {string} urlId 
      * @param {string} userIdWS 
      * @param {number} startTime 
-     * @param {number} endTime 
+     * @param {number} [endTime] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -789,11 +788,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifGetLargeResponse>>;
+    getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLarge200Response>>;
 
     /**
      */
-    getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifGetLargeResponse>;
+    getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLarge200Response>;
 
     /**
      * 
@@ -806,11 +805,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifSearchResponse>>;
+    getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsSearch200Response>>;
 
     /**
      */
-    getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifSearchResponse>;
+    getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsSearch200Response>;
 
     /**
      * 
@@ -822,11 +821,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifSearchResponse>>;
+    getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsTrending200Response>>;
 
     /**
      */
-    getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifSearchResponse>;
+    getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsTrending200Response>;
 
     /**
      *  req tenantId urlId userIdWS
@@ -834,7 +833,7 @@ export interface PublicApiInterface {
      * @param {string} urlId 
      * @param {string} userIdWS 
      * @param {number} startTime 
-     * @param {number} endTime 
+     * @param {number} [endTime] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -847,6 +846,59 @@ export interface PublicApiInterface {
     getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLog200Response>;
 
     /**
+     * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
+     * @param {string} tenantId 
+     * @param {string} urlId Page URL identifier (cleaned server-side).
+     * @param {string} [afterName] Cursor: pass nextAfterName from the previous response.
+     * @param {string} [afterUserId] Cursor tiebreaker: pass nextAfterUserId from the previous response. Required when afterName is set so name-ties don\&#39;t drop entries.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOfflineUsers200Response>>;
+
+    /**
+     * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
+     */
+    getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOfflineUsers200Response>;
+
+    /**
+     * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
+     * @param {string} tenantId 
+     * @param {string} urlId Page URL identifier (cleaned server-side).
+     * @param {string} [afterName] Cursor: pass nextAfterName from the previous response.
+     * @param {string} [afterUserId] Cursor tiebreaker: pass nextAfterUserId from the previous response. Required when afterName is set so name-ties don\&#39;t drop entries.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOnlineUsers200Response>>;
+
+    /**
+     * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
+     */
+    getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOnlineUsers200Response>;
+
+    /**
+     * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
+     * @param {string} tenantId 
+     * @param {string} [cursor] Opaque pagination cursor returned as &#x60;nextCursor&#x60; from a prior request. Tied to the same &#x60;sortBy&#x60;.
+     * @param {number} [limit] 1..200, default 50
+     * @param {string} [q] Optional case-insensitive title prefix filter.
+     * @param {PagesSortBy} [sortBy] Sort order. &#x60;updatedAt&#x60; (default, newest first), &#x60;commentCount&#x60; (most comments first), or &#x60;title&#x60; (alphabetical).
+     * @param {boolean} [hasComments] If true, only return pages with at least one comment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPagesPublic200Response>>;
+
+    /**
+     * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
+     */
+    getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPagesPublic200Response>;
+
+    /**
      * 
      * @param {string} namespace 
      * @param {string} component 
@@ -856,11 +908,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse>>;
+    getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslations200Response>>;
 
     /**
      */
-    getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse>;
+    getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslations200Response>;
 
     /**
      * 
@@ -879,6 +931,7 @@ export interface PublicApiInterface {
     /**
      * 
      * @param {string} tenantId 
+     * @param {string} [urlId] Used to determine whether the current page is subscribed.
      * @param {number} [pageSize] 
      * @param {string} [afterId] 
      * @param {boolean} [includeContext] 
@@ -887,6 +940,7 @@ export interface PublicApiInterface {
      * @param {boolean} [dmOnly] 
      * @param {boolean} [noDm] 
      * @param {boolean} [includeTranslations] 
+     * @param {boolean} [includeTenantNotifications] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -927,6 +981,21 @@ export interface PublicApiInterface {
     /**
      */
     getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserReactsPublic200Response>;
+
+    /**
+     * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
+     * @param {string} tenantId 
+     * @param {string} ids Comma-delimited userIds.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersInfo200Response>>;
+
+    /**
+     * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
+     */
+    getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfo200Response>;
 
     /**
      * 
@@ -979,7 +1048,6 @@ export interface PublicApiInterface {
      * @param {ReactBodyParams} reactBodyParams 
      * @param {boolean} [isUndo] 
      * @param {string} [broadcastId] 
-     * @param {string} [urlId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1782,90 +1850,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     }
 
     /**
-     */
-    async getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['userId'] != null) {
-            queryParameters['userId'] = requestParameters['userId'];
-        }
-
-        if (requestParameters['tenantId'] != null) {
-            queryParameters['tenantId'] = requestParameters['tenantId'];
-        }
-
-        if (requestParameters['urlId'] != null) {
-            queryParameters['urlId'] = requestParameters['urlId'];
-        }
-
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-
-        if (requestParameters['direction'] != null) {
-            queryParameters['direction'] = requestParameters['direction'];
-        }
-
-        if (requestParameters['lastGenDate'] != null) {
-            queryParameters['lastGenDate'] = requestParameters['lastGenDate'];
-        }
-
-        if (requestParameters['repliesToUserId'] != null) {
-            queryParameters['repliesToUserId'] = requestParameters['repliesToUserId'];
-        }
-
-        if (requestParameters['fetchPageForCommentId'] != null) {
-            queryParameters['fetchPageForCommentId'] = requestParameters['fetchPageForCommentId'];
-        }
-
-        if (requestParameters['includei10n'] != null) {
-            queryParameters['includei10n'] = requestParameters['includei10n'];
-        }
-
-        if (requestParameters['useFullTranslationIds'] != null) {
-            queryParameters['useFullTranslationIds'] = requestParameters['useFullTranslationIds'];
-        }
-
-        if (requestParameters['locale'] != null) {
-            queryParameters['locale'] = requestParameters['locale'];
-        }
-
-        if (requestParameters['includeConfig'] != null) {
-            queryParameters['includeConfig'] = requestParameters['includeConfig'];
-        }
-
-        if (requestParameters['includeNotificationCount'] != null) {
-            queryParameters['includeNotificationCount'] = requestParameters['includeNotificationCount'];
-        }
-
-        if (requestParameters['countAll'] != null) {
-            queryParameters['countAll'] = requestParameters['countAll'];
-        }
-
-        if (requestParameters['sso'] != null) {
-            queryParameters['sso'] = requestParameters['sso'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/comments-for-user`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsForUserResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getCommentsForUser(requestParameters: GetCommentsForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse> {
-        const response = await this.getCommentsForUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      *  req tenantId urlId
      */
     async getCommentsPublicRaw(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsPublic200Response>> {
@@ -2045,13 +2029,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             );
         }
 
-        if (requestParameters['endTime'] == null) {
-            throw new runtime.RequiredError(
-                'endTime',
-                'Required parameter "endTime" was null or undefined when calling getEventLog().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['urlId'] != null) {
@@ -2195,7 +2172,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifGetLargeResponse>> {
+    async getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLarge200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2225,19 +2202,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GifGetLargeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifLarge200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifGetLargeResponse> {
+    async getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLarge200Response> {
         const response = await this.getGifLargeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifSearchResponse>> {
+    async getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsSearch200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2279,19 +2256,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GifSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifsSearch200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifSearchResponse> {
+    async getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsSearch200Response> {
         const response = await this.getGifsSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifSearchResponse>> {
+    async getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsTrending200Response>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2322,12 +2299,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GifSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifsTrending200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifSearchResponse> {
+    async getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsTrending200Response> {
         const response = await this.getGifsTrendingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2361,13 +2338,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             throw new runtime.RequiredError(
                 'startTime',
                 'Required parameter "startTime" was null or undefined when calling getGlobalEventLog().'
-            );
-        }
-
-        if (requestParameters['endTime'] == null) {
-            throw new runtime.RequiredError(
-                'endTime',
-                'Required parameter "endTime" was null or undefined when calling getGlobalEventLog().'
             );
         }
 
@@ -2410,8 +2380,165 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     }
 
     /**
+     * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
      */
-    async getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse>> {
+    async getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOfflineUsers200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getOfflineUsers().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getOfflineUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['afterName'] != null) {
+            queryParameters['afterName'] = requestParameters['afterName'];
+        }
+
+        if (requestParameters['afterUserId'] != null) {
+            queryParameters['afterUserId'] = requestParameters['afterUserId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/pages/{tenantId}/users/offline`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetOfflineUsers200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
+     */
+    async getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOfflineUsers200Response> {
+        const response = await this.getOfflineUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
+     */
+    async getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOnlineUsers200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getOnlineUsers().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getOnlineUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['afterName'] != null) {
+            queryParameters['afterName'] = requestParameters['afterName'];
+        }
+
+        if (requestParameters['afterUserId'] != null) {
+            queryParameters['afterUserId'] = requestParameters['afterUserId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/pages/{tenantId}/users/online`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetOnlineUsers200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
+     */
+    async getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOnlineUsers200Response> {
+        const response = await this.getOnlineUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
+     */
+    async getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPagesPublic200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getPagesPublic().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['cursor'] != null) {
+            queryParameters['cursor'] = requestParameters['cursor'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['sortBy'] != null) {
+            queryParameters['sortBy'] = requestParameters['sortBy'];
+        }
+
+        if (requestParameters['hasComments'] != null) {
+            queryParameters['hasComments'] = requestParameters['hasComments'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/pages/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPagesPublic200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
+     */
+    async getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPagesPublic200Response> {
+        const response = await this.getPagesPublicRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslations200Response>> {
         if (requestParameters['namespace'] == null) {
             throw new runtime.RequiredError(
                 'namespace',
@@ -2445,12 +2572,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTranslationsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTranslations200ResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse> {
+    async getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslations200Response> {
         const response = await this.getTranslationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2510,6 +2637,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
         if (requestParameters['pageSize'] != null) {
             queryParameters['pageSize'] = requestParameters['pageSize'];
         }
@@ -2540,6 +2671,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
         if (requestParameters['includeTranslations'] != null) {
             queryParameters['includeTranslations'] = requestParameters['includeTranslations'];
+        }
+
+        if (requestParameters['includeTenantNotifications'] != null) {
+            queryParameters['includeTenantNotifications'] = requestParameters['includeTenantNotifications'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2658,6 +2793,50 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserReactsPublic200Response> {
         const response = await this.getUserReactsPublicRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
+     */
+    async getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersInfo200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getUsersInfo().'
+            );
+        }
+
+        if (requestParameters['ids'] == null) {
+            throw new runtime.RequiredError(
+                'ids',
+                'Required parameter "ids" was null or undefined when calling getUsersInfo().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/pages/{tenantId}/users/info`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUsersInfo200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
+     */
+    async getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfo200Response> {
+        const response = await this.getUsersInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2823,10 +3002,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
         if (requestParameters['broadcastId'] != null) {
             queryParameters['broadcastId'] = requestParameters['broadcastId'];
-        }
-
-        if (requestParameters['urlId'] != null) {
-            queryParameters['urlId'] = requestParameters['urlId'];
         }
 
         if (requestParameters['sso'] != null) {

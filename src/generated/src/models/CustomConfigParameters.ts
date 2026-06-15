@@ -55,6 +55,13 @@ import {
     QuestionWhenSaveToJSON,
     QuestionWhenSaveToJSONTyped,
 } from './QuestionWhenSave';
+import type { UsersListLocation } from './UsersListLocation';
+import {
+    UsersListLocationFromJSON,
+    UsersListLocationFromJSONTyped,
+    UsersListLocationToJSON,
+    UsersListLocationToJSONTyped,
+} from './UsersListLocation';
 import type { GifRating } from './GifRating';
 import {
     GifRatingFromJSON,
@@ -479,6 +486,12 @@ export interface CustomConfigParameters {
      * @type {boolean}
      * @memberof CustomConfigParameters
      */
+    enableFChat?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
     enableResizeHandle?: boolean;
     /**
      * 
@@ -596,6 +609,18 @@ export interface CustomConfigParameters {
     wrap?: boolean;
     /**
      * 
+     * @type {UsersListLocation}
+     * @memberof CustomConfigParameters
+     */
+    usersListLocation?: UsersListLocation;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    usersListIncludeOffline?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof CustomConfigParameters
      */
@@ -708,6 +733,7 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'readonly': json['readonly'] == null ? undefined : json['readonly'],
         'noNewRootComments': json['noNewRootComments'] == null ? undefined : json['noNewRootComments'],
         'requireSSO': json['requireSSO'] == null ? undefined : json['requireSSO'],
+        'enableFChat': json['enableFChat'] == null ? undefined : json['enableFChat'],
         'enableResizeHandle': json['enableResizeHandle'] == null ? undefined : json['enableResizeHandle'],
         'restrictedLinkDomains': json['restrictedLinkDomains'] == null ? undefined : json['restrictedLinkDomains'],
         'showBadgesInTopBar': json['showBadgesInTopBar'] == null ? undefined : json['showBadgesInTopBar'],
@@ -728,6 +754,8 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'widgetQuestionsRequired': json['widgetQuestionsRequired'] == null ? undefined : CommentQuestionsRequiredFromJSON(json['widgetQuestionsRequired']),
         'widgetSubQuestionVisibility': json['widgetSubQuestionVisibility'] == null ? undefined : QuestionSubQuestionVisibilityFromJSON(json['widgetSubQuestionVisibility']),
         'wrap': json['wrap'] == null ? undefined : json['wrap'],
+        'usersListLocation': json['usersListLocation'] == null ? undefined : UsersListLocationFromJSON(json['usersListLocation']),
+        'usersListIncludeOffline': json['usersListIncludeOffline'] == null ? undefined : json['usersListIncludeOffline'],
         'ticketBaseUrl': json['ticketBaseUrl'] == null ? undefined : json['ticketBaseUrl'],
         'ticketKBSearchEndpoint': json['ticketKBSearchEndpoint'] == null ? undefined : json['ticketKBSearchEndpoint'],
         'ticketFileUploadsEnabled': json['ticketFileUploadsEnabled'] == null ? undefined : json['ticketFileUploadsEnabled'],
@@ -805,6 +833,7 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'readonly': value['readonly'],
         'noNewRootComments': value['noNewRootComments'],
         'requireSSO': value['requireSSO'],
+        'enableFChat': value['enableFChat'],
         'enableResizeHandle': value['enableResizeHandle'],
         'restrictedLinkDomains': value['restrictedLinkDomains'],
         'showBadgesInTopBar': value['showBadgesInTopBar'],
@@ -825,6 +854,8 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'widgetQuestionsRequired': CommentQuestionsRequiredToJSON(value['widgetQuestionsRequired']),
         'widgetSubQuestionVisibility': QuestionSubQuestionVisibilityToJSON(value['widgetSubQuestionVisibility']),
         'wrap': value['wrap'],
+        'usersListLocation': UsersListLocationToJSON(value['usersListLocation']),
+        'usersListIncludeOffline': value['usersListIncludeOffline'],
         'ticketBaseUrl': value['ticketBaseUrl'],
         'ticketKBSearchEndpoint': value['ticketKBSearchEndpoint'],
         'ticketFileUploadsEnabled': value['ticketFileUploadsEnabled'],

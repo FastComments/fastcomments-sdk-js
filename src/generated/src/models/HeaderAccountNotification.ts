@@ -73,6 +73,12 @@ export interface HeaderAccountNotification {
      * @memberof HeaderAccountNotification
      */
     createdAt: Date;
+    /**
+     * Discriminator for notifications with a special layout/click handler (e.g. "feedback-offer").
+     * @type {string}
+     * @memberof HeaderAccountNotification
+     */
+    type?: string | null;
 }
 
 /**
@@ -110,6 +116,7 @@ export function HeaderAccountNotificationFromJSONTyped(json: any, ignoreDiscrimi
         'linkUrl': json['linkUrl'],
         'linkText': json['linkText'],
         'createdAt': (new Date(json['createdAt'])),
+        'type': json['type'] == null ? undefined : json['type'],
     };
 }
 
@@ -133,6 +140,7 @@ export function HeaderAccountNotificationToJSONTyped(value?: HeaderAccountNotifi
         'linkUrl': value['linkUrl'],
         'linkText': value['linkText'],
         'createdAt': ((value['createdAt']).toISOString()),
+        'type': value['type'],
     };
 }
 

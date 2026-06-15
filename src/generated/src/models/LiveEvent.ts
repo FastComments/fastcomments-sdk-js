@@ -161,6 +161,12 @@ export interface LiveEvent {
     ul?: Array<string>;
     /**
      * 
+     * @type {number}
+     * @memberof LiveEvent
+     */
+    sc?: number;
+    /**
+     * 
      * @type {{ [key: string]: number; }}
      * @memberof LiveEvent
      */
@@ -202,6 +208,7 @@ export function LiveEventFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'isClosed': json['isClosed'] == null ? undefined : json['isClosed'],
         'uj': json['uj'] == null ? undefined : json['uj'],
         'ul': json['ul'] == null ? undefined : json['ul'],
+        'sc': json['sc'] == null ? undefined : json['sc'],
         'changes': json['changes'] == null ? undefined : json['changes'],
     };
 }
@@ -232,6 +239,7 @@ export function LiveEventToJSONTyped(value?: LiveEvent | null, ignoreDiscriminat
         'isClosed': value['isClosed'],
         'uj': value['uj'],
         'ul': value['ul'],
+        'sc': value['sc'],
         'changes': value['changes'],
     };
 }

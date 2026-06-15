@@ -135,12 +135,21 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**getEventLog**](Apis/PublicApi.md#geteventlog) | **GET** /event-log/{tenantId} |  req tenantId urlId userIdWS |
 *PublicApi* | [**getFeedPostsPublic**](Apis/PublicApi.md#getfeedpostspublic) | **GET** /feed-posts/{tenantId} |  req tenantId afterId |
 *PublicApi* | [**getFeedPostsStats**](Apis/PublicApi.md#getfeedpostsstats) | **GET** /feed-posts/{tenantId}/stats |  |
+*PublicApi* | [**getGifLarge**](Apis/PublicApi.md#getgiflarge) | **GET** /gifs/get-large/{tenantId} |  |
+*PublicApi* | [**getGifsSearch**](Apis/PublicApi.md#getgifssearch) | **GET** /gifs/search/{tenantId} |  |
+*PublicApi* | [**getGifsTrending**](Apis/PublicApi.md#getgifstrending) | **GET** /gifs/trending/{tenantId} |  |
 *PublicApi* | [**getGlobalEventLog**](Apis/PublicApi.md#getglobaleventlog) | **GET** /event-log/global/{tenantId} |  req tenantId urlId userIdWS |
+*PublicApi* | [**getOfflineUsers**](Apis/PublicApi.md#getofflineusers) | **GET** /pages/{tenantId}/users/offline | Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost. |
+*PublicApi* | [**getOnlineUsers**](Apis/PublicApi.md#getonlineusers) | **GET** /pages/{tenantId}/users/online | Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don't enumerate). |
+*PublicApi* | [**getPagesPublic**](Apis/PublicApi.md#getpagespublic) | **GET** /pages/{tenantId} | List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user's group access. |
+*PublicApi* | [**getTranslations**](Apis/PublicApi.md#gettranslations) | **GET** /translations/{namespace}/{component} |  |
 *PublicApi* | [**getUserNotificationCount**](Apis/PublicApi.md#getusernotificationcount) | **GET** /user-notifications/get-count |  |
 *PublicApi* | [**getUserNotifications**](Apis/PublicApi.md#getusernotifications) | **GET** /user-notifications |  |
 *PublicApi* | [**getUserPresenceStatuses**](Apis/PublicApi.md#getuserpresencestatuses) | **GET** /user-presence-status |  |
 *PublicApi* | [**getUserReactsPublic**](Apis/PublicApi.md#getuserreactspublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
+*PublicApi* | [**getUsersInfo**](Apis/PublicApi.md#getusersinfo) | **GET** /pages/{tenantId}/users/info | Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked). |
 *PublicApi* | [**lockComment**](Apis/PublicApi.md#lockcomment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
+*PublicApi* | [**logoutPublic**](Apis/PublicApi.md#logoutpublic) | **PUT** /auth/logout |  |
 *PublicApi* | [**pinComment**](Apis/PublicApi.md#pincomment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
 *PublicApi* | [**reactFeedPostPublic**](Apis/PublicApi.md#reactfeedpostpublic) | **POST** /feed-posts/{tenantId}/react/{postId} |  |
 *PublicApi* | [**resetUserNotificationCount**](Apis/PublicApi.md#resetusernotificationcount) | **POST** /user-notifications/reset-count |  |
@@ -178,6 +187,7 @@ All URIs are relative to *https://fastcomments.com*
  - [APIGetUserBadgesResponse](./model/APIGetUserBadgesResponse.md)
  - [APIPage](./model/APIPage.md)
  - [APISSOUser](./model/APISSOUser.md)
+ - [APISaveCommentResponse](./model/APISaveCommentResponse.md)
  - [APIStatus](./model/APIStatus.md)
  - [APITenant](./model/APITenant.md)
  - [APITenantDailyUsage](./model/APITenantDailyUsage.md)
@@ -195,6 +205,8 @@ All URIs are relative to *https://fastcomments.com*
  - [AggregateQuestionResultsResponse](./model/AggregateQuestionResultsResponse.md)
  - [AggregateQuestionResults_200_response](./model/AggregateQuestionResults_200_response.md)
  - [AggregateTimeBucket](./model/AggregateTimeBucket.md)
+ - [Aggregate_200_response](./model/Aggregate_200_response.md)
+ - [AggregationAPIError](./model/AggregationAPIError.md)
  - [AggregationItem](./model/AggregationItem.md)
  - [AggregationOpType](./model/AggregationOpType.md)
  - [AggregationOperation](./model/AggregationOperation.md)
@@ -336,6 +348,9 @@ All URIs are relative to *https://fastcomments.com*
  - [GetFeedPostsResponse](./model/GetFeedPostsResponse.md)
  - [GetFeedPostsStats_200_response](./model/GetFeedPostsStats_200_response.md)
  - [GetFeedPosts_200_response](./model/GetFeedPosts_200_response.md)
+ - [GetGifLarge_200_response](./model/GetGifLarge_200_response.md)
+ - [GetGifsSearch_200_response](./model/GetGifsSearch_200_response.md)
+ - [GetGifsTrending_200_response](./model/GetGifsTrending_200_response.md)
  - [GetHashTagsResponse](./model/GetHashTagsResponse.md)
  - [GetHashTags_200_response](./model/GetHashTags_200_response.md)
  - [GetModeratorResponse](./model/GetModeratorResponse.md)
@@ -347,13 +362,17 @@ All URIs are relative to *https://fastcomments.com*
  - [GetNotificationCount_200_response](./model/GetNotificationCount_200_response.md)
  - [GetNotificationsResponse](./model/GetNotificationsResponse.md)
  - [GetNotifications_200_response](./model/GetNotifications_200_response.md)
+ - [GetOfflineUsers_200_response](./model/GetOfflineUsers_200_response.md)
+ - [GetOnlineUsers_200_response](./model/GetOnlineUsers_200_response.md)
  - [GetPageByURLIdAPIResponse](./model/GetPageByURLIdAPIResponse.md)
  - [GetPagesAPIResponse](./model/GetPagesAPIResponse.md)
+ - [GetPagesPublic_200_response](./model/GetPagesPublic_200_response.md)
  - [GetPendingWebhookEventCountResponse](./model/GetPendingWebhookEventCountResponse.md)
  - [GetPendingWebhookEventCount_200_response](./model/GetPendingWebhookEventCount_200_response.md)
  - [GetPendingWebhookEventsResponse](./model/GetPendingWebhookEventsResponse.md)
  - [GetPendingWebhookEvents_200_response](./model/GetPendingWebhookEvents_200_response.md)
  - [GetPublicFeedPostsResponse](./model/GetPublicFeedPostsResponse.md)
+ - [GetPublicPagesResponse](./model/GetPublicPagesResponse.md)
  - [GetQuestionConfigResponse](./model/GetQuestionConfigResponse.md)
  - [GetQuestionConfig_200_response](./model/GetQuestionConfig_200_response.md)
  - [GetQuestionConfigsResponse](./model/GetQuestionConfigsResponse.md)
@@ -384,6 +403,8 @@ All URIs are relative to *https://fastcomments.com*
  - [GetTicket_200_response](./model/GetTicket_200_response.md)
  - [GetTicketsResponse](./model/GetTicketsResponse.md)
  - [GetTickets_200_response](./model/GetTickets_200_response.md)
+ - [GetTranslationsResponse](./model/GetTranslationsResponse.md)
+ - [GetTranslations_200_response](./model/GetTranslations_200_response.md)
  - [GetUserBadgeProgressById_200_response](./model/GetUserBadgeProgressById_200_response.md)
  - [GetUserBadgeProgressList_200_response](./model/GetUserBadgeProgressList_200_response.md)
  - [GetUserBadge_200_response](./model/GetUserBadge_200_response.md)
@@ -396,15 +417,21 @@ All URIs are relative to *https://fastcomments.com*
  - [GetUserReactsPublic_200_response](./model/GetUserReactsPublic_200_response.md)
  - [GetUserResponse](./model/GetUserResponse.md)
  - [GetUser_200_response](./model/GetUser_200_response.md)
+ - [GetUsersInfo_200_response](./model/GetUsersInfo_200_response.md)
  - [GetVotesForUserResponse](./model/GetVotesForUserResponse.md)
  - [GetVotesForUser_200_response](./model/GetVotesForUser_200_response.md)
  - [GetVotesResponse](./model/GetVotesResponse.md)
  - [GetVotes_200_response](./model/GetVotes_200_response.md)
+ - [GifGetLargeResponse](./model/GifGetLargeResponse.md)
  - [GifRating](./model/GifRating.md)
+ - [GifSearchInternalError](./model/GifSearchInternalError.md)
+ - [GifSearchResponse](./model/GifSearchResponse.md)
+ - [GifSearchResponse_images_inner_inner](./model/GifSearchResponse_images_inner_inner.md)
  - [HeaderAccountNotification](./model/HeaderAccountNotification.md)
  - [HeaderState](./model/HeaderState.md)
  - [IgnoredResponse](./model/IgnoredResponse.md)
  - [ImageContentProfanityLevel](./model/ImageContentProfanityLevel.md)
+ - [ImportedAgentApprovalNotificationFrequency](./model/ImportedAgentApprovalNotificationFrequency.md)
  - [ImportedSiteType](./model/ImportedSiteType.md)
  - [LiveEvent](./model/LiveEvent.md)
  - [LiveEventType](./model/LiveEventType.md)
@@ -417,6 +444,11 @@ All URIs are relative to *https://fastcomments.com*
  - [NotificationAndCount](./model/NotificationAndCount.md)
  - [NotificationObjectType](./model/NotificationObjectType.md)
  - [NotificationType](./model/NotificationType.md)
+ - [PageUserEntry](./model/PageUserEntry.md)
+ - [PageUsersInfoResponse](./model/PageUsersInfoResponse.md)
+ - [PageUsersOfflineResponse](./model/PageUsersOfflineResponse.md)
+ - [PageUsersOnlineResponse](./model/PageUsersOnlineResponse.md)
+ - [PagesSortBy](./model/PagesSortBy.md)
  - [PatchDomainConfigParams](./model/PatchDomainConfigParams.md)
  - [PatchHashTag_200_response](./model/PatchHashTag_200_response.md)
  - [PatchPageAPIResponse](./model/PatchPageAPIResponse.md)
@@ -433,6 +465,7 @@ All URIs are relative to *https://fastcomments.com*
  - [PublicComment](./model/PublicComment.md)
  - [PublicCommentBase](./model/PublicCommentBase.md)
  - [PublicFeedPostsResponse](./model/PublicFeedPostsResponse.md)
+ - [PublicPage](./model/PublicPage.md)
  - [PublicVote](./model/PublicVote.md)
  - [PutSSOUserAPIResponse](./model/PutSSOUserAPIResponse.md)
  - [QueryPredicate](./model/QueryPredicate.md)
@@ -449,7 +482,6 @@ All URIs are relative to *https://fastcomments.com*
  - [ReactFeedPostPublic_200_response](./model/ReactFeedPostPublic_200_response.md)
  - [ReactFeedPostResponse](./model/ReactFeedPostResponse.md)
  - [Record_string__before_string_or_null__after_string_or_null___value](./model/Record_string__before_string_or_null__after_string_or_null___value.md)
- - [Record_string_string_or_number__value](./model/Record_string_string_or_number__value.md)
  - [RenderEmailTemplateBody](./model/RenderEmailTemplateBody.md)
  - [RenderEmailTemplateResponse](./model/RenderEmailTemplateResponse.md)
  - [RenderEmailTemplate_200_response](./model/RenderEmailTemplate_200_response.md)
@@ -462,7 +494,6 @@ All URIs are relative to *https://fastcomments.com*
  - [ResetUserNotifications_200_response](./model/ResetUserNotifications_200_response.md)
  - [SORT_DIR](./model/SORT_DIR.md)
  - [SSOSecurityLevel](./model/SSOSecurityLevel.md)
- - [SaveCommentResponse](./model/SaveCommentResponse.md)
  - [SaveCommentResponseOptimized](./model/SaveCommentResponseOptimized.md)
  - [SaveComment_200_response](./model/SaveComment_200_response.md)
  - [SaveCommentsResponseWithPresence](./model/SaveCommentsResponseWithPresence.md)
@@ -513,6 +544,7 @@ All URIs are relative to *https://fastcomments.com*
  - [UserSearchSection](./model/UserSearchSection.md)
  - [UserSearchSectionResult](./model/UserSearchSectionResult.md)
  - [UserSessionInfo](./model/UserSessionInfo.md)
+ - [UsersListLocation](./model/UsersListLocation.md)
  - [VoteBodyParams](./model/VoteBodyParams.md)
  - [VoteComment_200_response](./model/VoteComment_200_response.md)
  - [VoteDeleteResponse](./model/VoteDeleteResponse.md)

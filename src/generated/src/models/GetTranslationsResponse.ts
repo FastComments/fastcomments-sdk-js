@@ -28,29 +28,17 @@ import {
  */
 export interface GetTranslationsResponse {
     /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: string; }}
+     * @memberof GetTranslationsResponse
+     */
+    translations: { [key: string]: string; };
+    /**
      * 
      * @type {APIStatus}
      * @memberof GetTranslationsResponse
      */
     status: APIStatus;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetTranslationsResponse
-     */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetTranslationsResponse
-     */
-    reason?: string;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof GetTranslationsResponse
-     */
-    translations?: { [key: string]: string; };
 }
 
 
@@ -59,6 +47,7 @@ export interface GetTranslationsResponse {
  * Check if a given object implements the GetTranslationsResponse interface.
  */
 export function instanceOfGetTranslationsResponse(value: object): value is GetTranslationsResponse {
+    if (!('translations' in value) || value['translations'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -73,10 +62,8 @@ export function GetTranslationsResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'translations': json['translations'],
         'status': APIStatusFromJSON(json['status']),
-        'code': json['code'] == null ? undefined : json['code'],
-        'reason': json['reason'] == null ? undefined : json['reason'],
-        'translations': json['translations'] == null ? undefined : json['translations'],
     };
 }
 
@@ -91,10 +78,8 @@ export function GetTranslationsResponseToJSONTyped(value?: GetTranslationsRespon
 
     return {
         
-        'status': APIStatusToJSON(value['status']),
-        'code': value['code'],
-        'reason': value['reason'],
         'translations': value['translations'],
+        'status': APIStatusToJSON(value['status']),
     };
 }
 
