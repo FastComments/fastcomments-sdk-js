@@ -125,12 +125,17 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**checkedCommentsForBlocked**](Apis/PublicApi.md#checkedcommentsforblocked) | **GET** /check-blocked-comments |  |
 *PublicApi* | [**createCommentPublic**](Apis/PublicApi.md#createcommentpublic) | **POST** /comments/{tenantId} |  |
 *PublicApi* | [**createFeedPostPublic**](Apis/PublicApi.md#createfeedpostpublic) | **POST** /feed-posts/{tenantId} |  |
+*PublicApi* | [**createV1PageReact**](Apis/PublicApi.md#createv1pagereact) | **POST** /page-reacts/v1/likes/{tenantId} |  |
+*PublicApi* | [**createV2PageReact**](Apis/PublicApi.md#createv2pagereact) | **POST** /page-reacts/v2/{tenantId} |  |
 *PublicApi* | [**deleteCommentPublic**](Apis/PublicApi.md#deletecommentpublic) | **DELETE** /comments/{tenantId}/{commentId} |  |
 *PublicApi* | [**deleteCommentVote**](Apis/PublicApi.md#deletecommentvote) | **DELETE** /comments/{tenantId}/{commentId}/vote/{voteId} |  |
 *PublicApi* | [**deleteFeedPostPublic**](Apis/PublicApi.md#deletefeedpostpublic) | **DELETE** /feed-posts/{tenantId}/{postId} |  |
+*PublicApi* | [**deleteV1PageReact**](Apis/PublicApi.md#deletev1pagereact) | **DELETE** /page-reacts/v1/likes/{tenantId} |  |
+*PublicApi* | [**deleteV2PageReact**](Apis/PublicApi.md#deletev2pagereact) | **DELETE** /page-reacts/v2/{tenantId} |  |
 *PublicApi* | [**flagCommentPublic**](Apis/PublicApi.md#flagcommentpublic) | **POST** /flag-comment/{commentId} |  |
 *PublicApi* | [**getCommentText**](Apis/PublicApi.md#getcommenttext) | **GET** /comments/{tenantId}/{commentId}/text |  |
 *PublicApi* | [**getCommentVoteUserNames**](Apis/PublicApi.md#getcommentvoteusernames) | **GET** /comments/{tenantId}/{commentId}/votes |  |
+*PublicApi* | [**getCommentsForUser**](Apis/PublicApi.md#getcommentsforuser) | **GET** /comments-for-user |  |
 *PublicApi* | [**getCommentsPublic**](Apis/PublicApi.md#getcommentspublic) | **GET** /comments/{tenantId} |  req tenantId urlId |
 *PublicApi* | [**getEventLog**](Apis/PublicApi.md#geteventlog) | **GET** /event-log/{tenantId} |  req tenantId urlId userIdWS |
 *PublicApi* | [**getFeedPostsPublic**](Apis/PublicApi.md#getfeedpostspublic) | **GET** /feed-posts/{tenantId} |  req tenantId afterId |
@@ -148,6 +153,9 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**getUserPresenceStatuses**](Apis/PublicApi.md#getuserpresencestatuses) | **GET** /user-presence-status |  |
 *PublicApi* | [**getUserReactsPublic**](Apis/PublicApi.md#getuserreactspublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
 *PublicApi* | [**getUsersInfo**](Apis/PublicApi.md#getusersinfo) | **GET** /pages/{tenantId}/users/info | Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked). |
+*PublicApi* | [**getV1PageLikes**](Apis/PublicApi.md#getv1pagelikes) | **GET** /page-reacts/v1/likes/{tenantId} |  |
+*PublicApi* | [**getV2PageReactUsers**](Apis/PublicApi.md#getv2pagereactusers) | **GET** /page-reacts/v2/{tenantId}/list |  |
+*PublicApi* | [**getV2PageReacts**](Apis/PublicApi.md#getv2pagereacts) | **GET** /page-reacts/v2/{tenantId} |  |
 *PublicApi* | [**lockComment**](Apis/PublicApi.md#lockcomment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
 *PublicApi* | [**logoutPublic**](Apis/PublicApi.md#logoutpublic) | **PUT** /auth/logout |  |
 *PublicApi* | [**pinComment**](Apis/PublicApi.md#pincomment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
@@ -286,6 +294,9 @@ All URIs are relative to *https://fastcomments.com*
  - [CreateTicket_200_response](./model/CreateTicket_200_response.md)
  - [CreateUserBadgeParams](./model/CreateUserBadgeParams.md)
  - [CreateUserBadge_200_response](./model/CreateUserBadge_200_response.md)
+ - [CreateV1PageReact](./model/CreateV1PageReact.md)
+ - [CreateV1PageReact_200_response](./model/CreateV1PageReact_200_response.md)
+ - [CreateV2PageReact_200_response](./model/CreateV2PageReact_200_response.md)
  - [CustomConfigParameters](./model/CustomConfigParameters.md)
  - [CustomEmailTemplate](./model/CustomEmailTemplate.md)
  - [DeleteCommentAction](./model/DeleteCommentAction.md)
@@ -300,6 +311,8 @@ All URIs are relative to *https://fastcomments.com*
  - [DeletePageAPIResponse](./model/DeletePageAPIResponse.md)
  - [DeleteSSOUserAPIResponse](./model/DeleteSSOUserAPIResponse.md)
  - [DeleteSubscriptionAPIResponse](./model/DeleteSubscriptionAPIResponse.md)
+ - [DeleteV1PageReact_200_response](./model/DeleteV1PageReact_200_response.md)
+ - [DeleteV2PageReact_200_response](./model/DeleteV2PageReact_200_response.md)
  - [DeletedCommentResultComment](./model/DeletedCommentResultComment.md)
  - [DigestEmailFrequency](./model/DigestEmailFrequency.md)
  - [EmailTemplateDefinition](./model/EmailTemplateDefinition.md)
@@ -326,6 +339,8 @@ All URIs are relative to *https://fastcomments.com*
  - [GetCommentVoteUserNamesSuccessResponse](./model/GetCommentVoteUserNamesSuccessResponse.md)
  - [GetCommentVoteUserNames_200_response](./model/GetCommentVoteUserNames_200_response.md)
  - [GetComment_200_response](./model/GetComment_200_response.md)
+ - [GetCommentsForUserResponse](./model/GetCommentsForUserResponse.md)
+ - [GetCommentsForUser_200_response](./model/GetCommentsForUser_200_response.md)
  - [GetCommentsPublic_200_response](./model/GetCommentsPublic_200_response.md)
  - [GetCommentsResponseWithPresence_PublicComment_](./model/GetCommentsResponseWithPresence_PublicComment_.md)
  - [GetCommentsResponse_PublicComment_](./model/GetCommentsResponse_PublicComment_.md)
@@ -418,6 +433,12 @@ All URIs are relative to *https://fastcomments.com*
  - [GetUserResponse](./model/GetUserResponse.md)
  - [GetUser_200_response](./model/GetUser_200_response.md)
  - [GetUsersInfo_200_response](./model/GetUsersInfo_200_response.md)
+ - [GetV1PageLikes](./model/GetV1PageLikes.md)
+ - [GetV1PageLikes_200_response](./model/GetV1PageLikes_200_response.md)
+ - [GetV2PageReactUsersResponse](./model/GetV2PageReactUsersResponse.md)
+ - [GetV2PageReactUsers_200_response](./model/GetV2PageReactUsers_200_response.md)
+ - [GetV2PageReacts](./model/GetV2PageReacts.md)
+ - [GetV2PageReacts_200_response](./model/GetV2PageReacts_200_response.md)
  - [GetVotesForUserResponse](./model/GetVotesForUserResponse.md)
  - [GetVotesForUser_200_response](./model/GetVotesForUser_200_response.md)
  - [GetVotesResponse](./model/GetVotesResponse.md)

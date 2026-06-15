@@ -1237,6 +1237,105 @@
 				],
 				"type": "object"
 			},
+			"GetV1PageLikes": {
+				"properties": {
+					"urlIdWS": {
+						"type": "string"
+					},
+					"didLike": {
+						"type": "boolean"
+					},
+					"commentCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"likeCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"urlIdWS",
+					"didLike",
+					"commentCount",
+					"likeCount",
+					"status"
+				],
+				"type": "object"
+			},
+			"GetV2PageReactUsersResponse": {
+				"properties": {
+					"userNames": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"userNames",
+					"status"
+				],
+				"type": "object"
+			},
+			"Record_string.number_": {
+				"properties": {},
+				"additionalProperties": {
+					"type": "number",
+					"format": "double"
+				},
+				"type": "object",
+				"description": "Construct a type with a set of properties K of type T"
+			},
+			"GetV2PageReacts": {
+				"properties": {
+					"reactedIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"counts": {
+						"$ref": "#/components/schemas/Record_string.number_"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"CreateV1PageReact": {
+				"properties": {
+					"code": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"CreateV2PageReact": {
+				"$ref": "#/components/schemas/CreateV1PageReact"
+			},
+			"DeleteV1PageReact": {
+				"$ref": "#/components/schemas/CreateV1PageReact"
+			},
+			"DeleteV2PageReact": {
+				"$ref": "#/components/schemas/CreateV1PageReact"
+			},
 			"GifSearchResponse": {
 				"properties": {
 					"images": {
@@ -2483,6 +2582,34 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Pick_GetCommentsResponse.Exclude_keyofGetCommentsResponse.lastGenDate-or-pageNumber__": {
+				"properties": {},
+				"additionalProperties": {},
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_GetCommentsResponse.lastGenDate-or-pageNumber_": {
+				"$ref": "#/components/schemas/Pick_GetCommentsResponse.Exclude_keyofGetCommentsResponse.lastGenDate-or-pageNumber__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"GetCommentsForUserResponse": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/Omit_GetCommentsResponse.lastGenDate-or-pageNumber_"
+					},
+					{
+						"properties": {
+							"moderatingTenantIds": {
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							}
+						},
+						"type": "object"
+					}
+				]
 			},
 			"PublicComment": {
 				"allOf": [
@@ -4456,15 +4583,6 @@
 				},
 				"type": "object",
 				"additionalProperties": false
-			},
-			"Record_string.number_": {
-				"properties": {},
-				"additionalProperties": {
-					"type": "number",
-					"format": "double"
-				},
-				"type": "object",
-				"description": "Construct a type with a set of properties K of type T"
 			},
 			"UserBadgeProgress": {
 				"properties": {
@@ -11063,6 +11181,360 @@
 				]
 			}
 		},
+		"/page-reacts/v1/likes/{tenantId}": {
+			"get": {
+				"operationId": "GetV1PageLikes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GetV1PageLikes"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateV1PageReact",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/CreateV1PageReact"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "title",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteV1PageReact",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/DeleteV1PageReact"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/page-reacts/v2/{tenantId}/list": {
+			"get": {
+				"operationId": "GetV2PageReactUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GetV2PageReactUsersResponse"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/page-reacts/v2/{tenantId}": {
+			"get": {
+				"operationId": "GetV2PageReacts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GetV2PageReacts"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateV2PageReact",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/CreateV2PageReact"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "title",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteV2PageReact",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/DeleteV2PageReact"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/gifs/trending/{tenantId}": {
 			"get": {
 				"operationId": "GetGifsTrending",
@@ -12101,6 +12573,93 @@
 						}
 					}
 				}
+			}
+		},
+		"/comments-for-user": {
+			"get": {
+				"operationId": "GetCommentsForUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/GetCommentsForUserResponse"
+										},
+										{
+											"$ref": "#/components/schemas/APIError"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "direction",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/SortDirections"
+						}
+					},
+					{
+						"in": "query",
+						"name": "repliesToUserId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includei10n",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "isCrawler",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				]
 			}
 		},
 		"/comments/{tenantId}": {
