@@ -11065,7 +11065,7 @@
 		},
 		"/gifs/trending/{tenantId}": {
 			"get": {
-				"operationId": "GetTrending",
+				"operationId": "GetGifsTrending",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -11128,7 +11128,7 @@
 		},
 		"/gifs/search/{tenantId}": {
 			"get": {
-				"operationId": "Search",
+				"operationId": "GetGifsSearch",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -11212,7 +11212,7 @@
 		},
 		"/gifs/get-large/{tenantId}": {
 			"get": {
-				"operationId": "GetLarge",
+				"operationId": "GetGifLarge",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -13183,7 +13183,7 @@
 		},
 		"/auth/logout": {
 			"put": {
-				"operationId": "Logout",
+				"operationId": "LogoutPublic",
 				"responses": {
 					"200": {
 						"description": "Ok",

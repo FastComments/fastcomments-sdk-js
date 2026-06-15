@@ -1,4 +1,4 @@
-# GetTrending_200_response
+# GetGifsTrending_200_response
 ## Properties
 
 | Name | Type | Description | Notes |

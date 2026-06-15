@@ -18,25 +18,25 @@ All URIs are relative to *https://fastcomments.com*
 | [**getEventLog**](PublicApi.md#getEventLog) | **GET** /event-log/{tenantId} |  |
 | [**getFeedPostsPublic**](PublicApi.md#getFeedPostsPublic) | **GET** /feed-posts/{tenantId} |  |
 | [**getFeedPostsStats**](PublicApi.md#getFeedPostsStats) | **GET** /feed-posts/{tenantId}/stats |  |
+| [**getGifLarge**](PublicApi.md#getGifLarge) | **GET** /gifs/get-large/{tenantId} |  |
+| [**getGifsSearch**](PublicApi.md#getGifsSearch) | **GET** /gifs/search/{tenantId} |  |
+| [**getGifsTrending**](PublicApi.md#getGifsTrending) | **GET** /gifs/trending/{tenantId} |  |
 | [**getGlobalEventLog**](PublicApi.md#getGlobalEventLog) | **GET** /event-log/global/{tenantId} |  |
-| [**getLarge**](PublicApi.md#getLarge) | **GET** /gifs/get-large/{tenantId} |  |
 | [**getOfflineUsers**](PublicApi.md#getOfflineUsers) | **GET** /pages/{tenantId}/users/offline |  |
 | [**getOnlineUsers**](PublicApi.md#getOnlineUsers) | **GET** /pages/{tenantId}/users/online |  |
 | [**getPagesPublic**](PublicApi.md#getPagesPublic) | **GET** /pages/{tenantId} |  |
 | [**getTranslations**](PublicApi.md#getTranslations) | **GET** /translations/{namespace}/{component} |  |
-| [**getTrending**](PublicApi.md#getTrending) | **GET** /gifs/trending/{tenantId} |  |
 | [**getUserNotificationCount**](PublicApi.md#getUserNotificationCount) | **GET** /user-notifications/get-count |  |
 | [**getUserNotifications**](PublicApi.md#getUserNotifications) | **GET** /user-notifications |  |
 | [**getUserPresenceStatuses**](PublicApi.md#getUserPresenceStatuses) | **GET** /user-presence-status |  |
 | [**getUserReactsPublic**](PublicApi.md#getUserReactsPublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
 | [**getUsersInfo**](PublicApi.md#getUsersInfo) | **GET** /pages/{tenantId}/users/info |  |
 | [**lockComment**](PublicApi.md#lockComment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
-| [**logout**](PublicApi.md#logout) | **PUT** /auth/logout |  |
+| [**logoutPublic**](PublicApi.md#logoutPublic) | **PUT** /auth/logout |  |
 | [**pinComment**](PublicApi.md#pinComment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
 | [**reactFeedPostPublic**](PublicApi.md#reactFeedPostPublic) | **POST** /feed-posts/{tenantId}/react/{postId} |  |
 | [**resetUserNotificationCount**](PublicApi.md#resetUserNotificationCount) | **POST** /user-notifications/reset-count |  |
 | [**resetUserNotifications**](PublicApi.md#resetUserNotifications) | **POST** /user-notifications/reset |  |
-| [**search**](PublicApi.md#search) | **GET** /gifs/search/{tenantId} |  |
 | [**searchUsers**](PublicApi.md#searchUsers) | **GET** /user-search/{tenantId} |  |
 | [**setCommentText**](PublicApi.md#setCommentText) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
 | [**unBlockCommentPublic**](PublicApi.md#unBlockCommentPublic) | **DELETE** /block-from-comment/{commentId} |  |
@@ -480,6 +480,89 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getGifLarge"></a>
+# **getGifLarge**
+> GetGifLarge_200_response getGifLarge(tenantId, largeInternalURLSanitized)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **largeInternalURLSanitized** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetGifLarge_200_response**](../model/GetGifLarge_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getGifsSearch"></a>
+# **getGifsSearch**
+> GetGifsSearch_200_response getGifsSearch(tenantId, search, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **search** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetGifsSearch_200_response**](../model/GetGifsSearch_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getGifsTrending"></a>
+# **getGifsTrending**
+> GetGifsTrending_200_response getGifsTrending(tenantId, locale, rating, page)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+| **rating** | **String**|  | [optional] [default to null] |
+| **page** | **Double**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetGifsTrending_200_response**](../model/GetGifsTrending_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getGlobalEventLog"></a>
 # **getGlobalEventLog**
 > GetEventLog_200_response getGlobalEventLog(tenantId, urlId, userIdWS, startTime, endTime)
@@ -501,32 +584,6 @@ No authorization required
 ### Return type
 
 [**GetEventLog_200_response**](../model/GetEventLog_200_response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-<a name="getLarge"></a>
-# **getLarge**
-> GetLarge_200_response getLarge(tenantId, largeInternalURLSanitized)
-
-
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **tenantId** | **String**|  | [default to null] |
-| **largeInternalURLSanitized** | **String**|  | [default to null] |
-
-### Return type
-
-[**GetLarge_200_response**](../model/GetLarge_200_response.md)
 
 ### Authorization
 
@@ -647,34 +704,6 @@ No authorization required
 ### Return type
 
 [**GetTranslations_200_response**](../model/GetTranslations_200_response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-<a name="getTrending"></a>
-# **getTrending**
-> GetTrending_200_response getTrending(tenantId, locale, rating, page)
-
-
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **tenantId** | **String**|  | [default to null] |
-| **locale** | **String**|  | [optional] [default to null] |
-| **rating** | **String**|  | [optional] [default to null] |
-| **page** | **Double**|  | [optional] [default to null] |
-
-### Return type
-
-[**GetTrending_200_response**](../model/GetTrending_200_response.md)
 
 ### Authorization
 
@@ -857,9 +886,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="logout"></a>
-# **logout**
-> APIEmptyResponse logout()
+<a name="logoutPublic"></a>
+# **logoutPublic**
+> APIEmptyResponse logoutPublic()
 
 
 
@@ -984,35 +1013,6 @@ No authorization required
 ### Return type
 
 [**ResetUserNotifications_200_response**](../model/ResetUserNotifications_200_response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-<a name="search"></a>
-# **search**
-> Search_200_response search(tenantId, search, locale, rating, page)
-
-
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **tenantId** | **String**|  | [default to null] |
-| **search** | **String**|  | [default to null] |
-| **locale** | **String**|  | [optional] [default to null] |
-| **rating** | **String**|  | [optional] [default to null] |
-| **page** | **Double**|  | [optional] [default to null] |
-
-### Return type
-
-[**Search_200_response**](../model/Search_200_response.md)
 
 ### Authorization
 

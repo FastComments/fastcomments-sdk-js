@@ -45,61 +45,61 @@ import {
 /**
  * 
  * @export
- * @interface GetLarge200Response
+ * @interface GetGifLarge200Response
  */
-export interface GetLarge200Response {
+export interface GetGifLarge200Response {
     /**
      * 
      * @type {string}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     src: string;
     /**
      * 
      * @type {APIStatus}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     status: APIStatus;
     /**
      * 
      * @type {string}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     reason: string;
     /**
      * 
      * @type {string}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     secondaryCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     bannedUntil?: number;
     /**
      * 
      * @type {number}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     maxCharacterLength?: number;
     /**
      * 
      * @type {string}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     translatedError?: string;
     /**
      * 
      * @type {CustomConfigParameters}
-     * @memberof GetLarge200Response
+     * @memberof GetGifLarge200Response
      */
     customConfig?: CustomConfigParameters;
 }
@@ -107,9 +107,9 @@ export interface GetLarge200Response {
 
 
 /**
- * Check if a given object implements the GetLarge200Response interface.
+ * Check if a given object implements the GetGifLarge200Response interface.
  */
-export function instanceOfGetLarge200Response(value: object): value is GetLarge200Response {
+export function instanceOfGetGifLarge200Response(value: object): value is GetGifLarge200Response {
     if (!('src' in value) || value['src'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('reason' in value) || value['reason'] === undefined) return false;
@@ -117,11 +117,11 @@ export function instanceOfGetLarge200Response(value: object): value is GetLarge2
     return true;
 }
 
-export function GetLarge200ResponseFromJSON(json: any): GetLarge200Response {
-    return GetLarge200ResponseFromJSONTyped(json, false);
+export function GetGifLarge200ResponseFromJSON(json: any): GetGifLarge200Response {
+    return GetGifLarge200ResponseFromJSONTyped(json, false);
 }
 
-export function GetLarge200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLarge200Response {
+export function GetGifLarge200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetGifLarge200Response {
     if (json == null) {
         return json;
     }
@@ -139,11 +139,11 @@ export function GetLarge200ResponseFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function GetLarge200ResponseToJSON(json: any): GetLarge200Response {
-    return GetLarge200ResponseToJSONTyped(json, false);
+export function GetGifLarge200ResponseToJSON(json: any): GetGifLarge200Response {
+    return GetGifLarge200ResponseToJSONTyped(json, false);
 }
 
-export function GetLarge200ResponseToJSONTyped(value?: GetLarge200Response | null, ignoreDiscriminator: boolean = false): any {
+export function GetGifLarge200ResponseToJSONTyped(value?: GetGifLarge200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

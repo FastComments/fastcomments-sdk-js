@@ -59,61 +59,61 @@ import {
 /**
  * 
  * @export
- * @interface Search200Response
+ * @interface GetGifsSearch200Response
  */
-export interface Search200Response {
+export interface GetGifsSearch200Response {
     /**
      * 
      * @type {Array<Array<GifSearchResponseImagesInnerInner>>}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     images: Array<Array<GifSearchResponseImagesInnerInner>>;
     /**
      * 
      * @type {APIStatus}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     status: APIStatus;
     /**
      * 
      * @type {string}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     code: string;
     /**
      * 
      * @type {string}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     reason: string;
     /**
      * 
      * @type {string}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     secondaryCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     bannedUntil?: number;
     /**
      * 
      * @type {number}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     maxCharacterLength?: number;
     /**
      * 
      * @type {string}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     translatedError?: string;
     /**
      * 
      * @type {CustomConfigParameters}
-     * @memberof Search200Response
+     * @memberof GetGifsSearch200Response
      */
     customConfig?: CustomConfigParameters;
 }
@@ -121,9 +121,9 @@ export interface Search200Response {
 
 
 /**
- * Check if a given object implements the Search200Response interface.
+ * Check if a given object implements the GetGifsSearch200Response interface.
  */
-export function instanceOfSearch200Response(value: object): value is Search200Response {
+export function instanceOfGetGifsSearch200Response(value: object): value is GetGifsSearch200Response {
     if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
@@ -131,11 +131,11 @@ export function instanceOfSearch200Response(value: object): value is Search200Re
     return true;
 }
 
-export function Search200ResponseFromJSON(json: any): Search200Response {
-    return Search200ResponseFromJSONTyped(json, false);
+export function GetGifsSearch200ResponseFromJSON(json: any): GetGifsSearch200Response {
+    return GetGifsSearch200ResponseFromJSONTyped(json, false);
 }
 
-export function Search200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): Search200Response {
+export function GetGifsSearch200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetGifsSearch200Response {
     if (json == null) {
         return json;
     }
@@ -153,11 +153,11 @@ export function Search200ResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function Search200ResponseToJSON(json: any): Search200Response {
-    return Search200ResponseToJSONTyped(json, false);
+export function GetGifsSearch200ResponseToJSON(json: any): GetGifsSearch200Response {
+    return GetGifsSearch200ResponseToJSONTyped(json, false);
 }
 
-export function Search200ResponseToJSONTyped(value?: Search200Response | null, ignoreDiscriminator: boolean = false): any {
+export function GetGifsSearch200ResponseToJSONTyped(value?: GetGifsSearch200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

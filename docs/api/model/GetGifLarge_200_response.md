@@ -1,12 +1,12 @@
-# Search_200_response
+# GetGifLarge_200_response
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-| **images** | [**List**](array.md) |  | [default to null] |
+| **src** | **String** |  | [default to null] |
 | **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
-| **code** | **String** |  | [default to null] |
 | **reason** | **String** |  | [default to null] |
+| **code** | **String** |  | [default to null] |
 | **secondaryCode** | **String** |  | [optional] [default to null] |
 | **bannedUntil** | **Long** |  | [optional] [default to null] |
 | **maxCharacterLength** | **Integer** |  | [optional] [default to null] |

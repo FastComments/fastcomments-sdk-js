@@ -45,25 +45,25 @@ import {
 /**
  * 
  * @export
- * @interface GetTrending200Response
+ * @interface GetGifsTrending200Response
  */
-export interface GetTrending200Response {
+export interface GetGifsTrending200Response {
     /**
      * 
      * @type {Array<Array<GifSearchResponseImagesInnerInner>>}
-     * @memberof GetTrending200Response
+     * @memberof GetGifsTrending200Response
      */
     images: Array<Array<GifSearchResponseImagesInnerInner>>;
     /**
      * 
      * @type {APIStatus}
-     * @memberof GetTrending200Response
+     * @memberof GetGifsTrending200Response
      */
     status: APIStatus;
     /**
      * 
      * @type {string}
-     * @memberof GetTrending200Response
+     * @memberof GetGifsTrending200Response
      */
     code: string;
 }
@@ -71,20 +71,20 @@ export interface GetTrending200Response {
 
 
 /**
- * Check if a given object implements the GetTrending200Response interface.
+ * Check if a given object implements the GetGifsTrending200Response interface.
  */
-export function instanceOfGetTrending200Response(value: object): value is GetTrending200Response {
+export function instanceOfGetGifsTrending200Response(value: object): value is GetGifsTrending200Response {
     if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
-export function GetTrending200ResponseFromJSON(json: any): GetTrending200Response {
-    return GetTrending200ResponseFromJSONTyped(json, false);
+export function GetGifsTrending200ResponseFromJSON(json: any): GetGifsTrending200Response {
+    return GetGifsTrending200ResponseFromJSONTyped(json, false);
 }
 
-export function GetTrending200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTrending200Response {
+export function GetGifsTrending200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetGifsTrending200Response {
     if (json == null) {
         return json;
     }
@@ -96,11 +96,11 @@ export function GetTrending200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function GetTrending200ResponseToJSON(json: any): GetTrending200Response {
-    return GetTrending200ResponseToJSONTyped(json, false);
+export function GetGifsTrending200ResponseToJSON(json: any): GetGifsTrending200Response {
+    return GetGifsTrending200ResponseToJSONTyped(json, false);
 }
 
-export function GetTrending200ResponseToJSONTyped(value?: GetTrending200Response | null, ignoreDiscriminator: boolean = false): any {
+export function GetGifsTrending200ResponseToJSONTyped(value?: GetGifsTrending200Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

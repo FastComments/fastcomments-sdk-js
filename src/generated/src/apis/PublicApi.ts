@@ -34,12 +34,13 @@ import type {
   GetEventLog200Response,
   GetFeedPostsPublic200Response,
   GetFeedPostsStats200Response,
-  GetLarge200Response,
+  GetGifLarge200Response,
+  GetGifsSearch200Response,
+  GetGifsTrending200Response,
   GetOfflineUsers200Response,
   GetOnlineUsers200Response,
   GetPagesPublic200Response,
   GetTranslations200Response,
-  GetTrending200Response,
   GetUserNotificationCount200Response,
   GetUserNotifications200Response,
   GetUserPresenceStatuses200Response,
@@ -52,7 +53,6 @@ import type {
   ReactBodyParams,
   ReactFeedPostPublic200Response,
   ResetUserNotifications200Response,
-  Search200Response,
   SearchUsers200Response,
   SetCommentText200Response,
   SizePreset,
@@ -103,8 +103,12 @@ import {
     GetFeedPostsPublic200ResponseToJSON,
     GetFeedPostsStats200ResponseFromJSON,
     GetFeedPostsStats200ResponseToJSON,
-    GetLarge200ResponseFromJSON,
-    GetLarge200ResponseToJSON,
+    GetGifLarge200ResponseFromJSON,
+    GetGifLarge200ResponseToJSON,
+    GetGifsSearch200ResponseFromJSON,
+    GetGifsSearch200ResponseToJSON,
+    GetGifsTrending200ResponseFromJSON,
+    GetGifsTrending200ResponseToJSON,
     GetOfflineUsers200ResponseFromJSON,
     GetOfflineUsers200ResponseToJSON,
     GetOnlineUsers200ResponseFromJSON,
@@ -113,8 +117,6 @@ import {
     GetPagesPublic200ResponseToJSON,
     GetTranslations200ResponseFromJSON,
     GetTranslations200ResponseToJSON,
-    GetTrending200ResponseFromJSON,
-    GetTrending200ResponseToJSON,
     GetUserNotificationCount200ResponseFromJSON,
     GetUserNotificationCount200ResponseToJSON,
     GetUserNotifications200ResponseFromJSON,
@@ -139,8 +141,6 @@ import {
     ReactFeedPostPublic200ResponseToJSON,
     ResetUserNotifications200ResponseFromJSON,
     ResetUserNotifications200ResponseToJSON,
-    Search200ResponseFromJSON,
-    Search200ResponseToJSON,
     SearchUsers200ResponseFromJSON,
     SearchUsers200ResponseToJSON,
     SetCommentText200ResponseFromJSON,
@@ -293,17 +293,32 @@ export interface GetFeedPostsStatsRequest {
     sso?: string;
 }
 
+export interface GetGifLargeRequest {
+    tenantId: string;
+    largeInternalURLSanitized: string;
+}
+
+export interface GetGifsSearchRequest {
+    tenantId: string;
+    search: string;
+    locale?: string;
+    rating?: string;
+    page?: number;
+}
+
+export interface GetGifsTrendingRequest {
+    tenantId: string;
+    locale?: string;
+    rating?: string;
+    page?: number;
+}
+
 export interface GetGlobalEventLogRequest {
     tenantId: string;
     urlId: string;
     userIdWS: string;
     startTime: number;
     endTime?: number;
-}
-
-export interface GetLargeRequest {
-    tenantId: string;
-    largeInternalURLSanitized: string;
 }
 
 export interface GetOfflineUsersRequest {
@@ -334,13 +349,6 @@ export interface GetTranslationsRequest {
     component: string;
     locale?: string;
     useFullTranslationIds?: boolean;
-}
-
-export interface GetTrendingRequest {
-    tenantId: string;
-    locale?: string;
-    rating?: string;
-    page?: number;
 }
 
 export interface GetUserNotificationCountRequest {
@@ -416,14 +424,6 @@ export interface ResetUserNotificationsRequest {
     dmOnly?: boolean;
     noDm?: boolean;
     sso?: string;
-}
-
-export interface SearchRequest {
-    tenantId: string;
-    search: string;
-    locale?: string;
-    rating?: string;
-    page?: number;
 }
 
 export interface SearchUsersRequest {
@@ -781,6 +781,53 @@ export interface PublicApiInterface {
     getFeedPostsStats(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsStats200Response>;
 
     /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} largeInternalURLSanitized 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLarge200Response>>;
+
+    /**
+     */
+    getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLarge200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} search 
+     * @param {string} [locale] 
+     * @param {string} [rating] 
+     * @param {number} [page] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsSearch200Response>>;
+
+    /**
+     */
+    getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsSearch200Response>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} [locale] 
+     * @param {string} [rating] 
+     * @param {number} [page] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsTrending200Response>>;
+
+    /**
+     */
+    getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsTrending200Response>;
+
+    /**
      *  req tenantId urlId userIdWS
      * @param {string} tenantId 
      * @param {string} urlId 
@@ -797,20 +844,6 @@ export interface PublicApiInterface {
      *  req tenantId urlId userIdWS
      */
     getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLog200Response>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} largeInternalURLSanitized 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PublicApiInterface
-     */
-    getLargeRaw(requestParameters: GetLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLarge200Response>>;
-
-    /**
-     */
-    getLarge(requestParameters: GetLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLarge200Response>;
 
     /**
      * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
@@ -880,22 +913,6 @@ export interface PublicApiInterface {
     /**
      */
     getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslations200Response>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} [locale] 
-     * @param {string} [rating] 
-     * @param {number} [page] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PublicApiInterface
-     */
-    getTrendingRaw(requestParameters: GetTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTrending200Response>>;
-
-    /**
-     */
-    getTrending(requestParameters: GetTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTrending200Response>;
 
     /**
      * 
@@ -1002,11 +1019,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    logoutRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    logoutPublicRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
 
     /**
      */
-    logout(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    logoutPublic(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
 
     /**
      * 
@@ -1074,23 +1091,6 @@ export interface PublicApiInterface {
     /**
      */
     resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotifications200Response>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} search 
-     * @param {string} [locale] 
-     * @param {string} [rating] 
-     * @param {number} [page] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PublicApiInterface
-     */
-    searchRaw(requestParameters: SearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Search200Response>>;
-
-    /**
-     */
-    search(requestParameters: SearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Search200Response>;
 
     /**
      * 
@@ -2171,6 +2171,145 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     }
 
     /**
+     */
+    async getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLarge200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getGifLarge().'
+            );
+        }
+
+        if (requestParameters['largeInternalURLSanitized'] == null) {
+            throw new runtime.RequiredError(
+                'largeInternalURLSanitized',
+                'Required parameter "largeInternalURLSanitized" was null or undefined when calling getGifLarge().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['largeInternalURLSanitized'] != null) {
+            queryParameters['largeInternalURLSanitized'] = requestParameters['largeInternalURLSanitized'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/gifs/get-large/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifLarge200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLarge200Response> {
+        const response = await this.getGifLargeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getGifsSearchRaw(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsSearch200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getGifsSearch().'
+            );
+        }
+
+        if (requestParameters['search'] == null) {
+            throw new runtime.RequiredError(
+                'search',
+                'Required parameter "search" was null or undefined when calling getGifsSearch().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['search'] != null) {
+            queryParameters['search'] = requestParameters['search'];
+        }
+
+        if (requestParameters['locale'] != null) {
+            queryParameters['locale'] = requestParameters['locale'];
+        }
+
+        if (requestParameters['rating'] != null) {
+            queryParameters['rating'] = requestParameters['rating'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/gifs/search/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifsSearch200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getGifsSearch(requestParameters: GetGifsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsSearch200Response> {
+        const response = await this.getGifsSearchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getGifsTrendingRaw(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifsTrending200Response>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getGifsTrending().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['locale'] != null) {
+            queryParameters['locale'] = requestParameters['locale'];
+        }
+
+        if (requestParameters['rating'] != null) {
+            queryParameters['rating'] = requestParameters['rating'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/gifs/trending/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifsTrending200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getGifsTrending(requestParameters: GetGifsTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifsTrending200Response> {
+        const response = await this.getGifsTrendingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      *  req tenantId urlId userIdWS
      */
     async getGlobalEventLogRaw(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLog200Response>> {
@@ -2237,48 +2376,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLog200Response> {
         const response = await this.getGlobalEventLogRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async getLargeRaw(requestParameters: GetLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLarge200Response>> {
-        if (requestParameters['tenantId'] == null) {
-            throw new runtime.RequiredError(
-                'tenantId',
-                'Required parameter "tenantId" was null or undefined when calling getLarge().'
-            );
-        }
-
-        if (requestParameters['largeInternalURLSanitized'] == null) {
-            throw new runtime.RequiredError(
-                'largeInternalURLSanitized',
-                'Required parameter "largeInternalURLSanitized" was null or undefined when calling getLarge().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['largeInternalURLSanitized'] != null) {
-            queryParameters['largeInternalURLSanitized'] = requestParameters['largeInternalURLSanitized'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/gifs/get-large/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetLarge200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getLarge(requestParameters: GetLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLarge200Response> {
-        const response = await this.getLargeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2482,49 +2579,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslations200Response> {
         const response = await this.getTranslationsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async getTrendingRaw(requestParameters: GetTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTrending200Response>> {
-        if (requestParameters['tenantId'] == null) {
-            throw new runtime.RequiredError(
-                'tenantId',
-                'Required parameter "tenantId" was null or undefined when calling getTrending().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['locale'] != null) {
-            queryParameters['locale'] = requestParameters['locale'];
-        }
-
-        if (requestParameters['rating'] != null) {
-            queryParameters['rating'] = requestParameters['rating'];
-        }
-
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/gifs/trending/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTrending200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getTrending(requestParameters: GetTrendingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTrending200Response> {
-        const response = await this.getTrendingRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2841,7 +2895,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async logoutRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async logoutPublicRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2858,8 +2912,8 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async logout(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
-        const response = await this.logoutRaw(initOverrides);
+    async logoutPublic(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+        const response = await this.logoutPublicRaw(initOverrides);
         return await response.value();
     }
 
@@ -3071,60 +3125,6 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotifications200Response> {
         const response = await this.resetUserNotificationsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
-    async searchRaw(requestParameters: SearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Search200Response>> {
-        if (requestParameters['tenantId'] == null) {
-            throw new runtime.RequiredError(
-                'tenantId',
-                'Required parameter "tenantId" was null or undefined when calling search().'
-            );
-        }
-
-        if (requestParameters['search'] == null) {
-            throw new runtime.RequiredError(
-                'search',
-                'Required parameter "search" was null or undefined when calling search().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['search'] != null) {
-            queryParameters['search'] = requestParameters['search'];
-        }
-
-        if (requestParameters['locale'] != null) {
-            queryParameters['locale'] = requestParameters['locale'];
-        }
-
-        if (requestParameters['rating'] != null) {
-            queryParameters['rating'] = requestParameters['rating'];
-        }
-
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/gifs/search/{tenantId}`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => Search200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async search(requestParameters: SearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Search200Response> {
-        const response = await this.searchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

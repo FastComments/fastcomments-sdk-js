@@ -185,9 +185,11 @@ src/models/GetFeedPosts200Response.ts
 src/models/GetFeedPostsPublic200Response.ts
 src/models/GetFeedPostsResponse.ts
 src/models/GetFeedPostsStats200Response.ts
+src/models/GetGifLarge200Response.ts
+src/models/GetGifsSearch200Response.ts
+src/models/GetGifsTrending200Response.ts
 src/models/GetHashTags200Response.ts
 src/models/GetHashTagsResponse.ts
-src/models/GetLarge200Response.ts
 src/models/GetModerator200Response.ts
 src/models/GetModeratorResponse.ts
 src/models/GetModerators200Response.ts
@@ -240,7 +242,6 @@ src/models/GetTickets200Response.ts
 src/models/GetTicketsResponse.ts
 src/models/GetTranslations200Response.ts
 src/models/GetTranslationsResponse.ts
-src/models/GetTrending200Response.ts
 src/models/GetUser200Response.ts
 src/models/GetUserBadge200Response.ts
 src/models/GetUserBadgeProgressById200Response.ts
@@ -333,7 +334,6 @@ src/models/SSOSecurityLevel.ts
 src/models/SaveComment200Response.ts
 src/models/SaveCommentResponseOptimized.ts
 src/models/SaveCommentsResponseWithPresence.ts
-src/models/Search200Response.ts
 src/models/SearchUsers200Response.ts
 src/models/SearchUsersResponse.ts
 src/models/SearchUsersSectionedResponse.ts

@@ -180,9 +180,11 @@ model/GetFeedPostsPublic_200_response.md
 model/GetFeedPostsResponse.md
 model/GetFeedPostsStats_200_response.md
 model/GetFeedPosts_200_response.md
+model/GetGifLarge_200_response.md
+model/GetGifsSearch_200_response.md
+model/GetGifsTrending_200_response.md
 model/GetHashTagsResponse.md
 model/GetHashTags_200_response.md
-model/GetLarge_200_response.md
 model/GetModeratorResponse.md
 model/GetModerator_200_response.md
 model/GetModeratorsResponse.md
@@ -235,7 +237,6 @@ model/GetTicketsResponse.md
 model/GetTickets_200_response.md
 model/GetTranslationsResponse.md
 model/GetTranslations_200_response.md
-model/GetTrending_200_response.md
 model/GetUserBadgeProgressById_200_response.md
 model/GetUserBadgeProgressList_200_response.md
 model/GetUserBadge_200_response.md
@@ -331,7 +332,6 @@ model/SaveCommentsResponseWithPresence.md
 model/SearchUsersResponse.md
 model/SearchUsersSectionedResponse.md
 model/SearchUsers_200_response.md
-model/Search_200_response.md
 model/SetCommentTextResult.md
 model/SetCommentText_200_response.md
 model/SizePreset.md

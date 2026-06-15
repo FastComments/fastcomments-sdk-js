@@ -135,25 +135,25 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**getEventLog**](Apis/PublicApi.md#geteventlog) | **GET** /event-log/{tenantId} |  req tenantId urlId userIdWS |
 *PublicApi* | [**getFeedPostsPublic**](Apis/PublicApi.md#getfeedpostspublic) | **GET** /feed-posts/{tenantId} |  req tenantId afterId |
 *PublicApi* | [**getFeedPostsStats**](Apis/PublicApi.md#getfeedpostsstats) | **GET** /feed-posts/{tenantId}/stats |  |
+*PublicApi* | [**getGifLarge**](Apis/PublicApi.md#getgiflarge) | **GET** /gifs/get-large/{tenantId} |  |
+*PublicApi* | [**getGifsSearch**](Apis/PublicApi.md#getgifssearch) | **GET** /gifs/search/{tenantId} |  |
+*PublicApi* | [**getGifsTrending**](Apis/PublicApi.md#getgifstrending) | **GET** /gifs/trending/{tenantId} |  |
 *PublicApi* | [**getGlobalEventLog**](Apis/PublicApi.md#getglobaleventlog) | **GET** /event-log/global/{tenantId} |  req tenantId urlId userIdWS |
-*PublicApi* | [**getLarge**](Apis/PublicApi.md#getlarge) | **GET** /gifs/get-large/{tenantId} |  |
 *PublicApi* | [**getOfflineUsers**](Apis/PublicApi.md#getofflineusers) | **GET** /pages/{tenantId}/users/offline | Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost. |
 *PublicApi* | [**getOnlineUsers**](Apis/PublicApi.md#getonlineusers) | **GET** /pages/{tenantId}/users/online | Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don't enumerate). |
 *PublicApi* | [**getPagesPublic**](Apis/PublicApi.md#getpagespublic) | **GET** /pages/{tenantId} | List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user's group access. |
 *PublicApi* | [**getTranslations**](Apis/PublicApi.md#gettranslations) | **GET** /translations/{namespace}/{component} |  |
-*PublicApi* | [**getTrending**](Apis/PublicApi.md#gettrending) | **GET** /gifs/trending/{tenantId} |  |
 *PublicApi* | [**getUserNotificationCount**](Apis/PublicApi.md#getusernotificationcount) | **GET** /user-notifications/get-count |  |
 *PublicApi* | [**getUserNotifications**](Apis/PublicApi.md#getusernotifications) | **GET** /user-notifications |  |
 *PublicApi* | [**getUserPresenceStatuses**](Apis/PublicApi.md#getuserpresencestatuses) | **GET** /user-presence-status |  |
 *PublicApi* | [**getUserReactsPublic**](Apis/PublicApi.md#getuserreactspublic) | **GET** /feed-posts/{tenantId}/user-reacts |  |
 *PublicApi* | [**getUsersInfo**](Apis/PublicApi.md#getusersinfo) | **GET** /pages/{tenantId}/users/info | Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked). |
 *PublicApi* | [**lockComment**](Apis/PublicApi.md#lockcomment) | **POST** /comments/{tenantId}/{commentId}/lock |  |
-*PublicApi* | [**logout**](Apis/PublicApi.md#logout) | **PUT** /auth/logout |  |
+*PublicApi* | [**logoutPublic**](Apis/PublicApi.md#logoutpublic) | **PUT** /auth/logout |  |
 *PublicApi* | [**pinComment**](Apis/PublicApi.md#pincomment) | **POST** /comments/{tenantId}/{commentId}/pin |  |
 *PublicApi* | [**reactFeedPostPublic**](Apis/PublicApi.md#reactfeedpostpublic) | **POST** /feed-posts/{tenantId}/react/{postId} |  |
 *PublicApi* | [**resetUserNotificationCount**](Apis/PublicApi.md#resetusernotificationcount) | **POST** /user-notifications/reset-count |  |
 *PublicApi* | [**resetUserNotifications**](Apis/PublicApi.md#resetusernotifications) | **POST** /user-notifications/reset |  |
-*PublicApi* | [**search**](Apis/PublicApi.md#search) | **GET** /gifs/search/{tenantId} |  |
 *PublicApi* | [**searchUsers**](Apis/PublicApi.md#searchusers) | **GET** /user-search/{tenantId} |  |
 *PublicApi* | [**setCommentText**](Apis/PublicApi.md#setcommenttext) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
 *PublicApi* | [**unBlockCommentPublic**](Apis/PublicApi.md#unblockcommentpublic) | **DELETE** /block-from-comment/{commentId} |  |
@@ -348,9 +348,11 @@ All URIs are relative to *https://fastcomments.com*
  - [GetFeedPostsResponse](./model/GetFeedPostsResponse.md)
  - [GetFeedPostsStats_200_response](./model/GetFeedPostsStats_200_response.md)
  - [GetFeedPosts_200_response](./model/GetFeedPosts_200_response.md)
+ - [GetGifLarge_200_response](./model/GetGifLarge_200_response.md)
+ - [GetGifsSearch_200_response](./model/GetGifsSearch_200_response.md)
+ - [GetGifsTrending_200_response](./model/GetGifsTrending_200_response.md)
  - [GetHashTagsResponse](./model/GetHashTagsResponse.md)
  - [GetHashTags_200_response](./model/GetHashTags_200_response.md)
- - [GetLarge_200_response](./model/GetLarge_200_response.md)
  - [GetModeratorResponse](./model/GetModeratorResponse.md)
  - [GetModerator_200_response](./model/GetModerator_200_response.md)
  - [GetModeratorsResponse](./model/GetModeratorsResponse.md)
@@ -403,7 +405,6 @@ All URIs are relative to *https://fastcomments.com*
  - [GetTickets_200_response](./model/GetTickets_200_response.md)
  - [GetTranslationsResponse](./model/GetTranslationsResponse.md)
  - [GetTranslations_200_response](./model/GetTranslations_200_response.md)
- - [GetTrending_200_response](./model/GetTrending_200_response.md)
  - [GetUserBadgeProgressById_200_response](./model/GetUserBadgeProgressById_200_response.md)
  - [GetUserBadgeProgressList_200_response](./model/GetUserBadgeProgressList_200_response.md)
  - [GetUserBadge_200_response](./model/GetUserBadge_200_response.md)
@@ -499,7 +500,6 @@ All URIs are relative to *https://fastcomments.com*
  - [SearchUsersResponse](./model/SearchUsersResponse.md)
  - [SearchUsersSectionedResponse](./model/SearchUsersSectionedResponse.md)
  - [SearchUsers_200_response](./model/SearchUsers_200_response.md)
- - [Search_200_response](./model/Search_200_response.md)
  - [SetCommentTextResult](./model/SetCommentTextResult.md)
  - [SetCommentText_200_response](./model/SetCommentText_200_response.md)
  - [SizePreset](./model/SizePreset.md)
