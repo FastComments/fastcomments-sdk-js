@@ -17,6 +17,11 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # The test harness (src/__tests__/env.ts) eagerly requires these on import,
+    # so every test step (unit/integration/browser) needs them.
+    env:
+      FASTCOMMENTS_API_KEY: ${{ secrets.FASTCOMMENTS_API_KEY }}
+      FASTCOMMENTS_TENANT_ID: ${{ secrets.FASTCOMMENTS_TENANT_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,8 +37,5 @@ jobs:
         run: npm run test:unit
       - name: Run integration tests
         run: npm run test:integration
-        env:
-          FASTCOMMENTS_API_KEY: ${{ secrets.FASTCOMMENTS_API_KEY }}
-          FASTCOMMENTS_TENANT_ID: ${{ secrets.FASTCOMMENTS_TENANT_ID }}
       - name: Run browser compatibility tests
         run: npm run test:browser
