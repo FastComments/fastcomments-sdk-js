@@ -20,13 +20,13 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
-import type { AddHashTag200Response } from './AddHashTag200Response';
+import type { BulkCreateHashTagsResponseResultsInner } from './BulkCreateHashTagsResponseResultsInner';
 import {
-    AddHashTag200ResponseFromJSON,
-    AddHashTag200ResponseFromJSONTyped,
-    AddHashTag200ResponseToJSON,
-    AddHashTag200ResponseToJSONTyped,
-} from './AddHashTag200Response';
+    BulkCreateHashTagsResponseResultsInnerFromJSON,
+    BulkCreateHashTagsResponseResultsInnerFromJSONTyped,
+    BulkCreateHashTagsResponseResultsInnerToJSON,
+    BulkCreateHashTagsResponseResultsInnerToJSONTyped,
+} from './BulkCreateHashTagsResponseResultsInner';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface BulkCreateHashTagsResponse {
     status: APIStatus;
     /**
      * 
-     * @type {Array<AddHashTag200Response>}
+     * @type {Array<BulkCreateHashTagsResponseResultsInner>}
      * @memberof BulkCreateHashTagsResponse
      */
-    results: Array<AddHashTag200Response>;
+    results: Array<BulkCreateHashTagsResponseResultsInner>;
 }
 
 
@@ -70,7 +70,7 @@ export function BulkCreateHashTagsResponseFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'results': ((json['results'] as Array<any>).map(AddHashTag200ResponseFromJSON)),
+        'results': ((json['results'] as Array<any>).map(BulkCreateHashTagsResponseResultsInnerFromJSON)),
     };
 }
 
@@ -86,7 +86,7 @@ export function BulkCreateHashTagsResponseToJSONTyped(value?: BulkCreateHashTags
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'results': ((value['results'] as Array<any>).map(AddHashTag200ResponseToJSON)),
+        'results': ((value['results'] as Array<any>).map(BulkCreateHashTagsResponseResultsInnerToJSON)),
     };
 }
 

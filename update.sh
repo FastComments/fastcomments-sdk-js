@@ -28,7 +28,12 @@ fi
 # Only remove generated output once we know we have a valid spec to regenerate from.
 rm -rvf ./src/generated
 
-# Generate the TypeScript client
+# Generate the TypeScript client.
+# Clean response type names come from the spec: tsoa splits `X | APIError` returns so the 2xx
+# response is the real success type and APIError is a `default` error response (errorResponseTypeNames),
+# and titles any remaining inline schemas as <OperationId>... (useTitleTagsForInlineObjects). So each
+# operation returns its actual success model (e.g. deleteVote -> VoteDeleteResponse) instead of an
+# arbitrary, shifting `<SomeOtherOp>_200_response` wrapper from inline-schema deduplication.
 npm exec -- @openapitools/openapi-generator-cli generate \
     -i "$SPEC_FILE" \
     -g typescript-fetch \

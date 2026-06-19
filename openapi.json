@@ -108,6 +108,16 @@
 				],
 				"type": "object"
 			},
+			"SearchUsersResult": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/SearchUsersSectionedResponse"
+					},
+					{
+						"$ref": "#/components/schemas/SearchUsersResponse"
+					}
+				]
+			},
 			"CommentHTMLRenderingMode": {
 				"enum": [
 					0,
@@ -467,6 +477,16 @@
 					},
 					"noImageUploads": {
 						"type": "boolean"
+					},
+					"allowEmbeds": {
+						"type": "boolean"
+					},
+					"allowedEmbedDomains": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"nullable": true
 					},
 					"noStyles": {
 						"type": "boolean"
@@ -1336,6 +1356,1713 @@
 			"DeleteV2PageReact": {
 				"$ref": "#/components/schemas/CreateV1PageReact"
 			},
+			"ModerationFilter": {
+				"properties": {
+					"reviewed": {
+						"type": "boolean"
+					},
+					"approved": {
+						"type": "boolean"
+					},
+					"isSpam": {
+						"type": "boolean"
+					},
+					"isBannedUser": {
+						"type": "boolean"
+					},
+					"isLocked": {
+						"type": "boolean"
+					},
+					"flagCountGt": {
+						"type": "number",
+						"format": "double"
+					},
+					"userId": {
+						"type": "string"
+					},
+					"urlId": {
+						"type": "string"
+					},
+					"domain": {
+						"type": "string"
+					},
+					"moderationGroupIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"commentTextSearch": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "Text search terms. Each term is matched case-insensitively against the comment text.\nA term wrapped in quotes means exact phrase match."
+					},
+					"exactCommentText": {
+						"type": "string",
+						"description": "Set by the `exact=\"...\"` search syntax. The comment text must equal this value exactly\n(case-sensitive, full-string), as opposed to the substring matching of commentTextSearch."
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BuildModerationFilterResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"moderationFilter": {
+						"$ref": "#/components/schemas/ModerationFilter"
+					}
+				},
+				"required": [
+					"status",
+					"moderationFilter"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BuildModerationFilterParams": {
+				"properties": {
+					"userId": {
+						"type": "string"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"filters": {
+						"type": "string"
+					},
+					"searchFilters": {
+						"type": "string"
+					},
+					"textSearch": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userId",
+					"tenantId"
+				],
+				"type": "object",
+				"additionalProperties": {}
+			},
+			"ModerationAPICountCommentsResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"count": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"status",
+					"count"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationAPIGetCommentIdsResponse": {
+				"properties": {
+					"ids": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"hasMore": {
+						"type": "boolean"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"ids",
+					"hasMore",
+					"status"
+				],
+				"type": "object"
+			},
+			"UserId": {
+				"type": "string"
+			},
+			"CommentUserBadgeInfo": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"type": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"description": {
+						"type": "string"
+					},
+					"displayLabel": {
+						"type": "string",
+						"nullable": true
+					},
+					"displaySrc": {
+						"type": "string",
+						"nullable": true
+					},
+					"backgroundColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"borderColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"textColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"cssClass": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"id",
+					"type",
+					"description"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationAPIComment": {
+				"properties": {
+					"isLocalDeleted": {
+						"type": "boolean"
+					},
+					"replyCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"feedbackResults": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"isVotedUp": {
+						"type": "boolean"
+					},
+					"isVotedDown": {
+						"type": "boolean"
+					},
+					"myVoteId": {
+						"type": "string"
+					},
+					"_id": {
+						"type": "string"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"urlId": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"pageTitle": {
+						"type": "string",
+						"nullable": true
+					},
+					"userId": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UserId"
+							}
+						],
+						"nullable": true
+					},
+					"anonUserId": {
+						"type": "string",
+						"nullable": true
+					},
+					"commenterName": {
+						"type": "string"
+					},
+					"commenterLink": {
+						"type": "string",
+						"nullable": true
+					},
+					"commentHTML": {
+						"type": "string"
+					},
+					"parentId": {
+						"type": "string",
+						"nullable": true
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"localDateString": {
+						"type": "string",
+						"nullable": true
+					},
+					"votes": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesUp": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"votesDown": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"expireAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"reviewed": {
+						"type": "boolean"
+					},
+					"avatarSrc": {
+						"type": "string",
+						"nullable": true
+					},
+					"isSpam": {
+						"type": "boolean"
+					},
+					"permNotSpam": {
+						"type": "boolean"
+					},
+					"hasLinks": {
+						"type": "boolean"
+					},
+					"hasCode": {
+						"type": "boolean"
+					},
+					"approved": {
+						"type": "boolean"
+					},
+					"locale": {
+						"type": "string",
+						"nullable": true
+					},
+					"isBannedUser": {
+						"type": "boolean"
+					},
+					"isByAdmin": {
+						"type": "boolean"
+					},
+					"isByModerator": {
+						"type": "boolean"
+					},
+					"isPinned": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"isLocked": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"flagCount": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"displayLabel": {
+						"type": "string",
+						"nullable": true
+					},
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserBadgeInfo"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"verified": {
+						"type": "boolean"
+					},
+					"feedbackIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"isDeleted": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"_id",
+					"tenantId",
+					"urlId",
+					"url",
+					"commenterName",
+					"commentHTML",
+					"date",
+					"approved",
+					"locale",
+					"verified"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationAPIGetCommentsResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"translations": {
+						"additionalProperties": false,
+						"type": "object"
+					},
+					"comments": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationAPIComment"
+						},
+						"type": "array"
+					},
+					"moderationFilter": {
+						"$ref": "#/components/schemas/ModerationFilter"
+					}
+				},
+				"required": [
+					"status",
+					"translations",
+					"comments"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationExportResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"batchJobId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"batchJobId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationExportStatusResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"jobStatus": {
+						"type": "string"
+					},
+					"recordCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"downloadUrl": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"jobStatus",
+					"recordCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationUserSearchProjected": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"displayName": {
+						"type": "string",
+						"nullable": true
+					},
+					"avatarSrc": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"_id",
+					"username"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationUserSearchResponse": {
+				"properties": {
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationUserSearchProjected"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"users",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationPageSearchProjected": {
+				"properties": {
+					"urlId": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"commentCount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"urlId",
+					"url",
+					"title",
+					"commentCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationPageSearchResponse": {
+				"properties": {
+					"pages": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationPageSearchProjected"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"pages",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationSiteSearchProjected": {
+				"properties": {
+					"domain": {
+						"type": "string"
+					},
+					"logoSrc100px": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"domain"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationSiteSearchResponse": {
+				"properties": {
+					"sites": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationSiteSearchProjected"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"sites",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationCommentSearchResponse": {
+				"properties": {
+					"commentCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"commentCount",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationSuggestResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"pages": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationPageSearchProjected"
+						},
+						"type": "array"
+					},
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationUserSearchProjected"
+						},
+						"type": "array"
+					},
+					"code": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PreBanSummary": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"usernames": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"count": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"status",
+					"usernames",
+					"count"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BulkPreBanSummary": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"totalRelatedCommentCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"emailDomains": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"emails": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"userIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"ipHashes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status",
+					"totalRelatedCommentCount",
+					"emailDomains",
+					"emails",
+					"userIds",
+					"ipHashes"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BulkPreBanParams": {
+				"properties": {
+					"commentIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"commentIds"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIBannedUser": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string",
+						"nullable": true
+					},
+					"email": {
+						"type": "string",
+						"nullable": true
+					},
+					"username": {
+						"type": "string",
+						"nullable": true
+					},
+					"ipHash": {
+						"type": "string",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"bannedByUserId": {
+						"type": "string"
+					},
+					"bannedCommentText": {
+						"type": "string"
+					},
+					"banType": {
+						"type": "string"
+					},
+					"bannedUntil": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"hasEmailWildcard": {
+						"type": "boolean"
+					},
+					"banReason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"tenantId",
+					"createdAt",
+					"bannedByUserId",
+					"bannedCommentText",
+					"banType",
+					"bannedUntil",
+					"hasEmailWildcard"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIBanUserChangedValues": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string",
+						"nullable": true
+					},
+					"email": {
+						"type": "string",
+						"nullable": true
+					},
+					"username": {
+						"type": "string",
+						"nullable": true
+					},
+					"ipHash": {
+						"type": "string",
+						"nullable": true
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"bannedByUserId": {
+						"type": "string"
+					},
+					"bannedCommentText": {
+						"type": "string"
+					},
+					"banType": {
+						"type": "string"
+					},
+					"bannedUntil": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"hasEmailWildcard": {
+						"type": "boolean"
+					},
+					"banReason": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIBanUserChangeLog": {
+				"properties": {
+					"createdBannedUserId": {
+						"type": "string"
+					},
+					"updatedBannedUserId": {
+						"type": "string"
+					},
+					"deletedBannedUsers": {
+						"items": {
+							"$ref": "#/components/schemas/APIBannedUser"
+						},
+						"type": "array"
+					},
+					"changedValuesBefore": {
+						"$ref": "#/components/schemas/APIBanUserChangedValues"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BanUserFromCommentResult": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"changelog": {
+						"$ref": "#/components/schemas/APIBanUserChangeLog"
+					},
+					"code": {
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BannedUserMatchType": {
+				"type": "string",
+				"enum": [
+					"userId",
+					"email",
+					"email-wildcard",
+					"IP"
+				]
+			},
+			"BannedUserMatch": {
+				"properties": {
+					"matchedOn": {
+						"$ref": "#/components/schemas/BannedUserMatchType"
+					},
+					"matchedOnValue": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "number",
+								"format": "double"
+							}
+						],
+						"nullable": true
+					}
+				},
+				"required": [
+					"matchedOn",
+					"matchedOnValue"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APICommentCommonBannedUser": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string",
+						"nullable": true
+					},
+					"banType": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string",
+						"nullable": true
+					},
+					"ipHash": {
+						"type": "string",
+						"nullable": true
+					},
+					"bannedUntil": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"hasEmailWildcard": {
+						"type": "boolean"
+					},
+					"banReason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"banType",
+					"bannedUntil",
+					"hasEmailWildcard"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIBannedUserWithMultiMatchInfo": {
+				"allOf": [
+					{
+						"properties": {
+							"matches": {
+								"items": {
+									"$ref": "#/components/schemas/BannedUserMatch"
+								},
+								"type": "array"
+							}
+						},
+						"required": [
+							"matches"
+						],
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/APICommentCommonBannedUser"
+					}
+				]
+			},
+			"GetBannedUsersFromCommentResponse": {
+				"properties": {
+					"bannedUsers": {
+						"items": {
+							"$ref": "#/components/schemas/APIBannedUserWithMultiMatchInfo"
+						},
+						"type": "array"
+					},
+					"code": {
+						"type": "string",
+						"enum": [
+							"not-found",
+							"not-logged-in"
+						]
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"bannedUsers",
+					"status"
+				],
+				"type": "object"
+			},
+			"APIEmptyResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"BanUserUndoParams": {
+				"properties": {
+					"changelog": {
+						"$ref": "#/components/schemas/APIBanUserChangeLog"
+					}
+				},
+				"required": [
+					"changelog"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeleteCommentAction": {
+				"type": "string",
+				"enum": [
+					"already-deleted",
+					"hard-removed",
+					"anonymized"
+				]
+			},
+			"DeleteCommentResult": {
+				"properties": {
+					"action": {
+						"$ref": "#/components/schemas/DeleteCommentAction"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"action",
+					"status"
+				],
+				"type": "object"
+			},
+			"RemoveCommentActionResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"action": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"action"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SetCommentApprovedResponse": {
+				"properties": {
+					"didResetFlaggedCount": {
+						"type": "boolean"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationAPICommentLog": {
+				"properties": {
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"username": {
+						"type": "string"
+					},
+					"actionName": {
+						"type": "string"
+					},
+					"messageHTML": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"date",
+					"actionName",
+					"messageHTML"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ModerationAPIGetLogsResponse": {
+				"properties": {
+					"logs": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationAPICommentLog"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"logs",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationAPICommentResponse": {
+				"properties": {
+					"comment": {
+						"$ref": "#/components/schemas/ModerationAPIComment"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"comment",
+					"status"
+				],
+				"type": "object"
+			},
+			"ModerationAPIChildCommentsResponse": {
+				"properties": {
+					"comments": {
+						"items": {
+							"$ref": "#/components/schemas/ModerationAPIComment"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"comments",
+					"status"
+				],
+				"type": "object"
+			},
+			"CommentsByIdsParams": {
+				"properties": {
+					"ids": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"ids"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetCommentTextResponse": {
+				"properties": {
+					"comment": {
+						"type": "string",
+						"nullable": true
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"SetCommentTextResponse": {
+				"properties": {
+					"newCommentTextHTML": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"newCommentTextHTML",
+					"status"
+				],
+				"type": "object"
+			},
+			"SetCommentTextParams": {
+				"properties": {
+					"comment": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"comment"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdjustVotesResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"newCommentVotes": {
+						"type": "integer",
+						"format": "int32"
+					}
+				},
+				"required": [
+					"status",
+					"newCommentVotes"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdjustCommentVotesParams": {
+				"properties": {
+					"adjustVoteAmount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"adjustVoteAmount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"VoteResponseUser": {
+				"properties": {
+					"sessionId": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"VoteResponse": {
+				"properties": {
+					"status": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/APIStatus"
+							},
+							{
+								"type": "string",
+								"enum": [
+									"pending-verification"
+								]
+							}
+						]
+					},
+					"voteId": {
+						"type": "string"
+					},
+					"isVerified": {
+						"type": "boolean"
+					},
+					"user": {
+						"$ref": "#/components/schemas/VoteResponseUser"
+					},
+					"editKey": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"VoteDeleteResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"wasPendingVote": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetCommentBanStatusResponse": {
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"emailDomain": {
+						"type": "string",
+						"nullable": true
+					},
+					"canIPBan": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"status",
+					"emailDomain",
+					"canIPBan"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIModerateUserBanPreferences": {
+				"properties": {
+					"shouldBanEmail": {
+						"type": "boolean"
+					},
+					"shouldBanByIP": {
+						"type": "boolean"
+					},
+					"lastBanType": {
+						"type": "string"
+					},
+					"lastBanDuration": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"shouldBanEmail",
+					"shouldBanByIP",
+					"lastBanType",
+					"lastBanDuration"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"APIModerateGetUserBanPreferencesResponse": {
+				"properties": {
+					"preferences": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/APIModerateUserBanPreferences"
+							}
+						],
+						"nullable": true
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"preferences",
+					"status"
+				],
+				"type": "object"
+			},
+			"TenantBadge": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"tenantId": {
+						"type": "string"
+					},
+					"createdByUserId": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"enabled": {
+						"type": "boolean"
+					},
+					"urlId": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "number",
+						"format": "double"
+					},
+					"threshold": {
+						"type": "number",
+						"format": "double"
+					},
+					"uses": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"displayLabel": {
+						"type": "string"
+					},
+					"displaySrc": {
+						"type": "string",
+						"nullable": true
+					},
+					"backgroundColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"borderColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"textColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"cssClass": {
+						"type": "string",
+						"nullable": true
+					},
+					"veteranUserThresholdMillis": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"isAwaitingReprocess": {
+						"type": "boolean"
+					},
+					"isAwaitingDeletion": {
+						"type": "boolean"
+					},
+					"replacesBadgeId": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"_id",
+					"tenantId",
+					"createdByUserId",
+					"createdAt",
+					"enabled",
+					"type",
+					"threshold",
+					"uses",
+					"name",
+					"description",
+					"displayLabel",
+					"displaySrc",
+					"backgroundColor",
+					"borderColor",
+					"textColor",
+					"isAwaitingReprocess",
+					"isAwaitingDeletion"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetTenantManualBadgesResponse": {
+				"properties": {
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/TenantBadge"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"badges",
+					"status"
+				],
+				"type": "object"
+			},
+			"UserBadge": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string"
+					},
+					"badgeId": {
+						"type": "string"
+					},
+					"fromTenantId": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"type": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"threshold": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"description": {
+						"type": "string"
+					},
+					"displayLabel": {
+						"type": "string"
+					},
+					"displaySrc": {
+						"type": "string",
+						"nullable": true
+					},
+					"backgroundColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"borderColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"textColor": {
+						"type": "string",
+						"nullable": true
+					},
+					"cssClass": {
+						"type": "string",
+						"nullable": true
+					},
+					"veteranUserThresholdMillis": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"displayedOnComments": {
+						"type": "boolean"
+					},
+					"receivedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"order": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"urlId": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"_id",
+					"userId",
+					"badgeId",
+					"fromTenantId",
+					"createdAt",
+					"type",
+					"threshold",
+					"description",
+					"displayLabel",
+					"veteranUserThresholdMillis",
+					"displayedOnComments",
+					"receivedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetUserManualBadgesResponse": {
+				"properties": {
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/UserBadge"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"badges",
+					"status"
+				],
+				"type": "object"
+			},
+			"AwardUserBadgeResponse": {
+				"properties": {
+					"notes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserBadgeInfo"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"RemoveUserBadgeResponse": {
+				"properties": {
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserBadgeInfo"
+						},
+						"type": "array"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"GetUserTrustFactorResponse": {
+				"properties": {
+					"manualTrustFactor": {
+						"type": "number",
+						"format": "double"
+					},
+					"autoTrustFactor": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"SetUserTrustFactorResponse": {
+				"properties": {
+					"previousManualTrustFactor": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"GetUserInternalProfileResponse": {
+				"properties": {
+					"profile": {
+						"properties": {
+							"commenterName": {
+								"type": "string"
+							},
+							"firstCommentDate": {
+								"type": "string",
+								"format": "date-time",
+								"nullable": true
+							},
+							"ipHash": {
+								"type": "string"
+							},
+							"countryFlag": {
+								"type": "string"
+							},
+							"countryCode": {
+								"type": "string"
+							},
+							"websiteUrl": {
+								"type": "string",
+								"nullable": true
+							},
+							"bio": {
+								"type": "string"
+							},
+							"karma": {
+								"type": "number",
+								"format": "double"
+							},
+							"locale": {
+								"type": "string"
+							},
+							"verified": {
+								"type": "boolean"
+							},
+							"avatarSrc": {
+								"type": "string",
+								"nullable": true
+							},
+							"displayName": {
+								"type": "string"
+							},
+							"username": {
+								"type": "string"
+							},
+							"commenterEmail": {
+								"type": "string",
+								"nullable": true
+							},
+							"email": {
+								"type": "string",
+								"nullable": true
+							},
+							"anonUserId": {
+								"type": "string",
+								"nullable": true
+							},
+							"userId": {
+								"type": "string",
+								"nullable": true
+							}
+						},
+						"type": "object"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					}
+				},
+				"required": [
+					"profile",
+					"status"
+				],
+				"type": "object"
+			},
+			"GetBannedUsersCountResponse": {
+				"properties": {
+					"totalCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"totalCount",
+					"status"
+				],
+				"type": "object"
+			},
 			"GifSearchResponse": {
 				"properties": {
 					"images": {
@@ -1391,17 +3118,6 @@
 				},
 				"required": [
 					"src",
-					"status"
-				],
-				"type": "object"
-			},
-			"APIEmptyResponse": {
-				"properties": {
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					}
-				},
-				"required": [
 					"status"
 				],
 				"type": "object"
@@ -1545,51 +3261,6 @@
 					"_id",
 					"tenantId",
 					"createdAt"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"CommentUserBadgeInfo": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"type": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"description": {
-						"type": "string"
-					},
-					"displayLabel": {
-						"type": "string",
-						"nullable": true
-					},
-					"displaySrc": {
-						"type": "string",
-						"nullable": true
-					},
-					"backgroundColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"borderColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"textColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"cssClass": {
-						"type": "string",
-						"nullable": true
-					}
-				},
-				"required": [
-					"id",
-					"type",
-					"description"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -2140,9 +3811,6 @@
 				],
 				"type": "object",
 				"additionalProperties": false
-			},
-			"UserId": {
-				"type": "string"
 			},
 			"FDomain": {
 				"type": "string"
@@ -3151,50 +4819,6 @@
 				],
 				"type": "object"
 			},
-			"VoteResponseUser": {
-				"properties": {
-					"sessionId": {
-						"type": "string",
-						"nullable": true
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"VoteResponse": {
-				"properties": {
-					"status": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/APIStatus"
-							},
-							{
-								"type": "string",
-								"enum": [
-									"pending-verification"
-								]
-							}
-						]
-					},
-					"voteId": {
-						"type": "string"
-					},
-					"isVerified": {
-						"type": "boolean"
-					},
-					"user": {
-						"$ref": "#/components/schemas/VoteResponseUser"
-					},
-					"editKey": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"status"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"VoteBodyParams": {
 				"properties": {
 					"commenterEmail": {
@@ -3222,21 +4846,6 @@
 					"commenterName",
 					"voteDir",
 					"url"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"VoteDeleteResponse": {
-				"properties": {
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					},
-					"wasPendingVote": {
-						"type": "boolean"
-					}
-				},
-				"required": [
-					"status"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -4394,95 +6003,6 @@
 				"required": [
 					"status",
 					"user"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UserBadge": {
-				"properties": {
-					"_id": {
-						"type": "string"
-					},
-					"userId": {
-						"type": "string"
-					},
-					"badgeId": {
-						"type": "string"
-					},
-					"fromTenantId": {
-						"type": "string"
-					},
-					"createdAt": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"type": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"threshold": {
-						"type": "integer",
-						"format": "int64"
-					},
-					"description": {
-						"type": "string"
-					},
-					"displayLabel": {
-						"type": "string"
-					},
-					"displaySrc": {
-						"type": "string",
-						"nullable": true
-					},
-					"backgroundColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"borderColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"textColor": {
-						"type": "string",
-						"nullable": true
-					},
-					"cssClass": {
-						"type": "string",
-						"nullable": true
-					},
-					"veteranUserThresholdMillis": {
-						"type": "integer",
-						"format": "int64"
-					},
-					"displayedOnComments": {
-						"type": "boolean"
-					},
-					"receivedAt": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"order": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"urlId": {
-						"type": "string",
-						"nullable": true
-					}
-				},
-				"required": [
-					"_id",
-					"userId",
-					"badgeId",
-					"fromTenantId",
-					"createdAt",
-					"type",
-					"threshold",
-					"description",
-					"displayLabel",
-					"veteranUserThresholdMillis",
-					"displayedOnComments",
-					"receivedAt"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -9423,29 +10943,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"DeleteCommentAction": {
-				"type": "string",
-				"enum": [
-					"already-deleted",
-					"hard-removed",
-					"anonymized"
-				]
-			},
-			"DeleteCommentResult": {
-				"properties": {
-					"action": {
-						"$ref": "#/components/schemas/DeleteCommentAction"
-					},
-					"status": {
-						"$ref": "#/components/schemas/APIStatus"
-					}
-				},
-				"required": [
-					"action",
-					"status"
-				],
-				"type": "object"
-			},
 			"APISaveCommentResponse": {
 				"properties": {
 					"status": {
@@ -10031,17 +11528,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/SearchUsersSectionedResponse"
-										},
-										{
-											"$ref": "#/components/schemas/SearchUsersResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/SearchUsersResult"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10119,20 +11616,23 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetUserPresenceStatusesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetUserPresenceStatusesResponse"
 								}
 							}
 						}
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -10183,14 +11683,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetMyNotificationsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetMyNotificationsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10312,14 +11815,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ResetUserNotificationsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ResetUserNotificationsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10399,14 +11905,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetUserNotificationCountResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetUserNotificationCountResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10445,14 +11954,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ResetUserNotificationsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ResetUserNotificationsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10491,17 +12003,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "UpdateUserNotificationStatusResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/UserNotificationWriteResponse"
 										},
 										{
 											"$ref": "#/components/schemas/IgnoredResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
 										}
 									]
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10560,17 +12080,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "UpdateUserNotificationCommentSubscriptionStatusResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/UserNotificationWriteResponse"
 										},
 										{
 											"$ref": "#/components/schemas/IgnoredResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
 										}
 									]
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10638,17 +12166,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "UpdateUserNotificationPageSubscriptionStatusResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/UserNotificationWriteResponse"
 										},
 										{
 											"$ref": "#/components/schemas/IgnoredResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
 										}
 									]
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10793,14 +12329,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTranslationsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTranslationsResponse"
 								}
 							}
 						}
@@ -10817,6 +12346,16 @@
 					},
 					"500": {
 						"description": "Internal",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -10875,14 +12414,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetPublicPagesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetPublicPagesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -10960,14 +12502,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PageUsersOnlineResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PageUsersOnlineResponse"
 								}
 							}
 						}
@@ -10984,6 +12519,16 @@
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -11046,14 +12591,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PageUsersOfflineResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PageUsersOfflineResponse"
 								}
 							}
 						}
@@ -11070,6 +12608,16 @@
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -11132,20 +12680,23 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PageUsersInfoResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PageUsersInfoResponse"
 								}
 							}
 						}
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -11190,14 +12741,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetV1PageLikes"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetV1PageLikes"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11234,14 +12788,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateV1PageReact"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateV1PageReact"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11286,14 +12843,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/DeleteV1PageReact"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/DeleteV1PageReact"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11332,14 +12892,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetV2PageReactUsersResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetV2PageReactUsersResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11386,14 +12949,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetV2PageReacts"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetV2PageReacts"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11430,14 +12996,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateV2PageReact"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateV2PageReact"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11490,14 +13059,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/DeleteV2PageReact"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/DeleteV2PageReact"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11535,6 +13107,2541 @@
 				]
 			}
 		},
+		"/auth/my-account/moderate-comments/count": {
+			"get": {
+				"operationId": "GetCount",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPICountCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "text-search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "byIPFromComment",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "filter",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "searchFilters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "demo",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/api/ids": {
+			"get": {
+				"operationId": "GetApiIds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPIGetCommentIdsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "text-search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "byIPFromComment",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "filters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "searchFilters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "afterId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "demo",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/api/comments": {
+			"get": {
+				"operationId": "GetApiComments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPIGetCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "count",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "text-search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "byIPFromComment",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "filters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "searchFilters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sorts",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "demo",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/api/export": {
+			"post": {
+				"operationId": "PostApiExport",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationExportResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "text-search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "byIPFromComment",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "filters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "searchFilters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sorts",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/api/export/status": {
+			"get": {
+				"operationId": "GetApiExportStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationExportStatusResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "batchJobId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/search/users": {
+			"get": {
+				"operationId": "GetSearchUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationUserSearchResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "value",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/search/pages": {
+			"get": {
+				"operationId": "GetSearchPages",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationPageSearchResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "value",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/search/sites": {
+			"get": {
+				"operationId": "GetSearchSites",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationSiteSearchResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "value",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/search/comments/summary": {
+			"get": {
+				"operationId": "GetSearchCommentsSummary",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationCommentSearchResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "value",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "filters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "searchFilters",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/search/suggest": {
+			"get": {
+				"operationId": "GetSearchSuggest",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationSuggestResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "text-search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/pre-ban-summary/{commentId}": {
+			"get": {
+				"operationId": "GetPreBanSummary",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PreBanSummary"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeByUserIdAndEmail",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeByIP",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeByEmailDomain",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/bulk-pre-ban-summary": {
+			"post": {
+				"operationId": "PostBulkPreBanSummary",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BulkPreBanSummary"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "includeByUserIdAndEmail",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeByIP",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeByEmailDomain",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BulkPreBanParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/my-account/moderate-comments/ban-user/from-comment/{commentId}": {
+			"post": {
+				"operationId": "PostBanUserFromComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BanUserFromCommentResult"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "banEmail",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "banEmailDomain",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "banIP",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "deleteAllUsersComments",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "bannedUntil",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "isShadowBan",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "updateId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "banReason",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/ban-users/from-comment/{commentId}": {
+			"get": {
+				"operationId": "GetBanUsersFromComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBannedUsersFromCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/ban-user/undo": {
+			"post": {
+				"operationId": "PostBanUserUndo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BanUserUndoParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/my-account/moderate-comments/remove-comment/{commentId}": {
+			"post": {
+				"operationId": "PostRemoveComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "PostRemoveCommentResponse",
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/DeleteCommentResult"
+										},
+										{
+											"$ref": "#/components/schemas/RemoveCommentActionResponse"
+										}
+									]
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/restore-deleted-comment/{commentId}": {
+			"post": {
+				"operationId": "PostRestoreDeletedComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/flag-comment/{commentId}": {
+			"post": {
+				"operationId": "PostFlagComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/un-flag-comment/{commentId}": {
+			"post": {
+				"operationId": "PostUnFlagComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/set-comment-review-status/{commentId}": {
+			"post": {
+				"operationId": "PostSetCommentReviewStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "reviewed",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/set-comment-spam-status/{commentId}": {
+			"post": {
+				"operationId": "PostSetCommentSpamStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "spam",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "permNotSpam",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/set-comment-approval-status/{commentId}": {
+			"post": {
+				"operationId": "PostSetCommentApprovalStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SetCommentApprovedResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "approved",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/logs/{commentId}": {
+			"get": {
+				"operationId": "GetLogs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPIGetLogsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/comment/{commentId}": {
+			"get": {
+				"operationId": "GetModerationComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPICommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeEmail",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "includeIP",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/comments-by-ids": {
+			"post": {
+				"operationId": "PostCommentsByIds",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPIChildCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CommentsByIdsParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/my-account/moderate-comments/comment-children/{commentId}": {
+			"get": {
+				"operationId": "GetCommentChildren",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ModerationAPIChildCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-comment-text/{commentId}": {
+			"get": {
+				"operationId": "GetModerationCommentText",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetCommentTextResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/set-comment-text/{commentId}": {
+			"post": {
+				"operationId": "PostSetCommentText",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SetCommentTextResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SetCommentTextParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/my-account/moderate-comments/adjust-comment-votes/{commentId}": {
+			"post": {
+				"operationId": "PostAdjustCommentVotes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AdjustVotesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AdjustCommentVotesParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/my-account/moderate-comments/vote/{commentId}": {
+			"post": {
+				"operationId": "PostVote",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/VoteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "direction",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/vote/{commentId}/{voteId}": {
+			"delete": {
+				"operationId": "DeleteModerationVote",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/VoteDeleteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "voteId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-comment-ban-status/{commentId}": {
+			"get": {
+				"operationId": "GetCommentBanStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetCommentBanStatusResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/user-ban-preference": {
+			"get": {
+				"operationId": "GetUserBanPreference",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIModerateGetUserBanPreferencesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-manual-badges": {
+			"get": {
+				"operationId": "GetManualBadges",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetTenantManualBadgesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-manual-badges-for-user": {
+			"get": {
+				"operationId": "GetManualBadgesForUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserManualBadgesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "badgesUserId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "commentId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/award-badge": {
+			"put": {
+				"operationId": "PutAwardBadge",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AwardUserBadgeResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "badgeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "commentId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/remove-badge": {
+			"put": {
+				"operationId": "PutRemoveBadge",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RemoveUserBadgeResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "badgeId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "commentId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-trust-factor": {
+			"get": {
+				"operationId": "GetTrustFactor",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserTrustFactorResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/set-trust-factor": {
+			"put": {
+				"operationId": "SetTrustFactor",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SetUserTrustFactorResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "trustFactor",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/get-user-internal-profile": {
+			"get": {
+				"operationId": "GetUserInternalProfile",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserInternalProfileResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "commentId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/reopen-thread": {
+			"put": {
+				"operationId": "PutReopenThread",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/close-thread": {
+			"put": {
+				"operationId": "PutCloseThread",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/auth/my-account/moderate-comments/banned-users/counts": {
+			"get": {
+				"operationId": "GetCounts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBannedUsersCountResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Moderation"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/gifs/trending/{tenantId}": {
 			"get": {
 				"operationId": "GetGifsTrending",
@@ -11544,6 +15651,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "GetGifsTrendingResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/GifSearchResponse"
@@ -11607,15 +15715,13 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "GetGifsSearchResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/GifSearchResponse"
 										},
 										{
 											"$ref": "#/components/schemas/GifSearchInternalError"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
 										}
 									]
 								}
@@ -11624,6 +15730,16 @@
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -11691,20 +15807,23 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GifGetLargeResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GifGetLargeResponse"
 								}
 							}
 						}
 					},
 					"422": {
 						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -11747,14 +15866,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11809,14 +15931,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PublicFeedPostsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PublicFeedPostsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11898,14 +16023,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateFeedPostResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateFeedPostResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -11962,14 +16090,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ReactFeedPostResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ReactFeedPostResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12042,14 +16173,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/UserReactsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/UserReactsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12099,14 +16233,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateFeedPostResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateFeedPostResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12169,22 +16306,26 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"properties": {
-												"status": {
-													"$ref": "#/components/schemas/APIStatus"
-												}
-											},
-											"required": [
-												"status"
-											],
-											"type": "object"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
+									"title": "DeleteFeedPostPublicResponse",
+									"properties": {
+										"status": {
+											"$ref": "#/components/schemas/APIStatus"
 										}
-									]
+									},
+									"required": [
+										"status"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12239,14 +16380,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/FeedPostsStatsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/FeedPostsStatsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12296,14 +16440,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEventLogResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEventLogResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12369,14 +16516,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEventLogResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEventLogResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12442,14 +16592,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PublicAPIGetCommentTextResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PublicAPIGetCommentTextResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12504,14 +16657,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PublicAPISetCommentTextResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PublicAPISetCommentTextResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12584,14 +16740,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetCommentsForUserResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetCommentsForUserResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12671,14 +16830,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetCommentsResponseWithPresence_PublicComment_"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetCommentsResponseWithPresence_PublicComment_"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -12933,14 +17095,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/SaveCommentsResponseWithPresence"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/SaveCommentsResponseWithPresence"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13013,14 +17178,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/PublicAPIDeleteCommentResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/PublicAPIDeleteCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13083,14 +17251,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CheckBlockedCommentsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CheckBlockedCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13138,14 +17309,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/VoteResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/VoteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13226,14 +17400,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/VoteDeleteResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/VoteDeleteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13312,14 +17489,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetCommentVoteUserNamesSuccessResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetCommentVoteUserNamesSuccessResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13375,14 +17555,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ChangeCommentPinStatusResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ChangeCommentPinStatusResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13437,14 +17620,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ChangeCommentPinStatusResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ChangeCommentPinStatusResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13499,14 +17685,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIError"
-										},
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13561,14 +17750,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIError"
-										},
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13623,14 +17815,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/BlockSuccess"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/BlockSuccess"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13685,14 +17880,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/UnblockSuccess"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/UnblockSuccess"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -13955,6 +18153,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "GetSSOUsersResponse",
 									"properties": {
 										"users": {
 											"items": {
@@ -14499,14 +18698,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetVotesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetVotesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14544,14 +18746,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/VoteResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/VoteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14619,14 +18824,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetVotesForUserResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetVotesForUserResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14682,14 +18890,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/VoteDeleteResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/VoteDeleteResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14737,14 +18948,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetUserResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetUserResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14784,14 +18998,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetUserBadgeResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetUserBadgeResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14829,14 +19046,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptySuccessResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptySuccessResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14884,14 +19104,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptySuccessResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptySuccessResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -14931,14 +19154,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetUserBadgesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetUserBadgesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15019,14 +19245,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APICreateUserBadgeResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APICreateUserBadgeResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15068,14 +19297,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetUserBadgeProgressResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetUserBadgeProgressResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15115,14 +19347,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetUserBadgeProgressListResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetUserBadgeProgressListResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15180,14 +19415,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetUserBadgeProgressResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetUserBadgeProgressResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15227,14 +19465,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTicketsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTicketsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15299,14 +19540,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateTicketResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateTicketResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15356,14 +19600,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTicketResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTicketResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15411,14 +19658,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/ChangeTicketStateResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/ChangeTicketStateResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15476,14 +19726,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15521,14 +19774,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15576,14 +19832,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15631,14 +19890,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15685,14 +19947,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateTenantResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateTenantResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15734,14 +19999,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantUserResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantUserResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15779,14 +20047,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15842,14 +20113,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15905,14 +20179,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -15968,14 +20245,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantUsersResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantUsersResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16014,14 +20294,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateTenantUserResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateTenantUserResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16063,14 +20346,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16118,14 +20404,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantPackageResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantPackageResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16163,14 +20452,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16218,14 +20510,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16273,14 +20568,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16320,14 +20618,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantPackagesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantPackagesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16366,14 +20667,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateTenantPackageResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateTenantPackageResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16415,14 +20719,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetTenantDailyUsagesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetTenantDailyUsagesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16490,14 +20797,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetQuestionResultResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetQuestionResultResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16535,14 +20845,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16590,14 +20903,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16637,14 +20953,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetQuestionResultsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetQuestionResultsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16723,14 +21042,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateQuestionResultResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateQuestionResultResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16772,14 +21094,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/AggregateQuestionResultsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/AggregateQuestionResultsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16863,14 +21188,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/BulkAggregateQuestionResultsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/BulkAggregateQuestionResultsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -16920,14 +21248,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CombineQuestionResultsWithCommentsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CombineQuestionResultsWithCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17030,14 +21361,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetQuestionConfigResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetQuestionConfigResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17075,14 +21409,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17130,14 +21467,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17177,14 +21517,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetQuestionConfigsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetQuestionConfigsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17223,14 +21566,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateQuestionConfigResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateQuestionConfigResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17272,14 +21618,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetPendingWebhookEventsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetPendingWebhookEventsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17369,14 +21718,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetPendingWebhookEventCountResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetPendingWebhookEventCountResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17457,14 +21809,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17504,14 +21859,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetNotificationsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetNotificationsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17592,14 +21950,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetNotificationCountResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetNotificationCountResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17671,14 +22032,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17736,14 +22100,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetCachedNotificationCountResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetCachedNotificationCountResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17781,14 +22148,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17828,14 +22198,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetModeratorResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetModeratorResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17873,14 +22246,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17928,14 +22304,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -17983,14 +22362,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetModeratorsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetModeratorsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18029,14 +22411,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateModeratorResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateModeratorResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18078,14 +22463,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18133,14 +22521,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetHashTagsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetHashTagsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18179,14 +22570,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateHashTagResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateHashTagResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18228,14 +22622,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/BulkCreateHashTagsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/BulkCreateHashTagsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18277,14 +22674,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/UpdateHashTagResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/UpdateHashTagResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18332,14 +22732,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18373,6 +22776,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
+								"title": "DeleteHashTagRequestBody",
 								"properties": {
 									"tenantId": {
 										"type": "string"
@@ -18394,14 +22798,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetFeedPostsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetFeedPostsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18460,14 +22867,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateFeedPostsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateFeedPostsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18541,14 +22951,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18598,14 +23011,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEmailTemplateDefinitionsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEmailTemplateDefinitionsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18637,14 +23053,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEmailTemplateRenderErrorsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEmailTemplateRenderErrorsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18693,14 +23112,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18748,14 +23170,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEmailTemplateResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEmailTemplateResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18793,14 +23218,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18848,14 +23276,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18895,14 +23326,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetEmailTemplatesResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetEmailTemplatesResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18941,14 +23375,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/CreateEmailTemplateResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/CreateEmailTemplateResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -18990,14 +23427,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/RenderEmailTemplateResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/RenderEmailTemplateResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19047,6 +23487,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "GetDomainConfigsResponse",
 									"anyOf": [
 										{
 											"properties": {
@@ -19106,6 +23547,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "AddDomainConfigResponse",
 									"anyOf": [
 										{
 											"properties": {
@@ -19177,6 +23619,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "GetDomainConfigResponse",
 									"anyOf": [
 										{
 											"properties": {
@@ -19244,6 +23687,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "DeleteDomainConfigResponse",
 									"properties": {
 										"status": {}
 									},
@@ -19290,6 +23734,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "PutDomainConfigResponse",
 									"anyOf": [
 										{
 											"properties": {
@@ -19367,6 +23812,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "PatchDomainConfigResponse",
 									"anyOf": [
 										{
 											"properties": {
@@ -19446,14 +23892,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetCommentResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19491,14 +23940,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIEmptyResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIEmptyResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19570,14 +24022,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/DeleteCommentResult"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/DeleteCommentResult"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19633,14 +24088,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APIGetCommentsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APIGetCommentsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19806,14 +24264,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/APISaveCommentResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/APISaveCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -19888,6 +24349,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
+										"title": "SaveCommentsBulkResponse",
 										"anyOf": [
 											{
 												"$ref": "#/components/schemas/APISaveCommentResponse"
@@ -19974,14 +24436,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/FlagCommentResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/FlagCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -20037,14 +24502,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/FlagCommentResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/FlagCommentResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -20100,14 +24568,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/BlockSuccess"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/BlockSuccess"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -20173,14 +24644,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/UnblockSuccess"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/UnblockSuccess"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -20246,14 +24720,17 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/GetAuditLogsResponse"
-										},
-										{
-											"$ref": "#/components/schemas/APIError"
-										}
-									]
+									"$ref": "#/components/schemas/GetAuditLogsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
 								}
 							}
 						}
@@ -20329,6 +24806,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
+									"title": "AggregateResponse",
 									"anyOf": [
 										{
 											"$ref": "#/components/schemas/AggregationResponse"
