@@ -1,0 +1,41 @@
+name: CI
+
+# Runs on PRs and pushes to the default branch. We use `pull_request` (never
+# `pull_request_target`), so secrets are NOT exposed to pull requests from forks.
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # The test harness (src/__tests__/env.ts) eagerly requires these on import,
+    # so every test step (unit/integration/browser) needs them.
+    env:
+      FASTCOMMENTS_API_KEY: ${{ secrets.FASTCOMMENTS_API_KEY }}
+      FASTCOMMENTS_TENANT_ID: ${{ secrets.FASTCOMMENTS_TENANT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      # Compile the committed generated sources; do not regenerate from the spec in CI.
+      - name: Compile
+        run: npm run compile
+      - name: Run unit tests
+        run: npm run test:unit
+      - name: Run integration tests
+        run: npm run test:integration
+      - name: Run browser compatibility tests
+        run: npm run test:browser
