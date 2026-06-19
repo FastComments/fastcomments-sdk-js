@@ -23,7 +23,7 @@ export type { LiveEvent, LiveEventType, EventLogEntry, PubSubComment, PubSubVote
 export type * from './sso/types';
 
 // Browser-safe SDK class
-import { DefaultApi, PublicApi } from './generated/src/apis';
+import { DefaultApi, PublicApi, ModerationApi } from './generated/src/apis';
 import { Configuration } from './generated/src/runtime';
 
 export interface FastCommentsBrowserSDKConfig {
@@ -35,6 +35,7 @@ export class FastCommentsBrowserSDK {
   private config: FastCommentsBrowserSDKConfig;
   private _defaultApi: DefaultApi | null = null;
   private _publicApi: PublicApi | null = null;
+  private _moderationApi: ModerationApi | null = null;
 
   constructor(config: FastCommentsBrowserSDKConfig = {}) {
     this.config = { ...config };
@@ -65,12 +66,24 @@ export class FastCommentsBrowserSDK {
   }
 
   /**
+   * Moderator dashboard endpoints (comment moderation, bans, badges, trust factor, search).
+   * Authenticated by the moderator's session, or the `sso` param for SSO-authenticated moderators.
+   */
+  public get moderationApi(): ModerationApi {
+    if (!this._moderationApi) {
+      this._moderationApi = new ModerationApi(this.getConfiguration());
+    }
+    return this._moderationApi;
+  }
+
+  /**
    * Update the API key for authenticated requests
    */
   setApiKey(apiKey: string): void {
     this.config.apiKey = apiKey;
     this._defaultApi = null;
     this._publicApi = null;
+    this._moderationApi = null;
   }
 
   /**
@@ -80,6 +93,7 @@ export class FastCommentsBrowserSDK {
     this.config.basePath = basePath;
     this._defaultApi = null;
     this._publicApi = null;
+    this._moderationApi = null;
   }
 }
 

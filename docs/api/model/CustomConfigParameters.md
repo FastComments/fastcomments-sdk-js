@@ -55,6 +55,8 @@
 | **noCustomConfig** | **Boolean** |  | [optional] [default to null] |
 | **mentionAutoCompleteMode** | [**MentionAutoCompleteMode**](MentionAutoCompleteMode.md) |  | [optional] [default to null] |
 | **noImageUploads** | **Boolean** |  | [optional] [default to null] |
+| **allowEmbeds** | **Boolean** |  | [optional] [default to null] |
+| **allowedEmbedDomains** | **List** |  | [optional] [default to null] |
 | **noStyles** | **Boolean** |  | [optional] [default to null] |
 | **pageSize** | **Integer** |  | [optional] [default to null] |
 | **readonly** | **Boolean** |  | [optional] [default to null] |

@@ -456,6 +456,18 @@ export interface CustomConfigParameters {
      * @type {boolean}
      * @memberof CustomConfigParameters
      */
+    allowEmbeds?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CustomConfigParameters
+     */
+    allowedEmbedDomains?: Array<string> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
     noStyles?: boolean;
     /**
      * 
@@ -728,6 +740,8 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'noCustomConfig': json['noCustomConfig'] == null ? undefined : json['noCustomConfig'],
         'mentionAutoCompleteMode': json['mentionAutoCompleteMode'] == null ? undefined : MentionAutoCompleteModeFromJSON(json['mentionAutoCompleteMode']),
         'noImageUploads': json['noImageUploads'] == null ? undefined : json['noImageUploads'],
+        'allowEmbeds': json['allowEmbeds'] == null ? undefined : json['allowEmbeds'],
+        'allowedEmbedDomains': json['allowedEmbedDomains'] == null ? undefined : json['allowedEmbedDomains'],
         'noStyles': json['noStyles'] == null ? undefined : json['noStyles'],
         'pageSize': json['pageSize'] == null ? undefined : json['pageSize'],
         'readonly': json['readonly'] == null ? undefined : json['readonly'],
@@ -828,6 +842,8 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'noCustomConfig': value['noCustomConfig'],
         'mentionAutoCompleteMode': MentionAutoCompleteModeToJSON(value['mentionAutoCompleteMode']),
         'noImageUploads': value['noImageUploads'],
+        'allowEmbeds': value['allowEmbeds'],
+        'allowedEmbedDomains': value['allowedEmbedDomains'],
         'noStyles': value['noStyles'],
         'pageSize': value['pageSize'],
         'readonly': value['readonly'],
