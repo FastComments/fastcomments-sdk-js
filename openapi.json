@@ -14210,6 +14210,14 @@
 					},
 					{
 						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "tenantId",
 						"required": false,
 						"schema": {
@@ -14259,6 +14267,14 @@
 						"in": "path",
 						"name": "commentId",
 						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
 						"schema": {
 							"type": "string"
 						}
@@ -14320,6 +14336,14 @@
 					},
 					{
 						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "tenantId",
 						"required": false,
 						"schema": {
@@ -14369,6 +14393,14 @@
 						"in": "path",
 						"name": "commentId",
 						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
 						"schema": {
 							"type": "string"
 						}
@@ -14434,6 +14466,14 @@
 						"required": false,
 						"schema": {
 							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					},
 					{
@@ -14509,6 +14549,14 @@
 					},
 					{
 						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "tenantId",
 						"required": false,
 						"schema": {
@@ -14568,6 +14616,14 @@
 						"required": false,
 						"schema": {
 							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
 						}
 					},
 					{
@@ -14920,6 +14976,14 @@
 					},
 					{
 						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "tenantId",
 						"required": false,
 						"schema": {
@@ -14979,6 +15043,14 @@
 						"in": "path",
 						"name": "commentId",
 						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
 						"schema": {
 							"type": "string"
 						}
@@ -15058,6 +15130,14 @@
 					},
 					{
 						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "tenantId",
 						"required": false,
 						"schema": {
@@ -15115,6 +15195,14 @@
 						"in": "path",
 						"name": "voteId",
 						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
 						"schema": {
 							"type": "string"
 						}

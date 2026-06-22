@@ -51,7 +51,7 @@ All URIs are relative to *https://fastcomments.com*
 
 <a name="deleteModerationVote"></a>
 # **deleteModerationVote**
-> DeleteModerationVoteResponse deleteModerationVote(commentId, voteId, tenantId, sso)
+> DeleteModerationVoteResponse deleteModerationVote(commentId, voteId, broadcastId, tenantId, sso)
 
 
 
@@ -61,6 +61,7 @@ All URIs are relative to *https://fastcomments.com*
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **voteId** | **String**|  | [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -694,7 +695,7 @@ No authorization required
 
 <a name="postAdjustCommentVotes"></a>
 # **postAdjustCommentVotes**
-> PostAdjustCommentVotesResponse postAdjustCommentVotes(commentId, AdjustCommentVotesParams, tenantId, sso)
+> PostAdjustCommentVotesResponse postAdjustCommentVotes(commentId, AdjustCommentVotesParams, broadcastId, tenantId, sso)
 
 
 
@@ -704,6 +705,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **AdjustCommentVotesParams** | [**AdjustCommentVotesParams**](../model/AdjustCommentVotesParams.md)|  | |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -872,7 +874,7 @@ No authorization required
 
 <a name="postFlagComment"></a>
 # **postFlagComment**
-> PostFlagCommentResponse postFlagComment(commentId, tenantId, sso)
+> PostFlagCommentResponse postFlagComment(commentId, broadcastId, tenantId, sso)
 
 
 
@@ -881,6 +883,7 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -899,7 +902,7 @@ No authorization required
 
 <a name="postRemoveComment"></a>
 # **postRemoveComment**
-> PostRemoveCommentResponse postRemoveComment(commentId, tenantId, sso)
+> PostRemoveCommentResponse postRemoveComment(commentId, broadcastId, tenantId, sso)
 
 
 
@@ -908,6 +911,7 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -926,7 +930,7 @@ No authorization required
 
 <a name="postRestoreDeletedComment"></a>
 # **postRestoreDeletedComment**
-> PostRestoreDeletedCommentResponse postRestoreDeletedComment(commentId, tenantId, sso)
+> PostRestoreDeletedCommentResponse postRestoreDeletedComment(commentId, broadcastId, tenantId, sso)
 
 
 
@@ -935,6 +939,7 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -953,7 +958,7 @@ No authorization required
 
 <a name="postSetCommentApprovalStatus"></a>
 # **postSetCommentApprovalStatus**
-> PostSetCommentApprovalStatusResponse postSetCommentApprovalStatus(commentId, approved, tenantId, sso)
+> PostSetCommentApprovalStatusResponse postSetCommentApprovalStatus(commentId, approved, broadcastId, tenantId, sso)
 
 
 
@@ -963,6 +968,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **approved** | **Boolean**|  | [optional] [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -981,7 +987,7 @@ No authorization required
 
 <a name="postSetCommentReviewStatus"></a>
 # **postSetCommentReviewStatus**
-> PostSetCommentReviewStatusResponse postSetCommentReviewStatus(commentId, reviewed, tenantId, sso)
+> PostSetCommentReviewStatusResponse postSetCommentReviewStatus(commentId, reviewed, broadcastId, tenantId, sso)
 
 
 
@@ -991,6 +997,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **reviewed** | **Boolean**|  | [optional] [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -1009,7 +1016,7 @@ No authorization required
 
 <a name="postSetCommentSpamStatus"></a>
 # **postSetCommentSpamStatus**
-> PostSetCommentSpamStatusResponse postSetCommentSpamStatus(commentId, spam, permNotSpam, tenantId, sso)
+> PostSetCommentSpamStatusResponse postSetCommentSpamStatus(commentId, spam, permNotSpam, broadcastId, tenantId, sso)
 
 
 
@@ -1020,6 +1027,7 @@ No authorization required
 | **commentId** | **String**|  | [default to null] |
 | **spam** | **Boolean**|  | [optional] [default to null] |
 | **permNotSpam** | **Boolean**|  | [optional] [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -1038,7 +1046,7 @@ No authorization required
 
 <a name="postSetCommentText"></a>
 # **postSetCommentText**
-> PostSetCommentTextResponse postSetCommentText(commentId, SetCommentTextParams, tenantId, sso)
+> PostSetCommentTextResponse postSetCommentText(commentId, SetCommentTextParams, broadcastId, tenantId, sso)
 
 
 
@@ -1048,6 +1056,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **SetCommentTextParams** | [**SetCommentTextParams**](../model/SetCommentTextParams.md)|  | |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -1066,7 +1075,7 @@ No authorization required
 
 <a name="postUnFlagComment"></a>
 # **postUnFlagComment**
-> PostUnFlagCommentResponse postUnFlagComment(commentId, tenantId, sso)
+> PostUnFlagCommentResponse postUnFlagComment(commentId, broadcastId, tenantId, sso)
 
 
 
@@ -1075,6 +1084,7 @@ No authorization required
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 
@@ -1093,7 +1103,7 @@ No authorization required
 
 <a name="postVote"></a>
 # **postVote**
-> PostVoteResponse postVote(commentId, direction, tenantId, sso)
+> PostVoteResponse postVote(commentId, direction, broadcastId, tenantId, sso)
 
 
 
@@ -1103,6 +1113,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **commentId** | **String**|  | [default to null] |
 | **direction** | **String**|  | [optional] [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
 | **tenantId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
 

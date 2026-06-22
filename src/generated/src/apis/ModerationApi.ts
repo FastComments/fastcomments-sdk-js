@@ -166,6 +166,7 @@ import {
 export interface DeleteModerationVoteRequest {
     commentId: string;
     voteId: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -326,6 +327,7 @@ export interface GetUserInternalProfileRequest {
 export interface PostAdjustCommentVotesRequest {
     commentId: string;
     adjustCommentVotesParams: AdjustCommentVotesParams;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -377,18 +379,21 @@ export interface PostCommentsByIdsRequest {
 
 export interface PostFlagCommentRequest {
     commentId: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
 
 export interface PostRemoveCommentRequest {
     commentId: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
 
 export interface PostRestoreDeletedCommentRequest {
     commentId: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -396,6 +401,7 @@ export interface PostRestoreDeletedCommentRequest {
 export interface PostSetCommentApprovalStatusRequest {
     commentId: string;
     approved?: boolean;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -403,6 +409,7 @@ export interface PostSetCommentApprovalStatusRequest {
 export interface PostSetCommentReviewStatusRequest {
     commentId: string;
     reviewed?: boolean;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -411,6 +418,7 @@ export interface PostSetCommentSpamStatusRequest {
     commentId: string;
     spam?: boolean;
     permNotSpam?: boolean;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -418,12 +426,14 @@ export interface PostSetCommentSpamStatusRequest {
 export interface PostSetCommentTextRequest {
     commentId: string;
     setCommentTextParams: SetCommentTextParams;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
 
 export interface PostUnFlagCommentRequest {
     commentId: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -431,6 +441,7 @@ export interface PostUnFlagCommentRequest {
 export interface PostVoteRequest {
     commentId: string;
     direction?: string;
+    broadcastId?: string;
     tenantId?: string;
     sso?: string;
 }
@@ -483,6 +494,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {string} voteId 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -850,6 +862,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {AdjustCommentVotesParams} adjustCommentVotesParams 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -955,6 +968,7 @@ export interface ModerationApiInterface {
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -970,6 +984,7 @@ export interface ModerationApiInterface {
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -985,6 +1000,7 @@ export interface ModerationApiInterface {
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1001,6 +1017,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {boolean} [approved] 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1017,6 +1034,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {boolean} [reviewed] 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1034,6 +1052,7 @@ export interface ModerationApiInterface {
      * @param {string} commentId 
      * @param {boolean} [spam] 
      * @param {boolean} [permNotSpam] 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1050,6 +1069,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {SetCommentTextParams} setCommentTextParams 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1065,6 +1085,7 @@ export interface ModerationApiInterface {
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1081,6 +1102,7 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {string} [direction] 
+     * @param {string} [broadcastId] 
      * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
@@ -1200,6 +1222,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
 
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
@@ -2144,6 +2170,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2447,6 +2477,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2486,6 +2520,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2524,6 +2562,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
 
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
@@ -2568,6 +2610,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['approved'] = requestParameters['approved'];
         }
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2609,6 +2655,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['reviewed'] != null) {
             queryParameters['reviewed'] = requestParameters['reviewed'];
+        }
+
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
         }
 
         if (requestParameters['tenantId'] != null) {
@@ -2658,6 +2708,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['permNotSpam'] = requestParameters['permNotSpam'];
         }
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2704,6 +2758,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2746,6 +2804,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
         if (requestParameters['tenantId'] != null) {
             queryParameters['tenantId'] = requestParameters['tenantId'];
         }
@@ -2787,6 +2849,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['direction'] != null) {
             queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
         }
 
         if (requestParameters['tenantId'] != null) {
