@@ -15,174 +15,182 @@
 
 import * as runtime from '../runtime';
 import type {
-  APICreateUserBadgeResponse,
-  APIEmptyResponse,
-  APIEmptySuccessResponse,
-  APIError,
-  APIGetCommentResponse,
-  APIGetCommentsResponse,
-  APIGetUserBadgeProgressListResponse,
-  APIGetUserBadgeProgressResponse,
-  APIGetUserBadgeResponse,
-  APIGetUserBadgesResponse,
-  APISaveCommentResponse,
   AddDomainConfigParams,
   AddDomainConfigResponse,
+  AddHashTagResponse,
+  AddHashTagsBulkResponse,
   AddPageAPIResponse,
   AddSSOUserAPIResponse,
-  AggregateQuestionResultsResponse,
+  AggregateQuestionResultsResponse1,
   AggregateResponse,
   AggregateTimeBucket,
   AggregationRequest,
   BlockFromCommentParams,
-  BlockSuccess,
+  BlockUserFromCommentResponse,
   BulkAggregateQuestionResultsRequest,
-  BulkAggregateQuestionResultsResponse,
+  BulkAggregateQuestionResultsResponse1,
   BulkCreateHashTagsBody,
-  BulkCreateHashTagsResponse,
   ChangeTicketStateBody,
-  ChangeTicketStateResponse,
-  CombineQuestionResultsWithCommentsResponse,
+  ChangeTicketStateResponse1,
+  CombineCommentsWithQuestionResultsResponse,
   CreateAPIPageData,
   CreateAPISSOUserData,
   CreateAPIUserSubscriptionData,
   CreateCommentParams,
   CreateEmailTemplateBody,
-  CreateEmailTemplateResponse,
+  CreateEmailTemplateResponse1,
   CreateFeedPostParams,
-  CreateFeedPostsResponse,
+  CreateFeedPostResponse1,
   CreateHashTagBody,
-  CreateHashTagResponse,
   CreateModeratorBody,
-  CreateModeratorResponse,
+  CreateModeratorResponse1,
   CreateQuestionConfigBody,
-  CreateQuestionConfigResponse,
+  CreateQuestionConfigResponse1,
   CreateQuestionResultBody,
-  CreateQuestionResultResponse,
+  CreateQuestionResultResponse1,
   CreateSubscriptionAPIResponse,
   CreateTenantBody,
   CreateTenantPackageBody,
-  CreateTenantPackageResponse,
-  CreateTenantResponse,
+  CreateTenantPackageResponse1,
+  CreateTenantResponse1,
   CreateTenantUserBody,
-  CreateTenantUserResponse,
+  CreateTenantUserResponse1,
   CreateTicketBody,
-  CreateTicketResponse,
+  CreateTicketResponse1,
   CreateUserBadgeParams,
-  DeleteCommentResult,
+  CreateUserBadgeResponse,
+  CreateVoteResponse,
+  DeleteCommentResponse,
   DeleteDomainConfigResponse,
+  DeleteEmailTemplateRenderErrorResponse,
+  DeleteEmailTemplateResponse,
   DeleteHashTagRequestBody,
+  DeleteHashTagResponse,
+  DeleteModeratorResponse,
+  DeleteNotificationCountResponse,
   DeletePageAPIResponse,
+  DeletePendingWebhookEventResponse,
+  DeleteQuestionConfigResponse,
+  DeleteQuestionResultResponse,
   DeleteSSOUserAPIResponse,
   DeleteSubscriptionAPIResponse,
+  DeleteTenantPackageResponse,
+  DeleteTenantResponse,
+  DeleteTenantUserResponse,
+  DeleteUserBadgeResponse,
+  DeleteVoteResponse,
   FeedPost,
-  FlagCommentResponse,
-  GetAuditLogsResponse,
-  GetCachedNotificationCountResponse,
+  FlagCommentResponse1,
+  GetAuditLogsResponse1,
+  GetCachedNotificationCountResponse1,
+  GetCommentResponse,
+  GetCommentsResponse,
   GetDomainConfigResponse,
   GetDomainConfigsResponse,
-  GetEmailTemplateDefinitionsResponse,
-  GetEmailTemplateRenderErrorsResponse,
-  GetEmailTemplateResponse,
-  GetEmailTemplatesResponse,
-  GetFeedPostsResponse,
-  GetHashTagsResponse,
-  GetModeratorResponse,
-  GetModeratorsResponse,
-  GetNotificationCountResponse,
-  GetNotificationsResponse,
+  GetEmailTemplateDefinitionsResponse1,
+  GetEmailTemplateRenderErrorsResponse1,
+  GetEmailTemplateResponse1,
+  GetEmailTemplatesResponse1,
+  GetFeedPostsResponse1,
+  GetHashTagsResponse1,
+  GetModeratorResponse1,
+  GetModeratorsResponse1,
+  GetNotificationCountResponse1,
+  GetNotificationsResponse1,
   GetPageByURLIdAPIResponse,
   GetPagesAPIResponse,
-  GetPendingWebhookEventCountResponse,
-  GetPendingWebhookEventsResponse,
-  GetQuestionConfigResponse,
-  GetQuestionConfigsResponse,
-  GetQuestionResultResponse,
-  GetQuestionResultsResponse,
+  GetPendingWebhookEventCountResponse1,
+  GetPendingWebhookEventsResponse1,
+  GetQuestionConfigResponse1,
+  GetQuestionConfigsResponse1,
+  GetQuestionResultResponse1,
+  GetQuestionResultsResponse1,
   GetSSOUserByEmailAPIResponse,
   GetSSOUserByIdAPIResponse,
   GetSSOUsersResponse,
   GetSubscriptionsAPIResponse,
-  GetTenantDailyUsagesResponse,
-  GetTenantPackageResponse,
-  GetTenantPackagesResponse,
-  GetTenantResponse,
-  GetTenantUserResponse,
-  GetTenantUsersResponse,
-  GetTenantsResponse,
-  GetTicketResponse,
-  GetTicketsResponse,
-  GetUserResponse,
-  GetVotesForUserResponse,
-  GetVotesResponse,
+  GetTenantDailyUsagesResponse1,
+  GetTenantPackageResponse1,
+  GetTenantPackagesResponse1,
+  GetTenantResponse1,
+  GetTenantUserResponse1,
+  GetTenantUsersResponse1,
+  GetTenantsResponse1,
+  GetTicketResponse1,
+  GetTicketsResponse1,
+  GetUserBadgeProgressByIdResponse,
+  GetUserBadgeProgressByUserIdResponse,
+  GetUserBadgeProgressListResponse,
+  GetUserBadgeResponse,
+  GetUserBadgesResponse,
+  GetUserResponse1,
+  GetVotesForUserResponse1,
+  GetVotesResponse1,
   PatchDomainConfigParams,
   PatchDomainConfigResponse,
+  PatchHashTagResponse,
   PatchPageAPIResponse,
   PatchSSOUserAPIResponse,
   PutDomainConfigResponse,
   PutSSOUserAPIResponse,
   RenderEmailTemplateBody,
-  RenderEmailTemplateResponse,
+  RenderEmailTemplateResponse1,
   ReplaceTenantPackageBody,
+  ReplaceTenantPackageResponse,
   ReplaceTenantUserBody,
+  ReplaceTenantUserResponse,
   SORTDIR,
+  SaveCommentResponse,
   SaveCommentsBulkResponse,
+  SendInviteResponse,
+  SendLoginLinkResponse,
   SortDirections,
   UnBlockFromCommentParams,
-  UnblockSuccess,
+  UnBlockUserFromCommentResponse,
+  UnFlagCommentResponse,
   UpdatableCommentParams,
   UpdateAPIPageData,
   UpdateAPISSOUserData,
   UpdateAPIUserSubscriptionData,
+  UpdateCommentResponse,
   UpdateDomainConfigParams,
   UpdateEmailTemplateBody,
+  UpdateEmailTemplateResponse,
+  UpdateFeedPostResponse,
   UpdateHashTagBody,
-  UpdateHashTagResponse,
   UpdateModeratorBody,
+  UpdateModeratorResponse,
   UpdateNotificationBody,
+  UpdateNotificationResponse,
   UpdateQuestionConfigBody,
+  UpdateQuestionConfigResponse,
   UpdateQuestionResultBody,
+  UpdateQuestionResultResponse,
   UpdateSubscriptionAPIResponse,
   UpdateTenantBody,
   UpdateTenantPackageBody,
+  UpdateTenantPackageResponse,
+  UpdateTenantResponse,
   UpdateTenantUserBody,
+  UpdateTenantUserResponse,
   UpdateUserBadgeParams,
-  VoteDeleteResponse,
-  VoteResponse,
+  UpdateUserBadgeResponse,
 } from '../models/index';
 import {
-    APICreateUserBadgeResponseFromJSON,
-    APICreateUserBadgeResponseToJSON,
-    APIEmptyResponseFromJSON,
-    APIEmptyResponseToJSON,
-    APIEmptySuccessResponseFromJSON,
-    APIEmptySuccessResponseToJSON,
-    APIErrorFromJSON,
-    APIErrorToJSON,
-    APIGetCommentResponseFromJSON,
-    APIGetCommentResponseToJSON,
-    APIGetCommentsResponseFromJSON,
-    APIGetCommentsResponseToJSON,
-    APIGetUserBadgeProgressListResponseFromJSON,
-    APIGetUserBadgeProgressListResponseToJSON,
-    APIGetUserBadgeProgressResponseFromJSON,
-    APIGetUserBadgeProgressResponseToJSON,
-    APIGetUserBadgeResponseFromJSON,
-    APIGetUserBadgeResponseToJSON,
-    APIGetUserBadgesResponseFromJSON,
-    APIGetUserBadgesResponseToJSON,
-    APISaveCommentResponseFromJSON,
-    APISaveCommentResponseToJSON,
     AddDomainConfigParamsFromJSON,
     AddDomainConfigParamsToJSON,
     AddDomainConfigResponseFromJSON,
     AddDomainConfigResponseToJSON,
+    AddHashTagResponseFromJSON,
+    AddHashTagResponseToJSON,
+    AddHashTagsBulkResponseFromJSON,
+    AddHashTagsBulkResponseToJSON,
     AddPageAPIResponseFromJSON,
     AddPageAPIResponseToJSON,
     AddSSOUserAPIResponseFromJSON,
     AddSSOUserAPIResponseToJSON,
-    AggregateQuestionResultsResponseFromJSON,
-    AggregateQuestionResultsResponseToJSON,
+    AggregateQuestionResultsResponse1FromJSON,
+    AggregateQuestionResultsResponse1ToJSON,
     AggregateResponseFromJSON,
     AggregateResponseToJSON,
     AggregateTimeBucketFromJSON,
@@ -191,22 +199,20 @@ import {
     AggregationRequestToJSON,
     BlockFromCommentParamsFromJSON,
     BlockFromCommentParamsToJSON,
-    BlockSuccessFromJSON,
-    BlockSuccessToJSON,
+    BlockUserFromCommentResponseFromJSON,
+    BlockUserFromCommentResponseToJSON,
     BulkAggregateQuestionResultsRequestFromJSON,
     BulkAggregateQuestionResultsRequestToJSON,
-    BulkAggregateQuestionResultsResponseFromJSON,
-    BulkAggregateQuestionResultsResponseToJSON,
+    BulkAggregateQuestionResultsResponse1FromJSON,
+    BulkAggregateQuestionResultsResponse1ToJSON,
     BulkCreateHashTagsBodyFromJSON,
     BulkCreateHashTagsBodyToJSON,
-    BulkCreateHashTagsResponseFromJSON,
-    BulkCreateHashTagsResponseToJSON,
     ChangeTicketStateBodyFromJSON,
     ChangeTicketStateBodyToJSON,
-    ChangeTicketStateResponseFromJSON,
-    ChangeTicketStateResponseToJSON,
-    CombineQuestionResultsWithCommentsResponseFromJSON,
-    CombineQuestionResultsWithCommentsResponseToJSON,
+    ChangeTicketStateResponse1FromJSON,
+    ChangeTicketStateResponse1ToJSON,
+    CombineCommentsWithQuestionResultsResponseFromJSON,
+    CombineCommentsWithQuestionResultsResponseToJSON,
     CreateAPIPageDataFromJSON,
     CreateAPIPageDataToJSON,
     CreateAPISSOUserDataFromJSON,
@@ -217,108 +223,140 @@ import {
     CreateCommentParamsToJSON,
     CreateEmailTemplateBodyFromJSON,
     CreateEmailTemplateBodyToJSON,
-    CreateEmailTemplateResponseFromJSON,
-    CreateEmailTemplateResponseToJSON,
+    CreateEmailTemplateResponse1FromJSON,
+    CreateEmailTemplateResponse1ToJSON,
     CreateFeedPostParamsFromJSON,
     CreateFeedPostParamsToJSON,
-    CreateFeedPostsResponseFromJSON,
-    CreateFeedPostsResponseToJSON,
+    CreateFeedPostResponse1FromJSON,
+    CreateFeedPostResponse1ToJSON,
     CreateHashTagBodyFromJSON,
     CreateHashTagBodyToJSON,
-    CreateHashTagResponseFromJSON,
-    CreateHashTagResponseToJSON,
     CreateModeratorBodyFromJSON,
     CreateModeratorBodyToJSON,
-    CreateModeratorResponseFromJSON,
-    CreateModeratorResponseToJSON,
+    CreateModeratorResponse1FromJSON,
+    CreateModeratorResponse1ToJSON,
     CreateQuestionConfigBodyFromJSON,
     CreateQuestionConfigBodyToJSON,
-    CreateQuestionConfigResponseFromJSON,
-    CreateQuestionConfigResponseToJSON,
+    CreateQuestionConfigResponse1FromJSON,
+    CreateQuestionConfigResponse1ToJSON,
     CreateQuestionResultBodyFromJSON,
     CreateQuestionResultBodyToJSON,
-    CreateQuestionResultResponseFromJSON,
-    CreateQuestionResultResponseToJSON,
+    CreateQuestionResultResponse1FromJSON,
+    CreateQuestionResultResponse1ToJSON,
     CreateSubscriptionAPIResponseFromJSON,
     CreateSubscriptionAPIResponseToJSON,
     CreateTenantBodyFromJSON,
     CreateTenantBodyToJSON,
     CreateTenantPackageBodyFromJSON,
     CreateTenantPackageBodyToJSON,
-    CreateTenantPackageResponseFromJSON,
-    CreateTenantPackageResponseToJSON,
-    CreateTenantResponseFromJSON,
-    CreateTenantResponseToJSON,
+    CreateTenantPackageResponse1FromJSON,
+    CreateTenantPackageResponse1ToJSON,
+    CreateTenantResponse1FromJSON,
+    CreateTenantResponse1ToJSON,
     CreateTenantUserBodyFromJSON,
     CreateTenantUserBodyToJSON,
-    CreateTenantUserResponseFromJSON,
-    CreateTenantUserResponseToJSON,
+    CreateTenantUserResponse1FromJSON,
+    CreateTenantUserResponse1ToJSON,
     CreateTicketBodyFromJSON,
     CreateTicketBodyToJSON,
-    CreateTicketResponseFromJSON,
-    CreateTicketResponseToJSON,
+    CreateTicketResponse1FromJSON,
+    CreateTicketResponse1ToJSON,
     CreateUserBadgeParamsFromJSON,
     CreateUserBadgeParamsToJSON,
-    DeleteCommentResultFromJSON,
-    DeleteCommentResultToJSON,
+    CreateUserBadgeResponseFromJSON,
+    CreateUserBadgeResponseToJSON,
+    CreateVoteResponseFromJSON,
+    CreateVoteResponseToJSON,
+    DeleteCommentResponseFromJSON,
+    DeleteCommentResponseToJSON,
     DeleteDomainConfigResponseFromJSON,
     DeleteDomainConfigResponseToJSON,
+    DeleteEmailTemplateRenderErrorResponseFromJSON,
+    DeleteEmailTemplateRenderErrorResponseToJSON,
+    DeleteEmailTemplateResponseFromJSON,
+    DeleteEmailTemplateResponseToJSON,
     DeleteHashTagRequestBodyFromJSON,
     DeleteHashTagRequestBodyToJSON,
+    DeleteHashTagResponseFromJSON,
+    DeleteHashTagResponseToJSON,
+    DeleteModeratorResponseFromJSON,
+    DeleteModeratorResponseToJSON,
+    DeleteNotificationCountResponseFromJSON,
+    DeleteNotificationCountResponseToJSON,
     DeletePageAPIResponseFromJSON,
     DeletePageAPIResponseToJSON,
+    DeletePendingWebhookEventResponseFromJSON,
+    DeletePendingWebhookEventResponseToJSON,
+    DeleteQuestionConfigResponseFromJSON,
+    DeleteQuestionConfigResponseToJSON,
+    DeleteQuestionResultResponseFromJSON,
+    DeleteQuestionResultResponseToJSON,
     DeleteSSOUserAPIResponseFromJSON,
     DeleteSSOUserAPIResponseToJSON,
     DeleteSubscriptionAPIResponseFromJSON,
     DeleteSubscriptionAPIResponseToJSON,
+    DeleteTenantPackageResponseFromJSON,
+    DeleteTenantPackageResponseToJSON,
+    DeleteTenantResponseFromJSON,
+    DeleteTenantResponseToJSON,
+    DeleteTenantUserResponseFromJSON,
+    DeleteTenantUserResponseToJSON,
+    DeleteUserBadgeResponseFromJSON,
+    DeleteUserBadgeResponseToJSON,
+    DeleteVoteResponseFromJSON,
+    DeleteVoteResponseToJSON,
     FeedPostFromJSON,
     FeedPostToJSON,
-    FlagCommentResponseFromJSON,
-    FlagCommentResponseToJSON,
-    GetAuditLogsResponseFromJSON,
-    GetAuditLogsResponseToJSON,
-    GetCachedNotificationCountResponseFromJSON,
-    GetCachedNotificationCountResponseToJSON,
+    FlagCommentResponse1FromJSON,
+    FlagCommentResponse1ToJSON,
+    GetAuditLogsResponse1FromJSON,
+    GetAuditLogsResponse1ToJSON,
+    GetCachedNotificationCountResponse1FromJSON,
+    GetCachedNotificationCountResponse1ToJSON,
+    GetCommentResponseFromJSON,
+    GetCommentResponseToJSON,
+    GetCommentsResponseFromJSON,
+    GetCommentsResponseToJSON,
     GetDomainConfigResponseFromJSON,
     GetDomainConfigResponseToJSON,
     GetDomainConfigsResponseFromJSON,
     GetDomainConfigsResponseToJSON,
-    GetEmailTemplateDefinitionsResponseFromJSON,
-    GetEmailTemplateDefinitionsResponseToJSON,
-    GetEmailTemplateRenderErrorsResponseFromJSON,
-    GetEmailTemplateRenderErrorsResponseToJSON,
-    GetEmailTemplateResponseFromJSON,
-    GetEmailTemplateResponseToJSON,
-    GetEmailTemplatesResponseFromJSON,
-    GetEmailTemplatesResponseToJSON,
-    GetFeedPostsResponseFromJSON,
-    GetFeedPostsResponseToJSON,
-    GetHashTagsResponseFromJSON,
-    GetHashTagsResponseToJSON,
-    GetModeratorResponseFromJSON,
-    GetModeratorResponseToJSON,
-    GetModeratorsResponseFromJSON,
-    GetModeratorsResponseToJSON,
-    GetNotificationCountResponseFromJSON,
-    GetNotificationCountResponseToJSON,
-    GetNotificationsResponseFromJSON,
-    GetNotificationsResponseToJSON,
+    GetEmailTemplateDefinitionsResponse1FromJSON,
+    GetEmailTemplateDefinitionsResponse1ToJSON,
+    GetEmailTemplateRenderErrorsResponse1FromJSON,
+    GetEmailTemplateRenderErrorsResponse1ToJSON,
+    GetEmailTemplateResponse1FromJSON,
+    GetEmailTemplateResponse1ToJSON,
+    GetEmailTemplatesResponse1FromJSON,
+    GetEmailTemplatesResponse1ToJSON,
+    GetFeedPostsResponse1FromJSON,
+    GetFeedPostsResponse1ToJSON,
+    GetHashTagsResponse1FromJSON,
+    GetHashTagsResponse1ToJSON,
+    GetModeratorResponse1FromJSON,
+    GetModeratorResponse1ToJSON,
+    GetModeratorsResponse1FromJSON,
+    GetModeratorsResponse1ToJSON,
+    GetNotificationCountResponse1FromJSON,
+    GetNotificationCountResponse1ToJSON,
+    GetNotificationsResponse1FromJSON,
+    GetNotificationsResponse1ToJSON,
     GetPageByURLIdAPIResponseFromJSON,
     GetPageByURLIdAPIResponseToJSON,
     GetPagesAPIResponseFromJSON,
     GetPagesAPIResponseToJSON,
-    GetPendingWebhookEventCountResponseFromJSON,
-    GetPendingWebhookEventCountResponseToJSON,
-    GetPendingWebhookEventsResponseFromJSON,
-    GetPendingWebhookEventsResponseToJSON,
-    GetQuestionConfigResponseFromJSON,
-    GetQuestionConfigResponseToJSON,
-    GetQuestionConfigsResponseFromJSON,
-    GetQuestionConfigsResponseToJSON,
-    GetQuestionResultResponseFromJSON,
-    GetQuestionResultResponseToJSON,
-    GetQuestionResultsResponseFromJSON,
-    GetQuestionResultsResponseToJSON,
+    GetPendingWebhookEventCountResponse1FromJSON,
+    GetPendingWebhookEventCountResponse1ToJSON,
+    GetPendingWebhookEventsResponse1FromJSON,
+    GetPendingWebhookEventsResponse1ToJSON,
+    GetQuestionConfigResponse1FromJSON,
+    GetQuestionConfigResponse1ToJSON,
+    GetQuestionConfigsResponse1FromJSON,
+    GetQuestionConfigsResponse1ToJSON,
+    GetQuestionResultResponse1FromJSON,
+    GetQuestionResultResponse1ToJSON,
+    GetQuestionResultsResponse1FromJSON,
+    GetQuestionResultsResponse1ToJSON,
     GetSSOUserByEmailAPIResponseFromJSON,
     GetSSOUserByEmailAPIResponseToJSON,
     GetSSOUserByIdAPIResponseFromJSON,
@@ -327,34 +365,46 @@ import {
     GetSSOUsersResponseToJSON,
     GetSubscriptionsAPIResponseFromJSON,
     GetSubscriptionsAPIResponseToJSON,
-    GetTenantDailyUsagesResponseFromJSON,
-    GetTenantDailyUsagesResponseToJSON,
-    GetTenantPackageResponseFromJSON,
-    GetTenantPackageResponseToJSON,
-    GetTenantPackagesResponseFromJSON,
-    GetTenantPackagesResponseToJSON,
-    GetTenantResponseFromJSON,
-    GetTenantResponseToJSON,
-    GetTenantUserResponseFromJSON,
-    GetTenantUserResponseToJSON,
-    GetTenantUsersResponseFromJSON,
-    GetTenantUsersResponseToJSON,
-    GetTenantsResponseFromJSON,
-    GetTenantsResponseToJSON,
-    GetTicketResponseFromJSON,
-    GetTicketResponseToJSON,
-    GetTicketsResponseFromJSON,
-    GetTicketsResponseToJSON,
-    GetUserResponseFromJSON,
-    GetUserResponseToJSON,
-    GetVotesForUserResponseFromJSON,
-    GetVotesForUserResponseToJSON,
-    GetVotesResponseFromJSON,
-    GetVotesResponseToJSON,
+    GetTenantDailyUsagesResponse1FromJSON,
+    GetTenantDailyUsagesResponse1ToJSON,
+    GetTenantPackageResponse1FromJSON,
+    GetTenantPackageResponse1ToJSON,
+    GetTenantPackagesResponse1FromJSON,
+    GetTenantPackagesResponse1ToJSON,
+    GetTenantResponse1FromJSON,
+    GetTenantResponse1ToJSON,
+    GetTenantUserResponse1FromJSON,
+    GetTenantUserResponse1ToJSON,
+    GetTenantUsersResponse1FromJSON,
+    GetTenantUsersResponse1ToJSON,
+    GetTenantsResponse1FromJSON,
+    GetTenantsResponse1ToJSON,
+    GetTicketResponse1FromJSON,
+    GetTicketResponse1ToJSON,
+    GetTicketsResponse1FromJSON,
+    GetTicketsResponse1ToJSON,
+    GetUserBadgeProgressByIdResponseFromJSON,
+    GetUserBadgeProgressByIdResponseToJSON,
+    GetUserBadgeProgressByUserIdResponseFromJSON,
+    GetUserBadgeProgressByUserIdResponseToJSON,
+    GetUserBadgeProgressListResponseFromJSON,
+    GetUserBadgeProgressListResponseToJSON,
+    GetUserBadgeResponseFromJSON,
+    GetUserBadgeResponseToJSON,
+    GetUserBadgesResponseFromJSON,
+    GetUserBadgesResponseToJSON,
+    GetUserResponse1FromJSON,
+    GetUserResponse1ToJSON,
+    GetVotesForUserResponse1FromJSON,
+    GetVotesForUserResponse1ToJSON,
+    GetVotesResponse1FromJSON,
+    GetVotesResponse1ToJSON,
     PatchDomainConfigParamsFromJSON,
     PatchDomainConfigParamsToJSON,
     PatchDomainConfigResponseFromJSON,
     PatchDomainConfigResponseToJSON,
+    PatchHashTagResponseFromJSON,
+    PatchHashTagResponseToJSON,
     PatchPageAPIResponseFromJSON,
     PatchPageAPIResponseToJSON,
     PatchSSOUserAPIResponseFromJSON,
@@ -365,22 +415,34 @@ import {
     PutSSOUserAPIResponseToJSON,
     RenderEmailTemplateBodyFromJSON,
     RenderEmailTemplateBodyToJSON,
-    RenderEmailTemplateResponseFromJSON,
-    RenderEmailTemplateResponseToJSON,
+    RenderEmailTemplateResponse1FromJSON,
+    RenderEmailTemplateResponse1ToJSON,
     ReplaceTenantPackageBodyFromJSON,
     ReplaceTenantPackageBodyToJSON,
+    ReplaceTenantPackageResponseFromJSON,
+    ReplaceTenantPackageResponseToJSON,
     ReplaceTenantUserBodyFromJSON,
     ReplaceTenantUserBodyToJSON,
+    ReplaceTenantUserResponseFromJSON,
+    ReplaceTenantUserResponseToJSON,
     SORTDIRFromJSON,
     SORTDIRToJSON,
+    SaveCommentResponseFromJSON,
+    SaveCommentResponseToJSON,
     SaveCommentsBulkResponseFromJSON,
     SaveCommentsBulkResponseToJSON,
+    SendInviteResponseFromJSON,
+    SendInviteResponseToJSON,
+    SendLoginLinkResponseFromJSON,
+    SendLoginLinkResponseToJSON,
     SortDirectionsFromJSON,
     SortDirectionsToJSON,
     UnBlockFromCommentParamsFromJSON,
     UnBlockFromCommentParamsToJSON,
-    UnblockSuccessFromJSON,
-    UnblockSuccessToJSON,
+    UnBlockUserFromCommentResponseFromJSON,
+    UnBlockUserFromCommentResponseToJSON,
+    UnFlagCommentResponseFromJSON,
+    UnFlagCommentResponseToJSON,
     UpdatableCommentParamsFromJSON,
     UpdatableCommentParamsToJSON,
     UpdateAPIPageDataFromJSON,
@@ -389,36 +451,52 @@ import {
     UpdateAPISSOUserDataToJSON,
     UpdateAPIUserSubscriptionDataFromJSON,
     UpdateAPIUserSubscriptionDataToJSON,
+    UpdateCommentResponseFromJSON,
+    UpdateCommentResponseToJSON,
     UpdateDomainConfigParamsFromJSON,
     UpdateDomainConfigParamsToJSON,
     UpdateEmailTemplateBodyFromJSON,
     UpdateEmailTemplateBodyToJSON,
+    UpdateEmailTemplateResponseFromJSON,
+    UpdateEmailTemplateResponseToJSON,
+    UpdateFeedPostResponseFromJSON,
+    UpdateFeedPostResponseToJSON,
     UpdateHashTagBodyFromJSON,
     UpdateHashTagBodyToJSON,
-    UpdateHashTagResponseFromJSON,
-    UpdateHashTagResponseToJSON,
     UpdateModeratorBodyFromJSON,
     UpdateModeratorBodyToJSON,
+    UpdateModeratorResponseFromJSON,
+    UpdateModeratorResponseToJSON,
     UpdateNotificationBodyFromJSON,
     UpdateNotificationBodyToJSON,
+    UpdateNotificationResponseFromJSON,
+    UpdateNotificationResponseToJSON,
     UpdateQuestionConfigBodyFromJSON,
     UpdateQuestionConfigBodyToJSON,
+    UpdateQuestionConfigResponseFromJSON,
+    UpdateQuestionConfigResponseToJSON,
     UpdateQuestionResultBodyFromJSON,
     UpdateQuestionResultBodyToJSON,
+    UpdateQuestionResultResponseFromJSON,
+    UpdateQuestionResultResponseToJSON,
     UpdateSubscriptionAPIResponseFromJSON,
     UpdateSubscriptionAPIResponseToJSON,
     UpdateTenantBodyFromJSON,
     UpdateTenantBodyToJSON,
     UpdateTenantPackageBodyFromJSON,
     UpdateTenantPackageBodyToJSON,
+    UpdateTenantPackageResponseFromJSON,
+    UpdateTenantPackageResponseToJSON,
+    UpdateTenantResponseFromJSON,
+    UpdateTenantResponseToJSON,
     UpdateTenantUserBodyFromJSON,
     UpdateTenantUserBodyToJSON,
+    UpdateTenantUserResponseFromJSON,
+    UpdateTenantUserResponseToJSON,
     UpdateUserBadgeParamsFromJSON,
     UpdateUserBadgeParamsToJSON,
-    VoteDeleteResponseFromJSON,
-    VoteDeleteResponseToJSON,
-    VoteResponseFromJSON,
-    VoteResponseToJSON,
+    UpdateUserBadgeResponseFromJSON,
+    UpdateUserBadgeResponseToJSON,
 } from '../models/index';
 
 export interface AddDomainConfigRequest {
@@ -1168,11 +1246,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    addHashTagRaw(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateHashTagResponse>>;
+    addHashTagRaw(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddHashTagResponse>>;
 
     /**
      */
-    addHashTag(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateHashTagResponse>;
+    addHashTag(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddHashTagResponse>;
 
     /**
      * 
@@ -1182,11 +1260,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    addHashTagsBulkRaw(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkCreateHashTagsResponse>>;
+    addHashTagsBulkRaw(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddHashTagsBulkResponse>>;
 
     /**
      */
-    addHashTagsBulk(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkCreateHashTagsResponse>;
+    addHashTagsBulk(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddHashTagsBulkResponse>;
 
     /**
      * 
@@ -1246,11 +1324,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    aggregateQuestionResultsRaw(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregateQuestionResultsResponse>>;
+    aggregateQuestionResultsRaw(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregateQuestionResultsResponse1>>;
 
     /**
      */
-    aggregateQuestionResults(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregateQuestionResultsResponse>;
+    aggregateQuestionResults(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregateQuestionResultsResponse1>;
 
     /**
      * 
@@ -1263,11 +1341,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    blockUserFromCommentRaw(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockSuccess>>;
+    blockUserFromCommentRaw(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockUserFromCommentResponse>>;
 
     /**
      */
-    blockUserFromComment(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockSuccess>;
+    blockUserFromComment(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockUserFromCommentResponse>;
 
     /**
      * 
@@ -1278,11 +1356,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    bulkAggregateQuestionResultsRaw(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkAggregateQuestionResultsResponse>>;
+    bulkAggregateQuestionResultsRaw(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkAggregateQuestionResultsResponse1>>;
 
     /**
      */
-    bulkAggregateQuestionResults(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkAggregateQuestionResultsResponse>;
+    bulkAggregateQuestionResults(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkAggregateQuestionResultsResponse1>;
 
     /**
      * 
@@ -1294,11 +1372,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketStateResponse>>;
+    changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketStateResponse1>>;
 
     /**
      */
-    changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketStateResponse>;
+    changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketStateResponse1>;
 
     /**
      * 
@@ -1315,11 +1393,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    combineCommentsWithQuestionResultsRaw(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CombineQuestionResultsWithCommentsResponse>>;
+    combineCommentsWithQuestionResultsRaw(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CombineCommentsWithQuestionResultsResponse>>;
 
     /**
      */
-    combineCommentsWithQuestionResults(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CombineQuestionResultsWithCommentsResponse>;
+    combineCommentsWithQuestionResults(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CombineCommentsWithQuestionResultsResponse>;
 
     /**
      * 
@@ -1329,11 +1407,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createEmailTemplateRaw(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmailTemplateResponse>>;
+    createEmailTemplateRaw(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmailTemplateResponse1>>;
 
     /**
      */
-    createEmailTemplate(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEmailTemplateResponse>;
+    createEmailTemplate(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEmailTemplateResponse1>;
 
     /**
      * 
@@ -1347,11 +1425,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createFeedPostRaw(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostsResponse>>;
+    createFeedPostRaw(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse1>>;
 
     /**
      */
-    createFeedPost(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostsResponse>;
+    createFeedPost(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse1>;
 
     /**
      * 
@@ -1361,11 +1439,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createModeratorRaw(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModeratorResponse>>;
+    createModeratorRaw(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModeratorResponse1>>;
 
     /**
      */
-    createModerator(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateModeratorResponse>;
+    createModerator(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateModeratorResponse1>;
 
     /**
      * 
@@ -1375,11 +1453,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createQuestionConfigRaw(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionConfigResponse>>;
+    createQuestionConfigRaw(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionConfigResponse1>>;
 
     /**
      */
-    createQuestionConfig(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionConfigResponse>;
+    createQuestionConfig(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionConfigResponse1>;
 
     /**
      * 
@@ -1389,11 +1467,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createQuestionResultRaw(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionResultResponse>>;
+    createQuestionResultRaw(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionResultResponse1>>;
 
     /**
      */
-    createQuestionResult(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionResultResponse>;
+    createQuestionResult(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionResultResponse1>;
 
     /**
      * 
@@ -1417,11 +1495,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createTenantRaw(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantResponse>>;
+    createTenantRaw(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantResponse1>>;
 
     /**
      */
-    createTenant(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantResponse>;
+    createTenant(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantResponse1>;
 
     /**
      * 
@@ -1431,11 +1509,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createTenantPackageRaw(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantPackageResponse>>;
+    createTenantPackageRaw(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantPackageResponse1>>;
 
     /**
      */
-    createTenantPackage(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantPackageResponse>;
+    createTenantPackage(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantPackageResponse1>;
 
     /**
      * 
@@ -1445,11 +1523,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createTenantUserRaw(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantUserResponse>>;
+    createTenantUserRaw(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantUserResponse1>>;
 
     /**
      */
-    createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUserResponse>;
+    createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUserResponse1>;
 
     /**
      * 
@@ -1460,11 +1538,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicketResponse>>;
+    createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicketResponse1>>;
 
     /**
      */
-    createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicketResponse>;
+    createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicketResponse1>;
 
     /**
      * 
@@ -1474,11 +1552,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createUserBadgeRaw(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APICreateUserBadgeResponse>>;
+    createUserBadgeRaw(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserBadgeResponse>>;
 
     /**
      */
-    createUserBadge(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APICreateUserBadgeResponse>;
+    createUserBadge(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserBadgeResponse>;
 
     /**
      * 
@@ -1491,11 +1569,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>>;
+    createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateVoteResponse>>;
 
     /**
      */
-    createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse>;
+    createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateVoteResponse>;
 
     /**
      * 
@@ -1507,11 +1585,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteCommentRaw(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentResult>>;
+    deleteCommentRaw(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentResponse>>;
 
     /**
      */
-    deleteComment(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentResult>;
+    deleteComment(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentResponse>;
 
     /**
      * 
@@ -1535,11 +1613,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteEmailTemplateRaw(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteEmailTemplateRaw(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteEmailTemplateResponse>>;
 
     /**
      */
-    deleteEmailTemplate(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteEmailTemplate(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteEmailTemplateResponse>;
 
     /**
      * 
@@ -1550,11 +1628,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteEmailTemplateRenderErrorRaw(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteEmailTemplateRenderErrorRaw(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteEmailTemplateRenderErrorResponse>>;
 
     /**
      */
-    deleteEmailTemplateRenderError(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteEmailTemplateRenderError(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteEmailTemplateRenderErrorResponse>;
 
     /**
      * 
@@ -1565,11 +1643,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteHashTagRaw(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteHashTagRaw(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteHashTagResponse>>;
 
     /**
      */
-    deleteHashTag(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteHashTag(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteHashTagResponse>;
 
     /**
      * 
@@ -1580,11 +1658,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteModeratorRaw(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteModeratorRaw(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModeratorResponse>>;
 
     /**
      */
-    deleteModerator(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteModerator(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteModeratorResponse>;
 
     /**
      * 
@@ -1594,11 +1672,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteNotificationCountRaw(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteNotificationCountRaw(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteNotificationCountResponse>>;
 
     /**
      */
-    deleteNotificationCount(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteNotificationCount(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteNotificationCountResponse>;
 
     /**
      * 
@@ -1622,25 +1700,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deletePendingWebhookEventRaw(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deletePendingWebhookEventRaw(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePendingWebhookEventResponse>>;
 
     /**
      */
-    deletePendingWebhookEvent(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    deleteQuestionConfigRaw(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
-
-    /**
-     */
-    deleteQuestionConfig(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deletePendingWebhookEvent(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePendingWebhookEventResponse>;
 
     /**
      * 
@@ -1650,11 +1714,25 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteQuestionResultRaw(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteQuestionConfigRaw(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteQuestionConfigResponse>>;
 
     /**
      */
-    deleteQuestionResult(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteQuestionConfig(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteQuestionConfigResponse>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    deleteQuestionResultRaw(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteQuestionResultResponse>>;
+
+    /**
+     */
+    deleteQuestionResult(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteQuestionResultResponse>;
 
     /**
      * 
@@ -1696,11 +1774,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteTenantRaw(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteTenantRaw(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantResponse>>;
 
     /**
      */
-    deleteTenant(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteTenant(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantResponse>;
 
     /**
      * 
@@ -1710,11 +1788,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteTenantPackageRaw(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteTenantPackageRaw(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantPackageResponse>>;
 
     /**
      */
-    deleteTenantPackage(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteTenantPackage(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantPackageResponse>;
 
     /**
      * 
@@ -1726,11 +1804,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteTenantUserRaw(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    deleteTenantUserRaw(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantUserResponse>>;
 
     /**
      */
-    deleteTenantUser(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    deleteTenantUser(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantUserResponse>;
 
     /**
      * 
@@ -1740,11 +1818,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteUserBadgeRaw(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptySuccessResponse>>;
+    deleteUserBadgeRaw(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserBadgeResponse>>;
 
     /**
      */
-    deleteUserBadge(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptySuccessResponse>;
+    deleteUserBadge(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteUserBadgeResponse>;
 
     /**
      * 
@@ -1755,11 +1833,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>>;
+    deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVoteResponse>>;
 
     /**
      */
-    deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse>;
+    deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteVoteResponse>;
 
     /**
      * 
@@ -1771,11 +1849,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    flagCommentRaw(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse>>;
+    flagCommentRaw(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse1>>;
 
     /**
      */
-    flagComment(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse>;
+    flagComment(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse1>;
 
     /**
      * 
@@ -1789,25 +1867,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getAuditLogsRaw(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAuditLogsResponse>>;
+    getAuditLogsRaw(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAuditLogsResponse1>>;
 
     /**
      */
-    getAuditLogs(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAuditLogsResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getCachedNotificationCountRaw(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCachedNotificationCountResponse>>;
-
-    /**
-     */
-    getCachedNotificationCount(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCachedNotificationCountResponse>;
+    getAuditLogs(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAuditLogsResponse1>;
 
     /**
      * 
@@ -1817,11 +1881,25 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getCommentRaw(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetCommentResponse>>;
+    getCachedNotificationCountRaw(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCachedNotificationCountResponse1>>;
 
     /**
      */
-    getComment(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetCommentResponse>;
+    getCachedNotificationCount(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCachedNotificationCountResponse1>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getCommentRaw(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentResponse>>;
+
+    /**
+     */
+    getComment(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentResponse>;
 
     /**
      * 
@@ -1846,11 +1924,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getCommentsRaw(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetCommentsResponse>>;
+    getCommentsRaw(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsResponse>>;
 
     /**
      */
-    getComments(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetCommentsResponse>;
+    getComments(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsResponse>;
 
     /**
      * 
@@ -1887,11 +1965,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getEmailTemplateRaw(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateResponse>>;
+    getEmailTemplateRaw(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateResponse1>>;
 
     /**
      */
-    getEmailTemplate(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateResponse>;
+    getEmailTemplate(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateResponse1>;
 
     /**
      * 
@@ -1900,11 +1978,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getEmailTemplateDefinitionsRaw(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateDefinitionsResponse>>;
+    getEmailTemplateDefinitionsRaw(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateDefinitionsResponse1>>;
 
     /**
      */
-    getEmailTemplateDefinitions(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateDefinitionsResponse>;
+    getEmailTemplateDefinitions(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateDefinitionsResponse1>;
 
     /**
      * 
@@ -1915,11 +1993,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getEmailTemplateRenderErrorsRaw(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateRenderErrorsResponse>>;
+    getEmailTemplateRenderErrorsRaw(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateRenderErrorsResponse1>>;
 
     /**
      */
-    getEmailTemplateRenderErrors(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateRenderErrorsResponse>;
+    getEmailTemplateRenderErrors(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateRenderErrorsResponse1>;
 
     /**
      * 
@@ -1929,11 +2007,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getEmailTemplatesRaw(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplatesResponse>>;
+    getEmailTemplatesRaw(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplatesResponse1>>;
 
     /**
      */
-    getEmailTemplates(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplatesResponse>;
+    getEmailTemplates(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplatesResponse1>;
 
     /**
      *  req tenantId afterId
@@ -1945,12 +2023,12 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getFeedPostsRaw(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsResponse>>;
+    getFeedPostsRaw(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsResponse1>>;
 
     /**
      *  req tenantId afterId
      */
-    getFeedPosts(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsResponse>;
+    getFeedPosts(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsResponse1>;
 
     /**
      * 
@@ -1960,11 +2038,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getHashTagsRaw(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHashTagsResponse>>;
+    getHashTagsRaw(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHashTagsResponse1>>;
 
     /**
      */
-    getHashTags(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHashTagsResponse>;
+    getHashTags(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHashTagsResponse1>;
 
     /**
      * 
@@ -1974,11 +2052,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getModeratorRaw(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorResponse>>;
+    getModeratorRaw(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorResponse1>>;
 
     /**
      */
-    getModerator(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorResponse>;
+    getModerator(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorResponse1>;
 
     /**
      * 
@@ -1988,11 +2066,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getModeratorsRaw(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorsResponse>>;
+    getModeratorsRaw(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorsResponse1>>;
 
     /**
      */
-    getModerators(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorsResponse>;
+    getModerators(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorsResponse1>;
 
     /**
      * 
@@ -2006,11 +2084,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getNotificationCountRaw(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationCountResponse>>;
+    getNotificationCountRaw(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationCountResponse1>>;
 
     /**
      */
-    getNotificationCount(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationCountResponse>;
+    getNotificationCount(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationCountResponse1>;
 
     /**
      * 
@@ -2025,11 +2103,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getNotificationsRaw(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationsResponse>>;
+    getNotificationsRaw(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationsResponse1>>;
 
     /**
      */
-    getNotifications(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationsResponse>;
+    getNotifications(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationsResponse1>;
 
     /**
      * 
@@ -2071,11 +2149,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getPendingWebhookEventCountRaw(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventCountResponse>>;
+    getPendingWebhookEventCountRaw(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventCountResponse1>>;
 
     /**
      */
-    getPendingWebhookEventCount(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventCountResponse>;
+    getPendingWebhookEventCount(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventCountResponse1>;
 
     /**
      * 
@@ -2091,11 +2169,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getPendingWebhookEventsRaw(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventsResponse>>;
+    getPendingWebhookEventsRaw(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventsResponse1>>;
 
     /**
      */
-    getPendingWebhookEvents(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventsResponse>;
+    getPendingWebhookEvents(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventsResponse1>;
 
     /**
      * 
@@ -2105,11 +2183,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getQuestionConfigRaw(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigResponse>>;
+    getQuestionConfigRaw(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigResponse1>>;
 
     /**
      */
-    getQuestionConfig(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigResponse>;
+    getQuestionConfig(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigResponse1>;
 
     /**
      * 
@@ -2119,11 +2197,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getQuestionConfigsRaw(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigsResponse>>;
+    getQuestionConfigsRaw(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigsResponse1>>;
 
     /**
      */
-    getQuestionConfigs(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigsResponse>;
+    getQuestionConfigs(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigsResponse1>;
 
     /**
      * 
@@ -2133,11 +2211,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getQuestionResultRaw(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultResponse>>;
+    getQuestionResultRaw(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultResponse1>>;
 
     /**
      */
-    getQuestionResult(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultResponse>;
+    getQuestionResult(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultResponse1>;
 
     /**
      * 
@@ -2152,11 +2230,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getQuestionResultsRaw(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultsResponse>>;
+    getQuestionResultsRaw(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultsResponse1>>;
 
     /**
      */
-    getQuestionResults(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultsResponse>;
+    getQuestionResults(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultsResponse1>;
 
     /**
      * 
@@ -2222,11 +2300,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantResponse>>;
+    getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantResponse1>>;
 
     /**
      */
-    getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantResponse>;
+    getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantResponse1>;
 
     /**
      * 
@@ -2239,39 +2317,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTenantDailyUsagesRaw(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantDailyUsagesResponse>>;
+    getTenantDailyUsagesRaw(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantDailyUsagesResponse1>>;
 
     /**
      */
-    getTenantDailyUsages(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantDailyUsagesResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getTenantPackageRaw(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackageResponse>>;
-
-    /**
-     */
-    getTenantPackage(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackageResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {number} [skip] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getTenantPackagesRaw(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackagesResponse>>;
-
-    /**
-     */
-    getTenantPackages(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackagesResponse>;
+    getTenantDailyUsages(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantDailyUsagesResponse1>;
 
     /**
      * 
@@ -2281,11 +2331,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTenantUserRaw(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUserResponse>>;
+    getTenantPackageRaw(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackageResponse1>>;
 
     /**
      */
-    getTenantUser(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUserResponse>;
+    getTenantPackage(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackageResponse1>;
 
     /**
      * 
@@ -2295,11 +2345,39 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTenantUsersRaw(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUsersResponse>>;
+    getTenantPackagesRaw(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackagesResponse1>>;
 
     /**
      */
-    getTenantUsers(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUsersResponse>;
+    getTenantPackages(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackagesResponse1>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getTenantUserRaw(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUserResponse1>>;
+
+    /**
+     */
+    getTenantUser(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUserResponse1>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {number} [skip] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getTenantUsersRaw(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUsersResponse1>>;
+
+    /**
+     */
+    getTenantUsers(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUsersResponse1>;
 
     /**
      * 
@@ -2310,11 +2388,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTenantsRaw(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantsResponse>>;
+    getTenantsRaw(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantsResponse1>>;
 
     /**
      */
-    getTenants(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantsResponse>;
+    getTenants(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantsResponse1>;
 
     /**
      * 
@@ -2325,11 +2403,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketResponse>>;
+    getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketResponse1>>;
 
     /**
      */
-    getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketResponse>;
+    getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketResponse1>;
 
     /**
      * 
@@ -2342,25 +2420,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketsResponse>>;
+    getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketsResponse1>>;
 
     /**
      */
-    getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketsResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApiInterface
-     */
-    getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse>>;
-
-    /**
-     */
-    getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserResponse>;
+    getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketsResponse1>;
 
     /**
      * 
@@ -2370,11 +2434,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getUserBadgeRaw(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeResponse>>;
+    getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse1>>;
 
     /**
      */
-    getUserBadge(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeResponse>;
+    getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserResponse1>;
 
     /**
      * 
@@ -2384,11 +2448,25 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getUserBadgeProgressByIdRaw(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressResponse>>;
+    getUserBadgeRaw(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeResponse>>;
 
     /**
      */
-    getUserBadgeProgressById(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressResponse>;
+    getUserBadge(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeResponse>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getUserBadgeProgressByIdRaw(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressByIdResponse>>;
+
+    /**
+     */
+    getUserBadgeProgressById(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressByIdResponse>;
 
     /**
      * 
@@ -2398,11 +2476,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getUserBadgeProgressByUserIdRaw(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressResponse>>;
+    getUserBadgeProgressByUserIdRaw(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressByUserIdResponse>>;
 
     /**
      */
-    getUserBadgeProgressByUserId(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressResponse>;
+    getUserBadgeProgressByUserId(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressByUserIdResponse>;
 
     /**
      * 
@@ -2414,11 +2492,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getUserBadgeProgressListRaw(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressListResponse>>;
+    getUserBadgeProgressListRaw(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressListResponse>>;
 
     /**
      */
-    getUserBadgeProgressList(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressListResponse>;
+    getUserBadgeProgressList(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressListResponse>;
 
     /**
      * 
@@ -2433,11 +2511,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getUserBadgesRaw(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgesResponse>>;
+    getUserBadgesRaw(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgesResponse>>;
 
     /**
      */
-    getUserBadges(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgesResponse>;
+    getUserBadges(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgesResponse>;
 
     /**
      * 
@@ -2447,11 +2525,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getVotesRaw(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesResponse>>;
+    getVotesRaw(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesResponse1>>;
 
     /**
      */
-    getVotes(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesResponse>;
+    getVotes(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesResponse1>;
 
     /**
      * 
@@ -2463,11 +2541,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    getVotesForUserRaw(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesForUserResponse>>;
+    getVotesForUserRaw(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesForUserResponse1>>;
 
     /**
      */
-    getVotesForUser(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesForUserResponse>;
+    getVotesForUser(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesForUserResponse1>;
 
     /**
      * 
@@ -2493,11 +2571,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    patchHashTagRaw(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateHashTagResponse>>;
+    patchHashTagRaw(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PatchHashTagResponse>>;
 
     /**
      */
-    patchHashTag(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateHashTagResponse>;
+    patchHashTag(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PatchHashTagResponse>;
 
     /**
      * 
@@ -2570,11 +2648,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    renderEmailTemplateRaw(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RenderEmailTemplateResponse>>;
+    renderEmailTemplateRaw(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RenderEmailTemplateResponse1>>;
 
     /**
      */
-    renderEmailTemplate(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RenderEmailTemplateResponse>;
+    renderEmailTemplate(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RenderEmailTemplateResponse1>;
 
     /**
      * 
@@ -2585,11 +2663,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    replaceTenantPackageRaw(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    replaceTenantPackageRaw(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplaceTenantPackageResponse>>;
 
     /**
      */
-    replaceTenantPackage(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    replaceTenantPackage(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplaceTenantPackageResponse>;
 
     /**
      * 
@@ -2601,11 +2679,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    replaceTenantUserRaw(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    replaceTenantUserRaw(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplaceTenantUserResponse>>;
 
     /**
      */
-    replaceTenantUser(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    replaceTenantUser(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplaceTenantUserResponse>;
 
     /**
      * 
@@ -2619,11 +2697,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    saveCommentRaw(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APISaveCommentResponse>>;
+    saveCommentRaw(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCommentResponse>>;
 
     /**
      */
-    saveComment(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APISaveCommentResponse>;
+    saveComment(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCommentResponse>;
 
     /**
      * 
@@ -2652,11 +2730,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    sendInviteRaw(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    sendInviteRaw(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendInviteResponse>>;
 
     /**
      */
-    sendInvite(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    sendInvite(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendInviteResponse>;
 
     /**
      * 
@@ -2667,11 +2745,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    sendLoginLinkRaw(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    sendLoginLinkRaw(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendLoginLinkResponse>>;
 
     /**
      */
-    sendLoginLink(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    sendLoginLink(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendLoginLinkResponse>;
 
     /**
      * 
@@ -2684,11 +2762,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    unBlockUserFromCommentRaw(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnblockSuccess>>;
+    unBlockUserFromCommentRaw(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnBlockUserFromCommentResponse>>;
 
     /**
      */
-    unBlockUserFromComment(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnblockSuccess>;
+    unBlockUserFromComment(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnBlockUserFromCommentResponse>;
 
     /**
      * 
@@ -2700,11 +2778,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    unFlagCommentRaw(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse>>;
+    unFlagCommentRaw(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnFlagCommentResponse>>;
 
     /**
      */
-    unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse>;
+    unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnFlagCommentResponse>;
 
     /**
      * 
@@ -2718,11 +2796,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateCommentRaw(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateCommentRaw(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateCommentResponse>>;
 
     /**
      */
-    updateComment(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateComment(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateCommentResponse>;
 
     /**
      * 
@@ -2733,11 +2811,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateEmailTemplateRaw(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateEmailTemplateRaw(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEmailTemplateResponse>>;
 
     /**
      */
-    updateEmailTemplate(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateEmailTemplate(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEmailTemplateResponse>;
 
     /**
      * 
@@ -2748,11 +2826,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateFeedPostRaw(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateFeedPostRaw(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeedPostResponse>>;
 
     /**
      */
-    updateFeedPost(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateFeedPost(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFeedPostResponse>;
 
     /**
      * 
@@ -2763,11 +2841,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateModeratorRaw(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateModeratorRaw(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateModeratorResponse>>;
 
     /**
      */
-    updateModerator(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateModerator(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateModeratorResponse>;
 
     /**
      * 
@@ -2779,11 +2857,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateNotificationRaw(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateNotificationRaw(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateNotificationResponse>>;
 
     /**
      */
-    updateNotification(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateNotification(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateNotificationResponse>;
 
     /**
      * 
@@ -2794,11 +2872,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateQuestionConfigRaw(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateQuestionConfigRaw(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateQuestionConfigResponse>>;
 
     /**
      */
-    updateQuestionConfig(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateQuestionConfig(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateQuestionConfigResponse>;
 
     /**
      * 
@@ -2809,11 +2887,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateQuestionResultRaw(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateQuestionResultRaw(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateQuestionResultResponse>>;
 
     /**
      */
-    updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateQuestionResultResponse>;
 
     /**
      * 
@@ -2840,11 +2918,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateTenantRaw(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateTenantRaw(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantResponse>>;
 
     /**
      */
-    updateTenant(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateTenant(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantResponse>;
 
     /**
      * 
@@ -2855,11 +2933,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateTenantPackageRaw(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateTenantPackageRaw(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantPackageResponse>>;
 
     /**
      */
-    updateTenantPackage(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateTenantPackage(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantPackageResponse>;
 
     /**
      * 
@@ -2871,11 +2949,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateTenantUserRaw(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    updateTenantUserRaw(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantUserResponse>>;
 
     /**
      */
-    updateTenantUser(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    updateTenantUser(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantUserResponse>;
 
     /**
      * 
@@ -2886,11 +2964,11 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    updateUserBadgeRaw(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptySuccessResponse>>;
+    updateUserBadgeRaw(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserBadgeResponse>>;
 
     /**
      */
-    updateUserBadge(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptySuccessResponse>;
+    updateUserBadge(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUserBadgeResponse>;
 
 }
 
@@ -2950,7 +3028,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async addHashTagRaw(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateHashTagResponse>> {
+    async addHashTagRaw(requestParameters: AddHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddHashTagResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['tenantId'] != null) {
@@ -2973,19 +3051,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateHashTagBodyToJSON(requestParameters['createHashTagBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateHashTagResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddHashTagResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async addHashTag(requestParameters: AddHashTagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateHashTagResponse> {
+    async addHashTag(requestParameters: AddHashTagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddHashTagResponse> {
         const response = await this.addHashTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async addHashTagsBulkRaw(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkCreateHashTagsResponse>> {
+    async addHashTagsBulkRaw(requestParameters: AddHashTagsBulkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddHashTagsBulkResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['tenantId'] != null) {
@@ -3008,12 +3086,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: BulkCreateHashTagsBodyToJSON(requestParameters['bulkCreateHashTagsBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BulkCreateHashTagsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddHashTagsBulkResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async addHashTagsBulk(requestParameters: AddHashTagsBulkRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkCreateHashTagsResponse> {
+    async addHashTagsBulk(requestParameters: AddHashTagsBulkRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddHashTagsBulkResponse> {
         const response = await this.addHashTagsBulkRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3177,7 +3255,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async aggregateQuestionResultsRaw(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregateQuestionResultsResponse>> {
+    async aggregateQuestionResultsRaw(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AggregateQuestionResultsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3228,19 +3306,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AggregateQuestionResultsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => AggregateQuestionResultsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async aggregateQuestionResults(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregateQuestionResultsResponse> {
+    async aggregateQuestionResults(requestParameters: AggregateQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AggregateQuestionResultsResponse1> {
         const response = await this.aggregateQuestionResultsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async blockUserFromCommentRaw(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockSuccess>> {
+    async blockUserFromCommentRaw(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockUserFromCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3292,19 +3370,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: BlockFromCommentParamsToJSON(requestParameters['blockFromCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BlockSuccessFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockUserFromCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async blockUserFromComment(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockSuccess> {
+    async blockUserFromComment(requestParameters: BlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockUserFromCommentResponse> {
         const response = await this.blockUserFromCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async bulkAggregateQuestionResultsRaw(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkAggregateQuestionResultsResponse>> {
+    async bulkAggregateQuestionResultsRaw(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkAggregateQuestionResultsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3345,19 +3423,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: BulkAggregateQuestionResultsRequestToJSON(requestParameters['bulkAggregateQuestionResultsRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BulkAggregateQuestionResultsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BulkAggregateQuestionResultsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async bulkAggregateQuestionResults(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkAggregateQuestionResultsResponse> {
+    async bulkAggregateQuestionResults(requestParameters: BulkAggregateQuestionResultsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkAggregateQuestionResultsResponse1> {
         const response = await this.bulkAggregateQuestionResultsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketStateResponse>> {
+    async changeTicketStateRaw(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeTicketStateResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3412,19 +3490,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: ChangeTicketStateBodyToJSON(requestParameters['changeTicketStateBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ChangeTicketStateResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChangeTicketStateResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketStateResponse> {
+    async changeTicketState(requestParameters: ChangeTicketStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeTicketStateResponse1> {
         const response = await this.changeTicketStateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async combineCommentsWithQuestionResultsRaw(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CombineQuestionResultsWithCommentsResponse>> {
+    async combineCommentsWithQuestionResultsRaw(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CombineCommentsWithQuestionResultsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3483,19 +3561,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CombineQuestionResultsWithCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CombineCommentsWithQuestionResultsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async combineCommentsWithQuestionResults(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CombineQuestionResultsWithCommentsResponse> {
+    async combineCommentsWithQuestionResults(requestParameters: CombineCommentsWithQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CombineCommentsWithQuestionResultsResponse> {
         const response = await this.combineCommentsWithQuestionResultsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createEmailTemplateRaw(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmailTemplateResponse>> {
+    async createEmailTemplateRaw(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEmailTemplateResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3532,19 +3610,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateEmailTemplateBodyToJSON(requestParameters['createEmailTemplateBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEmailTemplateResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEmailTemplateResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createEmailTemplate(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEmailTemplateResponse> {
+    async createEmailTemplate(requestParameters: CreateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEmailTemplateResponse1> {
         const response = await this.createEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createFeedPostRaw(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostsResponse>> {
+    async createFeedPostRaw(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3597,19 +3675,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateFeedPostParamsToJSON(requestParameters['createFeedPostParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeedPostsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeedPostResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createFeedPost(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostsResponse> {
+    async createFeedPost(requestParameters: CreateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse1> {
         const response = await this.createFeedPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createModeratorRaw(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModeratorResponse>> {
+    async createModeratorRaw(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateModeratorResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3646,19 +3724,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateModeratorBodyToJSON(requestParameters['createModeratorBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateModeratorResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateModeratorResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createModerator(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateModeratorResponse> {
+    async createModerator(requestParameters: CreateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateModeratorResponse1> {
         const response = await this.createModeratorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createQuestionConfigRaw(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionConfigResponse>> {
+    async createQuestionConfigRaw(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionConfigResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3695,19 +3773,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateQuestionConfigBodyToJSON(requestParameters['createQuestionConfigBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateQuestionConfigResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateQuestionConfigResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createQuestionConfig(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionConfigResponse> {
+    async createQuestionConfig(requestParameters: CreateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionConfigResponse1> {
         const response = await this.createQuestionConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createQuestionResultRaw(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionResultResponse>> {
+    async createQuestionResultRaw(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateQuestionResultResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3744,12 +3822,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateQuestionResultBodyToJSON(requestParameters['createQuestionResultBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateQuestionResultResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateQuestionResultResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createQuestionResult(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionResultResponse> {
+    async createQuestionResult(requestParameters: CreateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateQuestionResultResponse1> {
         const response = await this.createQuestionResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3805,7 +3883,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async createTenantRaw(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantResponse>> {
+    async createTenantRaw(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3842,19 +3920,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateTenantBodyToJSON(requestParameters['createTenantBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createTenant(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantResponse> {
+    async createTenant(requestParameters: CreateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantResponse1> {
         const response = await this.createTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createTenantPackageRaw(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantPackageResponse>> {
+    async createTenantPackageRaw(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantPackageResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3891,19 +3969,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateTenantPackageBodyToJSON(requestParameters['createTenantPackageBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantPackageResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantPackageResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createTenantPackage(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantPackageResponse> {
+    async createTenantPackage(requestParameters: CreateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantPackageResponse1> {
         const response = await this.createTenantPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createTenantUserRaw(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantUserResponse>> {
+    async createTenantUserRaw(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTenantUserResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3940,19 +4018,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateTenantUserBodyToJSON(requestParameters['createTenantUserBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantUserResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTenantUserResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUserResponse> {
+    async createTenantUser(requestParameters: CreateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTenantUserResponse1> {
         const response = await this.createTenantUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicketResponse>> {
+    async createTicketRaw(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTicketResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4000,19 +4078,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateTicketBodyToJSON(requestParameters['createTicketBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTicketResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTicketResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicketResponse> {
+    async createTicket(requestParameters: CreateTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTicketResponse1> {
         const response = await this.createTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createUserBadgeRaw(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APICreateUserBadgeResponse>> {
+    async createUserBadgeRaw(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserBadgeResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4049,19 +4127,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateUserBadgeParamsToJSON(requestParameters['createUserBadgeParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APICreateUserBadgeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async createUserBadge(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APICreateUserBadgeResponse> {
+    async createUserBadge(requestParameters: CreateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserBadgeResponse> {
         const response = await this.createUserBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>> {
+    async createVoteRaw(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateVoteResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4118,19 +4196,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VoteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateVoteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse> {
+    async createVote(requestParameters: CreateVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateVoteResponse> {
         const response = await this.createVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteCommentRaw(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentResult>> {
+    async deleteCommentRaw(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4172,12 +4250,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCommentResultFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteComment(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentResult> {
+    async deleteComment(requestParameters: DeleteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentResponse> {
         const response = await this.deleteCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4230,7 +4308,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async deleteEmailTemplateRaw(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteEmailTemplateRaw(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteEmailTemplateResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4264,19 +4342,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteEmailTemplateResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteEmailTemplate(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteEmailTemplate(requestParameters: DeleteEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteEmailTemplateResponse> {
         const response = await this.deleteEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteEmailTemplateRenderErrorRaw(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteEmailTemplateRenderErrorRaw(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteEmailTemplateRenderErrorResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4317,19 +4395,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteEmailTemplateRenderErrorResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteEmailTemplateRenderError(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteEmailTemplateRenderError(requestParameters: DeleteEmailTemplateRenderErrorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteEmailTemplateRenderErrorResponse> {
         const response = await this.deleteEmailTemplateRenderErrorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteHashTagRaw(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteHashTagRaw(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteHashTagResponse>> {
         if (requestParameters['tag'] == null) {
             throw new runtime.RequiredError(
                 'tag',
@@ -4359,19 +4437,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: DeleteHashTagRequestBodyToJSON(requestParameters['deleteHashTagRequestBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteHashTagResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteHashTag(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteHashTag(requestParameters: DeleteHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteHashTagResponse> {
         const response = await this.deleteHashTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteModeratorRaw(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteModeratorRaw(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModeratorResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4409,19 +4487,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteModeratorResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteModerator(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteModerator(requestParameters: DeleteModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteModeratorResponse> {
         const response = await this.deleteModeratorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteNotificationCountRaw(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteNotificationCountRaw(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteNotificationCountResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4455,12 +4533,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteNotificationCountResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteNotificationCount(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteNotificationCount(requestParameters: DeleteNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteNotificationCountResponse> {
         const response = await this.deleteNotificationCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4513,7 +4591,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async deletePendingWebhookEventRaw(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deletePendingWebhookEventRaw(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePendingWebhookEventResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4547,19 +4625,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeletePendingWebhookEventResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deletePendingWebhookEvent(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deletePendingWebhookEvent(requestParameters: DeletePendingWebhookEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePendingWebhookEventResponse> {
         const response = await this.deletePendingWebhookEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteQuestionConfigRaw(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteQuestionConfigRaw(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteQuestionConfigResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4593,19 +4671,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteQuestionConfigResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteQuestionConfig(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteQuestionConfig(requestParameters: DeleteQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteQuestionConfigResponse> {
         const response = await this.deleteQuestionConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteQuestionResultRaw(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteQuestionResultRaw(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteQuestionResultResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4639,12 +4717,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteQuestionResultResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteQuestionResult(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteQuestionResult(requestParameters: DeleteQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteQuestionResultResponse> {
         const response = await this.deleteQuestionResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4755,7 +4833,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async deleteTenantRaw(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteTenantRaw(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4793,19 +4871,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteTenantResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteTenant(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteTenant(requestParameters: DeleteTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantResponse> {
         const response = await this.deleteTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteTenantPackageRaw(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteTenantPackageRaw(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantPackageResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4839,19 +4917,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteTenantPackageResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteTenantPackage(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteTenantPackage(requestParameters: DeleteTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantPackageResponse> {
         const response = await this.deleteTenantPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteTenantUserRaw(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async deleteTenantUserRaw(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTenantUserResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4893,19 +4971,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteTenantUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteTenantUser(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async deleteTenantUser(requestParameters: DeleteTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTenantUserResponse> {
         const response = await this.deleteTenantUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteUserBadgeRaw(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptySuccessResponse>> {
+    async deleteUserBadgeRaw(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserBadgeResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4939,19 +5017,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptySuccessResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteUserBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteUserBadge(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptySuccessResponse> {
+    async deleteUserBadge(requestParameters: DeleteUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteUserBadgeResponse> {
         const response = await this.deleteUserBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>> {
+    async deleteVoteRaw(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteVoteResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4989,19 +5067,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VoteDeleteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteVoteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse> {
+    async deleteVote(requestParameters: DeleteVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteVoteResponse> {
         const response = await this.deleteVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async flagCommentRaw(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse>> {
+    async flagCommentRaw(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5043,19 +5121,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FlagCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FlagCommentResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async flagComment(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse> {
+    async flagComment(requestParameters: FlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse1> {
         const response = await this.flagCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getAuditLogsRaw(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAuditLogsResponse>> {
+    async getAuditLogsRaw(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAuditLogsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5102,19 +5180,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetAuditLogsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetAuditLogsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getAuditLogs(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAuditLogsResponse> {
+    async getAuditLogs(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAuditLogsResponse1> {
         const response = await this.getAuditLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCachedNotificationCountRaw(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCachedNotificationCountResponse>> {
+    async getCachedNotificationCountRaw(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCachedNotificationCountResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5148,19 +5226,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCachedNotificationCountResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCachedNotificationCountResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getCachedNotificationCount(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCachedNotificationCountResponse> {
+    async getCachedNotificationCount(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCachedNotificationCountResponse1> {
         const response = await this.getCachedNotificationCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentRaw(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetCommentResponse>> {
+    async getCommentRaw(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5194,19 +5272,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getComment(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetCommentResponse> {
+    async getComment(requestParameters: GetCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentResponse> {
         const response = await this.getCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentsRaw(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetCommentsResponse>> {
+    async getCommentsRaw(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5297,12 +5375,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getComments(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetCommentsResponse> {
+    async getComments(requestParameters: GetCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsResponse> {
         const response = await this.getCommentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5394,7 +5472,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async getEmailTemplateRaw(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateResponse>> {
+    async getEmailTemplateRaw(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5428,19 +5506,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getEmailTemplate(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateResponse> {
+    async getEmailTemplate(requestParameters: GetEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateResponse1> {
         const response = await this.getEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getEmailTemplateDefinitionsRaw(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateDefinitionsResponse>> {
+    async getEmailTemplateDefinitionsRaw(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateDefinitionsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5467,19 +5545,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateDefinitionsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateDefinitionsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getEmailTemplateDefinitions(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateDefinitionsResponse> {
+    async getEmailTemplateDefinitions(requestParameters: GetEmailTemplateDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateDefinitionsResponse1> {
         const response = await this.getEmailTemplateDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getEmailTemplateRenderErrorsRaw(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateRenderErrorsResponse>> {
+    async getEmailTemplateRenderErrorsRaw(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplateRenderErrorsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5517,19 +5595,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateRenderErrorsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplateRenderErrorsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getEmailTemplateRenderErrors(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateRenderErrorsResponse> {
+    async getEmailTemplateRenderErrors(requestParameters: GetEmailTemplateRenderErrorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplateRenderErrorsResponse1> {
         const response = await this.getEmailTemplateRenderErrorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getEmailTemplatesRaw(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplatesResponse>> {
+    async getEmailTemplatesRaw(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEmailTemplatesResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5560,12 +5638,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplatesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEmailTemplatesResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getEmailTemplates(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplatesResponse> {
+    async getEmailTemplates(requestParameters: GetEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEmailTemplatesResponse1> {
         const response = await this.getEmailTemplatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5573,7 +5651,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     /**
      *  req tenantId afterId
      */
-    async getFeedPostsRaw(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsResponse>> {
+    async getFeedPostsRaw(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5612,20 +5690,20 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeedPostsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeedPostsResponse1FromJSON(jsonValue));
     }
 
     /**
      *  req tenantId afterId
      */
-    async getFeedPosts(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsResponse> {
+    async getFeedPosts(requestParameters: GetFeedPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsResponse1> {
         const response = await this.getFeedPostsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getHashTagsRaw(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHashTagsResponse>> {
+    async getHashTagsRaw(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHashTagsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5656,19 +5734,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetHashTagsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetHashTagsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getHashTags(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHashTagsResponse> {
+    async getHashTags(requestParameters: GetHashTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHashTagsResponse1> {
         const response = await this.getHashTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getModeratorRaw(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorResponse>> {
+    async getModeratorRaw(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5702,19 +5780,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetModeratorResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetModeratorResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getModerator(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorResponse> {
+    async getModerator(requestParameters: GetModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorResponse1> {
         const response = await this.getModeratorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getModeratorsRaw(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorsResponse>> {
+    async getModeratorsRaw(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModeratorsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5745,19 +5823,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetModeratorsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetModeratorsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getModerators(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorsResponse> {
+    async getModerators(requestParameters: GetModeratorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModeratorsResponse1> {
         const response = await this.getModeratorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getNotificationCountRaw(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationCountResponse>> {
+    async getNotificationCountRaw(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationCountResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5804,19 +5882,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetNotificationCountResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetNotificationCountResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getNotificationCount(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationCountResponse> {
+    async getNotificationCount(requestParameters: GetNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationCountResponse1> {
         const response = await this.getNotificationCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getNotificationsRaw(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationsResponse>> {
+    async getNotificationsRaw(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotificationsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -5867,12 +5945,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetNotificationsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetNotificationsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getNotifications(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationsResponse> {
+    async getNotifications(requestParameters: GetNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotificationsResponse1> {
         const response = await this.getNotificationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5968,7 +6046,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async getPendingWebhookEventCountRaw(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventCountResponse>> {
+    async getPendingWebhookEventCountRaw(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventCountResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6019,19 +6097,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetPendingWebhookEventCountResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPendingWebhookEventCountResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getPendingWebhookEventCount(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventCountResponse> {
+    async getPendingWebhookEventCount(requestParameters: GetPendingWebhookEventCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventCountResponse1> {
         const response = await this.getPendingWebhookEventCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getPendingWebhookEventsRaw(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventsResponse>> {
+    async getPendingWebhookEventsRaw(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPendingWebhookEventsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6086,19 +6164,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetPendingWebhookEventsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPendingWebhookEventsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getPendingWebhookEvents(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventsResponse> {
+    async getPendingWebhookEvents(requestParameters: GetPendingWebhookEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPendingWebhookEventsResponse1> {
         const response = await this.getPendingWebhookEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getQuestionConfigRaw(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigResponse>> {
+    async getQuestionConfigRaw(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6132,19 +6210,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionConfigResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionConfigResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getQuestionConfig(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigResponse> {
+    async getQuestionConfig(requestParameters: GetQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigResponse1> {
         const response = await this.getQuestionConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getQuestionConfigsRaw(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigsResponse>> {
+    async getQuestionConfigsRaw(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionConfigsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6175,19 +6253,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionConfigsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionConfigsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getQuestionConfigs(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigsResponse> {
+    async getQuestionConfigs(requestParameters: GetQuestionConfigsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionConfigsResponse1> {
         const response = await this.getQuestionConfigsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getQuestionResultRaw(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultResponse>> {
+    async getQuestionResultRaw(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6221,19 +6299,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionResultResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionResultResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getQuestionResult(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultResponse> {
+    async getQuestionResult(requestParameters: GetQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultResponse1> {
         const response = await this.getQuestionResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getQuestionResultsRaw(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultsResponse>> {
+    async getQuestionResultsRaw(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetQuestionResultsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6284,12 +6362,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionResultsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetQuestionResultsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getQuestionResults(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultsResponse> {
+    async getQuestionResults(requestParameters: GetQuestionResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetQuestionResultsResponse1> {
         const response = await this.getQuestionResultsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6474,7 +6552,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantResponse>> {
+    async getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6508,19 +6586,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantResponse> {
+    async getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantResponse1> {
         const response = await this.getTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantDailyUsagesRaw(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantDailyUsagesResponse>> {
+    async getTenantDailyUsagesRaw(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantDailyUsagesResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6563,19 +6641,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantDailyUsagesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantDailyUsagesResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenantDailyUsages(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantDailyUsagesResponse> {
+    async getTenantDailyUsages(requestParameters: GetTenantDailyUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantDailyUsagesResponse1> {
         const response = await this.getTenantDailyUsagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantPackageRaw(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackageResponse>> {
+    async getTenantPackageRaw(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackageResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6609,19 +6687,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantPackageResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantPackageResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenantPackage(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackageResponse> {
+    async getTenantPackage(requestParameters: GetTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackageResponse1> {
         const response = await this.getTenantPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantPackagesRaw(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackagesResponse>> {
+    async getTenantPackagesRaw(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantPackagesResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6652,19 +6730,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantPackagesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantPackagesResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenantPackages(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackagesResponse> {
+    async getTenantPackages(requestParameters: GetTenantPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantPackagesResponse1> {
         const response = await this.getTenantPackagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantUserRaw(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUserResponse>> {
+    async getTenantUserRaw(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUserResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6698,19 +6776,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantUserResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantUserResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenantUser(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUserResponse> {
+    async getTenantUser(requestParameters: GetTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUserResponse1> {
         const response = await this.getTenantUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantUsersRaw(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUsersResponse>> {
+    async getTenantUsersRaw(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantUsersResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6741,19 +6819,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantUsersResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantUsersResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenantUsers(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUsersResponse> {
+    async getTenantUsers(requestParameters: GetTenantUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantUsersResponse1> {
         const response = await this.getTenantUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTenantsRaw(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantsResponse>> {
+    async getTenantsRaw(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6788,19 +6866,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTenants(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantsResponse> {
+    async getTenants(requestParameters: GetTenantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantsResponse1> {
         const response = await this.getTenantsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketResponse>> {
+    async getTicketRaw(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6838,19 +6916,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTicketResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTicketResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketResponse> {
+    async getTicket(requestParameters: GetTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketResponse1> {
         const response = await this.getTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketsResponse>> {
+    async getTicketsRaw(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTicketsResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6893,19 +6971,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTicketsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTicketsResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketsResponse> {
+    async getTickets(requestParameters: GetTicketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTicketsResponse1> {
         const response = await this.getTicketsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse>> {
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6939,19 +7017,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserResponse> {
+    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserResponse1> {
         const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBadgeRaw(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeResponse>> {
+    async getUserBadgeRaw(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -6985,19 +7063,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetUserBadgeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBadge(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeResponse> {
+    async getUserBadge(requestParameters: GetUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeResponse> {
         const response = await this.getUserBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBadgeProgressByIdRaw(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressResponse>> {
+    async getUserBadgeProgressByIdRaw(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressByIdResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7031,19 +7109,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetUserBadgeProgressResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBadgeProgressByIdResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBadgeProgressById(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressResponse> {
+    async getUserBadgeProgressById(requestParameters: GetUserBadgeProgressByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressByIdResponse> {
         const response = await this.getUserBadgeProgressByIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBadgeProgressByUserIdRaw(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressResponse>> {
+    async getUserBadgeProgressByUserIdRaw(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressByUserIdResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7077,19 +7155,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetUserBadgeProgressResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBadgeProgressByUserIdResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBadgeProgressByUserId(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressResponse> {
+    async getUserBadgeProgressByUserId(requestParameters: GetUserBadgeProgressByUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressByUserIdResponse> {
         const response = await this.getUserBadgeProgressByUserIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBadgeProgressListRaw(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgeProgressListResponse>> {
+    async getUserBadgeProgressListRaw(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgeProgressListResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7128,19 +7206,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetUserBadgeProgressListResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBadgeProgressListResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBadgeProgressList(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgeProgressListResponse> {
+    async getUserBadgeProgressList(requestParameters: GetUserBadgeProgressListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgeProgressListResponse> {
         const response = await this.getUserBadgeProgressListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBadgesRaw(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIGetUserBadgesResponse>> {
+    async getUserBadgesRaw(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBadgesResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7191,19 +7269,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIGetUserBadgesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBadgesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBadges(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIGetUserBadgesResponse> {
+    async getUserBadges(requestParameters: GetUserBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBadgesResponse> {
         const response = await this.getUserBadgesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getVotesRaw(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesResponse>> {
+    async getVotesRaw(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7241,19 +7319,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetVotesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetVotesResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getVotes(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesResponse> {
+    async getVotes(requestParameters: GetVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesResponse1> {
         const response = await this.getVotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getVotesForUserRaw(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesForUserResponse>> {
+    async getVotesForUserRaw(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVotesForUserResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7299,12 +7377,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetVotesForUserResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetVotesForUserResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getVotesForUser(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesForUserResponse> {
+    async getVotesForUser(requestParameters: GetVotesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVotesForUserResponse1> {
         const response = await this.getVotesForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7367,7 +7445,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async patchHashTagRaw(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateHashTagResponse>> {
+    async patchHashTagRaw(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PatchHashTagResponse>> {
         if (requestParameters['tag'] == null) {
             throw new runtime.RequiredError(
                 'tag',
@@ -7397,12 +7475,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateHashTagBodyToJSON(requestParameters['updateHashTagBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateHashTagResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PatchHashTagResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async patchHashTag(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateHashTagResponse> {
+    async patchHashTag(requestParameters: PatchHashTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PatchHashTagResponse> {
         const response = await this.patchHashTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7641,7 +7719,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async renderEmailTemplateRaw(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RenderEmailTemplateResponse>> {
+    async renderEmailTemplateRaw(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RenderEmailTemplateResponse1>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7682,19 +7760,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: RenderEmailTemplateBodyToJSON(requestParameters['renderEmailTemplateBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RenderEmailTemplateResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RenderEmailTemplateResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async renderEmailTemplate(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RenderEmailTemplateResponse> {
+    async renderEmailTemplate(requestParameters: RenderEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RenderEmailTemplateResponse1> {
         const response = await this.renderEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async replaceTenantPackageRaw(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async replaceTenantPackageRaw(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplaceTenantPackageResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7738,19 +7816,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: ReplaceTenantPackageBodyToJSON(requestParameters['replaceTenantPackageBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReplaceTenantPackageResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async replaceTenantPackage(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async replaceTenantPackage(requestParameters: ReplaceTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplaceTenantPackageResponse> {
         const response = await this.replaceTenantPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async replaceTenantUserRaw(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async replaceTenantUserRaw(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplaceTenantUserResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7798,19 +7876,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: ReplaceTenantUserBodyToJSON(requestParameters['replaceTenantUserBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReplaceTenantUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async replaceTenantUser(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async replaceTenantUser(requestParameters: ReplaceTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplaceTenantUserResponse> {
         const response = await this.replaceTenantUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async saveCommentRaw(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APISaveCommentResponse>> {
+    async saveCommentRaw(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7863,12 +7941,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: CreateCommentParamsToJSON(requestParameters['createCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APISaveCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SaveCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async saveComment(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APISaveCommentResponse> {
+    async saveComment(requestParameters: SaveCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCommentResponse> {
         const response = await this.saveCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7940,7 +8018,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async sendInviteRaw(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async sendInviteRaw(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendInviteResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -7985,19 +8063,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SendInviteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async sendInvite(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async sendInvite(requestParameters: SendInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendInviteResponse> {
         const response = await this.sendInviteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async sendLoginLinkRaw(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async sendLoginLinkRaw(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendLoginLinkResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8035,19 +8113,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SendLoginLinkResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async sendLoginLink(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async sendLoginLink(requestParameters: SendLoginLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendLoginLinkResponse> {
         const response = await this.sendLoginLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async unBlockUserFromCommentRaw(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnblockSuccess>> {
+    async unBlockUserFromCommentRaw(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnBlockUserFromCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8099,19 +8177,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UnBlockFromCommentParamsToJSON(requestParameters['unBlockFromCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UnblockSuccessFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UnBlockUserFromCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async unBlockUserFromComment(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnblockSuccess> {
+    async unBlockUserFromComment(requestParameters: UnBlockUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnBlockUserFromCommentResponse> {
         const response = await this.unBlockUserFromCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async unFlagCommentRaw(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentResponse>> {
+    async unFlagCommentRaw(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnFlagCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8153,19 +8231,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FlagCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UnFlagCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse> {
+    async unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnFlagCommentResponse> {
         const response = await this.unFlagCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateCommentRaw(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateCommentRaw(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8221,19 +8299,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdatableCommentParamsToJSON(requestParameters['updatableCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateComment(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateComment(requestParameters: UpdateCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateCommentResponse> {
         const response = await this.updateCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateEmailTemplateRaw(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateEmailTemplateRaw(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEmailTemplateResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8277,19 +8355,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateEmailTemplateBodyToJSON(requestParameters['updateEmailTemplateBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEmailTemplateResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateEmailTemplate(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateEmailTemplate(requestParameters: UpdateEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEmailTemplateResponse> {
         const response = await this.updateEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateFeedPostRaw(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateFeedPostRaw(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeedPostResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8333,19 +8411,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: FeedPostToJSON(requestParameters['feedPost']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFeedPostResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateFeedPost(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateFeedPost(requestParameters: UpdateFeedPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFeedPostResponse> {
         const response = await this.updateFeedPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateModeratorRaw(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateModeratorRaw(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateModeratorResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8389,19 +8467,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateModeratorBodyToJSON(requestParameters['updateModeratorBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateModeratorResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateModerator(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateModerator(requestParameters: UpdateModeratorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateModeratorResponse> {
         const response = await this.updateModeratorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateNotificationRaw(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateNotificationRaw(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateNotificationResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8449,19 +8527,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateNotificationBodyToJSON(requestParameters['updateNotificationBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateNotificationResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateNotification(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateNotification(requestParameters: UpdateNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateNotificationResponse> {
         const response = await this.updateNotificationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateQuestionConfigRaw(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateQuestionConfigRaw(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateQuestionConfigResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8505,19 +8583,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateQuestionConfigBodyToJSON(requestParameters['updateQuestionConfigBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateQuestionConfigResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateQuestionConfig(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateQuestionConfig(requestParameters: UpdateQuestionConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateQuestionConfigResponse> {
         const response = await this.updateQuestionConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateQuestionResultRaw(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateQuestionResultRaw(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateQuestionResultResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8561,12 +8639,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateQuestionResultBodyToJSON(requestParameters['updateQuestionResultBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateQuestionResultResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateQuestionResult(requestParameters: UpdateQuestionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateQuestionResultResponse> {
         const response = await this.updateQuestionResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8633,7 +8711,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
 
     /**
      */
-    async updateTenantRaw(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateTenantRaw(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8677,19 +8755,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateTenantBodyToJSON(requestParameters['updateTenantBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTenantResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateTenant(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateTenant(requestParameters: UpdateTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantResponse> {
         const response = await this.updateTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateTenantPackageRaw(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateTenantPackageRaw(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantPackageResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8733,19 +8811,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateTenantPackageBodyToJSON(requestParameters['updateTenantPackageBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTenantPackageResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateTenantPackage(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateTenantPackage(requestParameters: UpdateTenantPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantPackageResponse> {
         const response = await this.updateTenantPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateTenantUserRaw(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async updateTenantUserRaw(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTenantUserResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8793,19 +8871,19 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateTenantUserBodyToJSON(requestParameters['updateTenantUserBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTenantUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateTenantUser(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async updateTenantUser(requestParameters: UpdateTenantUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTenantUserResponse> {
         const response = await this.updateTenantUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateUserBadgeRaw(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptySuccessResponse>> {
+    async updateUserBadgeRaw(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserBadgeResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -8849,12 +8927,12 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             body: UpdateUserBadgeParamsToJSON(requestParameters['updateUserBadgeParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptySuccessResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateUserBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateUserBadge(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptySuccessResponse> {
+    async updateUserBadge(requestParameters: UpdateUserBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUserBadgeResponse> {
         const response = await this.updateUserBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }

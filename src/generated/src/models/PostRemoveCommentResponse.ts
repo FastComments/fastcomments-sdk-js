@@ -20,6 +20,13 @@ import {
     DeleteCommentResultToJSON,
     DeleteCommentResultToJSONTyped,
 } from './DeleteCommentResult';
+import type { CustomConfigParameters } from './CustomConfigParameters';
+import {
+    CustomConfigParametersFromJSON,
+    CustomConfigParametersFromJSONTyped,
+    CustomConfigParametersToJSON,
+    CustomConfigParametersToJSONTyped,
+} from './CustomConfigParameters';
 import type { RemoveCommentActionResponse } from './RemoveCommentActionResponse';
 import {
     RemoveCommentActionResponseFromJSON,
@@ -27,6 +34,20 @@ import {
     RemoveCommentActionResponseToJSON,
     RemoveCommentActionResponseToJSONTyped,
 } from './RemoveCommentActionResponse';
+import type { APIStatus } from './APIStatus';
+import {
+    APIStatusFromJSON,
+    APIStatusFromJSONTyped,
+    APIStatusToJSON,
+    APIStatusToJSONTyped,
+} from './APIStatus';
+import type { APIError } from './APIError';
+import {
+    APIErrorFromJSON,
+    APIErrorFromJSONTyped,
+    APIErrorToJSON,
+    APIErrorToJSONTyped,
+} from './APIError';
 
 /**
  * 
@@ -42,11 +63,55 @@ export interface PostRemoveCommentResponse {
     action: string;
     /**
      * 
+     * @type {APIStatus}
+     * @memberof PostRemoveCommentResponse
+     */
+    status: APIStatus;
+    /**
+     * 
      * @type {string}
      * @memberof PostRemoveCommentResponse
      */
-    status: string;
+    reason: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostRemoveCommentResponse
+     */
+    code: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostRemoveCommentResponse
+     */
+    secondaryCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostRemoveCommentResponse
+     */
+    bannedUntil?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostRemoveCommentResponse
+     */
+    maxCharacterLength?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostRemoveCommentResponse
+     */
+    translatedError?: string;
+    /**
+     * 
+     * @type {CustomConfigParameters}
+     * @memberof PostRemoveCommentResponse
+     */
+    customConfig?: CustomConfigParameters;
 }
+
+
 
 /**
  * Check if a given object implements the PostRemoveCommentResponse interface.
@@ -54,6 +119,8 @@ export interface PostRemoveCommentResponse {
 export function instanceOfPostRemoveCommentResponse(value: object): value is PostRemoveCommentResponse {
     if (!('action' in value) || value['action'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('reason' in value) || value['reason'] === undefined) return false;
+    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -68,7 +135,14 @@ export function PostRemoveCommentResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'action': json['action'],
-        'status': json['status'],
+        'status': APIStatusFromJSON(json['status']),
+        'reason': json['reason'],
+        'code': json['code'],
+        'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
+        'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
+        'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
+        'translatedError': json['translatedError'] == null ? undefined : json['translatedError'],
+        'customConfig': json['customConfig'] == null ? undefined : CustomConfigParametersFromJSON(json['customConfig']),
     };
 }
 
@@ -84,7 +158,14 @@ export function PostRemoveCommentResponseToJSONTyped(value?: PostRemoveCommentRe
     return {
         
         'action': value['action'],
-        'status': value['status'],
+        'status': APIStatusToJSON(value['status']),
+        'reason': value['reason'],
+        'code': value['code'],
+        'secondaryCode': value['secondaryCode'],
+        'bannedUntil': value['bannedUntil'],
+        'maxCharacterLength': value['maxCharacterLength'],
+        'translatedError': value['translatedError'],
+        'customConfig': CustomConfigParametersToJSON(value['customConfig']),
     };
 }
 

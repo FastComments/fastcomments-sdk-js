@@ -60,7 +60,7 @@ All URIs are relative to *https://fastcomments.com*
 
 <a name="blockFromCommentPublic"></a>
 # **blockFromCommentPublic**
-> BlockSuccess blockFromCommentPublic(tenantId, commentId, PublicBlockFromCommentParams, sso)
+> BlockFromCommentPublicResponse blockFromCommentPublic(tenantId, commentId, PublicBlockFromCommentParams, sso)
 
 
 
@@ -75,7 +75,7 @@ All URIs are relative to *https://fastcomments.com*
 
 ### Return type
 
-[**BlockSuccess**](../model/BlockSuccess.md)
+[**BlockFromCommentPublicResponse**](../model/BlockFromCommentPublicResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ No authorization required
 
 <a name="checkedCommentsForBlocked"></a>
 # **checkedCommentsForBlocked**
-> CheckBlockedCommentsResponse checkedCommentsForBlocked(tenantId, commentIds, sso)
+> CheckedCommentsForBlockedResponse checkedCommentsForBlocked(tenantId, commentIds, sso)
 
 
 
@@ -102,7 +102,7 @@ No authorization required
 
 ### Return type
 
-[**CheckBlockedCommentsResponse**](../model/CheckBlockedCommentsResponse.md)
+[**CheckedCommentsForBlockedResponse**](../model/CheckedCommentsForBlockedResponse.md)
 
 ### Authorization
 
@@ -115,7 +115,7 @@ No authorization required
 
 <a name="createCommentPublic"></a>
 # **createCommentPublic**
-> SaveCommentsResponseWithPresence createCommentPublic(tenantId, urlId, broadcastId, CommentData, sessionId, sso)
+> CreateCommentPublicResponse createCommentPublic(tenantId, urlId, broadcastId, CommentData, sessionId, sso)
 
 
 
@@ -132,7 +132,7 @@ No authorization required
 
 ### Return type
 
-[**SaveCommentsResponseWithPresence**](../model/SaveCommentsResponseWithPresence.md)
+[**CreateCommentPublicResponse**](../model/CreateCommentPublicResponse.md)
 
 ### Authorization
 
@@ -145,7 +145,7 @@ No authorization required
 
 <a name="createFeedPostPublic"></a>
 # **createFeedPostPublic**
-> CreateFeedPostResponse createFeedPostPublic(tenantId, CreateFeedPostParams, broadcastId, sso)
+> CreateFeedPostPublicResponse createFeedPostPublic(tenantId, CreateFeedPostParams, broadcastId, sso)
 
 
 
@@ -160,7 +160,7 @@ No authorization required
 
 ### Return type
 
-[**CreateFeedPostResponse**](../model/CreateFeedPostResponse.md)
+[**CreateFeedPostPublicResponse**](../model/CreateFeedPostPublicResponse.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ No authorization required
 
 <a name="createV1PageReact"></a>
 # **createV1PageReact**
-> CreateV1PageReact createV1PageReact(tenantId, urlId, title)
+> CreateV1PageReactResponse createV1PageReact(tenantId, urlId, title)
 
 
 
@@ -187,7 +187,7 @@ No authorization required
 
 ### Return type
 
-[**CreateV1PageReact**](../model/CreateV1PageReact.md)
+[**CreateV1PageReactResponse**](../model/CreateV1PageReactResponse.md)
 
 ### Authorization
 
@@ -200,7 +200,7 @@ No authorization required
 
 <a name="createV2PageReact"></a>
 # **createV2PageReact**
-> CreateV1PageReact createV2PageReact(tenantId, urlId, id, title)
+> CreateV2PageReactResponse createV2PageReact(tenantId, urlId, id, title)
 
 
 
@@ -215,7 +215,7 @@ No authorization required
 
 ### Return type
 
-[**CreateV1PageReact**](../model/CreateV1PageReact.md)
+[**CreateV2PageReactResponse**](../model/CreateV2PageReactResponse.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ No authorization required
 
 <a name="deleteCommentPublic"></a>
 # **deleteCommentPublic**
-> PublicAPIDeleteCommentResponse deleteCommentPublic(tenantId, commentId, broadcastId, editKey, sso)
+> DeleteCommentPublicResponse deleteCommentPublic(tenantId, commentId, broadcastId, editKey, sso)
 
 
 
@@ -244,7 +244,7 @@ No authorization required
 
 ### Return type
 
-[**PublicAPIDeleteCommentResponse**](../model/PublicAPIDeleteCommentResponse.md)
+[**DeleteCommentPublicResponse**](../model/DeleteCommentPublicResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ No authorization required
 
 <a name="deleteCommentVote"></a>
 # **deleteCommentVote**
-> VoteDeleteResponse deleteCommentVote(tenantId, commentId, voteId, urlId, broadcastId, editKey, sso)
+> DeleteCommentVoteResponse deleteCommentVote(tenantId, commentId, voteId, urlId, broadcastId, editKey, sso)
 
 
 
@@ -275,7 +275,7 @@ No authorization required
 
 ### Return type
 
-[**VoteDeleteResponse**](../model/VoteDeleteResponse.md)
+[**DeleteCommentVoteResponse**](../model/DeleteCommentVoteResponse.md)
 
 ### Authorization
 
@@ -316,7 +316,7 @@ No authorization required
 
 <a name="deleteV1PageReact"></a>
 # **deleteV1PageReact**
-> CreateV1PageReact deleteV1PageReact(tenantId, urlId)
+> DeleteV1PageReactResponse deleteV1PageReact(tenantId, urlId)
 
 
 
@@ -329,7 +329,7 @@ No authorization required
 
 ### Return type
 
-[**CreateV1PageReact**](../model/CreateV1PageReact.md)
+[**DeleteV1PageReactResponse**](../model/DeleteV1PageReactResponse.md)
 
 ### Authorization
 
@@ -342,7 +342,7 @@ No authorization required
 
 <a name="deleteV2PageReact"></a>
 # **deleteV2PageReact**
-> CreateV1PageReact deleteV2PageReact(tenantId, urlId, id)
+> DeleteV2PageReactResponse deleteV2PageReact(tenantId, urlId, id)
 
 
 
@@ -356,7 +356,7 @@ No authorization required
 
 ### Return type
 
-[**CreateV1PageReact**](../model/CreateV1PageReact.md)
+[**DeleteV2PageReactResponse**](../model/DeleteV2PageReactResponse.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ No authorization required
 
 <a name="flagCommentPublic"></a>
 # **flagCommentPublic**
-> APIEmptyResponse flagCommentPublic(tenantId, commentId, isFlagged, sso)
+> FlagCommentPublicResponse flagCommentPublic(tenantId, commentId, isFlagged, sso)
 
 
 
@@ -384,7 +384,7 @@ No authorization required
 
 ### Return type
 
-[**APIEmptyResponse**](../model/APIEmptyResponse.md)
+[**FlagCommentPublicResponse**](../model/FlagCommentPublicResponse.md)
 
 ### Authorization
 
@@ -397,7 +397,7 @@ No authorization required
 
 <a name="getCommentText"></a>
 # **getCommentText**
-> PublicAPIGetCommentTextResponse getCommentText(tenantId, commentId, editKey, sso)
+> GetCommentTextResponse_1 getCommentText(tenantId, commentId, editKey, sso)
 
 
 
@@ -412,7 +412,7 @@ No authorization required
 
 ### Return type
 
-[**PublicAPIGetCommentTextResponse**](../model/PublicAPIGetCommentTextResponse.md)
+[**GetCommentTextResponse_1**](../model/GetCommentTextResponse_1.md)
 
 ### Authorization
 
@@ -425,7 +425,7 @@ No authorization required
 
 <a name="getCommentVoteUserNames"></a>
 # **getCommentVoteUserNames**
-> GetCommentVoteUserNamesSuccessResponse getCommentVoteUserNames(tenantId, commentId, dir, sso)
+> GetCommentVoteUserNamesResponse getCommentVoteUserNames(tenantId, commentId, dir, sso)
 
 
 
@@ -440,7 +440,7 @@ No authorization required
 
 ### Return type
 
-[**GetCommentVoteUserNamesSuccessResponse**](../model/GetCommentVoteUserNamesSuccessResponse.md)
+[**GetCommentVoteUserNamesResponse**](../model/GetCommentVoteUserNamesResponse.md)
 
 ### Authorization
 
@@ -453,7 +453,7 @@ No authorization required
 
 <a name="getCommentsForUser"></a>
 # **getCommentsForUser**
-> GetCommentsForUserResponse getCommentsForUser(userId, direction, repliesToUserId, page, includei10n, locale, isCrawler)
+> GetCommentsForUserResponse_1 getCommentsForUser(userId, direction, repliesToUserId, page, includei10n, locale, isCrawler)
 
 
 
@@ -471,7 +471,7 @@ No authorization required
 
 ### Return type
 
-[**GetCommentsForUserResponse**](../model/GetCommentsForUserResponse.md)
+[**GetCommentsForUserResponse_1**](../model/GetCommentsForUserResponse_1.md)
 
 ### Authorization
 
@@ -484,7 +484,7 @@ No authorization required
 
 <a name="getCommentsPublic"></a>
 # **getCommentsPublic**
-> GetCommentsResponseWithPresence_PublicComment_ getCommentsPublic(tenantId, urlId, page, direction, sso, skip, skipChildren, limit, limitChildren, countChildren, fetchPageForCommentId, includeConfig, countAll, includei10n, locale, modules, isCrawler, includeNotificationCount, asTree, maxTreeDepth, useFullTranslationIds, parentId, searchText, hashTags, userId, customConfigStr, afterCommentId, beforeCommentId)
+> GetCommentsPublicResponse getCommentsPublic(tenantId, urlId, page, direction, sso, skip, skipChildren, limit, limitChildren, countChildren, fetchPageForCommentId, includeConfig, countAll, includei10n, locale, modules, isCrawler, includeNotificationCount, asTree, maxTreeDepth, useFullTranslationIds, parentId, searchText, hashTags, userId, customConfigStr, afterCommentId, beforeCommentId)
 
 
 
@@ -525,7 +525,7 @@ No authorization required
 
 ### Return type
 
-[**GetCommentsResponseWithPresence_PublicComment_**](../model/GetCommentsResponseWithPresence_PublicComment_.md)
+[**GetCommentsPublicResponse**](../model/GetCommentsPublicResponse.md)
 
 ### Authorization
 
@@ -538,7 +538,7 @@ No authorization required
 
 <a name="getEventLog"></a>
 # **getEventLog**
-> GetEventLogResponse getEventLog(tenantId, urlId, userIdWS, startTime, endTime)
+> GetEventLogResponse_1 getEventLog(tenantId, urlId, userIdWS, startTime, endTime)
 
 
 
@@ -556,7 +556,7 @@ No authorization required
 
 ### Return type
 
-[**GetEventLogResponse**](../model/GetEventLogResponse.md)
+[**GetEventLogResponse_1**](../model/GetEventLogResponse_1.md)
 
 ### Authorization
 
@@ -569,7 +569,7 @@ No authorization required
 
 <a name="getFeedPostsPublic"></a>
 # **getFeedPostsPublic**
-> PublicFeedPostsResponse getFeedPostsPublic(tenantId, afterId, limit, tags, sso, isCrawler, includeUserInfo)
+> GetFeedPostsPublicResponse getFeedPostsPublic(tenantId, afterId, limit, tags, sso, isCrawler, includeUserInfo)
 
 
 
@@ -589,7 +589,7 @@ No authorization required
 
 ### Return type
 
-[**PublicFeedPostsResponse**](../model/PublicFeedPostsResponse.md)
+[**GetFeedPostsPublicResponse**](../model/GetFeedPostsPublicResponse.md)
 
 ### Authorization
 
@@ -602,7 +602,7 @@ No authorization required
 
 <a name="getFeedPostsStats"></a>
 # **getFeedPostsStats**
-> FeedPostsStatsResponse getFeedPostsStats(tenantId, postIds, sso)
+> GetFeedPostsStatsResponse getFeedPostsStats(tenantId, postIds, sso)
 
 
 
@@ -616,7 +616,7 @@ No authorization required
 
 ### Return type
 
-[**FeedPostsStatsResponse**](../model/FeedPostsStatsResponse.md)
+[**GetFeedPostsStatsResponse**](../model/GetFeedPostsStatsResponse.md)
 
 ### Authorization
 
@@ -629,7 +629,7 @@ No authorization required
 
 <a name="getGifLarge"></a>
 # **getGifLarge**
-> GifGetLargeResponse getGifLarge(tenantId, largeInternalURLSanitized)
+> GetGifLargeResponse getGifLarge(tenantId, largeInternalURLSanitized)
 
 
 
@@ -642,7 +642,7 @@ No authorization required
 
 ### Return type
 
-[**GifGetLargeResponse**](../model/GifGetLargeResponse.md)
+[**GetGifLargeResponse**](../model/GetGifLargeResponse.md)
 
 ### Authorization
 
@@ -712,7 +712,7 @@ No authorization required
 
 <a name="getGlobalEventLog"></a>
 # **getGlobalEventLog**
-> GetEventLogResponse getGlobalEventLog(tenantId, urlId, userIdWS, startTime, endTime)
+> GetGlobalEventLogResponse getGlobalEventLog(tenantId, urlId, userIdWS, startTime, endTime)
 
 
 
@@ -730,7 +730,7 @@ No authorization required
 
 ### Return type
 
-[**GetEventLogResponse**](../model/GetEventLogResponse.md)
+[**GetGlobalEventLogResponse**](../model/GetGlobalEventLogResponse.md)
 
 ### Authorization
 
@@ -743,7 +743,7 @@ No authorization required
 
 <a name="getOfflineUsers"></a>
 # **getOfflineUsers**
-> PageUsersOfflineResponse getOfflineUsers(tenantId, urlId, afterName, afterUserId)
+> GetOfflineUsersResponse getOfflineUsers(tenantId, urlId, afterName, afterUserId)
 
 
 
@@ -760,7 +760,7 @@ No authorization required
 
 ### Return type
 
-[**PageUsersOfflineResponse**](../model/PageUsersOfflineResponse.md)
+[**GetOfflineUsersResponse**](../model/GetOfflineUsersResponse.md)
 
 ### Authorization
 
@@ -773,7 +773,7 @@ No authorization required
 
 <a name="getOnlineUsers"></a>
 # **getOnlineUsers**
-> PageUsersOnlineResponse getOnlineUsers(tenantId, urlId, afterName, afterUserId)
+> GetOnlineUsersResponse getOnlineUsers(tenantId, urlId, afterName, afterUserId)
 
 
 
@@ -790,7 +790,7 @@ No authorization required
 
 ### Return type
 
-[**PageUsersOnlineResponse**](../model/PageUsersOnlineResponse.md)
+[**GetOnlineUsersResponse**](../model/GetOnlineUsersResponse.md)
 
 ### Authorization
 
@@ -803,7 +803,7 @@ No authorization required
 
 <a name="getPagesPublic"></a>
 # **getPagesPublic**
-> GetPublicPagesResponse getPagesPublic(tenantId, cursor, limit, q, sortBy, hasComments)
+> GetPagesPublicResponse getPagesPublic(tenantId, cursor, limit, q, sortBy, hasComments)
 
 
 
@@ -822,7 +822,7 @@ No authorization required
 
 ### Return type
 
-[**GetPublicPagesResponse**](../model/GetPublicPagesResponse.md)
+[**GetPagesPublicResponse**](../model/GetPagesPublicResponse.md)
 
 ### Authorization
 
@@ -835,7 +835,7 @@ No authorization required
 
 <a name="getTranslations"></a>
 # **getTranslations**
-> GetTranslationsResponse getTranslations(namespace, component, locale, useFullTranslationIds)
+> GetTranslationsResponse_1 getTranslations(namespace, component, locale, useFullTranslationIds)
 
 
 
@@ -850,7 +850,7 @@ No authorization required
 
 ### Return type
 
-[**GetTranslationsResponse**](../model/GetTranslationsResponse.md)
+[**GetTranslationsResponse_1**](../model/GetTranslationsResponse_1.md)
 
 ### Authorization
 
@@ -863,7 +863,7 @@ No authorization required
 
 <a name="getUserNotificationCount"></a>
 # **getUserNotificationCount**
-> GetUserNotificationCountResponse getUserNotificationCount(tenantId, sso)
+> GetUserNotificationCountResponse_1 getUserNotificationCount(tenantId, sso)
 
 
 
@@ -876,7 +876,7 @@ No authorization required
 
 ### Return type
 
-[**GetUserNotificationCountResponse**](../model/GetUserNotificationCountResponse.md)
+[**GetUserNotificationCountResponse_1**](../model/GetUserNotificationCountResponse_1.md)
 
 ### Authorization
 
@@ -889,7 +889,7 @@ No authorization required
 
 <a name="getUserNotifications"></a>
 # **getUserNotifications**
-> GetMyNotificationsResponse getUserNotifications(tenantId, urlId, pageSize, afterId, includeContext, afterCreatedAt, unreadOnly, dmOnly, noDm, includeTranslations, includeTenantNotifications, sso)
+> GetUserNotificationsResponse getUserNotifications(tenantId, urlId, pageSize, afterId, includeContext, afterCreatedAt, unreadOnly, dmOnly, noDm, includeTranslations, includeTenantNotifications, sso)
 
 
 
@@ -912,7 +912,7 @@ No authorization required
 
 ### Return type
 
-[**GetMyNotificationsResponse**](../model/GetMyNotificationsResponse.md)
+[**GetUserNotificationsResponse**](../model/GetUserNotificationsResponse.md)
 
 ### Authorization
 
@@ -925,7 +925,7 @@ No authorization required
 
 <a name="getUserPresenceStatuses"></a>
 # **getUserPresenceStatuses**
-> GetUserPresenceStatusesResponse getUserPresenceStatuses(tenantId, urlIdWS, userIds)
+> GetUserPresenceStatusesResponse_1 getUserPresenceStatuses(tenantId, urlIdWS, userIds)
 
 
 
@@ -939,7 +939,7 @@ No authorization required
 
 ### Return type
 
-[**GetUserPresenceStatusesResponse**](../model/GetUserPresenceStatusesResponse.md)
+[**GetUserPresenceStatusesResponse_1**](../model/GetUserPresenceStatusesResponse_1.md)
 
 ### Authorization
 
@@ -952,7 +952,7 @@ No authorization required
 
 <a name="getUserReactsPublic"></a>
 # **getUserReactsPublic**
-> UserReactsResponse getUserReactsPublic(tenantId, postIds, sso)
+> GetUserReactsPublicResponse getUserReactsPublic(tenantId, postIds, sso)
 
 
 
@@ -966,7 +966,7 @@ No authorization required
 
 ### Return type
 
-[**UserReactsResponse**](../model/UserReactsResponse.md)
+[**GetUserReactsPublicResponse**](../model/GetUserReactsPublicResponse.md)
 
 ### Authorization
 
@@ -979,7 +979,7 @@ No authorization required
 
 <a name="getUsersInfo"></a>
 # **getUsersInfo**
-> PageUsersInfoResponse getUsersInfo(tenantId, ids)
+> GetUsersInfoResponse getUsersInfo(tenantId, ids)
 
 
 
@@ -994,7 +994,7 @@ No authorization required
 
 ### Return type
 
-[**PageUsersInfoResponse**](../model/PageUsersInfoResponse.md)
+[**GetUsersInfoResponse**](../model/GetUsersInfoResponse.md)
 
 ### Authorization
 
@@ -1007,7 +1007,7 @@ No authorization required
 
 <a name="getV1PageLikes"></a>
 # **getV1PageLikes**
-> GetV1PageLikes getV1PageLikes(tenantId, urlId)
+> GetV1PageLikesResponse getV1PageLikes(tenantId, urlId)
 
 
 
@@ -1020,7 +1020,7 @@ No authorization required
 
 ### Return type
 
-[**GetV1PageLikes**](../model/GetV1PageLikes.md)
+[**GetV1PageLikesResponse**](../model/GetV1PageLikesResponse.md)
 
 ### Authorization
 
@@ -1033,7 +1033,7 @@ No authorization required
 
 <a name="getV2PageReactUsers"></a>
 # **getV2PageReactUsers**
-> GetV2PageReactUsersResponse getV2PageReactUsers(tenantId, urlId, id)
+> GetV2PageReactUsersResponse_1 getV2PageReactUsers(tenantId, urlId, id)
 
 
 
@@ -1047,7 +1047,7 @@ No authorization required
 
 ### Return type
 
-[**GetV2PageReactUsersResponse**](../model/GetV2PageReactUsersResponse.md)
+[**GetV2PageReactUsersResponse_1**](../model/GetV2PageReactUsersResponse_1.md)
 
 ### Authorization
 
@@ -1060,7 +1060,7 @@ No authorization required
 
 <a name="getV2PageReacts"></a>
 # **getV2PageReacts**
-> GetV2PageReacts getV2PageReacts(tenantId, urlId)
+> GetV2PageReactsResponse getV2PageReacts(tenantId, urlId)
 
 
 
@@ -1073,7 +1073,7 @@ No authorization required
 
 ### Return type
 
-[**GetV2PageReacts**](../model/GetV2PageReacts.md)
+[**GetV2PageReactsResponse**](../model/GetV2PageReactsResponse.md)
 
 ### Authorization
 
@@ -1086,7 +1086,7 @@ No authorization required
 
 <a name="lockComment"></a>
 # **lockComment**
-> APIEmptyResponse lockComment(tenantId, commentId, broadcastId, sso)
+> LockCommentResponse lockComment(tenantId, commentId, broadcastId, sso)
 
 
 
@@ -1101,7 +1101,7 @@ No authorization required
 
 ### Return type
 
-[**APIEmptyResponse**](../model/APIEmptyResponse.md)
+[**LockCommentResponse**](../model/LockCommentResponse.md)
 
 ### Authorization
 
@@ -1136,7 +1136,7 @@ No authorization required
 
 <a name="pinComment"></a>
 # **pinComment**
-> ChangeCommentPinStatusResponse pinComment(tenantId, commentId, broadcastId, sso)
+> PinCommentResponse pinComment(tenantId, commentId, broadcastId, sso)
 
 
 
@@ -1151,7 +1151,7 @@ No authorization required
 
 ### Return type
 
-[**ChangeCommentPinStatusResponse**](../model/ChangeCommentPinStatusResponse.md)
+[**PinCommentResponse**](../model/PinCommentResponse.md)
 
 ### Authorization
 
@@ -1164,7 +1164,7 @@ No authorization required
 
 <a name="reactFeedPostPublic"></a>
 # **reactFeedPostPublic**
-> ReactFeedPostResponse reactFeedPostPublic(tenantId, postId, ReactBodyParams, isUndo, broadcastId, sso)
+> ReactFeedPostPublicResponse reactFeedPostPublic(tenantId, postId, ReactBodyParams, isUndo, broadcastId, sso)
 
 
 
@@ -1181,7 +1181,7 @@ No authorization required
 
 ### Return type
 
-[**ReactFeedPostResponse**](../model/ReactFeedPostResponse.md)
+[**ReactFeedPostPublicResponse**](../model/ReactFeedPostPublicResponse.md)
 
 ### Authorization
 
@@ -1194,7 +1194,7 @@ No authorization required
 
 <a name="resetUserNotificationCount"></a>
 # **resetUserNotificationCount**
-> ResetUserNotificationsResponse resetUserNotificationCount(tenantId, sso)
+> ResetUserNotificationCountResponse resetUserNotificationCount(tenantId, sso)
 
 
 
@@ -1207,7 +1207,7 @@ No authorization required
 
 ### Return type
 
-[**ResetUserNotificationsResponse**](../model/ResetUserNotificationsResponse.md)
+[**ResetUserNotificationCountResponse**](../model/ResetUserNotificationCountResponse.md)
 
 ### Authorization
 
@@ -1220,7 +1220,7 @@ No authorization required
 
 <a name="resetUserNotifications"></a>
 # **resetUserNotifications**
-> ResetUserNotificationsResponse resetUserNotifications(tenantId, afterId, afterCreatedAt, unreadOnly, dmOnly, noDm, sso)
+> ResetUserNotificationsResponse_1 resetUserNotifications(tenantId, afterId, afterCreatedAt, unreadOnly, dmOnly, noDm, sso)
 
 
 
@@ -1238,7 +1238,7 @@ No authorization required
 
 ### Return type
 
-[**ResetUserNotificationsResponse**](../model/ResetUserNotificationsResponse.md)
+[**ResetUserNotificationsResponse_1**](../model/ResetUserNotificationsResponse_1.md)
 
 ### Authorization
 
@@ -1251,7 +1251,7 @@ No authorization required
 
 <a name="searchUsers"></a>
 # **searchUsers**
-> SearchUsersResult searchUsers(tenantId, urlId, usernameStartsWith, mentionGroupIds, sso, searchSection)
+> SearchUsersResponse_1 searchUsers(tenantId, urlId, usernameStartsWith, mentionGroupIds, sso, searchSection)
 
 
 
@@ -1268,7 +1268,7 @@ No authorization required
 
 ### Return type
 
-[**SearchUsersResult**](../model/SearchUsersResult.md)
+[**SearchUsersResponse_1**](../model/SearchUsersResponse_1.md)
 
 ### Authorization
 
@@ -1281,7 +1281,7 @@ No authorization required
 
 <a name="setCommentText"></a>
 # **setCommentText**
-> PublicAPISetCommentTextResponse setCommentText(tenantId, commentId, broadcastId, CommentTextUpdateRequest, editKey, sso)
+> SetCommentTextResponse_1 setCommentText(tenantId, commentId, broadcastId, CommentTextUpdateRequest, editKey, sso)
 
 
 
@@ -1298,7 +1298,7 @@ No authorization required
 
 ### Return type
 
-[**PublicAPISetCommentTextResponse**](../model/PublicAPISetCommentTextResponse.md)
+[**SetCommentTextResponse_1**](../model/SetCommentTextResponse_1.md)
 
 ### Authorization
 
@@ -1311,7 +1311,7 @@ No authorization required
 
 <a name="unBlockCommentPublic"></a>
 # **unBlockCommentPublic**
-> UnblockSuccess unBlockCommentPublic(tenantId, commentId, PublicBlockFromCommentParams, sso)
+> UnBlockCommentPublicResponse unBlockCommentPublic(tenantId, commentId, PublicBlockFromCommentParams, sso)
 
 
 
@@ -1326,7 +1326,7 @@ No authorization required
 
 ### Return type
 
-[**UnblockSuccess**](../model/UnblockSuccess.md)
+[**UnBlockCommentPublicResponse**](../model/UnBlockCommentPublicResponse.md)
 
 ### Authorization
 
@@ -1339,7 +1339,7 @@ No authorization required
 
 <a name="unLockComment"></a>
 # **unLockComment**
-> APIEmptyResponse unLockComment(tenantId, commentId, broadcastId, sso)
+> UnLockCommentResponse unLockComment(tenantId, commentId, broadcastId, sso)
 
 
 
@@ -1354,7 +1354,7 @@ No authorization required
 
 ### Return type
 
-[**APIEmptyResponse**](../model/APIEmptyResponse.md)
+[**UnLockCommentResponse**](../model/UnLockCommentResponse.md)
 
 ### Authorization
 
@@ -1367,7 +1367,7 @@ No authorization required
 
 <a name="unPinComment"></a>
 # **unPinComment**
-> ChangeCommentPinStatusResponse unPinComment(tenantId, commentId, broadcastId, sso)
+> UnPinCommentResponse unPinComment(tenantId, commentId, broadcastId, sso)
 
 
 
@@ -1382,7 +1382,7 @@ No authorization required
 
 ### Return type
 
-[**ChangeCommentPinStatusResponse**](../model/ChangeCommentPinStatusResponse.md)
+[**UnPinCommentResponse**](../model/UnPinCommentResponse.md)
 
 ### Authorization
 
@@ -1395,7 +1395,7 @@ No authorization required
 
 <a name="updateFeedPostPublic"></a>
 # **updateFeedPostPublic**
-> CreateFeedPostResponse updateFeedPostPublic(tenantId, postId, UpdateFeedPostParams, broadcastId, sso)
+> UpdateFeedPostPublicResponse updateFeedPostPublic(tenantId, postId, UpdateFeedPostParams, broadcastId, sso)
 
 
 
@@ -1411,7 +1411,7 @@ No authorization required
 
 ### Return type
 
-[**CreateFeedPostResponse**](../model/CreateFeedPostResponse.md)
+[**UpdateFeedPostPublicResponse**](../model/UpdateFeedPostPublicResponse.md)
 
 ### Authorization
 
@@ -1545,7 +1545,7 @@ No authorization required
 
 <a name="voteComment"></a>
 # **voteComment**
-> VoteResponse voteComment(tenantId, commentId, urlId, broadcastId, VoteBodyParams, sessionId, sso)
+> VoteCommentResponse voteComment(tenantId, commentId, urlId, broadcastId, VoteBodyParams, sessionId, sso)
 
 
 
@@ -1563,7 +1563,7 @@ No authorization required
 
 ### Return type
 
-[**VoteResponse**](../model/VoteResponse.md)
+[**VoteCommentResponse**](../model/VoteCommentResponse.md)
 
 ### Authorization
 

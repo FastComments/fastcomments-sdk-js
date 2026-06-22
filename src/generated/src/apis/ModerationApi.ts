@@ -15,136 +15,158 @@
 
 import * as runtime from '../runtime';
 import type {
-  APIEmptyResponse,
-  APIError,
-  APIModerateGetUserBanPreferencesResponse,
   AdjustCommentVotesParams,
-  AdjustVotesResponse,
-  AwardUserBadgeResponse,
-  BanUserFromCommentResult,
   BanUserUndoParams,
   BulkPreBanParams,
-  BulkPreBanSummary,
   CommentsByIdsParams,
-  GetBannedUsersCountResponse,
-  GetBannedUsersFromCommentResponse,
-  GetCommentBanStatusResponse,
-  GetCommentTextResponse,
-  GetTenantManualBadgesResponse,
-  GetUserInternalProfileResponse,
-  GetUserManualBadgesResponse,
-  GetUserTrustFactorResponse,
-  ModerationAPIChildCommentsResponse,
-  ModerationAPICommentResponse,
-  ModerationAPICountCommentsResponse,
-  ModerationAPIGetCommentIdsResponse,
-  ModerationAPIGetCommentsResponse,
-  ModerationAPIGetLogsResponse,
-  ModerationCommentSearchResponse,
-  ModerationExportResponse,
-  ModerationExportStatusResponse,
-  ModerationPageSearchResponse,
-  ModerationSiteSearchResponse,
-  ModerationSuggestResponse,
-  ModerationUserSearchResponse,
+  DeleteModerationVoteResponse,
+  GetApiCommentsResponse,
+  GetApiExportStatusResponse,
+  GetApiIdsResponse,
+  GetBanUsersFromCommentResponse,
+  GetCommentBanStatusResponse1,
+  GetCommentChildrenResponse,
+  GetCountResponse,
+  GetCountsResponse,
+  GetLogsResponse,
+  GetManualBadgesForUserResponse,
+  GetManualBadgesResponse,
+  GetModerationCommentResponse,
+  GetModerationCommentTextResponse,
+  GetPreBanSummaryResponse,
+  GetSearchCommentsSummaryResponse,
+  GetSearchPagesResponse,
+  GetSearchSitesResponse,
+  GetSearchSuggestResponse,
+  GetSearchUsersResponse,
+  GetTrustFactorResponse,
+  GetUserBanPreferenceResponse,
+  GetUserInternalProfileResponse1,
+  PostAdjustCommentVotesResponse,
+  PostApiExportResponse,
+  PostBanUserFromCommentResponse,
+  PostBanUserUndoResponse,
+  PostBulkPreBanSummaryResponse,
+  PostCommentsByIdsResponse,
+  PostFlagCommentResponse,
   PostRemoveCommentResponse,
-  PreBanSummary,
-  RemoveUserBadgeResponse,
-  SetCommentApprovedResponse,
+  PostRestoreDeletedCommentResponse,
+  PostSetCommentApprovalStatusResponse,
+  PostSetCommentReviewStatusResponse,
+  PostSetCommentSpamStatusResponse,
+  PostSetCommentTextResponse,
+  PostUnFlagCommentResponse,
+  PostVoteResponse,
+  PutAwardBadgeResponse,
+  PutCloseThreadResponse,
+  PutRemoveBadgeResponse,
+  PutReopenThreadResponse,
   SetCommentTextParams,
-  SetCommentTextResponse,
-  SetUserTrustFactorResponse,
-  VoteDeleteResponse,
-  VoteResponse,
+  SetTrustFactorResponse,
 } from '../models/index';
 import {
-    APIEmptyResponseFromJSON,
-    APIEmptyResponseToJSON,
-    APIErrorFromJSON,
-    APIErrorToJSON,
-    APIModerateGetUserBanPreferencesResponseFromJSON,
-    APIModerateGetUserBanPreferencesResponseToJSON,
     AdjustCommentVotesParamsFromJSON,
     AdjustCommentVotesParamsToJSON,
-    AdjustVotesResponseFromJSON,
-    AdjustVotesResponseToJSON,
-    AwardUserBadgeResponseFromJSON,
-    AwardUserBadgeResponseToJSON,
-    BanUserFromCommentResultFromJSON,
-    BanUserFromCommentResultToJSON,
     BanUserUndoParamsFromJSON,
     BanUserUndoParamsToJSON,
     BulkPreBanParamsFromJSON,
     BulkPreBanParamsToJSON,
-    BulkPreBanSummaryFromJSON,
-    BulkPreBanSummaryToJSON,
     CommentsByIdsParamsFromJSON,
     CommentsByIdsParamsToJSON,
-    GetBannedUsersCountResponseFromJSON,
-    GetBannedUsersCountResponseToJSON,
-    GetBannedUsersFromCommentResponseFromJSON,
-    GetBannedUsersFromCommentResponseToJSON,
-    GetCommentBanStatusResponseFromJSON,
-    GetCommentBanStatusResponseToJSON,
-    GetCommentTextResponseFromJSON,
-    GetCommentTextResponseToJSON,
-    GetTenantManualBadgesResponseFromJSON,
-    GetTenantManualBadgesResponseToJSON,
-    GetUserInternalProfileResponseFromJSON,
-    GetUserInternalProfileResponseToJSON,
-    GetUserManualBadgesResponseFromJSON,
-    GetUserManualBadgesResponseToJSON,
-    GetUserTrustFactorResponseFromJSON,
-    GetUserTrustFactorResponseToJSON,
-    ModerationAPIChildCommentsResponseFromJSON,
-    ModerationAPIChildCommentsResponseToJSON,
-    ModerationAPICommentResponseFromJSON,
-    ModerationAPICommentResponseToJSON,
-    ModerationAPICountCommentsResponseFromJSON,
-    ModerationAPICountCommentsResponseToJSON,
-    ModerationAPIGetCommentIdsResponseFromJSON,
-    ModerationAPIGetCommentIdsResponseToJSON,
-    ModerationAPIGetCommentsResponseFromJSON,
-    ModerationAPIGetCommentsResponseToJSON,
-    ModerationAPIGetLogsResponseFromJSON,
-    ModerationAPIGetLogsResponseToJSON,
-    ModerationCommentSearchResponseFromJSON,
-    ModerationCommentSearchResponseToJSON,
-    ModerationExportResponseFromJSON,
-    ModerationExportResponseToJSON,
-    ModerationExportStatusResponseFromJSON,
-    ModerationExportStatusResponseToJSON,
-    ModerationPageSearchResponseFromJSON,
-    ModerationPageSearchResponseToJSON,
-    ModerationSiteSearchResponseFromJSON,
-    ModerationSiteSearchResponseToJSON,
-    ModerationSuggestResponseFromJSON,
-    ModerationSuggestResponseToJSON,
-    ModerationUserSearchResponseFromJSON,
-    ModerationUserSearchResponseToJSON,
+    DeleteModerationVoteResponseFromJSON,
+    DeleteModerationVoteResponseToJSON,
+    GetApiCommentsResponseFromJSON,
+    GetApiCommentsResponseToJSON,
+    GetApiExportStatusResponseFromJSON,
+    GetApiExportStatusResponseToJSON,
+    GetApiIdsResponseFromJSON,
+    GetApiIdsResponseToJSON,
+    GetBanUsersFromCommentResponseFromJSON,
+    GetBanUsersFromCommentResponseToJSON,
+    GetCommentBanStatusResponse1FromJSON,
+    GetCommentBanStatusResponse1ToJSON,
+    GetCommentChildrenResponseFromJSON,
+    GetCommentChildrenResponseToJSON,
+    GetCountResponseFromJSON,
+    GetCountResponseToJSON,
+    GetCountsResponseFromJSON,
+    GetCountsResponseToJSON,
+    GetLogsResponseFromJSON,
+    GetLogsResponseToJSON,
+    GetManualBadgesForUserResponseFromJSON,
+    GetManualBadgesForUserResponseToJSON,
+    GetManualBadgesResponseFromJSON,
+    GetManualBadgesResponseToJSON,
+    GetModerationCommentResponseFromJSON,
+    GetModerationCommentResponseToJSON,
+    GetModerationCommentTextResponseFromJSON,
+    GetModerationCommentTextResponseToJSON,
+    GetPreBanSummaryResponseFromJSON,
+    GetPreBanSummaryResponseToJSON,
+    GetSearchCommentsSummaryResponseFromJSON,
+    GetSearchCommentsSummaryResponseToJSON,
+    GetSearchPagesResponseFromJSON,
+    GetSearchPagesResponseToJSON,
+    GetSearchSitesResponseFromJSON,
+    GetSearchSitesResponseToJSON,
+    GetSearchSuggestResponseFromJSON,
+    GetSearchSuggestResponseToJSON,
+    GetSearchUsersResponseFromJSON,
+    GetSearchUsersResponseToJSON,
+    GetTrustFactorResponseFromJSON,
+    GetTrustFactorResponseToJSON,
+    GetUserBanPreferenceResponseFromJSON,
+    GetUserBanPreferenceResponseToJSON,
+    GetUserInternalProfileResponse1FromJSON,
+    GetUserInternalProfileResponse1ToJSON,
+    PostAdjustCommentVotesResponseFromJSON,
+    PostAdjustCommentVotesResponseToJSON,
+    PostApiExportResponseFromJSON,
+    PostApiExportResponseToJSON,
+    PostBanUserFromCommentResponseFromJSON,
+    PostBanUserFromCommentResponseToJSON,
+    PostBanUserUndoResponseFromJSON,
+    PostBanUserUndoResponseToJSON,
+    PostBulkPreBanSummaryResponseFromJSON,
+    PostBulkPreBanSummaryResponseToJSON,
+    PostCommentsByIdsResponseFromJSON,
+    PostCommentsByIdsResponseToJSON,
+    PostFlagCommentResponseFromJSON,
+    PostFlagCommentResponseToJSON,
     PostRemoveCommentResponseFromJSON,
     PostRemoveCommentResponseToJSON,
-    PreBanSummaryFromJSON,
-    PreBanSummaryToJSON,
-    RemoveUserBadgeResponseFromJSON,
-    RemoveUserBadgeResponseToJSON,
-    SetCommentApprovedResponseFromJSON,
-    SetCommentApprovedResponseToJSON,
+    PostRestoreDeletedCommentResponseFromJSON,
+    PostRestoreDeletedCommentResponseToJSON,
+    PostSetCommentApprovalStatusResponseFromJSON,
+    PostSetCommentApprovalStatusResponseToJSON,
+    PostSetCommentReviewStatusResponseFromJSON,
+    PostSetCommentReviewStatusResponseToJSON,
+    PostSetCommentSpamStatusResponseFromJSON,
+    PostSetCommentSpamStatusResponseToJSON,
+    PostSetCommentTextResponseFromJSON,
+    PostSetCommentTextResponseToJSON,
+    PostUnFlagCommentResponseFromJSON,
+    PostUnFlagCommentResponseToJSON,
+    PostVoteResponseFromJSON,
+    PostVoteResponseToJSON,
+    PutAwardBadgeResponseFromJSON,
+    PutAwardBadgeResponseToJSON,
+    PutCloseThreadResponseFromJSON,
+    PutCloseThreadResponseToJSON,
+    PutRemoveBadgeResponseFromJSON,
+    PutRemoveBadgeResponseToJSON,
+    PutReopenThreadResponseFromJSON,
+    PutReopenThreadResponseToJSON,
     SetCommentTextParamsFromJSON,
     SetCommentTextParamsToJSON,
-    SetCommentTextResponseFromJSON,
-    SetCommentTextResponseToJSON,
-    SetUserTrustFactorResponseFromJSON,
-    SetUserTrustFactorResponseToJSON,
-    VoteDeleteResponseFromJSON,
-    VoteDeleteResponseToJSON,
-    VoteResponseFromJSON,
-    VoteResponseToJSON,
+    SetTrustFactorResponseFromJSON,
+    SetTrustFactorResponseToJSON,
 } from '../models/index';
 
 export interface DeleteModerationVoteRequest {
     commentId: string;
     voteId: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -157,11 +179,13 @@ export interface GetApiCommentsRequest {
     searchFilters?: string;
     sorts?: string;
     demo?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetApiExportStatusRequest {
     batchJobId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -172,21 +196,25 @@ export interface GetApiIdsRequest {
     searchFilters?: string;
     afterId?: string;
     demo?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetBanUsersFromCommentRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetCommentBanStatusRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetCommentChildrenRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -196,25 +224,30 @@ export interface GetCountRequest {
     filter?: string;
     searchFilters?: string;
     demo?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetCountsRequest {
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetLogsRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetManualBadgesRequest {
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetManualBadgesForUserRequest {
     badgesUserId?: string;
     commentId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -222,11 +255,13 @@ export interface GetModerationCommentRequest {
     commentId: string;
     includeEmail?: boolean;
     includeIP?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetModerationCommentTextRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -235,6 +270,7 @@ export interface GetPreBanSummaryRequest {
     includeByUserIdAndEmail?: boolean;
     includeByIP?: boolean;
     includeByEmailDomain?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -242,46 +278,55 @@ export interface GetSearchCommentsSummaryRequest {
     value?: string;
     filters?: string;
     searchFilters?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetSearchPagesRequest {
     value?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetSearchSitesRequest {
     value?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetSearchSuggestRequest {
     textSearch?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetSearchUsersRequest {
     value?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetTrustFactorRequest {
     userId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetUserBanPreferenceRequest {
+    tenantId?: string;
     sso?: string;
 }
 
 export interface GetUserInternalProfileRequest {
     commentId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostAdjustCommentVotesRequest {
     commentId: string;
     adjustCommentVotesParams: AdjustCommentVotesParams;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -291,6 +336,7 @@ export interface PostApiExportRequest {
     filters?: string;
     searchFilters?: string;
     sorts?: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -304,11 +350,13 @@ export interface PostBanUserFromCommentRequest {
     isShadowBan?: boolean;
     updateId?: string;
     banReason?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostBanUserUndoRequest {
     banUserUndoParams: BanUserUndoParams;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -317,38 +365,45 @@ export interface PostBulkPreBanSummaryRequest {
     includeByUserIdAndEmail?: boolean;
     includeByIP?: boolean;
     includeByEmailDomain?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostCommentsByIdsRequest {
     commentsByIdsParams: CommentsByIdsParams;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostFlagCommentRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostRemoveCommentRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostRestoreDeletedCommentRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostSetCommentApprovalStatusRequest {
     commentId: string;
     approved?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostSetCommentReviewStatusRequest {
     commentId: string;
     reviewed?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -356,23 +411,27 @@ export interface PostSetCommentSpamStatusRequest {
     commentId: string;
     spam?: boolean;
     permNotSpam?: boolean;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostSetCommentTextRequest {
     commentId: string;
     setCommentTextParams: SetCommentTextParams;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostUnFlagCommentRequest {
     commentId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PostVoteRequest {
     commentId: string;
     direction?: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -381,11 +440,13 @@ export interface PutAwardBadgeRequest {
     userId?: string;
     commentId?: string;
     broadcastId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PutCloseThreadRequest {
     urlId: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -394,17 +455,20 @@ export interface PutRemoveBadgeRequest {
     userId?: string;
     commentId?: string;
     broadcastId?: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface PutReopenThreadRequest {
     urlId: string;
+    tenantId?: string;
     sso?: string;
 }
 
 export interface SetTrustFactorRequest {
     userId?: string;
     trustFactor?: string;
+    tenantId?: string;
     sso?: string;
 }
 
@@ -419,16 +483,17 @@ export interface ModerationApiInterface {
      * 
      * @param {string} commentId 
      * @param {string} voteId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    deleteModerationVoteRaw(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>>;
+    deleteModerationVoteRaw(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModerationVoteResponse>>;
 
     /**
      */
-    deleteModerationVote(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse>;
+    deleteModerationVote(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteModerationVoteResponse>;
 
     /**
      * 
@@ -440,30 +505,32 @@ export interface ModerationApiInterface {
      * @param {string} [searchFilters] 
      * @param {string} [sorts] 
      * @param {boolean} [demo] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getApiCommentsRaw(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetCommentsResponse>>;
+    getApiCommentsRaw(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiCommentsResponse>>;
 
     /**
      */
-    getApiComments(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetCommentsResponse>;
+    getApiComments(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiCommentsResponse>;
 
     /**
      * 
      * @param {string} [batchJobId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getApiExportStatusRaw(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationExportStatusResponse>>;
+    getApiExportStatusRaw(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiExportStatusResponse>>;
 
     /**
      */
-    getApiExportStatus(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationExportStatusResponse>;
+    getApiExportStatus(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiExportStatusResponse>;
 
     /**
      * 
@@ -473,58 +540,62 @@ export interface ModerationApiInterface {
      * @param {string} [searchFilters] 
      * @param {string} [afterId] 
      * @param {boolean} [demo] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getApiIdsRaw(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetCommentIdsResponse>>;
+    getApiIdsRaw(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiIdsResponse>>;
 
     /**
      */
-    getApiIds(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetCommentIdsResponse>;
+    getApiIds(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiIdsResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getBanUsersFromCommentRaw(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBannedUsersFromCommentResponse>>;
+    getBanUsersFromCommentRaw(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBanUsersFromCommentResponse>>;
 
     /**
      */
-    getBanUsersFromComment(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBannedUsersFromCommentResponse>;
+    getBanUsersFromComment(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBanUsersFromCommentResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getCommentBanStatusRaw(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentBanStatusResponse>>;
+    getCommentBanStatusRaw(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentBanStatusResponse1>>;
 
     /**
      */
-    getCommentBanStatus(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentBanStatusResponse>;
+    getCommentBanStatus(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentBanStatusResponse1>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getCommentChildrenRaw(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIChildCommentsResponse>>;
+    getCommentChildrenRaw(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentChildrenResponse>>;
 
     /**
      */
-    getCommentChildren(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIChildCommentsResponse>;
+    getCommentChildren(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentChildrenResponse>;
 
     /**
      * 
@@ -533,101 +604,108 @@ export interface ModerationApiInterface {
      * @param {string} [filter] 
      * @param {string} [searchFilters] 
      * @param {boolean} [demo] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getCountRaw(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPICountCommentsResponse>>;
+    getCountRaw(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCountResponse>>;
 
     /**
      */
-    getCount(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPICountCommentsResponse>;
+    getCount(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCountResponse>;
 
     /**
      * 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getCountsRaw(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBannedUsersCountResponse>>;
+    getCountsRaw(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCountsResponse>>;
 
     /**
      */
-    getCounts(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBannedUsersCountResponse>;
+    getCounts(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCountsResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getLogsRaw(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetLogsResponse>>;
+    getLogsRaw(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLogsResponse>>;
 
     /**
      */
-    getLogs(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetLogsResponse>;
+    getLogs(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLogsResponse>;
 
     /**
      * 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getManualBadgesRaw(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantManualBadgesResponse>>;
+    getManualBadgesRaw(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManualBadgesResponse>>;
 
     /**
      */
-    getManualBadges(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantManualBadgesResponse>;
+    getManualBadges(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManualBadgesResponse>;
 
     /**
      * 
      * @param {string} [badgesUserId] 
      * @param {string} [commentId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getManualBadgesForUserRaw(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserManualBadgesResponse>>;
+    getManualBadgesForUserRaw(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManualBadgesForUserResponse>>;
 
     /**
      */
-    getManualBadgesForUser(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserManualBadgesResponse>;
+    getManualBadgesForUser(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManualBadgesForUserResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {boolean} [includeEmail] 
      * @param {boolean} [includeIP] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getModerationCommentRaw(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPICommentResponse>>;
+    getModerationCommentRaw(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModerationCommentResponse>>;
 
     /**
      */
-    getModerationComment(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPICommentResponse>;
+    getModerationComment(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModerationCommentResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getModerationCommentTextRaw(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentTextResponse>>;
+    getModerationCommentTextRaw(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModerationCommentTextResponse>>;
 
     /**
      */
-    getModerationCommentText(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentTextResponse>;
+    getModerationCommentText(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModerationCommentTextResponse>;
 
     /**
      * 
@@ -635,144 +713,154 @@ export interface ModerationApiInterface {
      * @param {boolean} [includeByUserIdAndEmail] 
      * @param {boolean} [includeByIP] 
      * @param {boolean} [includeByEmailDomain] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getPreBanSummaryRaw(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PreBanSummary>>;
+    getPreBanSummaryRaw(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPreBanSummaryResponse>>;
 
     /**
      */
-    getPreBanSummary(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PreBanSummary>;
+    getPreBanSummary(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPreBanSummaryResponse>;
 
     /**
      * 
      * @param {string} [value] 
      * @param {string} [filters] 
      * @param {string} [searchFilters] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getSearchCommentsSummaryRaw(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationCommentSearchResponse>>;
+    getSearchCommentsSummaryRaw(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchCommentsSummaryResponse>>;
 
     /**
      */
-    getSearchCommentsSummary(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationCommentSearchResponse>;
+    getSearchCommentsSummary(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchCommentsSummaryResponse>;
 
     /**
      * 
      * @param {string} [value] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getSearchPagesRaw(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationPageSearchResponse>>;
+    getSearchPagesRaw(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchPagesResponse>>;
 
     /**
      */
-    getSearchPages(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationPageSearchResponse>;
+    getSearchPages(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchPagesResponse>;
 
     /**
      * 
      * @param {string} [value] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getSearchSitesRaw(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationSiteSearchResponse>>;
+    getSearchSitesRaw(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchSitesResponse>>;
 
     /**
      */
-    getSearchSites(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationSiteSearchResponse>;
+    getSearchSites(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchSitesResponse>;
 
     /**
      * 
      * @param {string} [textSearch] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getSearchSuggestRaw(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationSuggestResponse>>;
+    getSearchSuggestRaw(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchSuggestResponse>>;
 
     /**
      */
-    getSearchSuggest(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationSuggestResponse>;
+    getSearchSuggest(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchSuggestResponse>;
 
     /**
      * 
      * @param {string} [value] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getSearchUsersRaw(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationUserSearchResponse>>;
+    getSearchUsersRaw(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchUsersResponse>>;
 
     /**
      */
-    getSearchUsers(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationUserSearchResponse>;
+    getSearchUsers(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchUsersResponse>;
 
     /**
      * 
      * @param {string} [userId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getTrustFactorRaw(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserTrustFactorResponse>>;
+    getTrustFactorRaw(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTrustFactorResponse>>;
 
     /**
      */
-    getTrustFactor(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserTrustFactorResponse>;
+    getTrustFactor(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTrustFactorResponse>;
 
     /**
      * 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getUserBanPreferenceRaw(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIModerateGetUserBanPreferencesResponse>>;
+    getUserBanPreferenceRaw(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBanPreferenceResponse>>;
 
     /**
      */
-    getUserBanPreference(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIModerateGetUserBanPreferencesResponse>;
+    getUserBanPreference(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBanPreferenceResponse>;
 
     /**
      * 
      * @param {string} [commentId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    getUserInternalProfileRaw(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserInternalProfileResponse>>;
+    getUserInternalProfileRaw(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserInternalProfileResponse1>>;
 
     /**
      */
-    getUserInternalProfile(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserInternalProfileResponse>;
+    getUserInternalProfile(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserInternalProfileResponse1>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {AdjustCommentVotesParams} adjustCommentVotesParams 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postAdjustCommentVotesRaw(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdjustVotesResponse>>;
+    postAdjustCommentVotesRaw(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostAdjustCommentVotesResponse>>;
 
     /**
      */
-    postAdjustCommentVotes(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdjustVotesResponse>;
+    postAdjustCommentVotes(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostAdjustCommentVotesResponse>;
 
     /**
      * 
@@ -781,16 +869,17 @@ export interface ModerationApiInterface {
      * @param {string} [filters] 
      * @param {string} [searchFilters] 
      * @param {string} [sorts] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postApiExportRaw(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationExportResponse>>;
+    postApiExportRaw(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostApiExportResponse>>;
 
     /**
      */
-    postApiExport(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationExportResponse>;
+    postApiExport(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostApiExportResponse>;
 
     /**
      * 
@@ -803,30 +892,32 @@ export interface ModerationApiInterface {
      * @param {boolean} [isShadowBan] 
      * @param {string} [updateId] 
      * @param {string} [banReason] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postBanUserFromCommentRaw(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BanUserFromCommentResult>>;
+    postBanUserFromCommentRaw(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBanUserFromCommentResponse>>;
 
     /**
      */
-    postBanUserFromComment(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BanUserFromCommentResult>;
+    postBanUserFromComment(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBanUserFromCommentResponse>;
 
     /**
      * 
      * @param {BanUserUndoParams} banUserUndoParams 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postBanUserUndoRaw(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postBanUserUndoRaw(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBanUserUndoResponse>>;
 
     /**
      */
-    postBanUserUndo(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postBanUserUndo(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBanUserUndoResponse>;
 
     /**
      * 
@@ -834,48 +925,52 @@ export interface ModerationApiInterface {
      * @param {boolean} [includeByUserIdAndEmail] 
      * @param {boolean} [includeByIP] 
      * @param {boolean} [includeByEmailDomain] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postBulkPreBanSummaryRaw(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkPreBanSummary>>;
+    postBulkPreBanSummaryRaw(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBulkPreBanSummaryResponse>>;
 
     /**
      */
-    postBulkPreBanSummary(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkPreBanSummary>;
+    postBulkPreBanSummary(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBulkPreBanSummaryResponse>;
 
     /**
      * 
      * @param {CommentsByIdsParams} commentsByIdsParams 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postCommentsByIdsRaw(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIChildCommentsResponse>>;
+    postCommentsByIdsRaw(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostCommentsByIdsResponse>>;
 
     /**
      */
-    postCommentsByIds(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIChildCommentsResponse>;
+    postCommentsByIds(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostCommentsByIdsResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postFlagCommentRaw(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postFlagCommentRaw(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostFlagCommentResponse>>;
 
     /**
      */
-    postFlagComment(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postFlagComment(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostFlagCommentResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -890,106 +985,113 @@ export interface ModerationApiInterface {
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postRestoreDeletedCommentRaw(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postRestoreDeletedCommentRaw(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostRestoreDeletedCommentResponse>>;
 
     /**
      */
-    postRestoreDeletedComment(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postRestoreDeletedComment(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostRestoreDeletedCommentResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {boolean} [approved] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postSetCommentApprovalStatusRaw(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentApprovedResponse>>;
+    postSetCommentApprovalStatusRaw(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentApprovalStatusResponse>>;
 
     /**
      */
-    postSetCommentApprovalStatus(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentApprovedResponse>;
+    postSetCommentApprovalStatus(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentApprovalStatusResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {boolean} [reviewed] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postSetCommentReviewStatusRaw(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postSetCommentReviewStatusRaw(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentReviewStatusResponse>>;
 
     /**
      */
-    postSetCommentReviewStatus(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postSetCommentReviewStatus(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentReviewStatusResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {boolean} [spam] 
      * @param {boolean} [permNotSpam] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postSetCommentSpamStatusRaw(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postSetCommentSpamStatusRaw(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentSpamStatusResponse>>;
 
     /**
      */
-    postSetCommentSpamStatus(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postSetCommentSpamStatus(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentSpamStatusResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {SetCommentTextParams} setCommentTextParams 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postSetCommentTextRaw(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentTextResponse>>;
+    postSetCommentTextRaw(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentTextResponse>>;
 
     /**
      */
-    postSetCommentText(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentTextResponse>;
+    postSetCommentText(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentTextResponse>;
 
     /**
      * 
      * @param {string} commentId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postUnFlagCommentRaw(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    postUnFlagCommentRaw(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostUnFlagCommentResponse>>;
 
     /**
      */
-    postUnFlagComment(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    postUnFlagComment(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostUnFlagCommentResponse>;
 
     /**
      * 
      * @param {string} commentId 
      * @param {string} [direction] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    postVoteRaw(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>>;
+    postVoteRaw(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostVoteResponse>>;
 
     /**
      */
-    postVote(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse>;
+    postVote(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostVoteResponse>;
 
     /**
      * 
@@ -997,30 +1099,32 @@ export interface ModerationApiInterface {
      * @param {string} [userId] 
      * @param {string} [commentId] 
      * @param {string} [broadcastId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    putAwardBadgeRaw(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AwardUserBadgeResponse>>;
+    putAwardBadgeRaw(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutAwardBadgeResponse>>;
 
     /**
      */
-    putAwardBadge(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AwardUserBadgeResponse>;
+    putAwardBadge(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutAwardBadgeResponse>;
 
     /**
      * 
      * @param {string} urlId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    putCloseThreadRaw(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    putCloseThreadRaw(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutCloseThreadResponse>>;
 
     /**
      */
-    putCloseThread(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    putCloseThread(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutCloseThreadResponse>;
 
     /**
      * 
@@ -1028,45 +1132,48 @@ export interface ModerationApiInterface {
      * @param {string} [userId] 
      * @param {string} [commentId] 
      * @param {string} [broadcastId] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    putRemoveBadgeRaw(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserBadgeResponse>>;
+    putRemoveBadgeRaw(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutRemoveBadgeResponse>>;
 
     /**
      */
-    putRemoveBadge(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveUserBadgeResponse>;
+    putRemoveBadge(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutRemoveBadgeResponse>;
 
     /**
      * 
      * @param {string} urlId 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    putReopenThreadRaw(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
+    putReopenThreadRaw(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutReopenThreadResponse>>;
 
     /**
      */
-    putReopenThread(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+    putReopenThread(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutReopenThreadResponse>;
 
     /**
      * 
      * @param {string} [userId] 
      * @param {string} [trustFactor] 
+     * @param {string} [tenantId] 
      * @param {string} [sso] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ModerationApiInterface
      */
-    setTrustFactorRaw(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetUserTrustFactorResponse>>;
+    setTrustFactorRaw(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetTrustFactorResponse>>;
 
     /**
      */
-    setTrustFactor(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetUserTrustFactorResponse>;
+    setTrustFactor(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetTrustFactorResponse>;
 
 }
 
@@ -1077,7 +1184,7 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
     /**
      */
-    async deleteModerationVoteRaw(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>> {
+    async deleteModerationVoteRaw(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteModerationVoteResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1094,6 +1201,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1107,19 +1218,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VoteDeleteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteModerationVoteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteModerationVote(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse> {
+    async deleteModerationVote(requestParameters: DeleteModerationVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteModerationVoteResponse> {
         const response = await this.deleteModerationVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getApiCommentsRaw(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetCommentsResponse>> {
+    async getApiCommentsRaw(requestParameters: GetApiCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiCommentsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -1154,6 +1265,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['demo'] = requestParameters['demo'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1167,23 +1282,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPIGetCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiCommentsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getApiComments(requestParameters: GetApiCommentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetCommentsResponse> {
+    async getApiComments(requestParameters: GetApiCommentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiCommentsResponse> {
         const response = await this.getApiCommentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getApiExportStatusRaw(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationExportStatusResponse>> {
+    async getApiExportStatusRaw(requestParameters: GetApiExportStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiExportStatusResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['batchJobId'] != null) {
             queryParameters['batchJobId'] = requestParameters['batchJobId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1199,19 +1318,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationExportStatusResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiExportStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getApiExportStatus(requestParameters: GetApiExportStatusRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationExportStatusResponse> {
+    async getApiExportStatus(requestParameters: GetApiExportStatusRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiExportStatusResponse> {
         const response = await this.getApiExportStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getApiIdsRaw(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetCommentIdsResponse>> {
+    async getApiIdsRaw(requestParameters: GetApiIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiIdsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['textSearch'] != null) {
@@ -1238,6 +1357,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['demo'] = requestParameters['demo'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1251,19 +1374,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPIGetCommentIdsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiIdsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getApiIds(requestParameters: GetApiIdsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetCommentIdsResponse> {
+    async getApiIds(requestParameters: GetApiIdsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiIdsResponse> {
         const response = await this.getApiIdsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getBanUsersFromCommentRaw(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBannedUsersFromCommentResponse>> {
+    async getBanUsersFromCommentRaw(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBanUsersFromCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1272,6 +1395,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1286,19 +1413,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetBannedUsersFromCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetBanUsersFromCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getBanUsersFromComment(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBannedUsersFromCommentResponse> {
+    async getBanUsersFromComment(requestParameters: GetBanUsersFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBanUsersFromCommentResponse> {
         const response = await this.getBanUsersFromCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentBanStatusRaw(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentBanStatusResponse>> {
+    async getCommentBanStatusRaw(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentBanStatusResponse1>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1307,6 +1434,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1321,19 +1452,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentBanStatusResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentBanStatusResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getCommentBanStatus(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentBanStatusResponse> {
+    async getCommentBanStatus(requestParameters: GetCommentBanStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentBanStatusResponse1> {
         const response = await this.getCommentBanStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentChildrenRaw(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIChildCommentsResponse>> {
+    async getCommentChildrenRaw(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentChildrenResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1342,6 +1473,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1356,19 +1491,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPIChildCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentChildrenResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCommentChildren(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIChildCommentsResponse> {
+    async getCommentChildren(requestParameters: GetCommentChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentChildrenResponse> {
         const response = await this.getCommentChildrenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCountRaw(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPICountCommentsResponse>> {
+    async getCountRaw(requestParameters: GetCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCountResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['textSearch'] != null) {
@@ -1391,6 +1526,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['demo'] = requestParameters['demo'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1404,20 +1543,24 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPICountCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCountResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCount(requestParameters: GetCountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPICountCommentsResponse> {
+    async getCount(requestParameters: GetCountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCountResponse> {
         const response = await this.getCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCountsRaw(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBannedUsersCountResponse>> {
+    async getCountsRaw(requestParameters: GetCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCountsResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1432,19 +1575,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetBannedUsersCountResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCountsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCounts(requestParameters: GetCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBannedUsersCountResponse> {
+    async getCounts(requestParameters: GetCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCountsResponse> {
         const response = await this.getCountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getLogsRaw(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIGetLogsResponse>> {
+    async getLogsRaw(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLogsResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1453,6 +1596,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1467,20 +1614,24 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPIGetLogsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetLogsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getLogs(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIGetLogsResponse> {
+    async getLogs(requestParameters: GetLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLogsResponse> {
         const response = await this.getLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getManualBadgesRaw(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTenantManualBadgesResponse>> {
+    async getManualBadgesRaw(requestParameters: GetManualBadgesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManualBadgesResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1495,19 +1646,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTenantManualBadgesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetManualBadgesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getManualBadges(requestParameters: GetManualBadgesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTenantManualBadgesResponse> {
+    async getManualBadges(requestParameters: GetManualBadgesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManualBadgesResponse> {
         const response = await this.getManualBadgesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getManualBadgesForUserRaw(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserManualBadgesResponse>> {
+    async getManualBadgesForUserRaw(requestParameters: GetManualBadgesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManualBadgesForUserResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['badgesUserId'] != null) {
@@ -1516,6 +1667,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['commentId'] != null) {
             queryParameters['commentId'] = requestParameters['commentId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1531,19 +1686,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserManualBadgesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetManualBadgesForUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getManualBadgesForUser(requestParameters: GetManualBadgesForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserManualBadgesResponse> {
+    async getManualBadgesForUser(requestParameters: GetManualBadgesForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManualBadgesForUserResponse> {
         const response = await this.getManualBadgesForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getModerationCommentRaw(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPICommentResponse>> {
+    async getModerationCommentRaw(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModerationCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1561,6 +1716,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['includeIP'] = requestParameters['includeIP'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1574,19 +1733,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPICommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetModerationCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getModerationComment(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPICommentResponse> {
+    async getModerationComment(requestParameters: GetModerationCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModerationCommentResponse> {
         const response = await this.getModerationCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getModerationCommentTextRaw(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentTextResponse>> {
+    async getModerationCommentTextRaw(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetModerationCommentTextResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1595,6 +1754,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1609,19 +1772,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentTextResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetModerationCommentTextResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getModerationCommentText(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentTextResponse> {
+    async getModerationCommentText(requestParameters: GetModerationCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetModerationCommentTextResponse> {
         const response = await this.getModerationCommentTextRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getPreBanSummaryRaw(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PreBanSummary>> {
+    async getPreBanSummaryRaw(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPreBanSummaryResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1643,6 +1806,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['includeByEmailDomain'] = requestParameters['includeByEmailDomain'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -1656,19 +1823,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PreBanSummaryFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPreBanSummaryResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getPreBanSummary(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PreBanSummary> {
+    async getPreBanSummary(requestParameters: GetPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPreBanSummaryResponse> {
         const response = await this.getPreBanSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getSearchCommentsSummaryRaw(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationCommentSearchResponse>> {
+    async getSearchCommentsSummaryRaw(requestParameters: GetSearchCommentsSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchCommentsSummaryResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['value'] != null) {
@@ -1681,6 +1848,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['searchFilters'] != null) {
             queryParameters['searchFilters'] = requestParameters['searchFilters'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1696,23 +1867,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationCommentSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSearchCommentsSummaryResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSearchCommentsSummary(requestParameters: GetSearchCommentsSummaryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationCommentSearchResponse> {
+    async getSearchCommentsSummary(requestParameters: GetSearchCommentsSummaryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchCommentsSummaryResponse> {
         const response = await this.getSearchCommentsSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getSearchPagesRaw(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationPageSearchResponse>> {
+    async getSearchPagesRaw(requestParameters: GetSearchPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchPagesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['value'] != null) {
             queryParameters['value'] = requestParameters['value'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1728,23 +1903,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationPageSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSearchPagesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSearchPages(requestParameters: GetSearchPagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationPageSearchResponse> {
+    async getSearchPages(requestParameters: GetSearchPagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchPagesResponse> {
         const response = await this.getSearchPagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getSearchSitesRaw(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationSiteSearchResponse>> {
+    async getSearchSitesRaw(requestParameters: GetSearchSitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchSitesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['value'] != null) {
             queryParameters['value'] = requestParameters['value'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1760,23 +1939,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationSiteSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSearchSitesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSearchSites(requestParameters: GetSearchSitesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationSiteSearchResponse> {
+    async getSearchSites(requestParameters: GetSearchSitesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchSitesResponse> {
         const response = await this.getSearchSitesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getSearchSuggestRaw(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationSuggestResponse>> {
+    async getSearchSuggestRaw(requestParameters: GetSearchSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchSuggestResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['textSearch'] != null) {
             queryParameters['text-search'] = requestParameters['textSearch'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1792,23 +1975,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationSuggestResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSearchSuggestResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSearchSuggest(requestParameters: GetSearchSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationSuggestResponse> {
+    async getSearchSuggest(requestParameters: GetSearchSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchSuggestResponse> {
         const response = await this.getSearchSuggestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getSearchUsersRaw(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationUserSearchResponse>> {
+    async getSearchUsersRaw(requestParameters: GetSearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSearchUsersResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['value'] != null) {
             queryParameters['value'] = requestParameters['value'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1824,23 +2011,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationUserSearchResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSearchUsersResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSearchUsers(requestParameters: GetSearchUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationUserSearchResponse> {
+    async getSearchUsers(requestParameters: GetSearchUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSearchUsersResponse> {
         const response = await this.getSearchUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTrustFactorRaw(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserTrustFactorResponse>> {
+    async getTrustFactorRaw(requestParameters: GetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTrustFactorResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['userId'] != null) {
             queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1856,20 +2047,24 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserTrustFactorResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTrustFactorResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getTrustFactor(requestParameters: GetTrustFactorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserTrustFactorResponse> {
+    async getTrustFactor(requestParameters: GetTrustFactorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTrustFactorResponse> {
         const response = await this.getTrustFactorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserBanPreferenceRaw(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIModerateGetUserBanPreferencesResponse>> {
+    async getUserBanPreferenceRaw(requestParameters: GetUserBanPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserBanPreferenceResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1884,23 +2079,27 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIModerateGetUserBanPreferencesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserBanPreferenceResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserBanPreference(requestParameters: GetUserBanPreferenceRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIModerateGetUserBanPreferencesResponse> {
+    async getUserBanPreference(requestParameters: GetUserBanPreferenceRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserBanPreferenceResponse> {
         const response = await this.getUserBanPreferenceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserInternalProfileRaw(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserInternalProfileResponse>> {
+    async getUserInternalProfileRaw(requestParameters: GetUserInternalProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserInternalProfileResponse1>> {
         const queryParameters: any = {};
 
         if (requestParameters['commentId'] != null) {
             queryParameters['commentId'] = requestParameters['commentId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -1916,19 +2115,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserInternalProfileResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserInternalProfileResponse1FromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserInternalProfile(requestParameters: GetUserInternalProfileRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserInternalProfileResponse> {
+    async getUserInternalProfile(requestParameters: GetUserInternalProfileRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserInternalProfileResponse1> {
         const response = await this.getUserInternalProfileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postAdjustCommentVotesRaw(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdjustVotesResponse>> {
+    async postAdjustCommentVotesRaw(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostAdjustCommentVotesResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -1944,6 +2143,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -1961,19 +2164,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             body: AdjustCommentVotesParamsToJSON(requestParameters['adjustCommentVotesParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AdjustVotesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostAdjustCommentVotesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postAdjustCommentVotes(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdjustVotesResponse> {
+    async postAdjustCommentVotes(requestParameters: PostAdjustCommentVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostAdjustCommentVotesResponse> {
         const response = await this.postAdjustCommentVotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postApiExportRaw(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationExportResponse>> {
+    async postApiExportRaw(requestParameters: PostApiExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostApiExportResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['textSearch'] != null) {
@@ -1996,6 +2199,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['sorts'] = requestParameters['sorts'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2009,19 +2216,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationExportResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostApiExportResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postApiExport(requestParameters: PostApiExportRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationExportResponse> {
+    async postApiExport(requestParameters: PostApiExportRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostApiExportResponse> {
         const response = await this.postApiExportRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postBanUserFromCommentRaw(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BanUserFromCommentResult>> {
+    async postBanUserFromCommentRaw(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBanUserFromCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2063,6 +2270,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['banReason'] = requestParameters['banReason'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2076,19 +2287,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BanUserFromCommentResultFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostBanUserFromCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postBanUserFromComment(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BanUserFromCommentResult> {
+    async postBanUserFromComment(requestParameters: PostBanUserFromCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBanUserFromCommentResponse> {
         const response = await this.postBanUserFromCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postBanUserUndoRaw(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postBanUserUndoRaw(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBanUserUndoResponse>> {
         if (requestParameters['banUserUndoParams'] == null) {
             throw new runtime.RequiredError(
                 'banUserUndoParams',
@@ -2097,6 +2308,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2114,19 +2329,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             body: BanUserUndoParamsToJSON(requestParameters['banUserUndoParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostBanUserUndoResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postBanUserUndo(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postBanUserUndo(requestParameters: PostBanUserUndoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBanUserUndoResponse> {
         const response = await this.postBanUserUndoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postBulkPreBanSummaryRaw(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkPreBanSummary>> {
+    async postBulkPreBanSummaryRaw(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostBulkPreBanSummaryResponse>> {
         if (requestParameters['bulkPreBanParams'] == null) {
             throw new runtime.RequiredError(
                 'bulkPreBanParams',
@@ -2148,6 +2363,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['includeByEmailDomain'] = requestParameters['includeByEmailDomain'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2164,19 +2383,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             body: BulkPreBanParamsToJSON(requestParameters['bulkPreBanParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BulkPreBanSummaryFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostBulkPreBanSummaryResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postBulkPreBanSummary(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BulkPreBanSummary> {
+    async postBulkPreBanSummary(requestParameters: PostBulkPreBanSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostBulkPreBanSummaryResponse> {
         const response = await this.postBulkPreBanSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postCommentsByIdsRaw(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ModerationAPIChildCommentsResponse>> {
+    async postCommentsByIdsRaw(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostCommentsByIdsResponse>> {
         if (requestParameters['commentsByIdsParams'] == null) {
             throw new runtime.RequiredError(
                 'commentsByIdsParams',
@@ -2185,6 +2404,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2202,19 +2425,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             body: CommentsByIdsParamsToJSON(requestParameters['commentsByIdsParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModerationAPIChildCommentsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostCommentsByIdsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postCommentsByIds(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ModerationAPIChildCommentsResponse> {
+    async postCommentsByIds(requestParameters: PostCommentsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostCommentsByIdsResponse> {
         const response = await this.postCommentsByIdsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postFlagCommentRaw(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postFlagCommentRaw(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostFlagCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2223,6 +2446,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2237,12 +2464,12 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostFlagCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postFlagComment(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postFlagComment(requestParameters: PostFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostFlagCommentResponse> {
         const response = await this.postFlagCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2258,6 +2485,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2284,7 +2515,7 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
     /**
      */
-    async postRestoreDeletedCommentRaw(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postRestoreDeletedCommentRaw(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostRestoreDeletedCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2293,6 +2524,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2307,19 +2542,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostRestoreDeletedCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postRestoreDeletedComment(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postRestoreDeletedComment(requestParameters: PostRestoreDeletedCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostRestoreDeletedCommentResponse> {
         const response = await this.postRestoreDeletedCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postSetCommentApprovalStatusRaw(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentApprovedResponse>> {
+    async postSetCommentApprovalStatusRaw(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentApprovalStatusResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2331,6 +2566,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['approved'] != null) {
             queryParameters['approved'] = requestParameters['approved'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2346,19 +2585,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SetCommentApprovedResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostSetCommentApprovalStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postSetCommentApprovalStatus(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentApprovedResponse> {
+    async postSetCommentApprovalStatus(requestParameters: PostSetCommentApprovalStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentApprovalStatusResponse> {
         const response = await this.postSetCommentApprovalStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postSetCommentReviewStatusRaw(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postSetCommentReviewStatusRaw(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentReviewStatusResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2370,6 +2609,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['reviewed'] != null) {
             queryParameters['reviewed'] = requestParameters['reviewed'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2385,19 +2628,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostSetCommentReviewStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postSetCommentReviewStatus(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postSetCommentReviewStatus(requestParameters: PostSetCommentReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentReviewStatusResponse> {
         const response = await this.postSetCommentReviewStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postSetCommentSpamStatusRaw(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postSetCommentSpamStatusRaw(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentSpamStatusResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2415,6 +2658,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['permNotSpam'] = requestParameters['permNotSpam'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2428,19 +2675,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostSetCommentSpamStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postSetCommentSpamStatus(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postSetCommentSpamStatus(requestParameters: PostSetCommentSpamStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentSpamStatusResponse> {
         const response = await this.postSetCommentSpamStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postSetCommentTextRaw(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentTextResponse>> {
+    async postSetCommentTextRaw(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostSetCommentTextResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2456,6 +2703,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2473,19 +2724,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             body: SetCommentTextParamsToJSON(requestParameters['setCommentTextParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SetCommentTextResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostSetCommentTextResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postSetCommentText(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentTextResponse> {
+    async postSetCommentText(requestParameters: PostSetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostSetCommentTextResponse> {
         const response = await this.postSetCommentTextRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postUnFlagCommentRaw(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async postUnFlagCommentRaw(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostUnFlagCommentResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2494,6 +2745,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
@@ -2508,19 +2763,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostUnFlagCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postUnFlagComment(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async postUnFlagComment(requestParameters: PostUnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostUnFlagCommentResponse> {
         const response = await this.postUnFlagCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async postVoteRaw(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>> {
+    async postVoteRaw(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostVoteResponse>> {
         if (requestParameters['commentId'] == null) {
             throw new runtime.RequiredError(
                 'commentId',
@@ -2532,6 +2787,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['direction'] != null) {
             queryParameters['direction'] = requestParameters['direction'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2547,19 +2806,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VoteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostVoteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async postVote(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse> {
+    async postVote(requestParameters: PostVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostVoteResponse> {
         const response = await this.postVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async putAwardBadgeRaw(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AwardUserBadgeResponse>> {
+    async putAwardBadgeRaw(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutAwardBadgeResponse>> {
         if (requestParameters['badgeId'] == null) {
             throw new runtime.RequiredError(
                 'badgeId',
@@ -2585,6 +2844,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['broadcastId'] = requestParameters['broadcastId'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2598,19 +2861,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AwardUserBadgeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PutAwardBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async putAwardBadge(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AwardUserBadgeResponse> {
+    async putAwardBadge(requestParameters: PutAwardBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutAwardBadgeResponse> {
         const response = await this.putAwardBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async putCloseThreadRaw(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async putCloseThreadRaw(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutCloseThreadResponse>> {
         if (requestParameters['urlId'] == null) {
             throw new runtime.RequiredError(
                 'urlId',
@@ -2622,6 +2885,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['urlId'] != null) {
             queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2637,19 +2904,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PutCloseThreadResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async putCloseThread(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async putCloseThread(requestParameters: PutCloseThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutCloseThreadResponse> {
         const response = await this.putCloseThreadRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async putRemoveBadgeRaw(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserBadgeResponse>> {
+    async putRemoveBadgeRaw(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutRemoveBadgeResponse>> {
         if (requestParameters['badgeId'] == null) {
             throw new runtime.RequiredError(
                 'badgeId',
@@ -2675,6 +2942,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             queryParameters['broadcastId'] = requestParameters['broadcastId'];
         }
 
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
         }
@@ -2688,19 +2959,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RemoveUserBadgeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PutRemoveBadgeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async putRemoveBadge(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveUserBadgeResponse> {
+    async putRemoveBadge(requestParameters: PutRemoveBadgeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutRemoveBadgeResponse> {
         const response = await this.putRemoveBadgeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async putReopenThreadRaw(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
+    async putReopenThreadRaw(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PutReopenThreadResponse>> {
         if (requestParameters['urlId'] == null) {
             throw new runtime.RequiredError(
                 'urlId',
@@ -2712,6 +2983,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['urlId'] != null) {
             queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2727,19 +3002,19 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PutReopenThreadResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async putReopenThread(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
+    async putReopenThread(requestParameters: PutReopenThreadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutReopenThreadResponse> {
         const response = await this.putReopenThreadRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async setTrustFactorRaw(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetUserTrustFactorResponse>> {
+    async setTrustFactorRaw(requestParameters: SetTrustFactorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetTrustFactorResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['userId'] != null) {
@@ -2748,6 +3023,10 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
 
         if (requestParameters['trustFactor'] != null) {
             queryParameters['trustFactor'] = requestParameters['trustFactor'];
+        }
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
         }
 
         if (requestParameters['sso'] != null) {
@@ -2763,12 +3042,12 @@ export class ModerationApi extends runtime.BaseAPI implements ModerationApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SetUserTrustFactorResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SetTrustFactorResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async setTrustFactor(requestParameters: SetTrustFactorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetUserTrustFactorResponse> {
+    async setTrustFactor(requestParameters: SetTrustFactorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetTrustFactorResponse> {
         const response = await this.setTrustFactorRaw(requestParameters, initOverrides);
         return await response.value();
     }
