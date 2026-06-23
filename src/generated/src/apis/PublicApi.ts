@@ -17,183 +17,149 @@ import * as runtime from '../runtime';
 import type {
   APIEmptyResponse,
   APIError,
-  BlockFromCommentPublicResponse,
-  CheckedCommentsForBlockedResponse,
+  BlockSuccess,
+  ChangeCommentPinStatusResponse,
+  CheckBlockedCommentsResponse,
   CommentData,
   CommentTextUpdateRequest,
-  CreateCommentPublicResponse,
   CreateFeedPostParams,
-  CreateFeedPostPublicResponse,
-  CreateV1PageReactResponse,
-  CreateV2PageReactResponse,
-  DeleteCommentPublicResponse,
-  DeleteCommentVoteResponse,
+  CreateFeedPostResponse,
+  CreateV1PageReact,
   DeleteFeedPostPublicResponse,
-  DeleteV1PageReactResponse,
-  DeleteV2PageReactResponse,
-  FlagCommentPublicResponse,
-  GetCommentTextResponse1,
-  GetCommentVoteUserNamesResponse,
-  GetCommentsForUserResponse1,
-  GetCommentsPublicResponse,
-  GetEventLogResponse1,
-  GetFeedPostsPublicResponse,
-  GetFeedPostsStatsResponse,
-  GetGifLargeResponse,
+  FeedPostsStatsResponse,
+  GetCommentVoteUserNamesSuccessResponse,
+  GetCommentsForUserResponse,
+  GetCommentsResponseWithPresencePublicComment,
+  GetEventLogResponse,
   GetGifsSearchResponse,
   GetGifsTrendingResponse,
-  GetGlobalEventLogResponse,
-  GetOfflineUsersResponse,
-  GetOnlineUsersResponse,
-  GetPagesPublicResponse,
-  GetTranslationsResponse1,
-  GetUserNotificationCountResponse1,
-  GetUserNotificationsResponse,
-  GetUserPresenceStatusesResponse1,
-  GetUserReactsPublicResponse,
-  GetUsersInfoResponse,
-  GetV1PageLikesResponse,
-  GetV2PageReactUsersResponse1,
-  GetV2PageReactsResponse,
-  LockCommentResponse,
+  GetMyNotificationsResponse,
+  GetPublicPagesResponse,
+  GetTranslationsResponse,
+  GetUserNotificationCountResponse,
+  GetUserPresenceStatusesResponse,
+  GetV1PageLikes,
+  GetV2PageReactUsersResponse,
+  GetV2PageReacts,
+  GifGetLargeResponse,
+  PageUsersInfoResponse,
+  PageUsersOfflineResponse,
+  PageUsersOnlineResponse,
   PagesSortBy,
-  PinCommentResponse,
+  PublicAPIDeleteCommentResponse,
+  PublicAPIGetCommentTextResponse,
+  PublicAPISetCommentTextResponse,
   PublicBlockFromCommentParams,
+  PublicFeedPostsResponse,
   ReactBodyParams,
-  ReactFeedPostPublicResponse,
-  ResetUserNotificationCountResponse,
-  ResetUserNotificationsResponse1,
-  SearchUsersResponse1,
-  SetCommentTextResponse1,
+  ReactFeedPostResponse,
+  ResetUserNotificationsResponse,
+  SaveCommentsResponseWithPresence,
+  SearchUsersResult,
   SizePreset,
   SortDirections,
-  UnBlockCommentPublicResponse,
-  UnLockCommentResponse,
-  UnPinCommentResponse,
+  UnblockSuccess,
   UpdateFeedPostParams,
-  UpdateFeedPostPublicResponse,
   UpdateUserNotificationCommentSubscriptionStatusResponse,
   UpdateUserNotificationPageSubscriptionStatusResponse,
   UpdateUserNotificationStatusResponse,
   UploadImageResponse,
+  UserReactsResponse,
   VoteBodyParams,
-  VoteCommentResponse,
+  VoteDeleteResponse,
+  VoteResponse,
 } from '../models/index';
 import {
     APIEmptyResponseFromJSON,
     APIEmptyResponseToJSON,
     APIErrorFromJSON,
     APIErrorToJSON,
-    BlockFromCommentPublicResponseFromJSON,
-    BlockFromCommentPublicResponseToJSON,
-    CheckedCommentsForBlockedResponseFromJSON,
-    CheckedCommentsForBlockedResponseToJSON,
+    BlockSuccessFromJSON,
+    BlockSuccessToJSON,
+    ChangeCommentPinStatusResponseFromJSON,
+    ChangeCommentPinStatusResponseToJSON,
+    CheckBlockedCommentsResponseFromJSON,
+    CheckBlockedCommentsResponseToJSON,
     CommentDataFromJSON,
     CommentDataToJSON,
     CommentTextUpdateRequestFromJSON,
     CommentTextUpdateRequestToJSON,
-    CreateCommentPublicResponseFromJSON,
-    CreateCommentPublicResponseToJSON,
     CreateFeedPostParamsFromJSON,
     CreateFeedPostParamsToJSON,
-    CreateFeedPostPublicResponseFromJSON,
-    CreateFeedPostPublicResponseToJSON,
-    CreateV1PageReactResponseFromJSON,
-    CreateV1PageReactResponseToJSON,
-    CreateV2PageReactResponseFromJSON,
-    CreateV2PageReactResponseToJSON,
-    DeleteCommentPublicResponseFromJSON,
-    DeleteCommentPublicResponseToJSON,
-    DeleteCommentVoteResponseFromJSON,
-    DeleteCommentVoteResponseToJSON,
+    CreateFeedPostResponseFromJSON,
+    CreateFeedPostResponseToJSON,
+    CreateV1PageReactFromJSON,
+    CreateV1PageReactToJSON,
     DeleteFeedPostPublicResponseFromJSON,
     DeleteFeedPostPublicResponseToJSON,
-    DeleteV1PageReactResponseFromJSON,
-    DeleteV1PageReactResponseToJSON,
-    DeleteV2PageReactResponseFromJSON,
-    DeleteV2PageReactResponseToJSON,
-    FlagCommentPublicResponseFromJSON,
-    FlagCommentPublicResponseToJSON,
-    GetCommentTextResponse1FromJSON,
-    GetCommentTextResponse1ToJSON,
-    GetCommentVoteUserNamesResponseFromJSON,
-    GetCommentVoteUserNamesResponseToJSON,
-    GetCommentsForUserResponse1FromJSON,
-    GetCommentsForUserResponse1ToJSON,
-    GetCommentsPublicResponseFromJSON,
-    GetCommentsPublicResponseToJSON,
-    GetEventLogResponse1FromJSON,
-    GetEventLogResponse1ToJSON,
-    GetFeedPostsPublicResponseFromJSON,
-    GetFeedPostsPublicResponseToJSON,
-    GetFeedPostsStatsResponseFromJSON,
-    GetFeedPostsStatsResponseToJSON,
-    GetGifLargeResponseFromJSON,
-    GetGifLargeResponseToJSON,
+    FeedPostsStatsResponseFromJSON,
+    FeedPostsStatsResponseToJSON,
+    GetCommentVoteUserNamesSuccessResponseFromJSON,
+    GetCommentVoteUserNamesSuccessResponseToJSON,
+    GetCommentsForUserResponseFromJSON,
+    GetCommentsForUserResponseToJSON,
+    GetCommentsResponseWithPresencePublicCommentFromJSON,
+    GetCommentsResponseWithPresencePublicCommentToJSON,
+    GetEventLogResponseFromJSON,
+    GetEventLogResponseToJSON,
     GetGifsSearchResponseFromJSON,
     GetGifsSearchResponseToJSON,
     GetGifsTrendingResponseFromJSON,
     GetGifsTrendingResponseToJSON,
-    GetGlobalEventLogResponseFromJSON,
-    GetGlobalEventLogResponseToJSON,
-    GetOfflineUsersResponseFromJSON,
-    GetOfflineUsersResponseToJSON,
-    GetOnlineUsersResponseFromJSON,
-    GetOnlineUsersResponseToJSON,
-    GetPagesPublicResponseFromJSON,
-    GetPagesPublicResponseToJSON,
-    GetTranslationsResponse1FromJSON,
-    GetTranslationsResponse1ToJSON,
-    GetUserNotificationCountResponse1FromJSON,
-    GetUserNotificationCountResponse1ToJSON,
-    GetUserNotificationsResponseFromJSON,
-    GetUserNotificationsResponseToJSON,
-    GetUserPresenceStatusesResponse1FromJSON,
-    GetUserPresenceStatusesResponse1ToJSON,
-    GetUserReactsPublicResponseFromJSON,
-    GetUserReactsPublicResponseToJSON,
-    GetUsersInfoResponseFromJSON,
-    GetUsersInfoResponseToJSON,
-    GetV1PageLikesResponseFromJSON,
-    GetV1PageLikesResponseToJSON,
-    GetV2PageReactUsersResponse1FromJSON,
-    GetV2PageReactUsersResponse1ToJSON,
-    GetV2PageReactsResponseFromJSON,
-    GetV2PageReactsResponseToJSON,
-    LockCommentResponseFromJSON,
-    LockCommentResponseToJSON,
+    GetMyNotificationsResponseFromJSON,
+    GetMyNotificationsResponseToJSON,
+    GetPublicPagesResponseFromJSON,
+    GetPublicPagesResponseToJSON,
+    GetTranslationsResponseFromJSON,
+    GetTranslationsResponseToJSON,
+    GetUserNotificationCountResponseFromJSON,
+    GetUserNotificationCountResponseToJSON,
+    GetUserPresenceStatusesResponseFromJSON,
+    GetUserPresenceStatusesResponseToJSON,
+    GetV1PageLikesFromJSON,
+    GetV1PageLikesToJSON,
+    GetV2PageReactUsersResponseFromJSON,
+    GetV2PageReactUsersResponseToJSON,
+    GetV2PageReactsFromJSON,
+    GetV2PageReactsToJSON,
+    GifGetLargeResponseFromJSON,
+    GifGetLargeResponseToJSON,
+    PageUsersInfoResponseFromJSON,
+    PageUsersInfoResponseToJSON,
+    PageUsersOfflineResponseFromJSON,
+    PageUsersOfflineResponseToJSON,
+    PageUsersOnlineResponseFromJSON,
+    PageUsersOnlineResponseToJSON,
     PagesSortByFromJSON,
     PagesSortByToJSON,
-    PinCommentResponseFromJSON,
-    PinCommentResponseToJSON,
+    PublicAPIDeleteCommentResponseFromJSON,
+    PublicAPIDeleteCommentResponseToJSON,
+    PublicAPIGetCommentTextResponseFromJSON,
+    PublicAPIGetCommentTextResponseToJSON,
+    PublicAPISetCommentTextResponseFromJSON,
+    PublicAPISetCommentTextResponseToJSON,
     PublicBlockFromCommentParamsFromJSON,
     PublicBlockFromCommentParamsToJSON,
+    PublicFeedPostsResponseFromJSON,
+    PublicFeedPostsResponseToJSON,
     ReactBodyParamsFromJSON,
     ReactBodyParamsToJSON,
-    ReactFeedPostPublicResponseFromJSON,
-    ReactFeedPostPublicResponseToJSON,
-    ResetUserNotificationCountResponseFromJSON,
-    ResetUserNotificationCountResponseToJSON,
-    ResetUserNotificationsResponse1FromJSON,
-    ResetUserNotificationsResponse1ToJSON,
-    SearchUsersResponse1FromJSON,
-    SearchUsersResponse1ToJSON,
-    SetCommentTextResponse1FromJSON,
-    SetCommentTextResponse1ToJSON,
+    ReactFeedPostResponseFromJSON,
+    ReactFeedPostResponseToJSON,
+    ResetUserNotificationsResponseFromJSON,
+    ResetUserNotificationsResponseToJSON,
+    SaveCommentsResponseWithPresenceFromJSON,
+    SaveCommentsResponseWithPresenceToJSON,
+    SearchUsersResultFromJSON,
+    SearchUsersResultToJSON,
     SizePresetFromJSON,
     SizePresetToJSON,
     SortDirectionsFromJSON,
     SortDirectionsToJSON,
-    UnBlockCommentPublicResponseFromJSON,
-    UnBlockCommentPublicResponseToJSON,
-    UnLockCommentResponseFromJSON,
-    UnLockCommentResponseToJSON,
-    UnPinCommentResponseFromJSON,
-    UnPinCommentResponseToJSON,
+    UnblockSuccessFromJSON,
+    UnblockSuccessToJSON,
     UpdateFeedPostParamsFromJSON,
     UpdateFeedPostParamsToJSON,
-    UpdateFeedPostPublicResponseFromJSON,
-    UpdateFeedPostPublicResponseToJSON,
     UpdateUserNotificationCommentSubscriptionStatusResponseFromJSON,
     UpdateUserNotificationCommentSubscriptionStatusResponseToJSON,
     UpdateUserNotificationPageSubscriptionStatusResponseFromJSON,
@@ -202,10 +168,14 @@ import {
     UpdateUserNotificationStatusResponseToJSON,
     UploadImageResponseFromJSON,
     UploadImageResponseToJSON,
+    UserReactsResponseFromJSON,
+    UserReactsResponseToJSON,
     VoteBodyParamsFromJSON,
     VoteBodyParamsToJSON,
-    VoteCommentResponseFromJSON,
-    VoteCommentResponseToJSON,
+    VoteDeleteResponseFromJSON,
+    VoteDeleteResponseToJSON,
+    VoteResponseFromJSON,
+    VoteResponseToJSON,
 } from '../models/index';
 
 export interface BlockFromCommentPublicRequest {
@@ -626,11 +596,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    blockFromCommentPublicRaw(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockFromCommentPublicResponse>>;
+    blockFromCommentPublicRaw(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockSuccess>>;
 
     /**
      */
-    blockFromCommentPublic(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockFromCommentPublicResponse>;
+    blockFromCommentPublic(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockSuccess>;
 
     /**
      * 
@@ -641,11 +611,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    checkedCommentsForBlockedRaw(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckedCommentsForBlockedResponse>>;
+    checkedCommentsForBlockedRaw(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckBlockedCommentsResponse>>;
 
     /**
      */
-    checkedCommentsForBlocked(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckedCommentsForBlockedResponse>;
+    checkedCommentsForBlocked(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckBlockedCommentsResponse>;
 
     /**
      * 
@@ -659,11 +629,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    createCommentPublicRaw(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCommentPublicResponse>>;
+    createCommentPublicRaw(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCommentsResponseWithPresence>>;
 
     /**
      */
-    createCommentPublic(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCommentPublicResponse>;
+    createCommentPublic(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCommentsResponseWithPresence>;
 
     /**
      * 
@@ -675,11 +645,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    createFeedPostPublicRaw(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostPublicResponse>>;
+    createFeedPostPublicRaw(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse>>;
 
     /**
      */
-    createFeedPostPublic(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostPublicResponse>;
+    createFeedPostPublic(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse>;
 
     /**
      * 
@@ -690,11 +660,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReactResponse>>;
+    createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>>;
 
     /**
      */
-    createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReactResponse>;
+    createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact>;
 
     /**
      * 
@@ -706,11 +676,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV2PageReactResponse>>;
+    createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>>;
 
     /**
      */
-    createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV2PageReactResponse>;
+    createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact>;
 
     /**
      * 
@@ -723,11 +693,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    deleteCommentPublicRaw(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentPublicResponse>>;
+    deleteCommentPublicRaw(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPIDeleteCommentResponse>>;
 
     /**
      */
-    deleteCommentPublic(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentPublicResponse>;
+    deleteCommentPublic(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPIDeleteCommentResponse>;
 
     /**
      * 
@@ -742,11 +712,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    deleteCommentVoteRaw(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentVoteResponse>>;
+    deleteCommentVoteRaw(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>>;
 
     /**
      */
-    deleteCommentVote(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentVoteResponse>;
+    deleteCommentVote(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse>;
 
     /**
      * 
@@ -772,11 +742,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV1PageReactResponse>>;
+    deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>>;
 
     /**
      */
-    deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV1PageReactResponse>;
+    deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact>;
 
     /**
      * 
@@ -787,11 +757,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV2PageReactResponse>>;
+    deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>>;
 
     /**
      */
-    deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV2PageReactResponse>;
+    deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact>;
 
     /**
      * 
@@ -803,11 +773,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    flagCommentPublicRaw(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentPublicResponse>>;
+    flagCommentPublicRaw(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
 
     /**
      */
-    flagCommentPublic(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentPublicResponse>;
+    flagCommentPublic(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
 
     /**
      * 
@@ -819,11 +789,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getCommentTextRaw(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentTextResponse1>>;
+    getCommentTextRaw(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPIGetCommentTextResponse>>;
 
     /**
      */
-    getCommentText(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentTextResponse1>;
+    getCommentText(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPIGetCommentTextResponse>;
 
     /**
      * 
@@ -835,11 +805,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getCommentVoteUserNamesRaw(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentVoteUserNamesResponse>>;
+    getCommentVoteUserNamesRaw(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentVoteUserNamesSuccessResponse>>;
 
     /**
      */
-    getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNamesResponse>;
+    getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNamesSuccessResponse>;
 
     /**
      * 
@@ -854,11 +824,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse1>>;
+    getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse>>;
 
     /**
      */
-    getCommentsForUser(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse1>;
+    getCommentsForUser(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse>;
 
     /**
      *  req tenantId urlId
@@ -894,12 +864,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getCommentsPublicRaw(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsPublicResponse>>;
+    getCommentsPublicRaw(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsResponseWithPresencePublicComment>>;
 
     /**
      *  req tenantId urlId
      */
-    getCommentsPublic(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsPublicResponse>;
+    getCommentsPublic(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsResponseWithPresencePublicComment>;
 
     /**
      *  req tenantId urlId userIdWS
@@ -912,12 +882,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getEventLogRaw(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse1>>;
+    getEventLogRaw(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse>>;
 
     /**
      *  req tenantId urlId userIdWS
      */
-    getEventLog(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse1>;
+    getEventLog(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse>;
 
     /**
      *  req tenantId afterId
@@ -932,12 +902,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getFeedPostsPublicRaw(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsPublicResponse>>;
+    getFeedPostsPublicRaw(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicFeedPostsResponse>>;
 
     /**
      *  req tenantId afterId
      */
-    getFeedPostsPublic(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsPublicResponse>;
+    getFeedPostsPublic(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicFeedPostsResponse>;
 
     /**
      * 
@@ -948,11 +918,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getFeedPostsStatsRaw(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsStatsResponse>>;
+    getFeedPostsStatsRaw(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeedPostsStatsResponse>>;
 
     /**
      */
-    getFeedPostsStats(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsStatsResponse>;
+    getFeedPostsStats(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeedPostsStatsResponse>;
 
     /**
      * 
@@ -962,11 +932,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLargeResponse>>;
+    getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifGetLargeResponse>>;
 
     /**
      */
-    getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLargeResponse>;
+    getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifGetLargeResponse>;
 
     /**
      * 
@@ -1012,12 +982,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getGlobalEventLogRaw(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGlobalEventLogResponse>>;
+    getGlobalEventLogRaw(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse>>;
 
     /**
      *  req tenantId urlId userIdWS
      */
-    getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGlobalEventLogResponse>;
+    getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse>;
 
     /**
      * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
@@ -1029,12 +999,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOfflineUsersResponse>>;
+    getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersOfflineResponse>>;
 
     /**
      * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
      */
-    getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOfflineUsersResponse>;
+    getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersOfflineResponse>;
 
     /**
      * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
@@ -1046,12 +1016,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOnlineUsersResponse>>;
+    getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersOnlineResponse>>;
 
     /**
      * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
      */
-    getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOnlineUsersResponse>;
+    getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersOnlineResponse>;
 
     /**
      * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
@@ -1065,12 +1035,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPagesPublicResponse>>;
+    getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPublicPagesResponse>>;
 
     /**
      * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
      */
-    getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPagesPublicResponse>;
+    getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPublicPagesResponse>;
 
     /**
      * 
@@ -1082,11 +1052,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse1>>;
+    getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse>>;
 
     /**
      */
-    getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse1>;
+    getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse>;
 
     /**
      * 
@@ -1096,11 +1066,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getUserNotificationCountRaw(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationCountResponse1>>;
+    getUserNotificationCountRaw(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationCountResponse>>;
 
     /**
      */
-    getUserNotificationCount(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationCountResponse1>;
+    getUserNotificationCount(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationCountResponse>;
 
     /**
      * 
@@ -1120,11 +1090,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getUserNotificationsRaw(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationsResponse>>;
+    getUserNotificationsRaw(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMyNotificationsResponse>>;
 
     /**
      */
-    getUserNotifications(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationsResponse>;
+    getUserNotifications(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyNotificationsResponse>;
 
     /**
      * 
@@ -1135,11 +1105,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getUserPresenceStatusesRaw(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserPresenceStatusesResponse1>>;
+    getUserPresenceStatusesRaw(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserPresenceStatusesResponse>>;
 
     /**
      */
-    getUserPresenceStatuses(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserPresenceStatusesResponse1>;
+    getUserPresenceStatuses(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserPresenceStatusesResponse>;
 
     /**
      * 
@@ -1150,11 +1120,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getUserReactsPublicRaw(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserReactsPublicResponse>>;
+    getUserReactsPublicRaw(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserReactsResponse>>;
 
     /**
      */
-    getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserReactsPublicResponse>;
+    getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserReactsResponse>;
 
     /**
      * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
@@ -1164,12 +1134,12 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersInfoResponse>>;
+    getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersInfoResponse>>;
 
     /**
      * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
      */
-    getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfoResponse>;
+    getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersInfoResponse>;
 
     /**
      * 
@@ -1179,11 +1149,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikesResponse>>;
+    getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikes>>;
 
     /**
      */
-    getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikesResponse>;
+    getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikes>;
 
     /**
      * 
@@ -1194,11 +1164,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsersResponse1>>;
+    getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsersResponse>>;
 
     /**
      */
-    getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsersResponse1>;
+    getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsersResponse>;
 
     /**
      * 
@@ -1208,11 +1178,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactsResponse>>;
+    getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReacts>>;
 
     /**
      */
-    getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactsResponse>;
+    getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReacts>;
 
     /**
      * 
@@ -1224,11 +1194,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    lockCommentRaw(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LockCommentResponse>>;
+    lockCommentRaw(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
 
     /**
      */
-    lockComment(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LockCommentResponse>;
+    lockComment(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
 
     /**
      * 
@@ -1252,11 +1222,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    pinCommentRaw(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PinCommentResponse>>;
+    pinCommentRaw(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeCommentPinStatusResponse>>;
 
     /**
      */
-    pinComment(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PinCommentResponse>;
+    pinComment(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeCommentPinStatusResponse>;
 
     /**
      * 
@@ -1270,11 +1240,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    reactFeedPostPublicRaw(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReactFeedPostPublicResponse>>;
+    reactFeedPostPublicRaw(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReactFeedPostResponse>>;
 
     /**
      */
-    reactFeedPostPublic(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReactFeedPostPublicResponse>;
+    reactFeedPostPublic(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReactFeedPostResponse>;
 
     /**
      * 
@@ -1284,11 +1254,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    resetUserNotificationCountRaw(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationCountResponse>>;
+    resetUserNotificationCountRaw(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse>>;
 
     /**
      */
-    resetUserNotificationCount(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationCountResponse>;
+    resetUserNotificationCount(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse>;
 
     /**
      * 
@@ -1303,11 +1273,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    resetUserNotificationsRaw(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse1>>;
+    resetUserNotificationsRaw(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse>>;
 
     /**
      */
-    resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse1>;
+    resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse>;
 
     /**
      * 
@@ -1321,11 +1291,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchUsersResponse1>>;
+    searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchUsersResult>>;
 
     /**
      */
-    searchUsers(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchUsersResponse1>;
+    searchUsers(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchUsersResult>;
 
     /**
      * 
@@ -1339,11 +1309,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    setCommentTextRaw(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentTextResponse1>>;
+    setCommentTextRaw(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPISetCommentTextResponse>>;
 
     /**
      */
-    setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentTextResponse1>;
+    setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPISetCommentTextResponse>;
 
     /**
      * 
@@ -1355,27 +1325,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    unBlockCommentPublicRaw(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnBlockCommentPublicResponse>>;
+    unBlockCommentPublicRaw(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnblockSuccess>>;
 
     /**
      */
-    unBlockCommentPublic(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnBlockCommentPublicResponse>;
-
-    /**
-     * 
-     * @param {string} tenantId 
-     * @param {string} commentId 
-     * @param {string} broadcastId 
-     * @param {string} [sso] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PublicApiInterface
-     */
-    unLockCommentRaw(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnLockCommentResponse>>;
-
-    /**
-     */
-    unLockComment(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnLockCommentResponse>;
+    unBlockCommentPublic(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnblockSuccess>;
 
     /**
      * 
@@ -1387,11 +1341,27 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    unPinCommentRaw(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnPinCommentResponse>>;
+    unLockCommentRaw(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>>;
 
     /**
      */
-    unPinComment(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnPinCommentResponse>;
+    unLockComment(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} commentId 
+     * @param {string} broadcastId 
+     * @param {string} [sso] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    unPinCommentRaw(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeCommentPinStatusResponse>>;
+
+    /**
+     */
+    unPinComment(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeCommentPinStatusResponse>;
 
     /**
      * 
@@ -1404,11 +1374,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    updateFeedPostPublicRaw(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeedPostPublicResponse>>;
+    updateFeedPostPublicRaw(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse>>;
 
     /**
      */
-    updateFeedPostPublic(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFeedPostPublicResponse>;
+    updateFeedPostPublic(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse>;
 
     /**
      * Enable or disable notifications for a specific comment.
@@ -1493,11 +1463,11 @@ export interface PublicApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApiInterface
      */
-    voteCommentRaw(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteCommentResponse>>;
+    voteCommentRaw(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>>;
 
     /**
      */
-    voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteCommentResponse>;
+    voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse>;
 
 }
 
@@ -1508,7 +1478,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async blockFromCommentPublicRaw(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockFromCommentPublicResponse>> {
+    async blockFromCommentPublicRaw(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BlockSuccess>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1552,19 +1522,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: PublicBlockFromCommentParamsToJSON(requestParameters['publicBlockFromCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BlockFromCommentPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockSuccessFromJSON(jsonValue));
     }
 
     /**
      */
-    async blockFromCommentPublic(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockFromCommentPublicResponse> {
+    async blockFromCommentPublic(requestParameters: BlockFromCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BlockSuccess> {
         const response = await this.blockFromCommentPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async checkedCommentsForBlockedRaw(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckedCommentsForBlockedResponse>> {
+    async checkedCommentsForBlockedRaw(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckBlockedCommentsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1602,19 +1572,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CheckedCommentsForBlockedResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckBlockedCommentsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async checkedCommentsForBlocked(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckedCommentsForBlockedResponse> {
+    async checkedCommentsForBlocked(requestParameters: CheckedCommentsForBlockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckBlockedCommentsResponse> {
         const response = await this.checkedCommentsForBlockedRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createCommentPublicRaw(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCommentPublicResponse>> {
+    async createCommentPublicRaw(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCommentsResponseWithPresence>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1673,19 +1643,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: CommentDataToJSON(requestParameters['commentData']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCommentPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SaveCommentsResponseWithPresenceFromJSON(jsonValue));
     }
 
     /**
      */
-    async createCommentPublic(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCommentPublicResponse> {
+    async createCommentPublic(requestParameters: CreateCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCommentsResponseWithPresence> {
         const response = await this.createCommentPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createFeedPostPublicRaw(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostPublicResponse>> {
+    async createFeedPostPublicRaw(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1722,19 +1692,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: CreateFeedPostParamsToJSON(requestParameters['createFeedPostParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeedPostPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeedPostResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async createFeedPostPublic(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostPublicResponse> {
+    async createFeedPostPublic(requestParameters: CreateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse> {
         const response = await this.createFeedPostPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReactResponse>> {
+    async createV1PageReactRaw(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1768,19 +1738,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReactResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReactFromJSON(jsonValue));
     }
 
     /**
      */
-    async createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReactResponse> {
+    async createV1PageReact(requestParameters: CreateV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact> {
         const response = await this.createV1PageReactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV2PageReactResponse>> {
+    async createV2PageReactRaw(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1825,19 +1795,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV2PageReactResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReactFromJSON(jsonValue));
     }
 
     /**
      */
-    async createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV2PageReactResponse> {
+    async createV2PageReact(requestParameters: CreateV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact> {
         const response = await this.createV2PageReactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteCommentPublicRaw(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentPublicResponse>> {
+    async deleteCommentPublicRaw(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPIDeleteCommentResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1882,19 +1852,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCommentPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublicAPIDeleteCommentResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteCommentPublic(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentPublicResponse> {
+    async deleteCommentPublic(requestParameters: DeleteCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPIDeleteCommentResponse> {
         const response = await this.deleteCommentPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteCommentVoteRaw(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCommentVoteResponse>> {
+    async deleteCommentVoteRaw(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteDeleteResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -1957,12 +1927,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCommentVoteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => VoteDeleteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteCommentVote(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCommentVoteResponse> {
+    async deleteCommentVote(requestParameters: DeleteCommentVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteDeleteResponse> {
         const response = await this.deleteCommentVoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2015,7 +1985,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV1PageReactResponse>> {
+    async deleteV1PageReactRaw(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2045,19 +2015,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteV1PageReactResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReactFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV1PageReactResponse> {
+    async deleteV1PageReact(requestParameters: DeleteV1PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact> {
         const response = await this.deleteV1PageReactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteV2PageReactResponse>> {
+    async deleteV2PageReactRaw(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateV1PageReact>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2098,19 +2068,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteV2PageReactResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateV1PageReactFromJSON(jsonValue));
     }
 
     /**
      */
-    async deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteV2PageReactResponse> {
+    async deleteV2PageReact(requestParameters: DeleteV2PageReactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateV1PageReact> {
         const response = await this.deleteV2PageReactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async flagCommentPublicRaw(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FlagCommentPublicResponse>> {
+    async flagCommentPublicRaw(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2155,19 +2125,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FlagCommentPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async flagCommentPublic(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentPublicResponse> {
+    async flagCommentPublic(requestParameters: FlagCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
         const response = await this.flagCommentPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentTextRaw(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentTextResponse1>> {
+    async getCommentTextRaw(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPIGetCommentTextResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2201,19 +2171,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentTextResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublicAPIGetCommentTextResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCommentText(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentTextResponse1> {
+    async getCommentText(requestParameters: GetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPIGetCommentTextResponse> {
         const response = await this.getCommentTextRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentVoteUserNamesRaw(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentVoteUserNamesResponse>> {
+    async getCommentVoteUserNamesRaw(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentVoteUserNamesSuccessResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2254,19 +2224,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentVoteUserNamesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentVoteUserNamesSuccessResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNamesResponse> {
+    async getCommentVoteUserNames(requestParameters: GetCommentVoteUserNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentVoteUserNamesSuccessResponse> {
         const response = await this.getCommentVoteUserNamesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse1>> {
+    async getCommentsForUserRaw(requestParameters: GetCommentsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsForUserResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['userId'] != null) {
@@ -2306,12 +2276,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsForUserResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsForUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getCommentsForUser(requestParameters: GetCommentsForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse1> {
+    async getCommentsForUser(requestParameters: GetCommentsForUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsForUserResponse> {
         const response = await this.getCommentsForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2319,7 +2289,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      *  req tenantId urlId
      */
-    async getCommentsPublicRaw(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsPublicResponse>> {
+    async getCommentsPublicRaw(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCommentsResponseWithPresencePublicComment>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2453,13 +2423,13 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCommentsResponseWithPresencePublicCommentFromJSON(jsonValue));
     }
 
     /**
      *  req tenantId urlId
      */
-    async getCommentsPublic(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsPublicResponse> {
+    async getCommentsPublic(requestParameters: GetCommentsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCommentsResponseWithPresencePublicComment> {
         const response = await this.getCommentsPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2467,7 +2437,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      *  req tenantId urlId userIdWS
      */
-    async getEventLogRaw(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse1>> {
+    async getEventLogRaw(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2523,13 +2493,13 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventLogResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventLogResponseFromJSON(jsonValue));
     }
 
     /**
      *  req tenantId urlId userIdWS
      */
-    async getEventLog(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse1> {
+    async getEventLog(requestParameters: GetEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse> {
         const response = await this.getEventLogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2537,7 +2507,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      *  req tenantId afterId
      */
-    async getFeedPostsPublicRaw(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsPublicResponse>> {
+    async getFeedPostsPublicRaw(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicFeedPostsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2580,20 +2550,20 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeedPostsPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublicFeedPostsResponseFromJSON(jsonValue));
     }
 
     /**
      *  req tenantId afterId
      */
-    async getFeedPostsPublic(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsPublicResponse> {
+    async getFeedPostsPublic(requestParameters: GetFeedPostsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicFeedPostsResponse> {
         const response = await this.getFeedPostsPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getFeedPostsStatsRaw(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeedPostsStatsResponse>> {
+    async getFeedPostsStatsRaw(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeedPostsStatsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2627,19 +2597,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeedPostsStatsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeedPostsStatsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getFeedPostsStats(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeedPostsStatsResponse> {
+    async getFeedPostsStats(requestParameters: GetFeedPostsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeedPostsStatsResponse> {
         const response = await this.getFeedPostsStatsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGifLargeResponse>> {
+    async getGifLargeRaw(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GifGetLargeResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2669,12 +2639,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetGifLargeResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GifGetLargeResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGifLargeResponse> {
+    async getGifLarge(requestParameters: GetGifLargeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GifGetLargeResponse> {
         const response = await this.getGifLargeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2779,7 +2749,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      *  req tenantId urlId userIdWS
      */
-    async getGlobalEventLogRaw(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGlobalEventLogResponse>> {
+    async getGlobalEventLogRaw(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventLogResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2835,13 +2805,13 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetGlobalEventLogResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventLogResponseFromJSON(jsonValue));
     }
 
     /**
      *  req tenantId urlId userIdWS
      */
-    async getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGlobalEventLogResponse> {
+    async getGlobalEventLog(requestParameters: GetGlobalEventLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventLogResponse> {
         const response = await this.getGlobalEventLogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2849,7 +2819,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
      */
-    async getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOfflineUsersResponse>> {
+    async getOfflineUsersRaw(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersOfflineResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2887,13 +2857,13 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetOfflineUsersResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PageUsersOfflineResponseFromJSON(jsonValue));
     }
 
     /**
      * Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost.
      */
-    async getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOfflineUsersResponse> {
+    async getOfflineUsers(requestParameters: GetOfflineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersOfflineResponse> {
         const response = await this.getOfflineUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2901,7 +2871,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
      */
-    async getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOnlineUsersResponse>> {
+    async getOnlineUsersRaw(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersOnlineResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2939,13 +2909,13 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetOnlineUsersResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PageUsersOnlineResponseFromJSON(jsonValue));
     }
 
     /**
      * Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don\'t enumerate).
      */
-    async getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOnlineUsersResponse> {
+    async getOnlineUsers(requestParameters: GetOnlineUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersOnlineResponse> {
         const response = await this.getOnlineUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2953,7 +2923,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
      */
-    async getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPagesPublicResponse>> {
+    async getPagesPublicRaw(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPublicPagesResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -2992,20 +2962,20 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetPagesPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPublicPagesResponseFromJSON(jsonValue));
     }
 
     /**
      * List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user\'s group access.
      */
-    async getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPagesPublicResponse> {
+    async getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPublicPagesResponse> {
         const response = await this.getPagesPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse1>> {
+    async getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse>> {
         if (requestParameters['namespace'] == null) {
             throw new runtime.RequiredError(
                 'namespace',
@@ -3039,19 +3009,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetTranslationsResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTranslationsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse1> {
+    async getTranslations(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTranslationsResponse> {
         const response = await this.getTranslationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserNotificationCountRaw(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationCountResponse1>> {
+    async getUserNotificationCountRaw(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationCountResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3078,19 +3048,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserNotificationCountResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserNotificationCountResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserNotificationCount(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationCountResponse1> {
+    async getUserNotificationCount(requestParameters: GetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationCountResponse> {
         const response = await this.getUserNotificationCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserNotificationsRaw(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserNotificationsResponse>> {
+    async getUserNotificationsRaw(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMyNotificationsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3157,19 +3127,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserNotificationsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetMyNotificationsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserNotifications(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserNotificationsResponse> {
+    async getUserNotifications(requestParameters: GetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyNotificationsResponse> {
         const response = await this.getUserNotificationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserPresenceStatusesRaw(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserPresenceStatusesResponse1>> {
+    async getUserPresenceStatusesRaw(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserPresenceStatusesResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3214,19 +3184,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserPresenceStatusesResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserPresenceStatusesResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserPresenceStatuses(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserPresenceStatusesResponse1> {
+    async getUserPresenceStatuses(requestParameters: GetUserPresenceStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserPresenceStatusesResponse> {
         const response = await this.getUserPresenceStatusesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getUserReactsPublicRaw(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserReactsPublicResponse>> {
+    async getUserReactsPublicRaw(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserReactsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3253,12 +3223,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserReactsPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserReactsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserReactsPublicResponse> {
+    async getUserReactsPublic(requestParameters: GetUserReactsPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserReactsResponse> {
         const response = await this.getUserReactsPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3266,7 +3236,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     /**
      * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
      */
-    async getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersInfoResponse>> {
+    async getUsersInfoRaw(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PageUsersInfoResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3296,20 +3266,20 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUsersInfoResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PageUsersInfoResponseFromJSON(jsonValue));
     }
 
     /**
      * Bulk user info for a tenant. Given userIds, return display info from User / SSOUser. Used by the comment widget to enrich users that just appeared via a presence event. No page context: privacy is enforced uniformly (private profiles are masked).
      */
-    async getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersInfoResponse> {
+    async getUsersInfo(requestParameters: GetUsersInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PageUsersInfoResponse> {
         const response = await this.getUsersInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikesResponse>> {
+    async getV1PageLikesRaw(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV1PageLikes>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3339,19 +3309,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetV1PageLikesResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV1PageLikesFromJSON(jsonValue));
     }
 
     /**
      */
-    async getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikesResponse> {
+    async getV1PageLikes(requestParameters: GetV1PageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV1PageLikes> {
         const response = await this.getV1PageLikesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsersResponse1>> {
+    async getV2PageReactUsersRaw(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactUsersResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3392,19 +3362,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReactUsersResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReactUsersResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsersResponse1> {
+    async getV2PageReactUsers(requestParameters: GetV2PageReactUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactUsersResponse> {
         const response = await this.getV2PageReactUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReactsResponse>> {
+    async getV2PageReactsRaw(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetV2PageReacts>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3434,19 +3404,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReactsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetV2PageReactsFromJSON(jsonValue));
     }
 
     /**
      */
-    async getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReactsResponse> {
+    async getV2PageReacts(requestParameters: GetV2PageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetV2PageReacts> {
         const response = await this.getV2PageReactsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async lockCommentRaw(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LockCommentResponse>> {
+    async lockCommentRaw(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3487,12 +3457,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => LockCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async lockComment(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LockCommentResponse> {
+    async lockComment(requestParameters: LockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
         const response = await this.lockCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3523,7 +3493,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async pinCommentRaw(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PinCommentResponse>> {
+    async pinCommentRaw(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeCommentPinStatusResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3564,19 +3534,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PinCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChangeCommentPinStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async pinComment(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PinCommentResponse> {
+    async pinComment(requestParameters: PinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeCommentPinStatusResponse> {
         const response = await this.pinCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async reactFeedPostPublicRaw(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReactFeedPostPublicResponse>> {
+    async reactFeedPostPublicRaw(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReactFeedPostResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3624,19 +3594,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: ReactBodyParamsToJSON(requestParameters['reactBodyParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReactFeedPostPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReactFeedPostResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async reactFeedPostPublic(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReactFeedPostPublicResponse> {
+    async reactFeedPostPublic(requestParameters: ReactFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReactFeedPostResponse> {
         const response = await this.reactFeedPostPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async resetUserNotificationCountRaw(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationCountResponse>> {
+    async resetUserNotificationCountRaw(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3663,19 +3633,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ResetUserNotificationCountResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ResetUserNotificationsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async resetUserNotificationCount(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationCountResponse> {
+    async resetUserNotificationCount(requestParameters: ResetUserNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse> {
         const response = await this.resetUserNotificationCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async resetUserNotificationsRaw(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse1>> {
+    async resetUserNotificationsRaw(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResetUserNotificationsResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3722,19 +3692,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ResetUserNotificationsResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ResetUserNotificationsResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse1> {
+    async resetUserNotifications(requestParameters: ResetUserNotificationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResetUserNotificationsResponse> {
         const response = await this.resetUserNotificationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchUsersResponse1>> {
+    async searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchUsersResult>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3780,19 +3750,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchUsersResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SearchUsersResultFromJSON(jsonValue));
     }
 
     /**
      */
-    async searchUsers(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchUsersResponse1> {
+    async searchUsers(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchUsersResult> {
         const response = await this.searchUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async setCommentTextRaw(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SetCommentTextResponse1>> {
+    async setCommentTextRaw(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublicAPISetCommentTextResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3847,19 +3817,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: CommentTextUpdateRequestToJSON(requestParameters['commentTextUpdateRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SetCommentTextResponse1FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublicAPISetCommentTextResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SetCommentTextResponse1> {
+    async setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPISetCommentTextResponse> {
         const response = await this.setCommentTextRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async unBlockCommentPublicRaw(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnBlockCommentPublicResponse>> {
+    async unBlockCommentPublicRaw(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnblockSuccess>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3903,19 +3873,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: PublicBlockFromCommentParamsToJSON(requestParameters['publicBlockFromCommentParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UnBlockCommentPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UnblockSuccessFromJSON(jsonValue));
     }
 
     /**
      */
-    async unBlockCommentPublic(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnBlockCommentPublicResponse> {
+    async unBlockCommentPublic(requestParameters: UnBlockCommentPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnblockSuccess> {
         const response = await this.unBlockCommentPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async unLockCommentRaw(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnLockCommentResponse>> {
+    async unLockCommentRaw(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<APIEmptyResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -3956,19 +3926,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UnLockCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => APIEmptyResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async unLockComment(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnLockCommentResponse> {
+    async unLockComment(requestParameters: UnLockCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<APIEmptyResponse> {
         const response = await this.unLockCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async unPinCommentRaw(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnPinCommentResponse>> {
+    async unPinCommentRaw(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeCommentPinStatusResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4009,19 +3979,19 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UnPinCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChangeCommentPinStatusResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async unPinComment(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnPinCommentResponse> {
+    async unPinComment(requestParameters: UnPinCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeCommentPinStatusResponse> {
         const response = await this.unPinCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async updateFeedPostPublicRaw(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeedPostPublicResponse>> {
+    async updateFeedPostPublicRaw(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeedPostResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4065,12 +4035,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: UpdateFeedPostParamsToJSON(requestParameters['updateFeedPostParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFeedPostPublicResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeedPostResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async updateFeedPostPublic(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFeedPostPublicResponse> {
+    async updateFeedPostPublic(requestParameters: UpdateFeedPostPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeedPostResponse> {
         const response = await this.updateFeedPostPublicRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4346,7 +4316,7 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
     /**
      */
-    async voteCommentRaw(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteCommentResponse>> {
+    async voteCommentRaw(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VoteResponse>> {
         if (requestParameters['tenantId'] == null) {
             throw new runtime.RequiredError(
                 'tenantId',
@@ -4412,12 +4382,12 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             body: VoteBodyParamsToJSON(requestParameters['voteBodyParams']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VoteCommentResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => VoteResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteCommentResponse> {
+    async voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse> {
         const response = await this.voteCommentRaw(requestParameters, initOverrides);
         return await response.value();
     }

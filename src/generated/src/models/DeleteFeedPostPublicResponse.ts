@@ -13,20 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomConfigParameters } from './CustomConfigParameters';
-import {
-    CustomConfigParametersFromJSON,
-    CustomConfigParametersFromJSONTyped,
-    CustomConfigParametersToJSON,
-    CustomConfigParametersToJSONTyped,
-} from './CustomConfigParameters';
-import type { DeleteFeedPostPublicResponseAnyOf } from './DeleteFeedPostPublicResponseAnyOf';
-import {
-    DeleteFeedPostPublicResponseAnyOfFromJSON,
-    DeleteFeedPostPublicResponseAnyOfFromJSONTyped,
-    DeleteFeedPostPublicResponseAnyOfToJSON,
-    DeleteFeedPostPublicResponseAnyOfToJSONTyped,
-} from './DeleteFeedPostPublicResponseAnyOf';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -34,13 +20,6 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
-import type { APIError } from './APIError';
-import {
-    APIErrorFromJSON,
-    APIErrorFromJSONTyped,
-    APIErrorToJSON,
-    APIErrorToJSONTyped,
-} from './APIError';
 
 /**
  * 
@@ -54,48 +33,6 @@ export interface DeleteFeedPostPublicResponse {
      * @memberof DeleteFeedPostPublicResponse
      */
     status: APIStatus;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    reason: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    secondaryCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    bannedUntil?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    maxCharacterLength?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    translatedError?: string;
-    /**
-     * 
-     * @type {CustomConfigParameters}
-     * @memberof DeleteFeedPostPublicResponse
-     */
-    customConfig?: CustomConfigParameters;
 }
 
 
@@ -105,8 +42,6 @@ export interface DeleteFeedPostPublicResponse {
  */
 export function instanceOfDeleteFeedPostPublicResponse(value: object): value is DeleteFeedPostPublicResponse {
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -121,13 +56,6 @@ export function DeleteFeedPostPublicResponseFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'status': APIStatusFromJSON(json['status']),
-        'reason': json['reason'],
-        'code': json['code'],
-        'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
-        'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
-        'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
-        'translatedError': json['translatedError'] == null ? undefined : json['translatedError'],
-        'customConfig': json['customConfig'] == null ? undefined : CustomConfigParametersFromJSON(json['customConfig']),
     };
 }
 
@@ -143,13 +71,6 @@ export function DeleteFeedPostPublicResponseToJSONTyped(value?: DeleteFeedPostPu
     return {
         
         'status': APIStatusToJSON(value['status']),
-        'reason': value['reason'],
-        'code': value['code'],
-        'secondaryCode': value['secondaryCode'],
-        'bannedUntil': value['bannedUntil'],
-        'maxCharacterLength': value['maxCharacterLength'],
-        'translatedError': value['translatedError'],
-        'customConfig': CustomConfigParametersToJSON(value['customConfig']),
     };
 }
 

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomConfigParameters } from './CustomConfigParameters';
-import {
-    CustomConfigParametersFromJSON,
-    CustomConfigParametersFromJSONTyped,
-    CustomConfigParametersToJSON,
-    CustomConfigParametersToJSONTyped,
-} from './CustomConfigParameters';
 import type { UserNotificationWriteResponse } from './UserNotificationWriteResponse';
 import {
     UserNotificationWriteResponseFromJSON,
@@ -34,13 +27,6 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
-import type { APIError } from './APIError';
-import {
-    APIErrorFromJSON,
-    APIErrorFromJSONTyped,
-    APIErrorToJSON,
-    APIErrorToJSONTyped,
-} from './APIError';
 import type { IgnoredResponse } from './IgnoredResponse';
 import {
     IgnoredResponseFromJSON,
@@ -79,48 +65,6 @@ export interface UpdateUserNotificationCommentSubscriptionStatusResponse {
      * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
      */
     note: UpdateUserNotificationCommentSubscriptionStatusResponseNoteEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    reason: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    secondaryCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    bannedUntil?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    maxCharacterLength?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    translatedError?: string;
-    /**
-     * 
-     * @type {CustomConfigParameters}
-     * @memberof UpdateUserNotificationCommentSubscriptionStatusResponse
-     */
-    customConfig?: CustomConfigParameters;
 }
 
 /**
@@ -141,8 +85,6 @@ export function instanceOfUpdateUserNotificationCommentSubscriptionStatusRespons
     if (!('matchedCount' in value) || value['matchedCount'] === undefined) return false;
     if (!('modifiedCount' in value) || value['modifiedCount'] === undefined) return false;
     if (!('note' in value) || value['note'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -160,13 +102,6 @@ export function UpdateUserNotificationCommentSubscriptionStatusResponseFromJSONT
         'matchedCount': json['matchedCount'],
         'modifiedCount': json['modifiedCount'],
         'note': json['note'],
-        'reason': json['reason'],
-        'code': json['code'],
-        'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
-        'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
-        'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
-        'translatedError': json['translatedError'] == null ? undefined : json['translatedError'],
-        'customConfig': json['customConfig'] == null ? undefined : CustomConfigParametersFromJSON(json['customConfig']),
     };
 }
 
@@ -185,13 +120,6 @@ export function UpdateUserNotificationCommentSubscriptionStatusResponseToJSONTyp
         'matchedCount': value['matchedCount'],
         'modifiedCount': value['modifiedCount'],
         'note': value['note'],
-        'reason': value['reason'],
-        'code': value['code'],
-        'secondaryCode': value['secondaryCode'],
-        'bannedUntil': value['bannedUntil'],
-        'maxCharacterLength': value['maxCharacterLength'],
-        'translatedError': value['translatedError'],
-        'customConfig': CustomConfigParametersToJSON(value['customConfig']),
     };
 }
 
