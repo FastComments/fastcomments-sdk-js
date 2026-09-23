@@ -78,7 +78,7 @@ export interface APIAuditLog {
      * @type {string}
      * @memberof APIAuditLog
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {Date}
@@ -91,6 +91,30 @@ export interface APIAuditLog {
      * @memberof APIAuditLog
      */
     objectDetails?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIAuditLog
+     */
+    targetId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIAuditLog
+     */
+    targetLabel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIAuditLog
+     */
+    ua?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof APIAuditLog
+     */
+    sIdHashed?: string;
 }
 
 /**
@@ -147,6 +171,10 @@ export function APIAuditLogFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'description': json['description'] == null ? undefined : json['description'],
         'serverStartDate': json['serverStartDate'] == null ? undefined : (new Date(json['serverStartDate'])),
         'objectDetails': json['objectDetails'] == null ? undefined : json['objectDetails'],
+        'targetId': json['targetId'] == null ? undefined : json['targetId'],
+        'targetLabel': json['targetLabel'] == null ? undefined : json['targetLabel'],
+        'ua': json['ua'] == null ? undefined : json['ua'],
+        'sIdHashed': json['sIdHashed'] == null ? undefined : json['sIdHashed'],
     };
 }
 
@@ -173,6 +201,10 @@ export function APIAuditLogToJSONTyped(value?: APIAuditLog | null, ignoreDiscrim
         'description': value['description'],
         'serverStartDate': value['serverStartDate'] == null ? undefined : ((value['serverStartDate']).toISOString()),
         'objectDetails': value['objectDetails'],
+        'targetId': value['targetId'],
+        'targetLabel': value['targetLabel'],
+        'ua': value['ua'],
+        'sIdHashed': value['sIdHashed'],
     };
 }
 

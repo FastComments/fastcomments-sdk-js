@@ -18,9 +18,11 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**bulkAggregateQuestionResults**](Apis/DefaultApi.md#bulkaggregatequestionresults) | **POST** /api/v1/question-results-aggregation/bulk |  |
 *DefaultApi* | [**changeTicketState**](Apis/DefaultApi.md#changeticketstate) | **PATCH** /api/v1/tickets/{id}/state |  |
 *DefaultApi* | [**combineCommentsWithQuestionResults**](Apis/DefaultApi.md#combinecommentswithquestionresults) | **GET** /api/v1/question-results-aggregation/combine/comments |  |
+*DefaultApi* | [**createAgentTenant**](Apis/DefaultApi.md#createagenttenant) | **POST** /api/v1/agent-tenants | Creates a new trial account for an AI agent without a human signup. No API key is needed to call this.  The response contains the tenant id, an API key that works immediately against the REST API and the MCP server, and a claim URL. Give the claim URL to the human you are working for: opening it while logged in to FastComments attaches the account to them. Unclaimed accounts, and their keys, are deleted 72 hours after creation. Until claimed, the account has the standard trial limits. |
 *DefaultApi* | [**createEmailTemplate**](Apis/DefaultApi.md#createemailtemplate) | **POST** /api/v1/email-templates |  |
 *DefaultApi* | [**createFeedPost**](Apis/DefaultApi.md#createfeedpost) | **POST** /api/v1/feed-posts |  |
 *DefaultApi* | [**createModerator**](Apis/DefaultApi.md#createmoderator) | **POST** /api/v1/moderators |  |
+*DefaultApi* | [**createPollVote**](Apis/DefaultApi.md#createpollvote) | **POST** /api/v1/poll-votes | Record a vote on a poll, or move an existing one to a different option. A voter has at most one vote per poll, so calling this again for the same voter moves their vote rather than adding one.  This obeys the site's poll settings: if voting is set to logged-in users only, a vote with just an anonUserId is rejected, and anonymous votes are rate limited per IP per poll. |
 *DefaultApi* | [**createQuestionConfig**](Apis/DefaultApi.md#createquestionconfig) | **POST** /api/v1/question-configs |  |
 *DefaultApi* | [**createQuestionResult**](Apis/DefaultApi.md#createquestionresult) | **POST** /api/v1/question-results |  |
 *DefaultApi* | [**createSubscription**](Apis/DefaultApi.md#createsubscription) | **POST** /api/v1/subscriptions |  |
@@ -30,6 +32,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**createTicket**](Apis/DefaultApi.md#createticket) | **POST** /api/v1/tickets |  |
 *DefaultApi* | [**createUserBadge**](Apis/DefaultApi.md#createuserbadge) | **POST** /api/v1/user-badges |  |
 *DefaultApi* | [**createVote**](Apis/DefaultApi.md#createvote) | **POST** /api/v1/votes |  |
+*DefaultApi* | [**createWebhook**](Apis/DefaultApi.md#createwebhook) | **POST** /api/v1/webhooks | Subscribes a URL to a comment event (REST hook subscribe). Subscribing the same URL to the same event and domain again returns the existing subscription. Deliveries are HMAC signed, see the webhooks guide; the legacy `token` header is never sent to API subscriptions. |
 *DefaultApi* | [**deleteComment**](Apis/DefaultApi.md#deletecomment) | **DELETE** /api/v1/comments/{id} |  |
 *DefaultApi* | [**deleteDomainConfig**](Apis/DefaultApi.md#deletedomainconfig) | **DELETE** /api/v1/domain-configs/{domain} |  |
 *DefaultApi* | [**deleteEmailTemplate**](Apis/DefaultApi.md#deleteemailtemplate) | **DELETE** /api/v1/email-templates/{id} |  |
@@ -39,6 +42,8 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**deleteNotificationCount**](Apis/DefaultApi.md#deletenotificationcount) | **DELETE** /api/v1/notification-count/{id} |  |
 *DefaultApi* | [**deletePage**](Apis/DefaultApi.md#deletepage) | **DELETE** /api/v1/pages/{id} |  |
 *DefaultApi* | [**deletePendingWebhookEvent**](Apis/DefaultApi.md#deletependingwebhookevent) | **DELETE** /api/v1/pending-webhook-events/{id} |  |
+*DefaultApi* | [**deletePoll**](Apis/DefaultApi.md#deletepoll) | **DELETE** /api/v1/polls/{commentId} | Remove a poll from its comment, along with every vote cast on it. The comment itself is left alone. |
+*DefaultApi* | [**deletePollVote**](Apis/DefaultApi.md#deletepollvote) | **DELETE** /api/v1/poll-votes/{id} | Retract a vote. The option it was cast on gives its tally back. |
 *DefaultApi* | [**deleteQuestionConfig**](Apis/DefaultApi.md#deletequestionconfig) | **DELETE** /api/v1/question-configs/{id} |  |
 *DefaultApi* | [**deleteQuestionResult**](Apis/DefaultApi.md#deletequestionresult) | **DELETE** /api/v1/question-results/{id} |  |
 *DefaultApi* | [**deleteSSOUser**](Apis/DefaultApi.md#deletessouser) | **DELETE** /api/v1/sso-users/{id} |  |
@@ -48,6 +53,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**deleteTenantUser**](Apis/DefaultApi.md#deletetenantuser) | **DELETE** /api/v1/tenant-users/{id} |  |
 *DefaultApi* | [**deleteUserBadge**](Apis/DefaultApi.md#deleteuserbadge) | **DELETE** /api/v1/user-badges/{id} |  |
 *DefaultApi* | [**deleteVote**](Apis/DefaultApi.md#deletevote) | **DELETE** /api/v1/votes/{id} |  |
+*DefaultApi* | [**deleteWebhook**](Apis/DefaultApi.md#deletewebhook) | **DELETE** /api/v1/webhooks/{id} | Unsubscribes (REST hook unsubscribe). Only subscriptions created through this API can be deleted here; dashboard-managed webhooks are edited in the dashboard. |
 *DefaultApi* | [**flagComment**](Apis/DefaultApi.md#flagcomment) | **POST** /api/v1/comments/{id}/flag |  |
 *DefaultApi* | [**getAuditLogs**](Apis/DefaultApi.md#getauditlogs) | **GET** /api/v1/audit-logs |  |
 *DefaultApi* | [**getCachedNotificationCount**](Apis/DefaultApi.md#getcachednotificationcount) | **GET** /api/v1/notification-count/{id} |  |
@@ -61,6 +67,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getEmailTemplates**](Apis/DefaultApi.md#getemailtemplates) | **GET** /api/v1/email-templates |  |
 *DefaultApi* | [**getFeedPosts**](Apis/DefaultApi.md#getfeedposts) | **GET** /api/v1/feed-posts |  req tenantId afterId |
 *DefaultApi* | [**getHashTags**](Apis/DefaultApi.md#gethashtags) | **GET** /api/v1/hash-tags |  |
+*DefaultApi* | [**getMe**](Apis/DefaultApi.md#getme) | **GET** /api/v1/me | Identifies the credential in use: the tenant it belongs to and, for OAuth tokens, the user who authorized it. Integrations use this to test a connection and label it. |
 *DefaultApi* | [**getModerator**](Apis/DefaultApi.md#getmoderator) | **GET** /api/v1/moderators/{id} |  |
 *DefaultApi* | [**getModerators**](Apis/DefaultApi.md#getmoderators) | **GET** /api/v1/moderators |  |
 *DefaultApi* | [**getNotificationCount**](Apis/DefaultApi.md#getnotificationcount) | **GET** /api/v1/notifications/count |  |
@@ -69,6 +76,9 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getPages**](Apis/DefaultApi.md#getpages) | **GET** /api/v1/pages |  |
 *DefaultApi* | [**getPendingWebhookEventCount**](Apis/DefaultApi.md#getpendingwebhookeventcount) | **GET** /api/v1/pending-webhook-events/count |  |
 *DefaultApi* | [**getPendingWebhookEvents**](Apis/DefaultApi.md#getpendingwebhookevents) | **GET** /api/v1/pending-webhook-events |  |
+*DefaultApi* | [**getPoll**](Apis/DefaultApi.md#getpoll) | **GET** /api/v1/polls/{commentId} |  |
+*DefaultApi* | [**getPollVote**](Apis/DefaultApi.md#getpollvote) | **GET** /api/v1/poll-votes/{id} |  |
+*DefaultApi* | [**getPollVotes**](Apis/DefaultApi.md#getpollvotes) | **GET** /api/v1/poll-votes | The individual votes behind one poll's tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has. |
 *DefaultApi* | [**getQuestionConfig**](Apis/DefaultApi.md#getquestionconfig) | **GET** /api/v1/question-configs/{id} |  |
 *DefaultApi* | [**getQuestionConfigs**](Apis/DefaultApi.md#getquestionconfigs) | **GET** /api/v1/question-configs |  |
 *DefaultApi* | [**getQuestionResult**](Apis/DefaultApi.md#getquestionresult) | **GET** /api/v1/question-results/{id} |  |
@@ -94,11 +104,15 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getUserBadges**](Apis/DefaultApi.md#getuserbadges) | **GET** /api/v1/user-badges |  |
 *DefaultApi* | [**getVotes**](Apis/DefaultApi.md#getvotes) | **GET** /api/v1/votes |  |
 *DefaultApi* | [**getVotesForUser**](Apis/DefaultApi.md#getvotesforuser) | **GET** /api/v1/votes/for-user |  |
+*DefaultApi* | [**getWebhookSamplePayloads**](Apis/DefaultApi.md#getwebhooksamplepayloads) | **GET** /api/v1/webhooks/sample-payloads | Recent comments in exactly the shape webhook deliveries use, for building integrations (for example Zapier sample data). Every event delivers the same comment object, so `event` only has to be valid. |
+*DefaultApi* | [**getWebhooks**](Apis/DefaultApi.md#getwebhooks) | **GET** /api/v1/webhooks | Lists the webhooks configured for the tenant, both dashboard-managed rows and API subscriptions. |
 *DefaultApi* | [**patchDomainConfig**](Apis/DefaultApi.md#patchdomainconfig) | **PATCH** /api/v1/domain-configs/{domainToUpdate} |  |
 *DefaultApi* | [**patchHashTag**](Apis/DefaultApi.md#patchhashtag) | **PATCH** /api/v1/hash-tags/{tag} |  |
 *DefaultApi* | [**patchPage**](Apis/DefaultApi.md#patchpage) | **PATCH** /api/v1/pages/{id} |  |
+*DefaultApi* | [**patchPoll**](Apis/DefaultApi.md#patchpoll) | **PATCH** /api/v1/polls/{commentId} | Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT. |
 *DefaultApi* | [**patchSSOUser**](Apis/DefaultApi.md#patchssouser) | **PATCH** /api/v1/sso-users/{id} |  |
 *DefaultApi* | [**putDomainConfig**](Apis/DefaultApi.md#putdomainconfig) | **PUT** /api/v1/domain-configs/{domainToUpdate} |  |
+*DefaultApi* | [**putPoll**](Apis/DefaultApi.md#putpoll) | **PUT** /api/v1/polls/{commentId} | Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll. |
 *DefaultApi* | [**putSSOUser**](Apis/DefaultApi.md#putssouser) | **PUT** /api/v1/sso-users/{id} |  |
 *DefaultApi* | [**renderEmailTemplate**](Apis/DefaultApi.md#renderemailtemplate) | **POST** /api/v1/email-templates/render |  |
 *DefaultApi* | [**replaceTenantPackage**](Apis/DefaultApi.md#replacetenantpackage) | **PUT** /api/v1/tenant-packages/{id} |  |
@@ -121,49 +135,49 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**updateTenantPackage**](Apis/DefaultApi.md#updatetenantpackage) | **PATCH** /api/v1/tenant-packages/{id} |  |
 *DefaultApi* | [**updateTenantUser**](Apis/DefaultApi.md#updatetenantuser) | **PATCH** /api/v1/tenant-users/{id} |  |
 *DefaultApi* | [**updateUserBadge**](Apis/DefaultApi.md#updateuserbadge) | **PUT** /api/v1/user-badges/{id} |  |
-| *ModerationApi* | [**deleteModerationVote**](Apis/ModerationApi.md#deletemoderationvote) | **DELETE** /auth/my-account/moderate-comments/vote/{commentId}/{voteId} |  |
-*ModerationApi* | [**getApiComments**](Apis/ModerationApi.md#getapicomments) | **GET** /auth/my-account/moderate-comments/api/comments |  |
-*ModerationApi* | [**getApiExportStatus**](Apis/ModerationApi.md#getapiexportstatus) | **GET** /auth/my-account/moderate-comments/api/export/status |  |
-*ModerationApi* | [**getApiIds**](Apis/ModerationApi.md#getapiids) | **GET** /auth/my-account/moderate-comments/api/ids |  |
-*ModerationApi* | [**getBanUsersFromComment**](Apis/ModerationApi.md#getbanusersfromcomment) | **GET** /auth/my-account/moderate-comments/ban-users/from-comment/{commentId} |  |
-*ModerationApi* | [**getCommentBanStatus**](Apis/ModerationApi.md#getcommentbanstatus) | **GET** /auth/my-account/moderate-comments/get-comment-ban-status/{commentId} |  |
-*ModerationApi* | [**getCommentChildren**](Apis/ModerationApi.md#getcommentchildren) | **GET** /auth/my-account/moderate-comments/comment-children/{commentId} |  |
-*ModerationApi* | [**getCount**](Apis/ModerationApi.md#getcount) | **GET** /auth/my-account/moderate-comments/count |  |
-*ModerationApi* | [**getCounts**](Apis/ModerationApi.md#getcounts) | **GET** /auth/my-account/moderate-comments/banned-users/counts |  |
-*ModerationApi* | [**getLogs**](Apis/ModerationApi.md#getlogs) | **GET** /auth/my-account/moderate-comments/logs/{commentId} |  |
-*ModerationApi* | [**getManualBadges**](Apis/ModerationApi.md#getmanualbadges) | **GET** /auth/my-account/moderate-comments/get-manual-badges |  |
-*ModerationApi* | [**getManualBadgesForUser**](Apis/ModerationApi.md#getmanualbadgesforuser) | **GET** /auth/my-account/moderate-comments/get-manual-badges-for-user |  |
-*ModerationApi* | [**getModerationComment**](Apis/ModerationApi.md#getmoderationcomment) | **GET** /auth/my-account/moderate-comments/comment/{commentId} |  |
-*ModerationApi* | [**getModerationCommentText**](Apis/ModerationApi.md#getmoderationcommenttext) | **GET** /auth/my-account/moderate-comments/get-comment-text/{commentId} |  |
-*ModerationApi* | [**getPreBanSummary**](Apis/ModerationApi.md#getprebansummary) | **GET** /auth/my-account/moderate-comments/pre-ban-summary/{commentId} |  |
-*ModerationApi* | [**getSearchCommentsSummary**](Apis/ModerationApi.md#getsearchcommentssummary) | **GET** /auth/my-account/moderate-comments/search/comments/summary |  |
-*ModerationApi* | [**getSearchPages**](Apis/ModerationApi.md#getsearchpages) | **GET** /auth/my-account/moderate-comments/search/pages |  |
-*ModerationApi* | [**getSearchSites**](Apis/ModerationApi.md#getsearchsites) | **GET** /auth/my-account/moderate-comments/search/sites |  |
-*ModerationApi* | [**getSearchSuggest**](Apis/ModerationApi.md#getsearchsuggest) | **GET** /auth/my-account/moderate-comments/search/suggest |  |
-*ModerationApi* | [**getSearchUsers**](Apis/ModerationApi.md#getsearchusers) | **GET** /auth/my-account/moderate-comments/search/users |  |
-*ModerationApi* | [**getTrustFactor**](Apis/ModerationApi.md#gettrustfactor) | **GET** /auth/my-account/moderate-comments/get-trust-factor |  |
-*ModerationApi* | [**getUserBanPreference**](Apis/ModerationApi.md#getuserbanpreference) | **GET** /auth/my-account/moderate-comments/user-ban-preference |  |
-*ModerationApi* | [**getUserInternalProfile**](Apis/ModerationApi.md#getuserinternalprofile) | **GET** /auth/my-account/moderate-comments/get-user-internal-profile |  |
-*ModerationApi* | [**postAdjustCommentVotes**](Apis/ModerationApi.md#postadjustcommentvotes) | **POST** /auth/my-account/moderate-comments/adjust-comment-votes/{commentId} |  |
-*ModerationApi* | [**postApiExport**](Apis/ModerationApi.md#postapiexport) | **POST** /auth/my-account/moderate-comments/api/export |  |
-*ModerationApi* | [**postBanUserFromComment**](Apis/ModerationApi.md#postbanuserfromcomment) | **POST** /auth/my-account/moderate-comments/ban-user/from-comment/{commentId} |  |
-*ModerationApi* | [**postBanUserUndo**](Apis/ModerationApi.md#postbanuserundo) | **POST** /auth/my-account/moderate-comments/ban-user/undo |  |
-*ModerationApi* | [**postBulkPreBanSummary**](Apis/ModerationApi.md#postbulkprebansummary) | **POST** /auth/my-account/moderate-comments/bulk-pre-ban-summary |  |
-*ModerationApi* | [**postCommentsByIds**](Apis/ModerationApi.md#postcommentsbyids) | **POST** /auth/my-account/moderate-comments/comments-by-ids |  |
-*ModerationApi* | [**postFlagComment**](Apis/ModerationApi.md#postflagcomment) | **POST** /auth/my-account/moderate-comments/flag-comment/{commentId} |  |
-*ModerationApi* | [**postRemoveComment**](Apis/ModerationApi.md#postremovecomment) | **POST** /auth/my-account/moderate-comments/remove-comment/{commentId} |  |
-*ModerationApi* | [**postRestoreDeletedComment**](Apis/ModerationApi.md#postrestoredeletedcomment) | **POST** /auth/my-account/moderate-comments/restore-deleted-comment/{commentId} |  |
-*ModerationApi* | [**postSetCommentApprovalStatus**](Apis/ModerationApi.md#postsetcommentapprovalstatus) | **POST** /auth/my-account/moderate-comments/set-comment-approval-status/{commentId} |  |
-*ModerationApi* | [**postSetCommentReviewStatus**](Apis/ModerationApi.md#postsetcommentreviewstatus) | **POST** /auth/my-account/moderate-comments/set-comment-review-status/{commentId} |  |
-*ModerationApi* | [**postSetCommentSpamStatus**](Apis/ModerationApi.md#postsetcommentspamstatus) | **POST** /auth/my-account/moderate-comments/set-comment-spam-status/{commentId} |  |
-*ModerationApi* | [**postSetCommentText**](Apis/ModerationApi.md#postsetcommenttext) | **POST** /auth/my-account/moderate-comments/set-comment-text/{commentId} |  |
-*ModerationApi* | [**postUnFlagComment**](Apis/ModerationApi.md#postunflagcomment) | **POST** /auth/my-account/moderate-comments/un-flag-comment/{commentId} |  |
-*ModerationApi* | [**postVote**](Apis/ModerationApi.md#postvote) | **POST** /auth/my-account/moderate-comments/vote/{commentId} |  |
-*ModerationApi* | [**putAwardBadge**](Apis/ModerationApi.md#putawardbadge) | **PUT** /auth/my-account/moderate-comments/award-badge |  |
-*ModerationApi* | [**putCloseThread**](Apis/ModerationApi.md#putclosethread) | **PUT** /auth/my-account/moderate-comments/close-thread |  |
-*ModerationApi* | [**putRemoveBadge**](Apis/ModerationApi.md#putremovebadge) | **PUT** /auth/my-account/moderate-comments/remove-badge |  |
-*ModerationApi* | [**putReopenThread**](Apis/ModerationApi.md#putreopenthread) | **PUT** /auth/my-account/moderate-comments/reopen-thread |  |
-*ModerationApi* | [**setTrustFactor**](Apis/ModerationApi.md#settrustfactor) | **PUT** /auth/my-account/moderate-comments/set-trust-factor |  |
+| *ModerationApi* | [**deleteModerationVote**](Apis/ModerationApi.md#deletemoderationvote) | **DELETE** /auth/my-account/moderate-comments/mod_api/vote/{commentId}/{voteId} |  |
+*ModerationApi* | [**getApiComments**](Apis/ModerationApi.md#getapicomments) | **GET** /auth/my-account/moderate-comments/mod_api/api/comments |  |
+*ModerationApi* | [**getApiExportStatus**](Apis/ModerationApi.md#getapiexportstatus) | **GET** /auth/my-account/moderate-comments/mod_api/api/export/status |  |
+*ModerationApi* | [**getApiIds**](Apis/ModerationApi.md#getapiids) | **GET** /auth/my-account/moderate-comments/mod_api/api/ids |  |
+*ModerationApi* | [**getBanUsersFromComment**](Apis/ModerationApi.md#getbanusersfromcomment) | **GET** /auth/my-account/moderate-comments/mod_api/ban-users/from-comment/{commentId} |  |
+*ModerationApi* | [**getCommentBanStatus**](Apis/ModerationApi.md#getcommentbanstatus) | **GET** /auth/my-account/moderate-comments/mod_api/get-comment-ban-status/{commentId} |  |
+*ModerationApi* | [**getCommentChildren**](Apis/ModerationApi.md#getcommentchildren) | **GET** /auth/my-account/moderate-comments/mod_api/comment-children/{commentId} |  |
+*ModerationApi* | [**getCount**](Apis/ModerationApi.md#getcount) | **GET** /auth/my-account/moderate-comments/mod_api/count |  |
+*ModerationApi* | [**getCounts**](Apis/ModerationApi.md#getcounts) | **GET** /auth/my-account/moderate-comments/banned-users/mod_api/counts |  |
+*ModerationApi* | [**getLogs**](Apis/ModerationApi.md#getlogs) | **GET** /auth/my-account/moderate-comments/mod_api/logs/{commentId} |  |
+*ModerationApi* | [**getManualBadges**](Apis/ModerationApi.md#getmanualbadges) | **GET** /auth/my-account/moderate-comments/mod_api/get-manual-badges |  |
+*ModerationApi* | [**getManualBadgesForUser**](Apis/ModerationApi.md#getmanualbadgesforuser) | **GET** /auth/my-account/moderate-comments/mod_api/get-manual-badges-for-user |  |
+*ModerationApi* | [**getModerationComment**](Apis/ModerationApi.md#getmoderationcomment) | **GET** /auth/my-account/moderate-comments/mod_api/comment/{commentId} |  |
+*ModerationApi* | [**getModerationCommentText**](Apis/ModerationApi.md#getmoderationcommenttext) | **GET** /auth/my-account/moderate-comments/mod_api/get-comment-text/{commentId} |  |
+*ModerationApi* | [**getPreBanSummary**](Apis/ModerationApi.md#getprebansummary) | **GET** /auth/my-account/moderate-comments/mod_api/pre-ban-summary/{commentId} |  |
+*ModerationApi* | [**getSearchCommentsSummary**](Apis/ModerationApi.md#getsearchcommentssummary) | **GET** /auth/my-account/moderate-comments/mod_api/search/comments/summary |  |
+*ModerationApi* | [**getSearchPages**](Apis/ModerationApi.md#getsearchpages) | **GET** /auth/my-account/moderate-comments/mod_api/search/pages |  |
+*ModerationApi* | [**getSearchSites**](Apis/ModerationApi.md#getsearchsites) | **GET** /auth/my-account/moderate-comments/mod_api/search/sites |  |
+*ModerationApi* | [**getSearchSuggest**](Apis/ModerationApi.md#getsearchsuggest) | **GET** /auth/my-account/moderate-comments/mod_api/search/suggest |  |
+*ModerationApi* | [**getSearchUsers**](Apis/ModerationApi.md#getsearchusers) | **GET** /auth/my-account/moderate-comments/mod_api/search/users |  |
+*ModerationApi* | [**getTrustFactor**](Apis/ModerationApi.md#gettrustfactor) | **GET** /auth/my-account/moderate-comments/mod_api/get-trust-factor |  |
+*ModerationApi* | [**getUserBanPreference**](Apis/ModerationApi.md#getuserbanpreference) | **GET** /auth/my-account/moderate-comments/mod_api/user-ban-preference |  |
+*ModerationApi* | [**getUserInternalProfile**](Apis/ModerationApi.md#getuserinternalprofile) | **GET** /auth/my-account/moderate-comments/mod_api/get-user-internal-profile |  |
+*ModerationApi* | [**postAdjustCommentVotes**](Apis/ModerationApi.md#postadjustcommentvotes) | **POST** /auth/my-account/moderate-comments/mod_api/adjust-comment-votes/{commentId} |  |
+*ModerationApi* | [**postApiExport**](Apis/ModerationApi.md#postapiexport) | **POST** /auth/my-account/moderate-comments/mod_api/api/export |  |
+*ModerationApi* | [**postBanUserFromComment**](Apis/ModerationApi.md#postbanuserfromcomment) | **POST** /auth/my-account/moderate-comments/mod_api/ban-user/from-comment/{commentId} |  |
+*ModerationApi* | [**postBanUserUndo**](Apis/ModerationApi.md#postbanuserundo) | **POST** /auth/my-account/moderate-comments/mod_api/ban-user/undo |  |
+*ModerationApi* | [**postBulkPreBanSummary**](Apis/ModerationApi.md#postbulkprebansummary) | **POST** /auth/my-account/moderate-comments/mod_api/bulk-pre-ban-summary |  |
+*ModerationApi* | [**postCommentsByIds**](Apis/ModerationApi.md#postcommentsbyids) | **POST** /auth/my-account/moderate-comments/mod_api/comments-by-ids |  |
+*ModerationApi* | [**postFlagComment**](Apis/ModerationApi.md#postflagcomment) | **POST** /auth/my-account/moderate-comments/mod_api/flag-comment/{commentId} |  |
+*ModerationApi* | [**postRemoveComment**](Apis/ModerationApi.md#postremovecomment) | **POST** /auth/my-account/moderate-comments/mod_api/remove-comment/{commentId} |  |
+*ModerationApi* | [**postRestoreDeletedComment**](Apis/ModerationApi.md#postrestoredeletedcomment) | **POST** /auth/my-account/moderate-comments/mod_api/restore-deleted-comment/{commentId} |  |
+*ModerationApi* | [**postSetCommentApprovalStatus**](Apis/ModerationApi.md#postsetcommentapprovalstatus) | **POST** /auth/my-account/moderate-comments/mod_api/set-comment-approval-status/{commentId} |  |
+*ModerationApi* | [**postSetCommentReviewStatus**](Apis/ModerationApi.md#postsetcommentreviewstatus) | **POST** /auth/my-account/moderate-comments/mod_api/set-comment-review-status/{commentId} |  |
+*ModerationApi* | [**postSetCommentSpamStatus**](Apis/ModerationApi.md#postsetcommentspamstatus) | **POST** /auth/my-account/moderate-comments/mod_api/set-comment-spam-status/{commentId} |  |
+*ModerationApi* | [**postSetCommentText**](Apis/ModerationApi.md#postsetcommenttext) | **POST** /auth/my-account/moderate-comments/mod_api/set-comment-text/{commentId} |  |
+*ModerationApi* | [**postUnFlagComment**](Apis/ModerationApi.md#postunflagcomment) | **POST** /auth/my-account/moderate-comments/mod_api/un-flag-comment/{commentId} |  |
+*ModerationApi* | [**postVote**](Apis/ModerationApi.md#postvote) | **POST** /auth/my-account/moderate-comments/mod_api/vote/{commentId} |  |
+*ModerationApi* | [**putAwardBadge**](Apis/ModerationApi.md#putawardbadge) | **PUT** /auth/my-account/moderate-comments/mod_api/award-badge |  |
+*ModerationApi* | [**putCloseThread**](Apis/ModerationApi.md#putclosethread) | **PUT** /auth/my-account/moderate-comments/mod_api/close-thread |  |
+*ModerationApi* | [**putRemoveBadge**](Apis/ModerationApi.md#putremovebadge) | **PUT** /auth/my-account/moderate-comments/mod_api/remove-badge |  |
+*ModerationApi* | [**putReopenThread**](Apis/ModerationApi.md#putreopenthread) | **PUT** /auth/my-account/moderate-comments/mod_api/reopen-thread |  |
+*ModerationApi* | [**setTrustFactor**](Apis/ModerationApi.md#settrustfactor) | **PUT** /auth/my-account/moderate-comments/mod_api/set-trust-factor |  |
 | *PublicApi* | [**blockFromCommentPublic**](Apis/PublicApi.md#blockfromcommentpublic) | **POST** /block-from-comment/{commentId} |  |
 *PublicApi* | [**checkedCommentsForBlocked**](Apis/PublicApi.md#checkedcommentsforblocked) | **GET** /check-blocked-comments |  |
 *PublicApi* | [**createCommentPublic**](Apis/PublicApi.md#createcommentpublic) | **POST** /comments/{tenantId} |  |
@@ -256,14 +270,11 @@ All URIs are relative to *https://fastcomments.com*
  - [AddDomainConfigParams](./model/AddDomainConfigParams.md)
  - [AddDomainConfigResponse](./model/AddDomainConfigResponse.md)
  - [AddDomainConfigResponse_anyOf](./model/AddDomainConfigResponse_anyOf.md)
- - [AddHashTagResponse](./model/AddHashTagResponse.md)
- - [AddHashTagsBulkResponse](./model/AddHashTagsBulkResponse.md)
  - [AddPageAPIResponse](./model/AddPageAPIResponse.md)
  - [AddSSOUserAPIResponse](./model/AddSSOUserAPIResponse.md)
  - [AdjustCommentVotesParams](./model/AdjustCommentVotesParams.md)
  - [AdjustVotesResponse](./model/AdjustVotesResponse.md)
  - [AggregateQuestionResultsResponse](./model/AggregateQuestionResultsResponse.md)
- - [AggregateQuestionResultsResponse_1](./model/AggregateQuestionResultsResponse_1.md)
  - [AggregateResponse](./model/AggregateResponse.md)
  - [AggregateTimeBucket](./model/AggregateTimeBucket.md)
  - [AggregationAPIError](./model/AggregationAPIError.md)
@@ -283,15 +294,12 @@ All URIs are relative to *https://fastcomments.com*
  - [BannedUserMatch_matchedOnValue](./model/BannedUserMatch_matchedOnValue.md)
  - [BillingInfo](./model/BillingInfo.md)
  - [BlockFromCommentParams](./model/BlockFromCommentParams.md)
- - [BlockFromCommentPublicResponse](./model/BlockFromCommentPublicResponse.md)
  - [BlockSuccess](./model/BlockSuccess.md)
- - [BlockUserFromCommentResponse](./model/BlockUserFromCommentResponse.md)
  - [BuildModerationFilterParams](./model/BuildModerationFilterParams.md)
  - [BuildModerationFilterResponse](./model/BuildModerationFilterResponse.md)
  - [BulkAggregateQuestionItem](./model/BulkAggregateQuestionItem.md)
  - [BulkAggregateQuestionResultsRequest](./model/BulkAggregateQuestionResultsRequest.md)
  - [BulkAggregateQuestionResultsResponse](./model/BulkAggregateQuestionResultsResponse.md)
- - [BulkAggregateQuestionResultsResponse_1](./model/BulkAggregateQuestionResultsResponse_1.md)
  - [BulkCreateHashTagsBody](./model/BulkCreateHashTagsBody.md)
  - [BulkCreateHashTagsBody_tags_inner](./model/BulkCreateHashTagsBody_tags_inner.md)
  - [BulkCreateHashTagsResponse](./model/BulkCreateHashTagsResponse.md)
@@ -301,16 +309,18 @@ All URIs are relative to *https://fastcomments.com*
  - [ChangeCommentPinStatusResponse](./model/ChangeCommentPinStatusResponse.md)
  - [ChangeTicketStateBody](./model/ChangeTicketStateBody.md)
  - [ChangeTicketStateResponse](./model/ChangeTicketStateResponse.md)
- - [ChangeTicketStateResponse_1](./model/ChangeTicketStateResponse_1.md)
  - [CheckBlockedCommentsResponse](./model/CheckBlockedCommentsResponse.md)
- - [CheckedCommentsForBlockedResponse](./model/CheckedCommentsForBlockedResponse.md)
- - [CombineCommentsWithQuestionResultsResponse](./model/CombineCommentsWithQuestionResultsResponse.md)
  - [CombineQuestionResultsWithCommentsResponse](./model/CombineQuestionResultsWithCommentsResponse.md)
  - [CommentData](./model/CommentData.md)
  - [CommentHTMLRenderingMode](./model/CommentHTMLRenderingMode.md)
  - [CommentLogData](./model/CommentLogData.md)
  - [CommentLogEntry](./model/CommentLogEntry.md)
  - [CommentLogType](./model/CommentLogType.md)
+ - [CommentPoll](./model/CommentPoll.md)
+ - [CommentPollInput](./model/CommentPollInput.md)
+ - [CommentPollOption](./model/CommentPollOption.md)
+ - [CommentPollPatch](./model/CommentPollPatch.md)
+ - [CommentPollPatch_options_inner](./model/CommentPollPatch_options_inner.md)
  - [CommentQuestionResultsRenderingType](./model/CommentQuestionResultsRenderingType.md)
  - [CommentQuestionsRequired](./model/CommentQuestionsRequired.md)
  - [CommentTextUpdateRequest](./model/CommentTextUpdateRequest.md)
@@ -323,76 +333,48 @@ All URIs are relative to *https://fastcomments.com*
  - [CreateAPIPageData](./model/CreateAPIPageData.md)
  - [CreateAPISSOUserData](./model/CreateAPISSOUserData.md)
  - [CreateAPIUserSubscriptionData](./model/CreateAPIUserSubscriptionData.md)
+ - [CreateAgentTenantBody](./model/CreateAgentTenantBody.md)
+ - [CreateAgentTenantResponse](./model/CreateAgentTenantResponse.md)
  - [CreateCommentParams](./model/CreateCommentParams.md)
- - [CreateCommentPublicResponse](./model/CreateCommentPublicResponse.md)
  - [CreateEmailTemplateBody](./model/CreateEmailTemplateBody.md)
  - [CreateEmailTemplateResponse](./model/CreateEmailTemplateResponse.md)
- - [CreateEmailTemplateResponse_1](./model/CreateEmailTemplateResponse_1.md)
  - [CreateFeedPostParams](./model/CreateFeedPostParams.md)
- - [CreateFeedPostPublicResponse](./model/CreateFeedPostPublicResponse.md)
  - [CreateFeedPostResponse](./model/CreateFeedPostResponse.md)
- - [CreateFeedPostResponse_1](./model/CreateFeedPostResponse_1.md)
  - [CreateFeedPostsResponse](./model/CreateFeedPostsResponse.md)
  - [CreateHashTagBody](./model/CreateHashTagBody.md)
  - [CreateHashTagResponse](./model/CreateHashTagResponse.md)
  - [CreateModeratorBody](./model/CreateModeratorBody.md)
  - [CreateModeratorResponse](./model/CreateModeratorResponse.md)
- - [CreateModeratorResponse_1](./model/CreateModeratorResponse_1.md)
+ - [CreatePollVoteBody](./model/CreatePollVoteBody.md)
+ - [CreatePollVoteResponse](./model/CreatePollVoteResponse.md)
  - [CreateQuestionConfigBody](./model/CreateQuestionConfigBody.md)
  - [CreateQuestionConfigResponse](./model/CreateQuestionConfigResponse.md)
- - [CreateQuestionConfigResponse_1](./model/CreateQuestionConfigResponse_1.md)
  - [CreateQuestionResultBody](./model/CreateQuestionResultBody.md)
  - [CreateQuestionResultResponse](./model/CreateQuestionResultResponse.md)
- - [CreateQuestionResultResponse_1](./model/CreateQuestionResultResponse_1.md)
  - [CreateSubscriptionAPIResponse](./model/CreateSubscriptionAPIResponse.md)
  - [CreateTenantBody](./model/CreateTenantBody.md)
  - [CreateTenantPackageBody](./model/CreateTenantPackageBody.md)
  - [CreateTenantPackageResponse](./model/CreateTenantPackageResponse.md)
- - [CreateTenantPackageResponse_1](./model/CreateTenantPackageResponse_1.md)
  - [CreateTenantResponse](./model/CreateTenantResponse.md)
- - [CreateTenantResponse_1](./model/CreateTenantResponse_1.md)
  - [CreateTenantUserBody](./model/CreateTenantUserBody.md)
  - [CreateTenantUserResponse](./model/CreateTenantUserResponse.md)
- - [CreateTenantUserResponse_1](./model/CreateTenantUserResponse_1.md)
  - [CreateTicketBody](./model/CreateTicketBody.md)
  - [CreateTicketResponse](./model/CreateTicketResponse.md)
- - [CreateTicketResponse_1](./model/CreateTicketResponse_1.md)
  - [CreateUserBadgeParams](./model/CreateUserBadgeParams.md)
- - [CreateUserBadgeResponse](./model/CreateUserBadgeResponse.md)
  - [CreateV1PageReact](./model/CreateV1PageReact.md)
- - [CreateV1PageReactResponse](./model/CreateV1PageReactResponse.md)
- - [CreateV2PageReactResponse](./model/CreateV2PageReactResponse.md)
- - [CreateVoteResponse](./model/CreateVoteResponse.md)
+ - [CreateWebhookParams](./model/CreateWebhookParams.md)
+ - [CreateWebhookResponse](./model/CreateWebhookResponse.md)
  - [CustomConfigParameters](./model/CustomConfigParameters.md)
  - [CustomEmailTemplate](./model/CustomEmailTemplate.md)
  - [DeleteCommentAction](./model/DeleteCommentAction.md)
- - [DeleteCommentPublicResponse](./model/DeleteCommentPublicResponse.md)
- - [DeleteCommentResponse](./model/DeleteCommentResponse.md)
  - [DeleteCommentResult](./model/DeleteCommentResult.md)
- - [DeleteCommentVoteResponse](./model/DeleteCommentVoteResponse.md)
  - [DeleteDomainConfigResponse](./model/DeleteDomainConfigResponse.md)
- - [DeleteEmailTemplateRenderErrorResponse](./model/DeleteEmailTemplateRenderErrorResponse.md)
- - [DeleteEmailTemplateResponse](./model/DeleteEmailTemplateResponse.md)
  - [DeleteFeedPostPublicResponse](./model/DeleteFeedPostPublicResponse.md)
- - [DeleteFeedPostPublicResponse_anyOf](./model/DeleteFeedPostPublicResponse_anyOf.md)
  - [DeleteHashTagRequestBody](./model/DeleteHashTagRequestBody.md)
- - [DeleteHashTagResponse](./model/DeleteHashTagResponse.md)
- - [DeleteModerationVoteResponse](./model/DeleteModerationVoteResponse.md)
- - [DeleteModeratorResponse](./model/DeleteModeratorResponse.md)
- - [DeleteNotificationCountResponse](./model/DeleteNotificationCountResponse.md)
  - [DeletePageAPIResponse](./model/DeletePageAPIResponse.md)
- - [DeletePendingWebhookEventResponse](./model/DeletePendingWebhookEventResponse.md)
- - [DeleteQuestionConfigResponse](./model/DeleteQuestionConfigResponse.md)
- - [DeleteQuestionResultResponse](./model/DeleteQuestionResultResponse.md)
+ - [DeletePollVoteResponse](./model/DeletePollVoteResponse.md)
  - [DeleteSSOUserAPIResponse](./model/DeleteSSOUserAPIResponse.md)
  - [DeleteSubscriptionAPIResponse](./model/DeleteSubscriptionAPIResponse.md)
- - [DeleteTenantPackageResponse](./model/DeleteTenantPackageResponse.md)
- - [DeleteTenantResponse](./model/DeleteTenantResponse.md)
- - [DeleteTenantUserResponse](./model/DeleteTenantUserResponse.md)
- - [DeleteUserBadgeResponse](./model/DeleteUserBadgeResponse.md)
- - [DeleteV1PageReactResponse](./model/DeleteV1PageReactResponse.md)
- - [DeleteV2PageReactResponse](./model/DeleteV2PageReactResponse.md)
- - [DeleteVoteResponse](./model/DeleteVoteResponse.md)
  - [DeletedCommentResultComment](./model/DeletedCommentResultComment.md)
  - [DigestEmailFrequency](./model/DigestEmailFrequency.md)
  - [EmailTemplateDefinition](./model/EmailTemplateDefinition.md)
@@ -408,154 +390,78 @@ All URIs are relative to *https://fastcomments.com*
  - [FeedPostsStatsResponse](./model/FeedPostsStatsResponse.md)
  - [FindCommentsByRangeItem](./model/FindCommentsByRangeItem.md)
  - [FindCommentsByRangeResponse](./model/FindCommentsByRangeResponse.md)
- - [FlagCommentPublicResponse](./model/FlagCommentPublicResponse.md)
  - [FlagCommentResponse](./model/FlagCommentResponse.md)
- - [FlagCommentResponse_1](./model/FlagCommentResponse_1.md)
- - [GetApiCommentsResponse](./model/GetApiCommentsResponse.md)
- - [GetApiExportStatusResponse](./model/GetApiExportStatusResponse.md)
- - [GetApiIdsResponse](./model/GetApiIdsResponse.md)
  - [GetAuditLogsResponse](./model/GetAuditLogsResponse.md)
- - [GetAuditLogsResponse_1](./model/GetAuditLogsResponse_1.md)
- - [GetBanUsersFromCommentResponse](./model/GetBanUsersFromCommentResponse.md)
  - [GetBannedUsersCountResponse](./model/GetBannedUsersCountResponse.md)
  - [GetBannedUsersFromCommentResponse](./model/GetBannedUsersFromCommentResponse.md)
  - [GetCachedNotificationCountResponse](./model/GetCachedNotificationCountResponse.md)
- - [GetCachedNotificationCountResponse_1](./model/GetCachedNotificationCountResponse_1.md)
  - [GetCommentBanStatusResponse](./model/GetCommentBanStatusResponse.md)
- - [GetCommentBanStatusResponse_1](./model/GetCommentBanStatusResponse_1.md)
- - [GetCommentChildrenResponse](./model/GetCommentChildrenResponse.md)
- - [GetCommentResponse](./model/GetCommentResponse.md)
  - [GetCommentTextResponse](./model/GetCommentTextResponse.md)
- - [GetCommentTextResponse_1](./model/GetCommentTextResponse_1.md)
- - [GetCommentVoteUserNamesResponse](./model/GetCommentVoteUserNamesResponse.md)
  - [GetCommentVoteUserNamesSuccessResponse](./model/GetCommentVoteUserNamesSuccessResponse.md)
  - [GetCommentsForUserResponse](./model/GetCommentsForUserResponse.md)
- - [GetCommentsForUserResponse_1](./model/GetCommentsForUserResponse_1.md)
- - [GetCommentsPublicResponse](./model/GetCommentsPublicResponse.md)
- - [GetCommentsResponse](./model/GetCommentsResponse.md)
  - [GetCommentsResponseWithPresence_PublicComment_](./model/GetCommentsResponseWithPresence_PublicComment_.md)
  - [GetCommentsResponse_PublicComment_](./model/GetCommentsResponse_PublicComment_.md)
- - [GetCountResponse](./model/GetCountResponse.md)
- - [GetCountsResponse](./model/GetCountsResponse.md)
  - [GetDomainConfigResponse](./model/GetDomainConfigResponse.md)
  - [GetDomainConfigsResponse](./model/GetDomainConfigsResponse.md)
  - [GetDomainConfigsResponse_anyOf](./model/GetDomainConfigsResponse_anyOf.md)
  - [GetDomainConfigsResponse_anyOf_1](./model/GetDomainConfigsResponse_anyOf_1.md)
  - [GetEmailTemplateDefinitionsResponse](./model/GetEmailTemplateDefinitionsResponse.md)
- - [GetEmailTemplateDefinitionsResponse_1](./model/GetEmailTemplateDefinitionsResponse_1.md)
  - [GetEmailTemplateRenderErrorsResponse](./model/GetEmailTemplateRenderErrorsResponse.md)
- - [GetEmailTemplateRenderErrorsResponse_1](./model/GetEmailTemplateRenderErrorsResponse_1.md)
  - [GetEmailTemplateResponse](./model/GetEmailTemplateResponse.md)
- - [GetEmailTemplateResponse_1](./model/GetEmailTemplateResponse_1.md)
  - [GetEmailTemplatesResponse](./model/GetEmailTemplatesResponse.md)
- - [GetEmailTemplatesResponse_1](./model/GetEmailTemplatesResponse_1.md)
  - [GetEventLogResponse](./model/GetEventLogResponse.md)
- - [GetEventLogResponse_1](./model/GetEventLogResponse_1.md)
- - [GetFeedPostsPublicResponse](./model/GetFeedPostsPublicResponse.md)
  - [GetFeedPostsResponse](./model/GetFeedPostsResponse.md)
- - [GetFeedPostsResponse_1](./model/GetFeedPostsResponse_1.md)
- - [GetFeedPostsStatsResponse](./model/GetFeedPostsStatsResponse.md)
- - [GetGifLargeResponse](./model/GetGifLargeResponse.md)
  - [GetGifsSearchResponse](./model/GetGifsSearchResponse.md)
  - [GetGifsTrendingResponse](./model/GetGifsTrendingResponse.md)
- - [GetGlobalEventLogResponse](./model/GetGlobalEventLogResponse.md)
  - [GetHashTagsResponse](./model/GetHashTagsResponse.md)
- - [GetHashTagsResponse_1](./model/GetHashTagsResponse_1.md)
- - [GetLogsResponse](./model/GetLogsResponse.md)
- - [GetManualBadgesForUserResponse](./model/GetManualBadgesForUserResponse.md)
- - [GetManualBadgesResponse](./model/GetManualBadgesResponse.md)
- - [GetModerationCommentResponse](./model/GetModerationCommentResponse.md)
- - [GetModerationCommentTextResponse](./model/GetModerationCommentTextResponse.md)
+ - [GetMeResponse](./model/GetMeResponse.md)
  - [GetModeratorResponse](./model/GetModeratorResponse.md)
- - [GetModeratorResponse_1](./model/GetModeratorResponse_1.md)
  - [GetModeratorsResponse](./model/GetModeratorsResponse.md)
- - [GetModeratorsResponse_1](./model/GetModeratorsResponse_1.md)
  - [GetMyNotificationsResponse](./model/GetMyNotificationsResponse.md)
  - [GetNotificationCountResponse](./model/GetNotificationCountResponse.md)
- - [GetNotificationCountResponse_1](./model/GetNotificationCountResponse_1.md)
  - [GetNotificationsResponse](./model/GetNotificationsResponse.md)
- - [GetNotificationsResponse_1](./model/GetNotificationsResponse_1.md)
- - [GetOfflineUsersResponse](./model/GetOfflineUsersResponse.md)
- - [GetOnlineUsersResponse](./model/GetOnlineUsersResponse.md)
  - [GetPageByURLIdAPIResponse](./model/GetPageByURLIdAPIResponse.md)
  - [GetPagesAPIResponse](./model/GetPagesAPIResponse.md)
- - [GetPagesPublicResponse](./model/GetPagesPublicResponse.md)
  - [GetPendingWebhookEventCountResponse](./model/GetPendingWebhookEventCountResponse.md)
- - [GetPendingWebhookEventCountResponse_1](./model/GetPendingWebhookEventCountResponse_1.md)
  - [GetPendingWebhookEventsResponse](./model/GetPendingWebhookEventsResponse.md)
- - [GetPendingWebhookEventsResponse_1](./model/GetPendingWebhookEventsResponse_1.md)
- - [GetPreBanSummaryResponse](./model/GetPreBanSummaryResponse.md)
+ - [GetPollResponse](./model/GetPollResponse.md)
+ - [GetPollVoteResponse](./model/GetPollVoteResponse.md)
+ - [GetPollVotesResponse](./model/GetPollVotesResponse.md)
  - [GetPublicFeedPostsResponse](./model/GetPublicFeedPostsResponse.md)
  - [GetPublicPagesResponse](./model/GetPublicPagesResponse.md)
  - [GetQuestionConfigResponse](./model/GetQuestionConfigResponse.md)
- - [GetQuestionConfigResponse_1](./model/GetQuestionConfigResponse_1.md)
  - [GetQuestionConfigsResponse](./model/GetQuestionConfigsResponse.md)
- - [GetQuestionConfigsResponse_1](./model/GetQuestionConfigsResponse_1.md)
  - [GetQuestionResultResponse](./model/GetQuestionResultResponse.md)
- - [GetQuestionResultResponse_1](./model/GetQuestionResultResponse_1.md)
  - [GetQuestionResultsResponse](./model/GetQuestionResultsResponse.md)
- - [GetQuestionResultsResponse_1](./model/GetQuestionResultsResponse_1.md)
  - [GetSSOUserByEmailAPIResponse](./model/GetSSOUserByEmailAPIResponse.md)
  - [GetSSOUserByIdAPIResponse](./model/GetSSOUserByIdAPIResponse.md)
  - [GetSSOUsersResponse](./model/GetSSOUsersResponse.md)
- - [GetSearchCommentsSummaryResponse](./model/GetSearchCommentsSummaryResponse.md)
- - [GetSearchPagesResponse](./model/GetSearchPagesResponse.md)
- - [GetSearchSitesResponse](./model/GetSearchSitesResponse.md)
- - [GetSearchSuggestResponse](./model/GetSearchSuggestResponse.md)
- - [GetSearchUsersResponse](./model/GetSearchUsersResponse.md)
  - [GetSubscriptionsAPIResponse](./model/GetSubscriptionsAPIResponse.md)
  - [GetTenantDailyUsagesResponse](./model/GetTenantDailyUsagesResponse.md)
- - [GetTenantDailyUsagesResponse_1](./model/GetTenantDailyUsagesResponse_1.md)
  - [GetTenantManualBadgesResponse](./model/GetTenantManualBadgesResponse.md)
  - [GetTenantPackageResponse](./model/GetTenantPackageResponse.md)
- - [GetTenantPackageResponse_1](./model/GetTenantPackageResponse_1.md)
  - [GetTenantPackagesResponse](./model/GetTenantPackagesResponse.md)
- - [GetTenantPackagesResponse_1](./model/GetTenantPackagesResponse_1.md)
  - [GetTenantResponse](./model/GetTenantResponse.md)
- - [GetTenantResponse_1](./model/GetTenantResponse_1.md)
  - [GetTenantUserResponse](./model/GetTenantUserResponse.md)
- - [GetTenantUserResponse_1](./model/GetTenantUserResponse_1.md)
  - [GetTenantUsersResponse](./model/GetTenantUsersResponse.md)
- - [GetTenantUsersResponse_1](./model/GetTenantUsersResponse_1.md)
  - [GetTenantsResponse](./model/GetTenantsResponse.md)
- - [GetTenantsResponse_1](./model/GetTenantsResponse_1.md)
  - [GetTicketResponse](./model/GetTicketResponse.md)
- - [GetTicketResponse_1](./model/GetTicketResponse_1.md)
  - [GetTicketsResponse](./model/GetTicketsResponse.md)
- - [GetTicketsResponse_1](./model/GetTicketsResponse_1.md)
  - [GetTranslationsResponse](./model/GetTranslationsResponse.md)
- - [GetTranslationsResponse_1](./model/GetTranslationsResponse_1.md)
- - [GetTrustFactorResponse](./model/GetTrustFactorResponse.md)
- - [GetUserBadgeProgressByIdResponse](./model/GetUserBadgeProgressByIdResponse.md)
- - [GetUserBadgeProgressByUserIdResponse](./model/GetUserBadgeProgressByUserIdResponse.md)
- - [GetUserBadgeProgressListResponse](./model/GetUserBadgeProgressListResponse.md)
- - [GetUserBadgeResponse](./model/GetUserBadgeResponse.md)
- - [GetUserBadgesResponse](./model/GetUserBadgesResponse.md)
- - [GetUserBanPreferenceResponse](./model/GetUserBanPreferenceResponse.md)
  - [GetUserInternalProfileResponse](./model/GetUserInternalProfileResponse.md)
- - [GetUserInternalProfileResponse_1](./model/GetUserInternalProfileResponse_1.md)
  - [GetUserInternalProfileResponse_profile](./model/GetUserInternalProfileResponse_profile.md)
  - [GetUserManualBadgesResponse](./model/GetUserManualBadgesResponse.md)
  - [GetUserNotificationCountResponse](./model/GetUserNotificationCountResponse.md)
- - [GetUserNotificationCountResponse_1](./model/GetUserNotificationCountResponse_1.md)
- - [GetUserNotificationsResponse](./model/GetUserNotificationsResponse.md)
  - [GetUserPresenceStatusesResponse](./model/GetUserPresenceStatusesResponse.md)
- - [GetUserPresenceStatusesResponse_1](./model/GetUserPresenceStatusesResponse_1.md)
- - [GetUserReactsPublicResponse](./model/GetUserReactsPublicResponse.md)
  - [GetUserResponse](./model/GetUserResponse.md)
- - [GetUserResponse_1](./model/GetUserResponse_1.md)
  - [GetUserTrustFactorResponse](./model/GetUserTrustFactorResponse.md)
- - [GetUsersInfoResponse](./model/GetUsersInfoResponse.md)
  - [GetV1PageLikes](./model/GetV1PageLikes.md)
- - [GetV1PageLikesResponse](./model/GetV1PageLikesResponse.md)
  - [GetV2PageReactUsersResponse](./model/GetV2PageReactUsersResponse.md)
- - [GetV2PageReactUsersResponse_1](./model/GetV2PageReactUsersResponse_1.md)
  - [GetV2PageReacts](./model/GetV2PageReacts.md)
- - [GetV2PageReactsResponse](./model/GetV2PageReactsResponse.md)
  - [GetVotesForUserResponse](./model/GetVotesForUserResponse.md)
- - [GetVotesForUserResponse_1](./model/GetVotesForUserResponse_1.md)
  - [GetVotesResponse](./model/GetVotesResponse.md)
- - [GetVotesResponse_1](./model/GetVotesResponse_1.md)
+ - [GetWebhookSamplePayloadsResponse](./model/GetWebhookSamplePayloadsResponse.md)
+ - [GetWebhooksResponse](./model/GetWebhooksResponse.md)
  - [GifGetLargeResponse](./model/GifGetLargeResponse.md)
  - [GifRating](./model/GifRating.md)
  - [GifSearchInternalError](./model/GifSearchInternalError.md)
@@ -570,7 +476,7 @@ All URIs are relative to *https://fastcomments.com*
  - [LiveEvent](./model/LiveEvent.md)
  - [LiveEventType](./model/LiveEventType.md)
  - [LiveEvent_extraInfo](./model/LiveEvent_extraInfo.md)
- - [LockCommentResponse](./model/LockCommentResponse.md)
+ - [MeAuthType](./model/MeAuthType.md)
  - [MediaAsset](./model/MediaAsset.md)
  - [MentionAutoCompleteMode](./model/MentionAutoCompleteMode.md)
  - [MetaItem](./model/MetaItem.md)
@@ -597,6 +503,7 @@ All URIs are relative to *https://fastcomments.com*
  - [NotificationAndCount](./model/NotificationAndCount.md)
  - [NotificationObjectType](./model/NotificationObjectType.md)
  - [NotificationType](./model/NotificationType.md)
+ - [OAuthScope](./model/OAuthScope.md)
  - [PageUserEntry](./model/PageUserEntry.md)
  - [PageUsersInfoResponse](./model/PageUsersInfoResponse.md)
  - [PageUsersOfflineResponse](./model/PageUsersOfflineResponse.md)
@@ -604,26 +511,14 @@ All URIs are relative to *https://fastcomments.com*
  - [PagesSortBy](./model/PagesSortBy.md)
  - [PatchDomainConfigParams](./model/PatchDomainConfigParams.md)
  - [PatchDomainConfigResponse](./model/PatchDomainConfigResponse.md)
- - [PatchHashTagResponse](./model/PatchHashTagResponse.md)
  - [PatchPageAPIResponse](./model/PatchPageAPIResponse.md)
  - [PatchSSOUserAPIResponse](./model/PatchSSOUserAPIResponse.md)
  - [PendingCommentToSyncOutbound](./model/PendingCommentToSyncOutbound.md)
- - [PinCommentResponse](./model/PinCommentResponse.md)
- - [PostAdjustCommentVotesResponse](./model/PostAdjustCommentVotesResponse.md)
- - [PostApiExportResponse](./model/PostApiExportResponse.md)
- - [PostBanUserFromCommentResponse](./model/PostBanUserFromCommentResponse.md)
- - [PostBanUserUndoResponse](./model/PostBanUserUndoResponse.md)
- - [PostBulkPreBanSummaryResponse](./model/PostBulkPreBanSummaryResponse.md)
- - [PostCommentsByIdsResponse](./model/PostCommentsByIdsResponse.md)
- - [PostFlagCommentResponse](./model/PostFlagCommentResponse.md)
- - [PostRemoveCommentResponse](./model/PostRemoveCommentResponse.md)
- - [PostRestoreDeletedCommentResponse](./model/PostRestoreDeletedCommentResponse.md)
- - [PostSetCommentApprovalStatusResponse](./model/PostSetCommentApprovalStatusResponse.md)
- - [PostSetCommentReviewStatusResponse](./model/PostSetCommentReviewStatusResponse.md)
- - [PostSetCommentSpamStatusResponse](./model/PostSetCommentSpamStatusResponse.md)
- - [PostSetCommentTextResponse](./model/PostSetCommentTextResponse.md)
- - [PostUnFlagCommentResponse](./model/PostUnFlagCommentResponse.md)
- - [PostVoteResponse](./model/PostVoteResponse.md)
+ - [Pick_CommentPoll.options-or-totalVotes-or-closesAt_](./model/Pick_CommentPoll.options-or-totalVotes-or-closesAt_.md)
+ - [PollCreationMode](./model/PollCreationMode.md)
+ - [PollPrivacy](./model/PollPrivacy.md)
+ - [PollVotingMode](./model/PollVotingMode.md)
+ - [PostRemoveCommentApiResponse](./model/PostRemoveCommentApiResponse.md)
  - [PreBanSummary](./model/PreBanSummary.md)
  - [PubSubComment](./model/PubSubComment.md)
  - [PubSubCommentBase](./model/PubSubCommentBase.md)
@@ -636,12 +531,10 @@ All URIs are relative to *https://fastcomments.com*
  - [PublicCommentBase](./model/PublicCommentBase.md)
  - [PublicFeedPostsResponse](./model/PublicFeedPostsResponse.md)
  - [PublicPage](./model/PublicPage.md)
+ - [PublicPollVote](./model/PublicPollVote.md)
  - [PublicVote](./model/PublicVote.md)
- - [PutAwardBadgeResponse](./model/PutAwardBadgeResponse.md)
- - [PutCloseThreadResponse](./model/PutCloseThreadResponse.md)
+ - [PublicWebhook](./model/PublicWebhook.md)
  - [PutDomainConfigResponse](./model/PutDomainConfigResponse.md)
- - [PutRemoveBadgeResponse](./model/PutRemoveBadgeResponse.md)
- - [PutReopenThreadResponse](./model/PutReopenThreadResponse.md)
  - [PutSSOUserAPIResponse](./model/PutSSOUserAPIResponse.md)
  - [QueryPredicate](./model/QueryPredicate.md)
  - [QueryPredicate_value](./model/QueryPredicate_value.md)
@@ -654,42 +547,31 @@ All URIs are relative to *https://fastcomments.com*
  - [QuestionSubQuestionVisibility](./model/QuestionSubQuestionVisibility.md)
  - [QuestionWhenSave](./model/QuestionWhenSave.md)
  - [ReactBodyParams](./model/ReactBodyParams.md)
- - [ReactFeedPostPublicResponse](./model/ReactFeedPostPublicResponse.md)
  - [ReactFeedPostResponse](./model/ReactFeedPostResponse.md)
  - [Record_string__before_string_or_null__after_string_or_null___value](./model/Record_string__before_string_or_null__after_string_or_null___value.md)
  - [RemoveCommentActionResponse](./model/RemoveCommentActionResponse.md)
  - [RemoveUserBadgeResponse](./model/RemoveUserBadgeResponse.md)
  - [RenderEmailTemplateBody](./model/RenderEmailTemplateBody.md)
  - [RenderEmailTemplateResponse](./model/RenderEmailTemplateResponse.md)
- - [RenderEmailTemplateResponse_1](./model/RenderEmailTemplateResponse_1.md)
  - [RenderableUserNotification](./model/RenderableUserNotification.md)
  - [RepeatCommentCheckIgnoredReason](./model/RepeatCommentCheckIgnoredReason.md)
  - [RepeatCommentHandlingAction](./model/RepeatCommentHandlingAction.md)
  - [ReplaceTenantPackageBody](./model/ReplaceTenantPackageBody.md)
- - [ReplaceTenantPackageResponse](./model/ReplaceTenantPackageResponse.md)
  - [ReplaceTenantUserBody](./model/ReplaceTenantUserBody.md)
- - [ReplaceTenantUserResponse](./model/ReplaceTenantUserResponse.md)
- - [ResetUserNotificationCountResponse](./model/ResetUserNotificationCountResponse.md)
  - [ResetUserNotificationsResponse](./model/ResetUserNotificationsResponse.md)
- - [ResetUserNotificationsResponse_1](./model/ResetUserNotificationsResponse_1.md)
  - [SORT_DIR](./model/SORT_DIR.md)
  - [SSOSecurityLevel](./model/SSOSecurityLevel.md)
- - [SaveCommentResponse](./model/SaveCommentResponse.md)
  - [SaveCommentResponseOptimized](./model/SaveCommentResponseOptimized.md)
  - [SaveCommentsBulkResponse](./model/SaveCommentsBulkResponse.md)
  - [SaveCommentsResponseWithPresence](./model/SaveCommentsResponseWithPresence.md)
+ - [SavePollResponse](./model/SavePollResponse.md)
  - [SearchUsersResponse](./model/SearchUsersResponse.md)
- - [SearchUsersResponse_1](./model/SearchUsersResponse_1.md)
  - [SearchUsersResult](./model/SearchUsersResult.md)
  - [SearchUsersSectionedResponse](./model/SearchUsersSectionedResponse.md)
- - [SendInviteResponse](./model/SendInviteResponse.md)
- - [SendLoginLinkResponse](./model/SendLoginLinkResponse.md)
  - [SetCommentApprovedResponse](./model/SetCommentApprovedResponse.md)
  - [SetCommentTextParams](./model/SetCommentTextParams.md)
  - [SetCommentTextResponse](./model/SetCommentTextResponse.md)
- - [SetCommentTextResponse_1](./model/SetCommentTextResponse_1.md)
  - [SetCommentTextResult](./model/SetCommentTextResult.md)
- - [SetTrustFactorResponse](./model/SetTrustFactorResponse.md)
  - [SetUserTrustFactorResponse](./model/SetUserTrustFactorResponse.md)
  - [SizePreset](./model/SizePreset.md)
  - [SortDirections](./model/SortDirections.md)
@@ -698,43 +580,26 @@ All URIs are relative to *https://fastcomments.com*
  - [TenantBadge](./model/TenantBadge.md)
  - [TenantHashTag](./model/TenantHashTag.md)
  - [TenantPackage](./model/TenantPackage.md)
- - [UnBlockCommentPublicResponse](./model/UnBlockCommentPublicResponse.md)
  - [UnBlockFromCommentParams](./model/UnBlockFromCommentParams.md)
- - [UnBlockUserFromCommentResponse](./model/UnBlockUserFromCommentResponse.md)
- - [UnFlagCommentResponse](./model/UnFlagCommentResponse.md)
- - [UnLockCommentResponse](./model/UnLockCommentResponse.md)
- - [UnPinCommentResponse](./model/UnPinCommentResponse.md)
  - [UnblockSuccess](./model/UnblockSuccess.md)
  - [UpdatableCommentParams](./model/UpdatableCommentParams.md)
  - [UpdateAPIPageData](./model/UpdateAPIPageData.md)
  - [UpdateAPISSOUserData](./model/UpdateAPISSOUserData.md)
  - [UpdateAPIUserSubscriptionData](./model/UpdateAPIUserSubscriptionData.md)
- - [UpdateCommentResponse](./model/UpdateCommentResponse.md)
  - [UpdateDomainConfigParams](./model/UpdateDomainConfigParams.md)
  - [UpdateEmailTemplateBody](./model/UpdateEmailTemplateBody.md)
- - [UpdateEmailTemplateResponse](./model/UpdateEmailTemplateResponse.md)
  - [UpdateFeedPostParams](./model/UpdateFeedPostParams.md)
- - [UpdateFeedPostPublicResponse](./model/UpdateFeedPostPublicResponse.md)
- - [UpdateFeedPostResponse](./model/UpdateFeedPostResponse.md)
  - [UpdateHashTagBody](./model/UpdateHashTagBody.md)
  - [UpdateHashTagResponse](./model/UpdateHashTagResponse.md)
  - [UpdateModeratorBody](./model/UpdateModeratorBody.md)
- - [UpdateModeratorResponse](./model/UpdateModeratorResponse.md)
  - [UpdateNotificationBody](./model/UpdateNotificationBody.md)
- - [UpdateNotificationResponse](./model/UpdateNotificationResponse.md)
  - [UpdateQuestionConfigBody](./model/UpdateQuestionConfigBody.md)
- - [UpdateQuestionConfigResponse](./model/UpdateQuestionConfigResponse.md)
  - [UpdateQuestionResultBody](./model/UpdateQuestionResultBody.md)
- - [UpdateQuestionResultResponse](./model/UpdateQuestionResultResponse.md)
  - [UpdateSubscriptionAPIResponse](./model/UpdateSubscriptionAPIResponse.md)
  - [UpdateTenantBody](./model/UpdateTenantBody.md)
  - [UpdateTenantPackageBody](./model/UpdateTenantPackageBody.md)
- - [UpdateTenantPackageResponse](./model/UpdateTenantPackageResponse.md)
- - [UpdateTenantResponse](./model/UpdateTenantResponse.md)
  - [UpdateTenantUserBody](./model/UpdateTenantUserBody.md)
- - [UpdateTenantUserResponse](./model/UpdateTenantUserResponse.md)
  - [UpdateUserBadgeParams](./model/UpdateUserBadgeParams.md)
- - [UpdateUserBadgeResponse](./model/UpdateUserBadgeResponse.md)
  - [UpdateUserNotificationCommentSubscriptionStatusResponse](./model/UpdateUserNotificationCommentSubscriptionStatusResponse.md)
  - [UpdateUserNotificationPageSubscriptionStatusResponse](./model/UpdateUserNotificationPageSubscriptionStatusResponse.md)
  - [UpdateUserNotificationStatusResponse](./model/UpdateUserNotificationStatusResponse.md)
@@ -753,12 +618,15 @@ All URIs are relative to *https://fastcomments.com*
  - [UserSessionInfo](./model/UserSessionInfo.md)
  - [UsersListLocation](./model/UsersListLocation.md)
  - [VoteBodyParams](./model/VoteBodyParams.md)
- - [VoteCommentResponse](./model/VoteCommentResponse.md)
  - [VoteDeleteResponse](./model/VoteDeleteResponse.md)
  - [VoteResponse](./model/VoteResponse.md)
  - [VoteResponseUser](./model/VoteResponseUser.md)
  - [VoteResponse_status](./model/VoteResponse_status.md)
  - [VoteStyle](./model/VoteStyle.md)
+ - [WebhookComment](./model/WebhookComment.md)
+ - [WebhookEventName](./model/WebhookEventName.md)
+ - [WebhookHTTPMethod](./model/WebhookHTTPMethod.md)
+ - [WebhookSource](./model/WebhookSource.md)
 
 
 <a name="documentation-for-authorization"></a>

@@ -11,6 +11,7 @@
 | **country** | **String** |  | [default to null] |
 | **currency** | **String** | Currency for invoices. | [optional] [default to null] |
 | **email** | **String** | Email for invoices. | [optional] [default to null] |
+| **vatId** | **String** | VAT / Tax ID for invoices. Only persisted once Stripe has accepted it. | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

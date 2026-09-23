@@ -20,6 +20,13 @@ import {
     LiveEventTypeToJSON,
     LiveEventTypeToJSONTyped,
 } from './LiveEventType';
+import type { PickCommentPollOptionsOrTotalVotesOrClosesAt } from './PickCommentPollOptionsOrTotalVotesOrClosesAt';
+import {
+    PickCommentPollOptionsOrTotalVotesOrClosesAtFromJSON,
+    PickCommentPollOptionsOrTotalVotesOrClosesAtFromJSONTyped,
+    PickCommentPollOptionsOrTotalVotesOrClosesAtToJSON,
+    PickCommentPollOptionsOrTotalVotesOrClosesAtToJSONTyped,
+} from './PickCommentPollOptionsOrTotalVotesOrClosesAt';
 import type { FeedPost } from './FeedPost';
 import {
     FeedPostFromJSON,
@@ -131,6 +138,18 @@ export interface LiveEvent {
     feedPost?: FeedPost;
     /**
      * 
+     * @type {string}
+     * @memberof LiveEvent
+     */
+    commentId?: string;
+    /**
+     * 
+     * @type {PickCommentPollOptionsOrTotalVotesOrClosesAt}
+     * @memberof LiveEvent
+     */
+    poll?: PickCommentPollOptionsOrTotalVotesOrClosesAt;
+    /**
+     * 
      * @type {LiveEventExtraInfo}
      * @memberof LiveEvent
      */
@@ -203,6 +222,8 @@ export function LiveEventFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'vote': json['vote'] == null ? undefined : PubSubVoteFromJSON(json['vote']),
         'comment': json['comment'] == null ? undefined : PubSubCommentFromJSON(json['comment']),
         'feedPost': json['feedPost'] == null ? undefined : FeedPostFromJSON(json['feedPost']),
+        'commentId': json['commentId'] == null ? undefined : json['commentId'],
+        'poll': json['poll'] == null ? undefined : PickCommentPollOptionsOrTotalVotesOrClosesAtFromJSON(json['poll']),
         'extraInfo': json['extraInfo'] == null ? undefined : LiveEventExtraInfoFromJSON(json['extraInfo']),
         'config': json['config'] == null ? undefined : json['config'],
         'isClosed': json['isClosed'] == null ? undefined : json['isClosed'],
@@ -234,6 +255,8 @@ export function LiveEventToJSONTyped(value?: LiveEvent | null, ignoreDiscriminat
         'vote': PubSubVoteToJSON(value['vote']),
         'comment': PubSubCommentToJSON(value['comment']),
         'feedPost': FeedPostToJSON(value['feedPost']),
+        'commentId': value['commentId'],
+        'poll': PickCommentPollOptionsOrTotalVotesOrClosesAtToJSON(value['poll']),
         'extraInfo': LiveEventExtraInfoToJSON(value['extraInfo']),
         'config': value['config'],
         'isClosed': value['isClosed'],

@@ -27,6 +27,13 @@ import {
     CommentUserMentionInfoToJSON,
     CommentUserMentionInfoToJSONTyped,
 } from './CommentUserMentionInfo';
+import type { CommentPollInput } from './CommentPollInput';
+import {
+    CommentPollInputFromJSON,
+    CommentPollInputFromJSONTyped,
+    CommentPollInputToJSON,
+    CommentPollInputToJSONTyped,
+} from './CommentPollInput';
 import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
 import {
     GifSearchResponseImagesInnerInnerFromJSON,
@@ -187,6 +194,12 @@ export interface CreateCommentParams {
     questionValues?: { [key: string]: GifSearchResponseImagesInnerInner; };
     /**
      * 
+     * @type {CommentPollInput}
+     * @memberof CreateCommentParams
+     */
+    poll?: CommentPollInput;
+    /**
+     * 
      * @type {boolean}
      * @memberof CreateCommentParams
      */
@@ -305,6 +318,7 @@ export function CreateCommentParamsFromJSONTyped(json: any, ignoreDiscriminator:
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], GifSearchResponseImagesInnerInnerFromJSON)),
+        'poll': json['poll'] == null ? undefined : CommentPollInputFromJSON(json['poll']),
         'tos': json['tos'] == null ? undefined : json['tos'],
         'botId': json['botId'] == null ? undefined : json['botId'],
         'approved': json['approved'] == null ? undefined : json['approved'],
@@ -355,6 +369,7 @@ export function CreateCommentParamsToJSONTyped(value?: CreateCommentParams | nul
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
         'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], GifSearchResponseImagesInnerInnerToJSON)),
+        'poll': CommentPollInputToJSON(value['poll']),
         'tos': value['tos'],
         'botId': value['botId'],
         'approved': value['approved'],

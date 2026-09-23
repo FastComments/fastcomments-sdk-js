@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PollCreationMode } from './PollCreationMode';
+import {
+    PollCreationModeFromJSON,
+    PollCreationModeFromJSONTyped,
+    PollCreationModeToJSON,
+    PollCreationModeToJSONTyped,
+} from './PollCreationMode';
 import type { TOSConfig } from './TOSConfig';
 import {
     TOSConfigFromJSON,
@@ -111,6 +118,13 @@ import {
     SortDirectionsToJSON,
     SortDirectionsToJSONTyped,
 } from './SortDirections';
+import type { PollVotingMode } from './PollVotingMode';
+import {
+    PollVotingModeFromJSON,
+    PollVotingModeFromJSONTyped,
+    PollVotingModeToJSON,
+    PollVotingModeToJSONTyped,
+} from './PollVotingMode';
 import type { QuestionSubQuestionVisibility } from './QuestionSubQuestionVisibility';
 import {
     QuestionSubQuestionVisibilityFromJSON,
@@ -199,6 +213,18 @@ export interface CustomConfigParameters {
      * @memberof CustomConfigParameters
      */
     commentThreadDeleteMode?: CommentThreadDeletionMode | null;
+    /**
+     * 
+     * @type {PollCreationMode}
+     * @memberof CustomConfigParameters
+     */
+    pollCreation?: PollCreationMode | null;
+    /**
+     * 
+     * @type {PollVotingMode}
+     * @memberof CustomConfigParameters
+     */
+    pollVoting?: PollVotingMode | null;
     /**
      * 
      * @type {CommenterNameFormats}
@@ -698,6 +724,8 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'commentCountFormat': json['commentCountFormat'] == null ? undefined : json['commentCountFormat'],
         'commentHTMLRenderingMode': json['commentHTMLRenderingMode'] == null ? undefined : CommentHTMLRenderingModeFromJSON(json['commentHTMLRenderingMode']),
         'commentThreadDeleteMode': json['commentThreadDeleteMode'] == null ? undefined : CommentThreadDeletionModeFromJSON(json['commentThreadDeleteMode']),
+        'pollCreation': json['pollCreation'] == null ? undefined : PollCreationModeFromJSON(json['pollCreation']),
+        'pollVoting': json['pollVoting'] == null ? undefined : PollVotingModeFromJSON(json['pollVoting']),
         'commenterNameFormat': json['commenterNameFormat'] == null ? undefined : CommenterNameFormatsFromJSON(json['commenterNameFormat']),
         'countAboveToggle': json['countAboveToggle'] == null ? undefined : json['countAboveToggle'],
         'customCSS': json['customCSS'] == null ? undefined : json['customCSS'],
@@ -800,6 +828,8 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'commentCountFormat': value['commentCountFormat'],
         'commentHTMLRenderingMode': CommentHTMLRenderingModeToJSON(value['commentHTMLRenderingMode']),
         'commentThreadDeleteMode': CommentThreadDeletionModeToJSON(value['commentThreadDeleteMode']),
+        'pollCreation': PollCreationModeToJSON(value['pollCreation']),
+        'pollVoting': PollVotingModeToJSON(value['pollVoting']),
         'commenterNameFormat': CommenterNameFormatsToJSON(value['commenterNameFormat']),
         'countAboveToggle': value['countAboveToggle'],
         'customCSS': value['customCSS'],

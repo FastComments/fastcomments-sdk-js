@@ -10,7 +10,6 @@
 | **paymentFrequency** | **Double** |  | [optional] [default to null] |
 | **billingInfoValid** | **Boolean** |  | [optional] [default to null] |
 | **billingHandledExternally** | **Boolean** |  | [optional] [default to null] |
-| **createdBy** | **String** |  | [optional] [default to null] |
 | **isSetup** | **Boolean** |  | [optional] [default to null] |
 | **domainConfiguration** | [**List**](APIDomainConfiguration.md) |  | [optional] [default to null] |
 | **billingInfo** | [**BillingInfo**](BillingInfo.md) |  | [optional] [default to null] |

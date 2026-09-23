@@ -55,6 +55,12 @@ export interface EventLogEntry {
      * @memberof EventLogEntry
      */
     data: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventLogEntry
+     */
+    domain?: string | null;
 }
 
 /**
@@ -86,6 +92,7 @@ export function EventLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boole
         'urlId': json['urlId'],
         'broadcastId': json['broadcastId'],
         'data': json['data'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
     };
 }
 
@@ -106,6 +113,7 @@ export function EventLogEntryToJSONTyped(value?: EventLogEntry | null, ignoreDis
         'urlId': value['urlId'],
         'broadcastId': value['broadcastId'],
         'data': value['data'],
+        'domain': value['domain'],
     };
 }
 

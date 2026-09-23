@@ -13,6 +13,8 @@
 | **commentCountFormat** | **String** |  | [optional] [default to null] |
 | **commentHTMLRenderingMode** | [**CommentHTMLRenderingMode**](CommentHTMLRenderingMode.md) |  | [optional] [default to null] |
 | **commentThreadDeleteMode** | [**CommentThreadDeletionMode**](CommentThreadDeletionMode.md) |  | [optional] [default to null] |
+| **pollCreation** | [**PollCreationMode**](PollCreationMode.md) |  | [optional] [default to null] |
+| **pollVoting** | [**PollVotingMode**](PollVotingMode.md) |  | [optional] [default to null] |
 | **commenterNameFormat** | [**CommenterNameFormats**](CommenterNameFormats.md) |  | [optional] [default to null] |
 | **countAboveToggle** | **Integer** |  | [optional] [default to null] |
 | **customCSS** | **String** |  | [optional] [default to null] |

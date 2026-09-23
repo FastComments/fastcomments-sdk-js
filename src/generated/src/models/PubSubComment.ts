@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CommentPoll } from './CommentPoll';
+import {
+    CommentPollFromJSON,
+    CommentPollFromJSONTyped,
+    CommentPollToJSON,
+    CommentPollToJSONTyped,
+} from './CommentPoll';
 import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
 import {
     CommentUserBadgeInfoFromJSON,
@@ -203,6 +210,12 @@ export interface PubSubComment {
     feedbackIds?: Array<string>;
     /**
      * 
+     * @type {CommentPoll}
+     * @memberof PubSubComment
+     */
+    poll?: CommentPoll | null;
+    /**
+     * 
      * @type {number}
      * @memberof PubSubComment
      */
@@ -344,6 +357,7 @@ export function PubSubCommentFromJSONTyped(json: any, ignoreDiscriminator: boole
         'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
         'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
+        'poll': json['poll'] == null ? undefined : CommentPollFromJSON(json['poll']),
         'flagCount': json['flagCount'] == null ? undefined : json['flagCount'],
         'domain': json['domain'] == null ? undefined : json['domain'],
         'url': json['url'],
@@ -401,6 +415,7 @@ export function PubSubCommentToJSONTyped(value?: PubSubComment | null, ignoreDis
         'isSpam': value['isSpam'],
         'anonUserId': value['anonUserId'],
         'feedbackIds': value['feedbackIds'],
+        'poll': CommentPollToJSON(value['poll']),
         'flagCount': value['flagCount'],
         'domain': value['domain'],
         'url': value['url'],

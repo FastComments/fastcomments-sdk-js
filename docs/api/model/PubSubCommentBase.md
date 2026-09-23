@@ -32,6 +32,7 @@
 | **isSpam** | **Boolean** |  | [optional] [default to null] |
 | **anonUserId** | **String** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
+| **poll** | [**CommentPoll**](CommentPoll.md) |  | [optional] [default to null] |
 | **flagCount** | **Integer** |  | [optional] [default to null] |
 | **domain** | **String** |  | [optional] [default to null] |
 | **url** | **String** |  | [default to null] |

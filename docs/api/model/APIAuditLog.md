@@ -15,6 +15,10 @@
 | **description** | **String** |  | [optional] [default to null] |
 | **serverStartDate** | **Date** |  | [optional] [default to null] |
 | **objectDetails** | [**Map**](AnyType.md) | Construct a type with a set of properties K of type T | [optional] [default to null] |
+| **targetId** | **String** |  | [optional] [default to null] |
+| **targetLabel** | **String** |  | [optional] [default to null] |
+| **ua** | **String** |  | [optional] [default to null] |
+| **sIdHashed** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

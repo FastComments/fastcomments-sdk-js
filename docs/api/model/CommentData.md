@@ -27,6 +27,7 @@
 | **autoplayDelayMS** | **Long** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
 | **questionValues** | [**Map**](GifSearchResponse_images_inner_inner.md) | Construct a type with a set of properties K of type T | [optional] [default to null] |
+| **poll** | [**CommentPollInput**](CommentPollInput.md) |  | [optional] [default to null] |
 | **tos** | **Boolean** |  | [optional] [default to null] |
 | **botId** | **String** |  | [optional] [default to null] |
 

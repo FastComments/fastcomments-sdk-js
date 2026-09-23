@@ -208,6 +208,12 @@ export interface PublicComment {
      */
     isUnread?: boolean;
     /**
+     * Ids of the options the current viewer voted for on this comment's poll. Only set when polls are enabled and they have voted.
+     * @type {Array<string>}
+     * @memberof PublicComment
+     */
+    myPollVotes?: Array<string>;
+    /**
      * 
      * @type {string}
      * @memberof PublicComment
@@ -315,6 +321,7 @@ export function PublicCommentFromJSONTyped(json: any, ignoreDiscriminator: boole
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
         'approved': json['approved'] == null ? undefined : json['approved'],
         'isUnread': json['isUnread'] == null ? undefined : json['isUnread'],
+        'myPollVotes': json['myPollVotes'] == null ? undefined : json['myPollVotes'],
         'myVoteId': json['myVoteId'] == null ? undefined : json['myVoteId'],
         'isVotedDown': json['isVotedDown'] == null ? undefined : json['isVotedDown'],
         'isVotedUp': json['isVotedUp'] == null ? undefined : json['isVotedUp'],
@@ -368,6 +375,7 @@ export function PublicCommentToJSONTyped(value?: PublicComment | null, ignoreDis
         'editKey': value['editKey'],
         'approved': value['approved'],
         'isUnread': value['isUnread'],
+        'myPollVotes': value['myPollVotes'],
         'myVoteId': value['myVoteId'],
         'isVotedDown': value['isVotedDown'],
         'isVotedUp': value['isVotedUp'],

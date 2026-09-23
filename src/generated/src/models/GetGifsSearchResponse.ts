@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomConfigParameters } from './CustomConfigParameters';
-import {
-    CustomConfigParametersFromJSON,
-    CustomConfigParametersFromJSONTyped,
-    CustomConfigParametersToJSON,
-    CustomConfigParametersToJSONTyped,
-} from './CustomConfigParameters';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -34,13 +27,6 @@ import {
     GifSearchResponseImagesInnerInnerToJSON,
     GifSearchResponseImagesInnerInnerToJSONTyped,
 } from './GifSearchResponseImagesInnerInner';
-import type { APIError } from './APIError';
-import {
-    APIErrorFromJSON,
-    APIErrorFromJSONTyped,
-    APIErrorToJSON,
-    APIErrorToJSONTyped,
-} from './APIError';
 import type { GifSearchInternalError } from './GifSearchInternalError';
 import {
     GifSearchInternalErrorFromJSON,
@@ -80,42 +66,6 @@ export interface GetGifsSearchResponse {
      * @memberof GetGifsSearchResponse
      */
     code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetGifsSearchResponse
-     */
-    reason: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetGifsSearchResponse
-     */
-    secondaryCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetGifsSearchResponse
-     */
-    bannedUntil?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetGifsSearchResponse
-     */
-    maxCharacterLength?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetGifsSearchResponse
-     */
-    translatedError?: string;
-    /**
-     * 
-     * @type {CustomConfigParameters}
-     * @memberof GetGifsSearchResponse
-     */
-    customConfig?: CustomConfigParameters;
 }
 
 
@@ -127,7 +77,6 @@ export function instanceOfGetGifsSearchResponse(value: object): value is GetGifs
     if (!('images' in value) || value['images'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
     return true;
 }
 
@@ -144,12 +93,6 @@ export function GetGifsSearchResponseFromJSONTyped(json: any, ignoreDiscriminato
         'images': json['images'],
         'status': APIStatusFromJSON(json['status']),
         'code': json['code'],
-        'reason': json['reason'],
-        'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
-        'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
-        'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
-        'translatedError': json['translatedError'] == null ? undefined : json['translatedError'],
-        'customConfig': json['customConfig'] == null ? undefined : CustomConfigParametersFromJSON(json['customConfig']),
     };
 }
 
@@ -167,12 +110,6 @@ export function GetGifsSearchResponseToJSONTyped(value?: GetGifsSearchResponse |
         'images': value['images'],
         'status': APIStatusToJSON(value['status']),
         'code': value['code'],
-        'reason': value['reason'],
-        'secondaryCode': value['secondaryCode'],
-        'bannedUntil': value['bannedUntil'],
-        'maxCharacterLength': value['maxCharacterLength'],
-        'translatedError': value['translatedError'],
-        'customConfig': CustomConfigParametersToJSON(value['customConfig']),
     };
 }
 

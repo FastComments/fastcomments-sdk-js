@@ -40,7 +40,8 @@ export enum LiveEventType {
     updated_ticket_assignment = 'updated-ticket-assignment',
     deleted_ticket = 'deleted-ticket',
     page_react = 'page-react',
-    question_result = 'question-result'
+    question_result = 'question-result',
+    poll_update = 'poll-update'
 }
 
 

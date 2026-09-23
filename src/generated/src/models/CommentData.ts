@@ -27,6 +27,13 @@ import {
     CommentUserMentionInfoToJSON,
     CommentUserMentionInfoToJSONTyped,
 } from './CommentUserMentionInfo';
+import type { CommentPollInput } from './CommentPollInput';
+import {
+    CommentPollInputFromJSON,
+    CommentPollInputFromJSONTyped,
+    CommentPollInputToJSON,
+    CommentPollInputToJSONTyped,
+} from './CommentPollInput';
 import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
 import {
     GifSearchResponseImagesInnerInnerFromJSON,
@@ -187,6 +194,12 @@ export interface CommentData {
     questionValues?: { [key: string]: GifSearchResponseImagesInnerInner; };
     /**
      * 
+     * @type {CommentPollInput}
+     * @memberof CommentData
+     */
+    poll?: CommentPollInput;
+    /**
+     * 
      * @type {boolean}
      * @memberof CommentData
      */
@@ -244,6 +257,7 @@ export function CommentDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
         'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], GifSearchResponseImagesInnerInnerFromJSON)),
+        'poll': json['poll'] == null ? undefined : CommentPollInputFromJSON(json['poll']),
         'tos': json['tos'] == null ? undefined : json['tos'],
         'botId': json['botId'] == null ? undefined : json['botId'],
     };
@@ -284,6 +298,7 @@ export function CommentDataToJSONTyped(value?: CommentData | null, ignoreDiscrim
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
         'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], GifSearchResponseImagesInnerInnerToJSON)),
+        'poll': CommentPollInputToJSON(value['poll']),
         'tos': value['tos'],
         'botId': value['botId'],
     };
