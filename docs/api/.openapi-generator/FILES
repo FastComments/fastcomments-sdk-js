@@ -87,8 +87,10 @@ model/CommentLogType.md
 model/CommentPoll.md
 model/CommentPollInput.md
 model/CommentPollOption.md
+model/CommentPollOptionInput.md
 model/CommentPollPatch.md
 model/CommentPollPatch_options_inner.md
+model/CommentPollPutInput.md
 model/CommentQuestionResultsRenderingType.md
 model/CommentQuestionsRequired.md
 model/CommentTextUpdateRequest.md

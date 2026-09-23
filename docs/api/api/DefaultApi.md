@@ -2090,7 +2090,7 @@ No authorization required
 
 
 
-    The individual votes behind one poll&#39;s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.
+    The individual votes behind one poll&#39;s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll&#39;s privacy: an anonymous poll&#39;s votes cannot be read (poll-anonymous), here or by id.
 
 ### Parameters
 
@@ -2934,7 +2934,7 @@ No authorization required
 
 
 
-    Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT.
+    Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.
 
 ### Parameters
 
@@ -3014,11 +3014,11 @@ No authorization required
 
 <a name="putPoll"></a>
 # **putPoll**
-> SavePollResponse putPoll(tenantId, commentId, CommentPollInput, replaceVotes)
+> SavePollResponse putPoll(tenantId, commentId, CommentPollPutInput, replaceVotes)
 
 
 
-    Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes&#x3D;true to confirm that when the comment already has a poll.
+    Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes&#x3D;true.
 
 ### Parameters
 
@@ -3026,7 +3026,7 @@ No authorization required
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **String**|  | [default to null] |
 | **commentId** | **String**|  | [default to null] |
-| **CommentPollInput** | [**CommentPollInput**](../model/CommentPollInput.md)|  | |
+| **CommentPollPutInput** | [**CommentPollPutInput**](../model/CommentPollPutInput.md)|  | |
 | **replaceVotes** | **Boolean**|  | [optional] [default to null] |
 
 ### Return type

@@ -78,7 +78,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getPendingWebhookEvents**](Apis/DefaultApi.md#getpendingwebhookevents) | **GET** /api/v1/pending-webhook-events |  |
 *DefaultApi* | [**getPoll**](Apis/DefaultApi.md#getpoll) | **GET** /api/v1/polls/{commentId} |  |
 *DefaultApi* | [**getPollVote**](Apis/DefaultApi.md#getpollvote) | **GET** /api/v1/poll-votes/{id} |  |
-*DefaultApi* | [**getPollVotes**](Apis/DefaultApi.md#getpollvotes) | **GET** /api/v1/poll-votes | The individual votes behind one poll's tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has. |
+*DefaultApi* | [**getPollVotes**](Apis/DefaultApi.md#getpollvotes) | **GET** /api/v1/poll-votes | The individual votes behind one poll's tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll's privacy: an anonymous poll's votes cannot be read (poll-anonymous), here or by id. |
 *DefaultApi* | [**getQuestionConfig**](Apis/DefaultApi.md#getquestionconfig) | **GET** /api/v1/question-configs/{id} |  |
 *DefaultApi* | [**getQuestionConfigs**](Apis/DefaultApi.md#getquestionconfigs) | **GET** /api/v1/question-configs |  |
 *DefaultApi* | [**getQuestionResult**](Apis/DefaultApi.md#getquestionresult) | **GET** /api/v1/question-results/{id} |  |
@@ -109,10 +109,10 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**patchDomainConfig**](Apis/DefaultApi.md#patchdomainconfig) | **PATCH** /api/v1/domain-configs/{domainToUpdate} |  |
 *DefaultApi* | [**patchHashTag**](Apis/DefaultApi.md#patchhashtag) | **PATCH** /api/v1/hash-tags/{tag} |  |
 *DefaultApi* | [**patchPage**](Apis/DefaultApi.md#patchpage) | **PATCH** /api/v1/pages/{id} |  |
-*DefaultApi* | [**patchPoll**](Apis/DefaultApi.md#patchpoll) | **PATCH** /api/v1/polls/{commentId} | Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT. |
+*DefaultApi* | [**patchPoll**](Apis/DefaultApi.md#patchpoll) | **PATCH** /api/v1/polls/{commentId} | Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list. |
 *DefaultApi* | [**patchSSOUser**](Apis/DefaultApi.md#patchssouser) | **PATCH** /api/v1/sso-users/{id} |  |
 *DefaultApi* | [**putDomainConfig**](Apis/DefaultApi.md#putdomainconfig) | **PUT** /api/v1/domain-configs/{domainToUpdate} |  |
-*DefaultApi* | [**putPoll**](Apis/DefaultApi.md#putpoll) | **PUT** /api/v1/polls/{commentId} | Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll. |
+*DefaultApi* | [**putPoll**](Apis/DefaultApi.md#putpoll) | **PUT** /api/v1/polls/{commentId} | Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true. |
 *DefaultApi* | [**putSSOUser**](Apis/DefaultApi.md#putssouser) | **PUT** /api/v1/sso-users/{id} |  |
 *DefaultApi* | [**renderEmailTemplate**](Apis/DefaultApi.md#renderemailtemplate) | **POST** /api/v1/email-templates/render |  |
 *DefaultApi* | [**replaceTenantPackage**](Apis/DefaultApi.md#replacetenantpackage) | **PUT** /api/v1/tenant-packages/{id} |  |
@@ -319,8 +319,10 @@ All URIs are relative to *https://fastcomments.com*
  - [CommentPoll](./model/CommentPoll.md)
  - [CommentPollInput](./model/CommentPollInput.md)
  - [CommentPollOption](./model/CommentPollOption.md)
+ - [CommentPollOptionInput](./model/CommentPollOptionInput.md)
  - [CommentPollPatch](./model/CommentPollPatch.md)
  - [CommentPollPatch_options_inner](./model/CommentPollPatch_options_inner.md)
+ - [CommentPollPutInput](./model/CommentPollPutInput.md)
  - [CommentQuestionResultsRenderingType](./model/CommentQuestionResultsRenderingType.md)
  - [CommentQuestionsRequired](./model/CommentQuestionsRequired.md)
  - [CommentTextUpdateRequest](./model/CommentTextUpdateRequest.md)
