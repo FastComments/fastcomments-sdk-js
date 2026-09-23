@@ -10041,6 +10041,54 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"CommentPollOptionInput": {
+				"properties": {
+					"id": {
+						"type": "string",
+						"nullable": true
+					},
+					"label": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"label"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommentPollPutInput": {
+				"properties": {
+					"question": {
+						"type": "string"
+					},
+					"options": {
+						"items": {
+							"$ref": "#/components/schemas/CommentPollOptionInput"
+						},
+						"type": "array"
+					},
+					"closesAt": {
+						"type": "string",
+						"nullable": true
+					},
+					"privacy": {
+						"type": "integer",
+						"format": "int32",
+						"nullable": true
+					},
+					"requireVoteToSeeResults": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"question",
+					"options"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"CommentPollPatch": {
 				"properties": {
 					"question": {
@@ -23281,7 +23329,7 @@
 						}
 					}
 				},
-				"description": "Attach a poll to an existing comment, or replace the one it already has.\n\nReplacing is destructive: the new options get new ids, so the tallies reset to zero and the votes\nalready cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll.",
+				"description": "Attach a poll to a comment, or set the full state of the poll it already has.\n\nOptions are matched by id: an option sent with the id of an existing option keeps its votes (and takes the\nnew label and position), an option sent without an id is added, and existing options left out of the list\nare removed along with the votes cast on them.\n\nKeeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true.",
 				"security": [
 					{
 						"api_key": []
@@ -23318,7 +23366,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/CommentPollInput"
+								"$ref": "#/components/schemas/CommentPollPutInput"
 							}
 						}
 					}
@@ -23348,7 +23396,7 @@
 						}
 					}
 				},
-				"description": "Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it,\nor change who may see the voters. Options are addressed by id - adding or removing them is a PUT.",
+				"description": "Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it,\nor change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.",
 				"security": [
 					{
 						"api_key": []
@@ -23458,7 +23506,7 @@
 						}
 					}
 				},
-				"description": "The individual votes behind one poll's tallies, oldest first.\n\nA poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That\nkeeps every query on the indexes the collection already has.",
+				"description": "The individual votes behind one poll's tallies, oldest first.\n\nA poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That\nkeeps every query on the indexes the collection already has.\n\nObeys the poll's privacy: an anonymous poll's votes cannot be read (poll-anonymous), here or by id.",
 				"security": [
 					{
 						"api_key": []

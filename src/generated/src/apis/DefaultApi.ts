@@ -43,8 +43,8 @@ import type {
   ChangeTicketStateBody,
   ChangeTicketStateResponse,
   CombineQuestionResultsWithCommentsResponse,
-  CommentPollInput,
   CommentPollPatch,
+  CommentPollPutInput,
   CreateAPIPageData,
   CreateAPISSOUserData,
   CreateAPIUserSubscriptionData,
@@ -225,10 +225,10 @@ import {
     ChangeTicketStateResponseToJSON,
     CombineQuestionResultsWithCommentsResponseFromJSON,
     CombineQuestionResultsWithCommentsResponseToJSON,
-    CommentPollInputFromJSON,
-    CommentPollInputToJSON,
     CommentPollPatchFromJSON,
     CommentPollPatchToJSON,
+    CommentPollPutInputFromJSON,
+    CommentPollPutInputToJSON,
     CreateAPIPageDataFromJSON,
     CreateAPIPageDataToJSON,
     CreateAPISSOUserDataFromJSON,
@@ -1125,7 +1125,7 @@ export interface PutDomainConfigRequest {
 export interface PutPollRequest {
     tenantId: string;
     commentId: string;
-    commentPollInput: CommentPollInput;
+    commentPollPutInput: CommentPollPutInput;
     replaceVotes?: boolean;
 }
 
@@ -2375,7 +2375,7 @@ export interface DefaultApiInterface {
     getPollVote(requestParameters: GetPollVoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPollVoteResponse>;
 
     /**
-     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.
+     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll\'s privacy: an anonymous poll\'s votes cannot be read (poll-anonymous), here or by id.
      * @param {string} tenantId 
      * @param {string} commentId 
      * @param {string} [voterId] 
@@ -2388,7 +2388,7 @@ export interface DefaultApiInterface {
     getPollVotesRaw(requestParameters: GetPollVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPollVotesResponse>>;
 
     /**
-     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.
+     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll\'s privacy: an anonymous poll\'s votes cannot be read (poll-anonymous), here or by id.
      */
     getPollVotes(requestParameters: GetPollVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPollVotesResponse>;
 
@@ -2844,7 +2844,7 @@ export interface DefaultApiInterface {
     patchPage(requestParameters: PatchPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PatchPageAPIResponse>;
 
     /**
-     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT.
+     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.
      * @param {string} tenantId 
      * @param {string} commentId 
      * @param {CommentPollPatch} commentPollPatch 
@@ -2855,7 +2855,7 @@ export interface DefaultApiInterface {
     patchPollRaw(requestParameters: PatchPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePollResponse>>;
 
     /**
-     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT.
+     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.
      */
     patchPoll(requestParameters: PatchPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePollResponse>;
 
@@ -2891,10 +2891,10 @@ export interface DefaultApiInterface {
     putDomainConfig(requestParameters: PutDomainConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PutDomainConfigResponse>;
 
     /**
-     * Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll.
+     * Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true.
      * @param {string} tenantId 
      * @param {string} commentId 
-     * @param {CommentPollInput} commentPollInput 
+     * @param {CommentPollPutInput} commentPollPutInput 
      * @param {boolean} [replaceVotes] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2903,7 +2903,7 @@ export interface DefaultApiInterface {
     putPollRaw(requestParameters: PutPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePollResponse>>;
 
     /**
-     * Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll.
+     * Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true.
      */
     putPoll(requestParameters: PutPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePollResponse>;
 
@@ -6923,7 +6923,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.
+     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll\'s privacy: an anonymous poll\'s votes cannot be read (poll-anonymous), here or by id.
      */
     async getPollVotesRaw(requestParameters: GetPollVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPollVotesResponse>> {
         if (requestParameters['tenantId'] == null) {
@@ -6979,7 +6979,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.
+     * The individual votes behind one poll\'s tallies, oldest first.  A poll belongs to a comment, so votes are always read one poll at a time - commentId is required. That keeps every query on the indexes the collection already has.  Obeys the poll\'s privacy: an anonymous poll\'s votes cannot be read (poll-anonymous), here or by id.
      */
     async getPollVotes(requestParameters: GetPollVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPollVotesResponse> {
         const response = await this.getPollVotesRaw(requestParameters, initOverrides);
@@ -8467,7 +8467,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT.
+     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.
      */
     async patchPollRaw(requestParameters: PatchPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePollResponse>> {
         if (requestParameters['tenantId'] == null) {
@@ -8517,7 +8517,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - adding or removing them is a PUT.
+     * Edit a poll in place, keeping its tallies: change the question, relabel an option, close or reopen it, or change who may see the voters. Options are addressed by id - to add, remove or reorder them, PUT the full list.
      */
     async patchPoll(requestParameters: PatchPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePollResponse> {
         const response = await this.patchPollRaw(requestParameters, initOverrides);
@@ -8641,7 +8641,7 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
-     * Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll.
+     * Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true.
      */
     async putPollRaw(requestParameters: PutPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePollResponse>> {
         if (requestParameters['tenantId'] == null) {
@@ -8658,10 +8658,10 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             );
         }
 
-        if (requestParameters['commentPollInput'] == null) {
+        if (requestParameters['commentPollPutInput'] == null) {
             throw new runtime.RequiredError(
-                'commentPollInput',
-                'Required parameter "commentPollInput" was null or undefined when calling putPoll().'
+                'commentPollPutInput',
+                'Required parameter "commentPollPutInput" was null or undefined when calling putPoll().'
             );
         }
 
@@ -8688,14 +8688,14 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: CommentPollInputToJSON(requestParameters['commentPollInput']),
+            body: CommentPollPutInputToJSON(requestParameters['commentPollPutInput']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SavePollResponseFromJSON(jsonValue));
     }
 
     /**
-     * Attach a poll to an existing comment, or replace the one it already has.  Replacing is destructive: the new options get new ids, so the tallies reset to zero and the votes already cast are deleted. Pass replaceVotes=true to confirm that when the comment already has a poll.
+     * Attach a poll to a comment, or set the full state of the poll it already has.  Options are matched by id: an option sent with the id of an existing option keeps its votes (and takes the new label and position), an option sent without an id is added, and existing options left out of the list are removed along with the votes cast on them.  Keeping no existing option ids on a poll that has votes deletes all of them, so that needs replaceVotes=true.
      */
     async putPoll(requestParameters: PutPollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePollResponse> {
         const response = await this.putPollRaw(requestParameters, initOverrides);

@@ -92,8 +92,10 @@ src/models/CommentLogType.ts
 src/models/CommentPoll.ts
 src/models/CommentPollInput.ts
 src/models/CommentPollOption.ts
+src/models/CommentPollOptionInput.ts
 src/models/CommentPollPatch.ts
 src/models/CommentPollPatchOptionsInner.ts
+src/models/CommentPollPutInput.ts
 src/models/CommentQuestionResultsRenderingType.ts
 src/models/CommentQuestionsRequired.ts
 src/models/CommentTextUpdateRequest.ts
