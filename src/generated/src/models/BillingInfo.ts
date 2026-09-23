@@ -67,6 +67,12 @@ export interface BillingInfo {
      * @memberof BillingInfo
      */
     email?: string;
+    /**
+     * VAT / Tax ID for invoices. Only persisted once Stripe has accepted it.
+     * @type {string}
+     * @memberof BillingInfo
+     */
+    vatId?: string | null;
 }
 
 /**
@@ -100,6 +106,7 @@ export function BillingInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'country': json['country'],
         'currency': json['currency'] == null ? undefined : json['currency'],
         'email': json['email'] == null ? undefined : json['email'],
+        'vatId': json['vatId'] == null ? undefined : json['vatId'],
     };
 }
 
@@ -122,6 +129,7 @@ export function BillingInfoToJSONTyped(value?: BillingInfo | null, ignoreDiscrim
         'country': value['country'],
         'currency': value['currency'],
         'email': value['email'],
+        'vatId': value['vatId'],
     };
 }
 

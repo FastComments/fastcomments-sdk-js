@@ -13,6 +13,8 @@
 | **vote** | [**PubSubVote**](PubSubVote.md) |  | [optional] [default to null] |
 | **comment** | [**PubSubComment**](PubSubComment.md) |  | [optional] [default to null] |
 | **feedPost** | [**FeedPost**](FeedPost.md) |  | [optional] [default to null] |
+| **commentId** | **String** |  | [optional] [default to null] |
+| **poll** | [**Pick_CommentPoll.options-or-totalVotes-or-closesAt_**](Pick_CommentPoll.options-or-totalVotes-or-closesAt_.md) |  | [optional] [default to null] |
 | **extraInfo** | [**LiveEvent_extraInfo**](LiveEvent_extraInfo.md) |  | [optional] [default to null] |
 | **config** | [**Object**](.md) |  | [optional] [default to null] |
 | **isClosed** | **Boolean** |  | [optional] [default to null] |

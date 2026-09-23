@@ -28,6 +28,12 @@ import {
  */
 export interface GetTranslationsResponse {
     /**
+     * The locale the translations were resolved for. Clients use it to set text direction.
+     * @type {string}
+     * @memberof GetTranslationsResponse
+     */
+    locale: string;
+    /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
      * @memberof GetTranslationsResponse
@@ -47,6 +53,7 @@ export interface GetTranslationsResponse {
  * Check if a given object implements the GetTranslationsResponse interface.
  */
 export function instanceOfGetTranslationsResponse(value: object): value is GetTranslationsResponse {
+    if (!('locale' in value) || value['locale'] === undefined) return false;
     if (!('translations' in value) || value['translations'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
@@ -62,6 +69,7 @@ export function GetTranslationsResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'locale': json['locale'],
         'translations': json['translations'],
         'status': APIStatusFromJSON(json['status']),
     };
@@ -78,6 +86,7 @@ export function GetTranslationsResponseToJSONTyped(value?: GetTranslationsRespon
 
     return {
         
+        'locale': value['locale'],
         'translations': value['translations'],
         'status': APIStatusToJSON(value['status']),
     };

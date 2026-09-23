@@ -9,6 +9,7 @@
 | **urlId** | **String** |  | [default to null] |
 | **broadcastId** | **String** |  | [default to null] |
 | **data** | **String** |  | [default to null] |
+| **domain** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

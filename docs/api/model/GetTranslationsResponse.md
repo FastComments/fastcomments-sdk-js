@@ -3,6 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+| **locale** | **String** | The locale the translations were resolved for. Clients use it to set text direction. | [default to null] |
 | **translations** | **Map** | Construct a type with a set of properties K of type T | [default to null] |
 | **status** | [**APIStatus**](APIStatus.md) |  | [default to null] |
 

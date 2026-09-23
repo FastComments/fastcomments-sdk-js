@@ -78,12 +78,6 @@ export interface UpdateTenantBody {
     billingHandledExternally?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof UpdateTenantBody
-     */
-    createdBy?: string;
-    /**
-     * 
      * @type {boolean}
      * @memberof UpdateTenantBody
      */
@@ -204,7 +198,6 @@ export function UpdateTenantBodyFromJSONTyped(json: any, ignoreDiscriminator: bo
         'paymentFrequency': json['paymentFrequency'] == null ? undefined : json['paymentFrequency'],
         'billingInfoValid': json['billingInfoValid'] == null ? undefined : json['billingInfoValid'],
         'billingHandledExternally': json['billingHandledExternally'] == null ? undefined : json['billingHandledExternally'],
-        'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'isSetup': json['isSetup'] == null ? undefined : json['isSetup'],
         'domainConfiguration': json['domainConfiguration'] == null ? undefined : ((json['domainConfiguration'] as Array<any>).map(APIDomainConfigurationFromJSON)),
         'billingInfo': json['billingInfo'] == null ? undefined : BillingInfoFromJSON(json['billingInfo']),
@@ -242,7 +235,6 @@ export function UpdateTenantBodyToJSONTyped(value?: UpdateTenantBody | null, ign
         'paymentFrequency': value['paymentFrequency'],
         'billingInfoValid': value['billingInfoValid'],
         'billingHandledExternally': value['billingHandledExternally'],
-        'createdBy': value['createdBy'],
         'isSetup': value['isSetup'],
         'domainConfiguration': value['domainConfiguration'] == null ? undefined : ((value['domainConfiguration'] as Array<any>).map(APIDomainConfigurationToJSON)),
         'billingInfo': BillingInfoToJSON(value['billingInfo']),

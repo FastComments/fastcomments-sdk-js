@@ -211,6 +211,12 @@ export interface CommentLogData {
     reason?: RepeatCommentCheckIgnoredReason;
     /**
      * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    skipReason?: string;
+    /**
+     * 
      * @type {any}
      * @memberof CommentLogData
      */
@@ -379,6 +385,7 @@ export function CommentLogDataFromJSONTyped(json: any, ignoreDiscriminator: bool
         'votesDownAfter': json['votesDownAfter'] == null ? undefined : json['votesDownAfter'],
         'repeatAction': json['repeatAction'] == null ? undefined : RepeatCommentHandlingActionFromJSON(json['repeatAction']),
         'reason': json['reason'] == null ? undefined : RepeatCommentCheckIgnoredReasonFromJSON(json['reason']),
+        'skipReason': json['skipReason'] == null ? undefined : json['skipReason'],
         'otherData': json['otherData'] == null ? undefined : json['otherData'],
         'spamBefore': json['spamBefore'] == null ? undefined : json['spamBefore'],
         'spamAfter': json['spamAfter'] == null ? undefined : json['spamAfter'],
@@ -440,6 +447,7 @@ export function CommentLogDataToJSONTyped(value?: CommentLogData | null, ignoreD
         'votesDownAfter': value['votesDownAfter'],
         'repeatAction': RepeatCommentHandlingActionToJSON(value['repeatAction']),
         'reason': RepeatCommentCheckIgnoredReasonToJSON(value['reason']),
+        'skipReason': value['skipReason'],
         'otherData': value['otherData'],
         'spamBefore': value['spamBefore'],
         'spamAfter': value['spamAfter'],

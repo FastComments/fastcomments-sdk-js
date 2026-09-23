@@ -186,6 +186,12 @@ export interface APITenant {
     hasAuditing?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof APITenant
+     */
+    hasDebranding?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof APITenant
      */
@@ -257,6 +263,7 @@ export function APITenantFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'sendProfaneToSpam': json['sendProfaneToSpam'] == null ? undefined : json['sendProfaneToSpam'],
         'hasFlexPricing': json['hasFlexPricing'] == null ? undefined : json['hasFlexPricing'],
         'hasAuditing': json['hasAuditing'] == null ? undefined : json['hasAuditing'],
+        'hasDebranding': json['hasDebranding'] == null ? undefined : json['hasDebranding'],
         'flexLastBilledAmount': json['flexLastBilledAmount'] == null ? undefined : json['flexLastBilledAmount'],
         'deAnonIpAddr': json['deAnonIpAddr'] == null ? undefined : json['deAnonIpAddr'],
         'meta': json['meta'] == null ? undefined : json['meta'],
@@ -299,6 +306,7 @@ export function APITenantToJSONTyped(value?: APITenant | null, ignoreDiscriminat
         'sendProfaneToSpam': value['sendProfaneToSpam'],
         'hasFlexPricing': value['hasFlexPricing'],
         'hasAuditing': value['hasAuditing'],
+        'hasDebranding': value['hasDebranding'],
         'flexLastBilledAmount': value['flexLastBilledAmount'],
         'deAnonIpAddr': value['deAnonIpAddr'],
         'meta': value['meta'],

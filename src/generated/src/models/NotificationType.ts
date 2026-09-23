@@ -30,7 +30,9 @@ export enum NotificationType {
     NUMBER_81 = 81,
     NUMBER_82 = 82,
     NUMBER_9 = 9,
-    NUMBER_10 = 10
+    NUMBER_10 = 10,
+    NUMBER_11 = 11,
+    NUMBER_12 = 12
 }
 
 

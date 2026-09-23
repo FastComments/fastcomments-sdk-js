@@ -33,6 +33,7 @@
 | **editKey** | **String** |  | [optional] [default to null] |
 | **approved** | **Boolean** |  | [optional] [default to null] |
 | **isUnread** | **Boolean** |  | [optional] [default to null] |
+| **myPollVotes** | **List** | Ids of the options the current viewer voted for on this comment&#39;s poll. Only set when polls are enabled and they have voted. | [optional] [default to null] |
 | **myVoteId** | **String** |  | [optional] [default to null] |
 | **isVotedDown** | **Boolean** |  | [optional] [default to null] |
 | **isVotedUp** | **Boolean** |  | [optional] [default to null] |

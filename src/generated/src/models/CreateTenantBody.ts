@@ -84,12 +84,6 @@ export interface CreateTenantBody {
     billingHandledExternally?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof CreateTenantBody
-     */
-    createdBy?: string;
-    /**
-     * 
      * @type {boolean}
      * @memberof CreateTenantBody
      */
@@ -201,7 +195,6 @@ export function CreateTenantBodyFromJSONTyped(json: any, ignoreDiscriminator: bo
         'paymentFrequency': json['paymentFrequency'] == null ? undefined : json['paymentFrequency'],
         'billingInfoValid': json['billingInfoValid'] == null ? undefined : json['billingInfoValid'],
         'billingHandledExternally': json['billingHandledExternally'] == null ? undefined : json['billingHandledExternally'],
-        'createdBy': json['createdBy'] == null ? undefined : json['createdBy'],
         'isSetup': json['isSetup'] == null ? undefined : json['isSetup'],
         'billingInfo': json['billingInfo'] == null ? undefined : BillingInfoFromJSON(json['billingInfo']),
         'stripeCustomerId': json['stripeCustomerId'] == null ? undefined : json['stripeCustomerId'],
@@ -238,7 +231,6 @@ export function CreateTenantBodyToJSONTyped(value?: CreateTenantBody | null, ign
         'paymentFrequency': value['paymentFrequency'],
         'billingInfoValid': value['billingInfoValid'],
         'billingHandledExternally': value['billingHandledExternally'],
-        'createdBy': value['createdBy'],
         'isSetup': value['isSetup'],
         'billingInfo': BillingInfoToJSON(value['billingInfo']),
         'stripeCustomerId': value['stripeCustomerId'],

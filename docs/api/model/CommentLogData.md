@@ -31,6 +31,7 @@
 | **votesDownAfter** | **Double** |  | [optional] [default to null] |
 | **repeatAction** | [**RepeatCommentHandlingAction**](RepeatCommentHandlingAction.md) |  | [optional] [default to null] |
 | **reason** | [**RepeatCommentCheckIgnoredReason**](RepeatCommentCheckIgnoredReason.md) |  | [optional] [default to null] |
+| **skipReason** | **String** |  | [optional] [default to null] |
 | **otherData** | [**oas_any_type_not_mapped**](.md) |  | [optional] [default to null] |
 | **spamBefore** | **Boolean** |  | [optional] [default to null] |
 | **spamAfter** | **Boolean** |  | [optional] [default to null] |

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomConfigParameters } from './CustomConfigParameters';
-import {
-    CustomConfigParametersFromJSON,
-    CustomConfigParametersFromJSONTyped,
-    CustomConfigParametersToJSON,
-    CustomConfigParametersToJSONTyped,
-} from './CustomConfigParameters';
 import type { UserNotificationWriteResponse } from './UserNotificationWriteResponse';
 import {
     UserNotificationWriteResponseFromJSON,
@@ -34,13 +27,6 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
-import type { APIError } from './APIError';
-import {
-    APIErrorFromJSON,
-    APIErrorFromJSONTyped,
-    APIErrorToJSON,
-    APIErrorToJSONTyped,
-} from './APIError';
 import type { IgnoredResponse } from './IgnoredResponse';
 import {
     IgnoredResponseFromJSON,
@@ -79,48 +65,6 @@ export interface UpdateUserNotificationStatusResponse {
      * @memberof UpdateUserNotificationStatusResponse
      */
     note: UpdateUserNotificationStatusResponseNoteEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    reason: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    secondaryCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    bannedUntil?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    maxCharacterLength?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    translatedError?: string;
-    /**
-     * 
-     * @type {CustomConfigParameters}
-     * @memberof UpdateUserNotificationStatusResponse
-     */
-    customConfig?: CustomConfigParameters;
 }
 
 /**
@@ -141,8 +85,6 @@ export function instanceOfUpdateUserNotificationStatusResponse(value: object): v
     if (!('matchedCount' in value) || value['matchedCount'] === undefined) return false;
     if (!('modifiedCount' in value) || value['modifiedCount'] === undefined) return false;
     if (!('note' in value) || value['note'] === undefined) return false;
-    if (!('reason' in value) || value['reason'] === undefined) return false;
-    if (!('code' in value) || value['code'] === undefined) return false;
     return true;
 }
 
@@ -160,13 +102,6 @@ export function UpdateUserNotificationStatusResponseFromJSONTyped(json: any, ign
         'matchedCount': json['matchedCount'],
         'modifiedCount': json['modifiedCount'],
         'note': json['note'],
-        'reason': json['reason'],
-        'code': json['code'],
-        'secondaryCode': json['secondaryCode'] == null ? undefined : json['secondaryCode'],
-        'bannedUntil': json['bannedUntil'] == null ? undefined : json['bannedUntil'],
-        'maxCharacterLength': json['maxCharacterLength'] == null ? undefined : json['maxCharacterLength'],
-        'translatedError': json['translatedError'] == null ? undefined : json['translatedError'],
-        'customConfig': json['customConfig'] == null ? undefined : CustomConfigParametersFromJSON(json['customConfig']),
     };
 }
 
@@ -185,13 +120,6 @@ export function UpdateUserNotificationStatusResponseToJSONTyped(value?: UpdateUs
         'matchedCount': value['matchedCount'],
         'modifiedCount': value['modifiedCount'],
         'note': value['note'],
-        'reason': value['reason'],
-        'code': value['code'],
-        'secondaryCode': value['secondaryCode'],
-        'bannedUntil': value['bannedUntil'],
-        'maxCharacterLength': value['maxCharacterLength'],
-        'translatedError': value['translatedError'],
-        'customConfig': CustomConfigParametersToJSON(value['customConfig']),
     };
 }
 

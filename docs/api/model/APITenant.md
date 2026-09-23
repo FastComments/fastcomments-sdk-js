@@ -28,6 +28,7 @@
 | **sendProfaneToSpam** | **Boolean** |  | [optional] [default to null] |
 | **hasFlexPricing** | **Boolean** |  | [optional] [default to null] |
 | **hasAuditing** | **Boolean** |  | [optional] [default to null] |
+| **hasDebranding** | **Boolean** |  | [optional] [default to null] |
 | **flexLastBilledAmount** | **Double** |  | [optional] [default to null] |
 | **deAnonIpAddr** | **Double** |  | [optional] [default to null] |
 | **meta** | **Map** | Construct a type with a set of properties K of type T | [optional] [default to null] |

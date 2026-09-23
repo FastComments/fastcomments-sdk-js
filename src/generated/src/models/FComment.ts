@@ -34,6 +34,13 @@ import {
     FCommentMetaToJSON,
     FCommentMetaToJSONTyped,
 } from './FCommentMeta';
+import type { CommentPoll } from './CommentPoll';
+import {
+    CommentPollFromJSON,
+    CommentPollFromJSONTyped,
+    CommentPollToJSON,
+    CommentPollToJSONTyped,
+} from './CommentPoll';
 import type { CommentLogEntry } from './CommentLogEntry';
 import {
     CommentLogEntryFromJSON,
@@ -453,6 +460,12 @@ export interface FComment {
     feedbackIds?: Array<string>;
     /**
      * 
+     * @type {CommentPoll}
+     * @memberof FComment
+     */
+    poll?: CommentPoll | null;
+    /**
+     * 
      * @type {Array<CommentLogEntry>}
      * @memberof FComment
      */
@@ -589,6 +602,7 @@ export function FCommentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'autoplayJobId': json['autoplayJobId'] == null ? undefined : json['autoplayJobId'],
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
+        'poll': json['poll'] == null ? undefined : CommentPollFromJSON(json['poll']),
         'logs': json['logs'] == null ? undefined : ((json['logs'] as Array<any>).map(CommentLogEntryFromJSON)),
         'groupIds': json['groupIds'] == null ? undefined : json['groupIds'],
         'viewCount': json['viewCount'] == null ? undefined : json['viewCount'],
@@ -676,6 +690,7 @@ export function FCommentToJSONTyped(value?: FComment | null, ignoreDiscriminator
         'autoplayJobId': value['autoplayJobId'],
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
+        'poll': CommentPollToJSON(value['poll']),
         'logs': value['logs'] == null ? undefined : ((value['logs'] as Array<any>).map(CommentLogEntryToJSON)),
         'groupIds': value['groupIds'],
         'viewCount': value['viewCount'],
