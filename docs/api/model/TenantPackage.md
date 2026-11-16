@@ -8,8 +8,11 @@
 | **tenantId** | **String** |  | [default to null] |
 | **createdAt** | **Date** |  | [default to null] |
 | **templateId** | **String** |  | [optional] [default to null] |
-| **monthlyCostUSD** | **Double** |  | [default to null] |
+| **monthlyCostUSD** | **Double** | Always the USD list price, also on regionally priced tenants (commissions and plan comparisons read it). | [default to null] |
 | **yearlyCostUSD** | **Double** |  | [default to null] |
+| **pricingCurrency** | **String** | Regional prices the tenant is charged, when pricingCurrency is set; the Stripe plan ids below are then in that currency. | [optional] [default to null] |
+| **monthlyCostLocal** | **Double** |  | [optional] [default to null] |
+| **yearlyCostLocal** | **Double** |  | [optional] [default to null] |
 | **monthlyStripePlanId** | **String** |  | [default to null] |
 | **yearlyStripePlanId** | **String** |  | [default to null] |
 | **maxMonthlyPageLoads** | **Double** |  | [default to null] |
@@ -59,6 +62,7 @@
 | **flexSSOAdminUnit** | **Double** |  | [optional] [default to null] |
 | **flexSSOModeratorCostCents** | **Double** |  | [optional] [default to null] |
 | **flexSSOModeratorUnit** | **Double** |  | [optional] [default to null] |
+| **flexFreeModerators** | **Double** |  | [optional] [default to null] |
 | **isSSOBillingMonthlyActiveUsers** | **Boolean** |  | [optional] [default to null] |
 | **hasAIAgents** | **Boolean** |  | [optional] [default to null] |
 | **maxAIAgents** | **Double** |  | [optional] [default to null] |

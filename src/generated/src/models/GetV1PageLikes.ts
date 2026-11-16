@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PageReactUser } from './PageReactUser';
+import {
+    PageReactUserFromJSON,
+    PageReactUserFromJSONTyped,
+    PageReactUserToJSON,
+    PageReactUserToJSONTyped,
+} from './PageReactUser';
 import type { APIStatus } from './APIStatus';
 import {
     APIStatusFromJSON,
@@ -27,6 +34,12 @@ import {
  * @interface GetV1PageLikes
  */
 export interface GetV1PageLikes {
+    /**
+     * Most recent first. Present when includeUserInfo is passed. Capped at 100 reacts.
+     * @type {Array<PageReactUser>}
+     * @memberof GetV1PageLikes
+     */
+    users?: Array<PageReactUser>;
     /**
      * 
      * @type {string}
@@ -83,6 +96,7 @@ export function GetV1PageLikesFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
+        'users': json['users'] == null ? undefined : ((json['users'] as Array<any>).map(PageReactUserFromJSON)),
         'urlIdWS': json['urlIdWS'],
         'didLike': json['didLike'],
         'commentCount': json['commentCount'],
@@ -102,6 +116,7 @@ export function GetV1PageLikesToJSONTyped(value?: GetV1PageLikes | null, ignoreD
 
     return {
         
+        'users': value['users'] == null ? undefined : ((value['users'] as Array<any>).map(PageReactUserToJSON)),
         'urlIdWS': value['urlIdWS'],
         'didLike': value['didLike'],
         'commentCount': value['commentCount'],

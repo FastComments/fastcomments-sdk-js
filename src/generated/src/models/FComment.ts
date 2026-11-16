@@ -48,6 +48,13 @@ import {
     CommentLogEntryToJSON,
     CommentLogEntryToJSONTyped,
 } from './CommentLogEntry';
+import type { CommentTranslation } from './CommentTranslation';
+import {
+    CommentTranslationFromJSON,
+    CommentTranslationFromJSONTyped,
+    CommentTranslationToJSON,
+    CommentTranslationToJSONTyped,
+} from './CommentTranslation';
 import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
 import {
     CommentUserBadgeInfoFromJSON,
@@ -316,6 +323,18 @@ export interface FComment {
     locale: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof FComment
+     */
+    detectedLanguage?: string | null;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: CommentTranslation; }}
+     * @memberof FComment
+     */
+    translations?: { [key: string]: CommentTranslation; } | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof FComment
      */
@@ -578,6 +597,8 @@ export function FCommentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'hasCode': json['hasCode'] == null ? undefined : json['hasCode'],
         'approved': json['approved'],
         'locale': json['locale'],
+        'detectedLanguage': json['detectedLanguage'] == null ? undefined : json['detectedLanguage'],
+        'translations': json['translations'] == null ? undefined : (mapValues(json['translations'], CommentTranslationFromJSON)),
         'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
         'isDeletedUser': json['isDeletedUser'] == null ? undefined : json['isDeletedUser'],
         'isBannedUser': json['isBannedUser'] == null ? undefined : json['isBannedUser'],
@@ -666,6 +687,8 @@ export function FCommentToJSONTyped(value?: FComment | null, ignoreDiscriminator
         'hasCode': value['hasCode'],
         'approved': value['approved'],
         'locale': value['locale'],
+        'detectedLanguage': value['detectedLanguage'],
+        'translations': value['translations'] == null ? undefined : (mapValues(value['translations'], CommentTranslationToJSON)),
         'isDeleted': value['isDeleted'],
         'isDeletedUser': value['isDeletedUser'],
         'isBannedUser': value['isBannedUser'],

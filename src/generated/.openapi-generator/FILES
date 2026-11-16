@@ -13,6 +13,8 @@ src/models/APIBanUserChangeLog.ts
 src/models/APIBanUserChangedValues.ts
 src/models/APIBannedUser.ts
 src/models/APIBannedUserWithMultiMatchInfo.ts
+src/models/APIBatchJob.ts
+src/models/APIBatchJobPageMigrationResultsInner.ts
 src/models/APIComment.ts
 src/models/APICommentBase.ts
 src/models/APICommentBaseMeta.ts
@@ -100,6 +102,11 @@ src/models/CommentQuestionResultsRenderingType.ts
 src/models/CommentQuestionsRequired.ts
 src/models/CommentTextUpdateRequest.ts
 src/models/CommentThreadDeletionMode.ts
+src/models/CommentTranslation.ts
+src/models/CommentTranslationMode.ts
+src/models/CommentTranslationPublic.ts
+src/models/CommentTranslationsRequest.ts
+src/models/CommentTranslationsResponse.ts
 src/models/CommentUserBadgeInfo.ts
 src/models/CommentUserHashTagInfo.ts
 src/models/CommentUserMentionInfo.ts
@@ -169,6 +176,8 @@ src/models/FlagCommentResponse.ts
 src/models/GetAuditLogsResponse.ts
 src/models/GetBannedUsersCountResponse.ts
 src/models/GetBannedUsersFromCommentResponse.ts
+src/models/GetBatchJobAPIResponse.ts
+src/models/GetBatchJobsAPIResponse.ts
 src/models/GetCachedNotificationCountResponse.ts
 src/models/GetCommentBanStatusResponse.ts
 src/models/GetCommentTextResponse.ts
@@ -196,11 +205,14 @@ src/models/GetMyNotificationsResponse.ts
 src/models/GetNotificationCountResponse.ts
 src/models/GetNotificationsResponse.ts
 src/models/GetPageByURLIdAPIResponse.ts
+src/models/GetPageLikesAPIResponse.ts
+src/models/GetPageReactsAPIResponse.ts
 src/models/GetPagesAPIResponse.ts
 src/models/GetPendingWebhookEventCountResponse.ts
 src/models/GetPendingWebhookEventsResponse.ts
 src/models/GetPollResponse.ts
 src/models/GetPollVoteResponse.ts
+src/models/GetPollVoterNamesSuccessResponse.ts
 src/models/GetPollVotesResponse.ts
 src/models/GetPublicFeedPostsResponse.ts
 src/models/GetPublicPagesResponse.ts
@@ -255,6 +267,7 @@ src/models/MeAuthType.ts
 src/models/MediaAsset.ts
 src/models/MentionAutoCompleteMode.ts
 src/models/MetaItem.ts
+src/models/MigrateAPIPagesData.ts
 src/models/ModerationAPIChildCommentsResponse.ts
 src/models/ModerationAPIComment.ts
 src/models/ModerationAPICommentLog.ts
@@ -277,8 +290,17 @@ src/models/ModerationUserSearchResponse.ts
 src/models/Moderator.ts
 src/models/NotificationAndCount.ts
 src/models/NotificationObjectType.ts
+src/models/NotificationSkipReason.ts
 src/models/NotificationType.ts
 src/models/OAuthScope.ts
+src/models/PageCustomReactUser.ts
+src/models/PageMigration.ts
+src/models/PageMigrationFailure.ts
+src/models/PageMigrationSuccess.ts
+src/models/PageMigrationType.ts
+src/models/PageMigrationUndoCounts.ts
+src/models/PageReactIncludeUserInfo.ts
+src/models/PageReactUser.ts
 src/models/PageUserEntry.ts
 src/models/PageUsersInfoResponse.ts
 src/models/PageUsersOfflineResponse.ts
@@ -292,6 +314,7 @@ src/models/PendingCommentToSyncOutbound.ts
 src/models/PickCommentPollOptionsOrTotalVotesOrClosesAt.ts
 src/models/PollCreationMode.ts
 src/models/PollPrivacy.ts
+src/models/PollVoterEntry.ts
 src/models/PollVotingMode.ts
 src/models/PostRemoveCommentApiResponse.ts
 src/models/PreBanSummary.ts
@@ -313,6 +336,8 @@ src/models/PutDomainConfigResponse.ts
 src/models/PutSSOUserAPIResponse.ts
 src/models/QueryPredicate.ts
 src/models/QueryPredicateValue.ts
+src/models/QuestionCondition.ts
+src/models/QuestionConditionOperator.ts
 src/models/QuestionConfig.ts
 src/models/QuestionConfigCustomOptionsInner.ts
 src/models/QuestionDatum.ts
@@ -321,9 +346,11 @@ src/models/QuestionResult.ts
 src/models/QuestionResultAggregationOverall.ts
 src/models/QuestionSubQuestionVisibility.ts
 src/models/QuestionWhenSave.ts
+src/models/QueuePageMigrationJobAPIResponse.ts
 src/models/ReactBodyParams.ts
 src/models/ReactFeedPostResponse.ts
 src/models/RecordStringBeforeStringOrNullAfterStringOrNullValue.ts
+src/models/RecordStringStringOrNumberOrNumberArrayValue.ts
 src/models/RemoveCommentActionResponse.ts
 src/models/RemoveUserBadgeResponse.ts
 src/models/RenderEmailTemplateBody.ts
@@ -351,6 +378,7 @@ src/models/SetUserTrustFactorResponse.ts
 src/models/SizePreset.ts
 src/models/SortDirections.ts
 src/models/SpamRule.ts
+src/models/SubQuestionCondition.ts
 src/models/TOSConfig.ts
 src/models/TenantBadge.ts
 src/models/TenantHashTag.ts
@@ -394,6 +422,8 @@ src/models/UserSessionInfo.ts
 src/models/UsersListLocation.ts
 src/models/VoteBodyParams.ts
 src/models/VoteDeleteResponse.ts
+src/models/VotePollBody.ts
+src/models/VotePollResponse.ts
 src/models/VoteResponse.ts
 src/models/VoteResponseStatus.ts
 src/models/VoteResponseUser.ts

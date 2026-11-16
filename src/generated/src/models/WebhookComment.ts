@@ -20,6 +20,13 @@ import {
     CommentUserMentionInfoToJSON,
     CommentUserMentionInfoToJSONTyped,
 } from './CommentUserMentionInfo';
+import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
+import {
+    CommentUserBadgeInfoFromJSON,
+    CommentUserBadgeInfoFromJSONTyped,
+    CommentUserBadgeInfoToJSON,
+    CommentUserBadgeInfoToJSONTyped,
+} from './CommentUserBadgeInfo';
 
 /**
  * 
@@ -201,6 +208,12 @@ export interface WebhookComment {
      * @memberof WebhookComment
      */
     moderationGroupIds: Array<string>;
+    /**
+     * 
+     * @type {Array<CommentUserBadgeInfo>}
+     * @memberof WebhookComment
+     */
+    badges: Array<CommentUserBadgeInfo>;
 }
 
 /**
@@ -236,6 +249,7 @@ export function instanceOfWebhookComment(value: object): value is WebhookComment
     if (!('mentions' in value) || value['mentions'] === undefined) return false;
     if (!('domain' in value) || value['domain'] === undefined) return false;
     if (!('moderationGroupIds' in value) || value['moderationGroupIds'] === undefined) return false;
+    if (!('badges' in value) || value['badges'] === undefined) return false;
     return true;
 }
 
@@ -278,6 +292,7 @@ export function WebhookCommentFromJSONTyped(json: any, ignoreDiscriminator: bool
         'mentions': ((json['mentions'] as Array<any>).map(CommentUserMentionInfoFromJSON)),
         'domain': json['domain'],
         'moderationGroupIds': json['moderationGroupIds'],
+        'badges': ((json['badges'] as Array<any>).map(CommentUserBadgeInfoFromJSON)),
     };
 }
 
@@ -321,6 +336,7 @@ export function WebhookCommentToJSONTyped(value?: WebhookComment | null, ignoreD
         'mentions': ((value['mentions'] as Array<any>).map(CommentUserMentionInfoToJSON)),
         'domain': value['domain'],
         'moderationGroupIds': value['moderationGroupIds'],
+        'badges': ((value['badges'] as Array<any>).map(CommentUserBadgeInfoToJSON)),
     };
 }
 

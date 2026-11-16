@@ -20,6 +20,13 @@ import {
     APIStatusToJSON,
     APIStatusToJSONTyped,
 } from './APIStatus';
+import type { PageCustomReactUser } from './PageCustomReactUser';
+import {
+    PageCustomReactUserFromJSON,
+    PageCustomReactUserFromJSONTyped,
+    PageCustomReactUserToJSON,
+    PageCustomReactUserToJSONTyped,
+} from './PageCustomReactUser';
 
 /**
  * 
@@ -27,6 +34,12 @@ import {
  * @interface GetV2PageReacts
  */
 export interface GetV2PageReacts {
+    /**
+     * One entry per react, most recent first. Present when includeUserInfo is passed. Capped at 100 reacts.
+     * @type {Array<PageCustomReactUser>}
+     * @memberof GetV2PageReacts
+     */
+    users?: Array<PageCustomReactUser>;
     /**
      * 
      * @type {Array<string>}
@@ -67,6 +80,7 @@ export function GetV2PageReactsFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'users': json['users'] == null ? undefined : ((json['users'] as Array<any>).map(PageCustomReactUserFromJSON)),
         'reactedIds': json['reactedIds'] == null ? undefined : json['reactedIds'],
         'counts': json['counts'] == null ? undefined : json['counts'],
         'status': APIStatusFromJSON(json['status']),
@@ -84,6 +98,7 @@ export function GetV2PageReactsToJSONTyped(value?: GetV2PageReacts | null, ignor
 
     return {
         
+        'users': value['users'] == null ? undefined : ((value['users'] as Array<any>).map(PageCustomReactUserToJSON)),
         'reactedIds': value['reactedIds'],
         'counts': value['counts'],
         'status': APIStatusToJSON(value['status']),

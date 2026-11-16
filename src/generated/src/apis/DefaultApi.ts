@@ -87,6 +87,8 @@ import type {
   FeedPost,
   FlagCommentResponse,
   GetAuditLogsResponse,
+  GetBatchJobAPIResponse,
+  GetBatchJobsAPIResponse,
   GetCachedNotificationCountResponse,
   GetDomainConfigResponse,
   GetDomainConfigsResponse,
@@ -102,6 +104,8 @@ import type {
   GetNotificationCountResponse,
   GetNotificationsResponse,
   GetPageByURLIdAPIResponse,
+  GetPageLikesAPIResponse,
+  GetPageReactsAPIResponse,
   GetPagesAPIResponse,
   GetPendingWebhookEventCountResponse,
   GetPendingWebhookEventsResponse,
@@ -130,12 +134,15 @@ import type {
   GetVotesResponse,
   GetWebhookSamplePayloadsResponse,
   GetWebhooksResponse,
+  MigrateAPIPagesData,
+  PageReactIncludeUserInfo,
   PatchDomainConfigParams,
   PatchDomainConfigResponse,
   PatchPageAPIResponse,
   PatchSSOUserAPIResponse,
   PutDomainConfigResponse,
   PutSSOUserAPIResponse,
+  QueuePageMigrationJobAPIResponse,
   RenderEmailTemplateBody,
   RenderEmailTemplateResponse,
   ReplaceTenantPackageBody,
@@ -313,6 +320,10 @@ import {
     FlagCommentResponseToJSON,
     GetAuditLogsResponseFromJSON,
     GetAuditLogsResponseToJSON,
+    GetBatchJobAPIResponseFromJSON,
+    GetBatchJobAPIResponseToJSON,
+    GetBatchJobsAPIResponseFromJSON,
+    GetBatchJobsAPIResponseToJSON,
     GetCachedNotificationCountResponseFromJSON,
     GetCachedNotificationCountResponseToJSON,
     GetDomainConfigResponseFromJSON,
@@ -343,6 +354,10 @@ import {
     GetNotificationsResponseToJSON,
     GetPageByURLIdAPIResponseFromJSON,
     GetPageByURLIdAPIResponseToJSON,
+    GetPageLikesAPIResponseFromJSON,
+    GetPageLikesAPIResponseToJSON,
+    GetPageReactsAPIResponseFromJSON,
+    GetPageReactsAPIResponseToJSON,
     GetPagesAPIResponseFromJSON,
     GetPagesAPIResponseToJSON,
     GetPendingWebhookEventCountResponseFromJSON,
@@ -399,6 +414,10 @@ import {
     GetWebhookSamplePayloadsResponseToJSON,
     GetWebhooksResponseFromJSON,
     GetWebhooksResponseToJSON,
+    MigrateAPIPagesDataFromJSON,
+    MigrateAPIPagesDataToJSON,
+    PageReactIncludeUserInfoFromJSON,
+    PageReactIncludeUserInfoToJSON,
     PatchDomainConfigParamsFromJSON,
     PatchDomainConfigParamsToJSON,
     PatchDomainConfigResponseFromJSON,
@@ -411,6 +430,8 @@ import {
     PutDomainConfigResponseToJSON,
     PutSSOUserAPIResponseFromJSON,
     PutSSOUserAPIResponseToJSON,
+    QueuePageMigrationJobAPIResponseFromJSON,
+    QueuePageMigrationJobAPIResponseToJSON,
     RenderEmailTemplateBodyFromJSON,
     RenderEmailTemplateBodyToJSON,
     RenderEmailTemplateResponseFromJSON,
@@ -772,6 +793,18 @@ export interface GetAuditLogsRequest {
     includeManagedTenants?: boolean;
 }
 
+export interface GetBatchJobRequest {
+    tenantId: string;
+    id: string;
+}
+
+export interface GetBatchJobsRequest {
+    tenantId: string;
+    type?: string;
+    status?: string;
+    skip?: number;
+}
+
 export interface GetCachedNotificationCountRequest {
     tenantId: string;
     id: string;
@@ -879,6 +912,18 @@ export interface GetNotificationsRequest {
 export interface GetPageByURLIdRequest {
     tenantId: string;
     urlId: string;
+}
+
+export interface GetPageLikesRequest {
+    tenantId: string;
+    urlId: string;
+    includeUserInfo?: PageReactIncludeUserInfo;
+}
+
+export interface GetPageReactsRequest {
+    tenantId: string;
+    urlId: string;
+    includeUserInfo?: PageReactIncludeUserInfo;
 }
 
 export interface GetPagesRequest {
@@ -1085,6 +1130,11 @@ export interface GetWebhooksRequest {
     skip?: number;
 }
 
+export interface MigratePagesRequest {
+    tenantId: string;
+    migrateAPIPagesData: MigrateAPIPagesData;
+}
+
 export interface PatchDomainConfigRequest {
     tenantId: string;
     domainToUpdate: string;
@@ -1198,6 +1248,11 @@ export interface UnFlagCommentRequest {
     id: string;
     userId?: string;
     anonUserId?: string;
+}
+
+export interface UndoPageMigrationsRequest {
+    tenantId: string;
+    undoId: string;
 }
 
 export interface UpdateCommentRequest {
@@ -2031,6 +2086,38 @@ export interface DefaultApiInterface {
     getAuditLogs(requestParameters: GetAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAuditLogsResponse>;
 
     /**
+     * Status, progress and, once done, the result of one batch job.
+     * @param {string} tenantId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getBatchJobRaw(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBatchJobAPIResponse>>;
+
+    /**
+     * Status, progress and, once done, the result of one batch job.
+     */
+    getBatchJob(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBatchJobAPIResponse>;
+
+    /**
+     * The tenant\'s batch jobs (imports, exports, page migrations...), newest first.
+     * @param {string} tenantId 
+     * @param {string} [type] Only jobs of this type, for example migrate-pages.
+     * @param {string} [status] Only jobs in this status: requested, running, success or failed.
+     * @param {number} [skip] How many jobs to skip, for paging.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getBatchJobsRaw(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBatchJobsAPIResponse>>;
+
+    /**
+     * The tenant\'s batch jobs (imports, exports, page migrations...), newest first.
+     */
+    getBatchJobs(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBatchJobsAPIResponse>;
+
+    /**
      * 
      * @param {string} tenantId 
      * @param {string} id 
@@ -2293,6 +2380,38 @@ export interface DefaultApiInterface {
     /**
      */
     getPageByURLId(requestParameters: GetPageByURLIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageByURLIdAPIResponse>;
+
+    /**
+     * Like count for a page, optionally with the users who liked it.
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {PageReactIncludeUserInfo} [includeUserInfo] \&quot;public\&quot; omits users with private profiles, \&quot;include-private\&quot; includes them.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getPageLikesRaw(requestParameters: GetPageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPageLikesAPIResponse>>;
+
+    /**
+     * Like count for a page, optionally with the users who liked it.
+     */
+    getPageLikes(requestParameters: GetPageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageLikesAPIResponse>;
+
+    /**
+     * Custom react counts for a page, optionally with the users who reacted.
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {PageReactIncludeUserInfo} [includeUserInfo] \&quot;public\&quot; omits users with private profiles, \&quot;include-private\&quot; includes them.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    getPageReactsRaw(requestParameters: GetPageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPageReactsAPIResponse>>;
+
+    /**
+     * Custom react counts for a page, optionally with the users who reacted.
+     */
+    getPageReacts(requestParameters: GetPageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageReactsAPIResponse>;
 
     /**
      * 
@@ -2799,6 +2918,21 @@ export interface DefaultApiInterface {
     getWebhooks(requestParameters: GetWebhooksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWebhooksResponse>;
 
     /**
+     * Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.
+     * @param {string} tenantId 
+     * @param {MigrateAPIPagesData} migrateAPIPagesData 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    migratePagesRaw(requestParameters: MigratePagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuePageMigrationJobAPIResponse>>;
+
+    /**
+     * Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.
+     */
+    migratePages(requestParameters: MigratePagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuePageMigrationJobAPIResponse>;
+
+    /**
      * 
      * @param {string} tenantId 
      * @param {string} domainToUpdate 
@@ -3067,6 +3201,21 @@ export interface DefaultApiInterface {
     /**
      */
     unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse>;
+
+    /**
+     * Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.
+     * @param {string} tenantId 
+     * @param {string} undoId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApiInterface
+     */
+    undoPageMigrationsRaw(requestParameters: UndoPageMigrationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuePageMigrationJobAPIResponse>>;
+
+    /**
+     * Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.
+     */
+    undoPageMigrations(requestParameters: UndoPageMigrationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuePageMigrationJobAPIResponse>;
 
     /**
      * 
@@ -5806,6 +5955,107 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Status, progress and, once done, the result of one batch job.
+     */
+    async getBatchJobRaw(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBatchJobAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getBatchJob().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getBatchJob().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/batch-jobs/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetBatchJobAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Status, progress and, once done, the result of one batch job.
+     */
+    async getBatchJob(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBatchJobAPIResponse> {
+        const response = await this.getBatchJobRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The tenant\'s batch jobs (imports, exports, page migrations...), newest first.
+     */
+    async getBatchJobsRaw(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBatchJobsAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getBatchJobs().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['type'] != null) {
+            queryParameters['type'] = requestParameters['type'];
+        }
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/batch-jobs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetBatchJobsAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The tenant\'s batch jobs (imports, exports, page migrations...), newest first.
+     */
+    async getBatchJobs(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBatchJobsAPIResponse> {
+        const response = await this.getBatchJobsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      */
     async getCachedNotificationCountRaw(requestParameters: GetCachedNotificationCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCachedNotificationCountResponse>> {
         if (requestParameters['tenantId'] == null) {
@@ -6658,6 +6908,118 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async getPageByURLId(requestParameters: GetPageByURLIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageByURLIdAPIResponse> {
         const response = await this.getPageByURLIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Like count for a page, optionally with the users who liked it.
+     */
+    async getPageLikesRaw(requestParameters: GetPageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPageLikesAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getPageLikes().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getPageLikes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['includeUserInfo'] != null) {
+            queryParameters['includeUserInfo'] = requestParameters['includeUserInfo'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/pages/likes`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPageLikesAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Like count for a page, optionally with the users who liked it.
+     */
+    async getPageLikes(requestParameters: GetPageLikesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageLikesAPIResponse> {
+        const response = await this.getPageLikesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Custom react counts for a page, optionally with the users who reacted.
+     */
+    async getPageReactsRaw(requestParameters: GetPageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPageReactsAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getPageReacts().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling getPageReacts().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['includeUserInfo'] != null) {
+            queryParameters['includeUserInfo'] = requestParameters['includeUserInfo'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/pages/reacts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPageReactsAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Custom react counts for a page, optionally with the users who reacted.
+     */
+    async getPageReacts(requestParameters: GetPageReactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPageReactsAPIResponse> {
+        const response = await this.getPageReactsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8306,6 +8668,57 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
     }
 
     /**
+     * Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.
+     */
+    async migratePagesRaw(requestParameters: MigratePagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuePageMigrationJobAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling migratePages().'
+            );
+        }
+
+        if (requestParameters['migrateAPIPagesData'] == null) {
+            throw new runtime.RequiredError(
+                'migrateAPIPagesData',
+                'Required parameter "migrateAPIPagesData" was null or undefined when calling migratePages().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/pages/migrations`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MigrateAPIPagesDataToJSON(requestParameters['migrateAPIPagesData']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => QueuePageMigrationJobAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.
+     */
+    async migratePages(requestParameters: MigratePagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuePageMigrationJobAPIResponse> {
+        const response = await this.migratePagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      */
     async patchDomainConfigRaw(requestParameters: PatchDomainConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PatchDomainConfigResponse>> {
         if (requestParameters['tenantId'] == null) {
@@ -9283,6 +9696,54 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async unFlagComment(requestParameters: UnFlagCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FlagCommentResponse> {
         const response = await this.unFlagCommentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.
+     */
+    async undoPageMigrationsRaw(requestParameters: UndoPageMigrationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuePageMigrationJobAPIResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling undoPageMigrations().'
+            );
+        }
+
+        if (requestParameters['undoId'] == null) {
+            throw new runtime.RequiredError(
+                'undoId',
+                'Required parameter "undoId" was null or undefined when calling undoPageMigrations().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['tenantId'] != null) {
+            queryParameters['tenantId'] = requestParameters['tenantId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // api_key authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/pages/migrations/{undoId}/undo`.replace(`{${"undoId"}}`, encodeURIComponent(String(requestParameters['undoId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => QueuePageMigrationJobAPIResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.
+     */
+    async undoPageMigrations(requestParameters: UndoPageMigrationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuePageMigrationJobAPIResponse> {
+        const response = await this.undoPageMigrationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

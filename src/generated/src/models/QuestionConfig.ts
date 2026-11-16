@@ -20,6 +20,20 @@ import {
     QuestionConfigCustomOptionsInnerToJSON,
     QuestionConfigCustomOptionsInnerToJSONTyped,
 } from './QuestionConfigCustomOptionsInner';
+import type { QuestionCondition } from './QuestionCondition';
+import {
+    QuestionConditionFromJSON,
+    QuestionConditionFromJSONTyped,
+    QuestionConditionToJSON,
+    QuestionConditionToJSONTyped,
+} from './QuestionCondition';
+import type { SubQuestionCondition } from './SubQuestionCondition';
+import {
+    SubQuestionConditionFromJSON,
+    SubQuestionConditionFromJSONTyped,
+    SubQuestionConditionToJSON,
+    SubQuestionConditionToJSONTyped,
+} from './SubQuestionCondition';
 
 /**
  * 
@@ -88,7 +102,8 @@ export interface QuestionConfig {
      */
     lastUsed: Date;
     /**
-     * 
+     * One of nps, slider, star, thumbs, choice, multi, emoji, scale. Answers: nps 0-10, slider min-max, star 1-numStars,
+     * thumbs 1 (up) or 0 (down), choice = option index, multi = option indexes (values), emoji/scale = option index + 1.
      * @type {string}
      * @memberof QuestionConfig
      */
@@ -130,7 +145,7 @@ export interface QuestionConfig {
      */
     labelPositive: string;
     /**
-     * 
+     * Option labels for choice, multi, emoji and scale questions.
      * @type {Array<QuestionConfigCustomOptionsInner>}
      * @memberof QuestionConfig
      */
@@ -147,6 +162,24 @@ export interface QuestionConfig {
      * @memberof QuestionConfig
      */
     alwaysShowSubQuestions: boolean;
+    /**
+     * Sub-questions listed here only show when this question's answer matches. Others always show.
+     * @type {Array<SubQuestionCondition>}
+     * @memberof QuestionConfig
+     */
+    subQuestionConditions?: Array<SubQuestionCondition>;
+    /**
+     * 
+     * @type {QuestionCondition}
+     * @memberof QuestionConfig
+     */
+    commentBoxCondition?: QuestionCondition;
+    /**
+     * Placeholder for the comment box when commentBoxCondition reveals it.
+     * @type {string}
+     * @memberof QuestionConfig
+     */
+    commentBoxPrompt?: string;
     /**
      * 
      * @type {number}
@@ -212,6 +245,9 @@ export function QuestionConfigFromJSONTyped(json: any, ignoreDiscriminator: bool
         'customOptions': ((json['customOptions'] as Array<any>).map(QuestionConfigCustomOptionsInnerFromJSON)),
         'subQuestionIds': json['subQuestionIds'],
         'alwaysShowSubQuestions': json['alwaysShowSubQuestions'],
+        'subQuestionConditions': json['subQuestionConditions'] == null ? undefined : ((json['subQuestionConditions'] as Array<any>).map(SubQuestionConditionFromJSON)),
+        'commentBoxCondition': json['commentBoxCondition'] == null ? undefined : QuestionConditionFromJSON(json['commentBoxCondition']),
+        'commentBoxPrompt': json['commentBoxPrompt'] == null ? undefined : json['commentBoxPrompt'],
         'reportingOrder': json['reportingOrder'],
     };
 }
@@ -247,6 +283,9 @@ export function QuestionConfigToJSONTyped(value?: QuestionConfig | null, ignoreD
         'customOptions': ((value['customOptions'] as Array<any>).map(QuestionConfigCustomOptionsInnerToJSON)),
         'subQuestionIds': value['subQuestionIds'],
         'alwaysShowSubQuestions': value['alwaysShowSubQuestions'],
+        'subQuestionConditions': value['subQuestionConditions'] == null ? undefined : ((value['subQuestionConditions'] as Array<any>).map(SubQuestionConditionToJSON)),
+        'commentBoxCondition': QuestionConditionToJSON(value['commentBoxCondition']),
+        'commentBoxPrompt': value['commentBoxPrompt'],
         'reportingOrder': value['reportingOrder'],
     };
 }

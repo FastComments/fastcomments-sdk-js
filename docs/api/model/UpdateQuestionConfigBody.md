@@ -6,7 +6,7 @@
 | **name** | **String** |  | [optional] [default to null] |
 | **question** | **String** |  | [optional] [default to null] |
 | **helpText** | **String** |  | [optional] [default to null] |
-| **type** | **String** |  | [optional] [default to null] |
+| **type** | **String** | One of nps, slider, star, thumbs, choice, multi, emoji, scale. | [optional] [default to null] |
 | **numStars** | **Double** |  | [optional] [default to null] |
 | **min** | **Double** |  | [optional] [default to null] |
 | **max** | **Double** |  | [optional] [default to null] |
@@ -16,6 +16,9 @@
 | **customOptions** | [**List**](QuestionConfig_customOptions_inner.md) |  | [optional] [default to null] |
 | **subQuestionIds** | **List** |  | [optional] [default to null] |
 | **alwaysShowSubQuestions** | **Boolean** |  | [optional] [default to null] |
+| **subQuestionConditions** | [**List**](SubQuestionCondition.md) |  | [optional] [default to null] |
+| **commentBoxCondition** | [**QuestionCondition**](QuestionCondition.md) |  | [optional] [default to null] |
+| **commentBoxPrompt** | **String** |  | [optional] [default to null] |
 | **reportingOrder** | **Double** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

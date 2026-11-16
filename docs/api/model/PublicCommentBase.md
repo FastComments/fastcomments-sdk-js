@@ -29,6 +29,7 @@
 | **isSpam** | **Boolean** |  | [optional] [default to null] |
 | **anonUserId** | **String** |  | [optional] [default to null] |
 | **feedbackIds** | **List** |  | [optional] [default to null] |
+| **poll** | [**CommentPoll**](CommentPoll.md) |  | [optional] [default to null] |
 | **requiresVerification** | **Boolean** |  | [optional] [default to null] |
 | **editKey** | **String** |  | [optional] [default to null] |
 | **approved** | **Boolean** |  | [optional] [default to null] |

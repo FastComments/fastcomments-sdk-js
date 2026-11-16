@@ -56,6 +56,8 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**deleteWebhook**](Apis/DefaultApi.md#deletewebhook) | **DELETE** /api/v1/webhooks/{id} | Unsubscribes (REST hook unsubscribe). Only subscriptions created through this API can be deleted here; dashboard-managed webhooks are edited in the dashboard. |
 *DefaultApi* | [**flagComment**](Apis/DefaultApi.md#flagcomment) | **POST** /api/v1/comments/{id}/flag |  |
 *DefaultApi* | [**getAuditLogs**](Apis/DefaultApi.md#getauditlogs) | **GET** /api/v1/audit-logs |  |
+*DefaultApi* | [**getBatchJob**](Apis/DefaultApi.md#getbatchjob) | **GET** /api/v1/batch-jobs/{id} | Status, progress and, once done, the result of one batch job. |
+*DefaultApi* | [**getBatchJobs**](Apis/DefaultApi.md#getbatchjobs) | **GET** /api/v1/batch-jobs | The tenant's batch jobs (imports, exports, page migrations...), newest first. |
 *DefaultApi* | [**getCachedNotificationCount**](Apis/DefaultApi.md#getcachednotificationcount) | **GET** /api/v1/notification-count/{id} |  |
 *DefaultApi* | [**getComment**](Apis/DefaultApi.md#getcomment) | **GET** /api/v1/comments/{id} |  |
 *DefaultApi* | [**getComments**](Apis/DefaultApi.md#getcomments) | **GET** /api/v1/comments |  |
@@ -73,6 +75,8 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getNotificationCount**](Apis/DefaultApi.md#getnotificationcount) | **GET** /api/v1/notifications/count |  |
 *DefaultApi* | [**getNotifications**](Apis/DefaultApi.md#getnotifications) | **GET** /api/v1/notifications |  |
 *DefaultApi* | [**getPageByURLId**](Apis/DefaultApi.md#getpagebyurlid) | **GET** /api/v1/pages/by-url-id |  |
+*DefaultApi* | [**getPageLikes**](Apis/DefaultApi.md#getpagelikes) | **GET** /api/v1/pages/likes | Like count for a page, optionally with the users who liked it. |
+*DefaultApi* | [**getPageReacts**](Apis/DefaultApi.md#getpagereacts) | **GET** /api/v1/pages/reacts | Custom react counts for a page, optionally with the users who reacted. |
 *DefaultApi* | [**getPages**](Apis/DefaultApi.md#getpages) | **GET** /api/v1/pages |  |
 *DefaultApi* | [**getPendingWebhookEventCount**](Apis/DefaultApi.md#getpendingwebhookeventcount) | **GET** /api/v1/pending-webhook-events/count |  |
 *DefaultApi* | [**getPendingWebhookEvents**](Apis/DefaultApi.md#getpendingwebhookevents) | **GET** /api/v1/pending-webhook-events |  |
@@ -106,6 +110,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**getVotesForUser**](Apis/DefaultApi.md#getvotesforuser) | **GET** /api/v1/votes/for-user |  |
 *DefaultApi* | [**getWebhookSamplePayloads**](Apis/DefaultApi.md#getwebhooksamplepayloads) | **GET** /api/v1/webhooks/sample-payloads | Recent comments in exactly the shape webhook deliveries use, for building integrations (for example Zapier sample data). Every event delivers the same comment object, so `event` only has to be valid. |
 *DefaultApi* | [**getWebhooks**](Apis/DefaultApi.md#getwebhooks) | **GET** /api/v1/webhooks | Lists the webhooks configured for the tenant, both dashboard-managed rows and API subscriptions. |
+*DefaultApi* | [**migratePages**](Apis/DefaultApi.md#migratepages) | **POST** /api/v1/pages/migrations | Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId. |
 *DefaultApi* | [**patchDomainConfig**](Apis/DefaultApi.md#patchdomainconfig) | **PATCH** /api/v1/domain-configs/{domainToUpdate} |  |
 *DefaultApi* | [**patchHashTag**](Apis/DefaultApi.md#patchhashtag) | **PATCH** /api/v1/hash-tags/{tag} |  |
 *DefaultApi* | [**patchPage**](Apis/DefaultApi.md#patchpage) | **PATCH** /api/v1/pages/{id} |  |
@@ -123,6 +128,7 @@ All URIs are relative to *https://fastcomments.com*
 *DefaultApi* | [**sendLoginLink**](Apis/DefaultApi.md#sendloginlink) | **POST** /api/v1/tenant-users/{id}/send-login-link |  |
 *DefaultApi* | [**unBlockUserFromComment**](Apis/DefaultApi.md#unblockuserfromcomment) | **POST** /api/v1/comments/{id}/un-block |  |
 *DefaultApi* | [**unFlagComment**](Apis/DefaultApi.md#unflagcomment) | **POST** /api/v1/comments/{id}/un-flag |  |
+*DefaultApi* | [**undoPageMigrations**](Apis/DefaultApi.md#undopagemigrations) | **POST** /api/v1/pages/migrations/{undoId}/undo | Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts. |
 *DefaultApi* | [**updateComment**](Apis/DefaultApi.md#updatecomment) | **PATCH** /api/v1/comments/{id} |  |
 *DefaultApi* | [**updateEmailTemplate**](Apis/DefaultApi.md#updateemailtemplate) | **PATCH** /api/v1/email-templates/{id} |  |
 *DefaultApi* | [**updateFeedPost**](Apis/DefaultApi.md#updatefeedpost) | **PATCH** /api/v1/feed-posts/{id} |  |
@@ -204,6 +210,7 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**getOfflineUsers**](Apis/PublicApi.md#getofflineusers) | **GET** /pages/{tenantId}/users/offline | Past commenters on the page who are NOT currently online. Sorted by displayName. Use this after exhausting /users/online to render a \"Members\" section. Cursor pagination on commenterName: server walks the partial {tenantId, urlId, commenterName} index from afterName forward via $gt, no $skip cost. |
 *PublicApi* | [**getOnlineUsers**](Apis/PublicApi.md#getonlineusers) | **GET** /pages/{tenantId}/users/online | Currently-online viewers of a page: people whose websocket session is subscribed to the page right now. Returns anonCount + totalCount (room-wide subscribers, including anon viewers we don't enumerate). |
 *PublicApi* | [**getPagesPublic**](Apis/PublicApi.md#getpagespublic) | **GET** /pages/{tenantId} | List pages for a tenant. Used by the FChat desktop client to populate its room list. Requires `enableFChat` to be true on the resolved custom config for each page. Pages that require SSO are filtered against the requesting user's group access. |
+*PublicApi* | [**getPollVoters**](Apis/PublicApi.md#getpollvoters) | **GET** /polls/{tenantId}/{commentId}/voters | Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator. |
 *PublicApi* | [**getTranslations**](Apis/PublicApi.md#gettranslations) | **GET** /translations/{namespace}/{component} |  |
 *PublicApi* | [**getUserNotificationCount**](Apis/PublicApi.md#getusernotificationcount) | **GET** /user-notifications/get-count |  |
 *PublicApi* | [**getUserNotifications**](Apis/PublicApi.md#getusernotifications) | **GET** /user-notifications |  |
@@ -221,6 +228,7 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**resetUserNotifications**](Apis/PublicApi.md#resetusernotifications) | **POST** /user-notifications/reset |  |
 *PublicApi* | [**searchUsers**](Apis/PublicApi.md#searchusers) | **GET** /user-search/{tenantId} |  |
 *PublicApi* | [**setCommentText**](Apis/PublicApi.md#setcommenttext) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
+*PublicApi* | [**translateComments**](Apis/PublicApi.md#translatecomments) | **POST** /comments/{tenantId}/translations | Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual. |
 *PublicApi* | [**unBlockCommentPublic**](Apis/PublicApi.md#unblockcommentpublic) | **DELETE** /block-from-comment/{commentId} |  |
 *PublicApi* | [**unLockComment**](Apis/PublicApi.md#unlockcomment) | **POST** /comments/{tenantId}/{commentId}/unlock |  |
 *PublicApi* | [**unPinComment**](Apis/PublicApi.md#unpincomment) | **POST** /comments/{tenantId}/{commentId}/unpin |  |
@@ -230,6 +238,7 @@ All URIs are relative to *https://fastcomments.com*
 *PublicApi* | [**updateUserNotificationStatus**](Apis/PublicApi.md#updateusernotificationstatus) | **POST** /user-notifications/{notificationId}/mark/{newStatus} |  |
 *PublicApi* | [**uploadImage**](Apis/PublicApi.md#uploadimage) | **POST** /upload-image/{tenantId} | Upload and resize an image |
 *PublicApi* | [**voteComment**](Apis/PublicApi.md#votecomment) | **POST** /comments/{tenantId}/{commentId}/vote |  |
+*PublicApi* | [**votePoll**](Apis/PublicApi.md#votepoll) | **PUT** /polls/{tenantId}/{commentId}/vote |  |
 
 
 <a name="documentation-for-models"></a>
@@ -240,6 +249,8 @@ All URIs are relative to *https://fastcomments.com*
  - [APIBanUserChangedValues](./model/APIBanUserChangedValues.md)
  - [APIBannedUser](./model/APIBannedUser.md)
  - [APIBannedUserWithMultiMatchInfo](./model/APIBannedUserWithMultiMatchInfo.md)
+ - [APIBatchJob](./model/APIBatchJob.md)
+ - [APIBatchJob_pageMigrationResults_inner](./model/APIBatchJob_pageMigrationResults_inner.md)
  - [APIComment](./model/APIComment.md)
  - [APICommentBase](./model/APICommentBase.md)
  - [APICommentBase_meta](./model/APICommentBase_meta.md)
@@ -327,6 +338,11 @@ All URIs are relative to *https://fastcomments.com*
  - [CommentQuestionsRequired](./model/CommentQuestionsRequired.md)
  - [CommentTextUpdateRequest](./model/CommentTextUpdateRequest.md)
  - [CommentThreadDeletionMode](./model/CommentThreadDeletionMode.md)
+ - [CommentTranslation](./model/CommentTranslation.md)
+ - [CommentTranslationMode](./model/CommentTranslationMode.md)
+ - [CommentTranslationPublic](./model/CommentTranslationPublic.md)
+ - [CommentTranslationsRequest](./model/CommentTranslationsRequest.md)
+ - [CommentTranslationsResponse](./model/CommentTranslationsResponse.md)
  - [CommentUserBadgeInfo](./model/CommentUserBadgeInfo.md)
  - [CommentUserHashTagInfo](./model/CommentUserHashTagInfo.md)
  - [CommentUserMentionInfo](./model/CommentUserMentionInfo.md)
@@ -396,6 +412,8 @@ All URIs are relative to *https://fastcomments.com*
  - [GetAuditLogsResponse](./model/GetAuditLogsResponse.md)
  - [GetBannedUsersCountResponse](./model/GetBannedUsersCountResponse.md)
  - [GetBannedUsersFromCommentResponse](./model/GetBannedUsersFromCommentResponse.md)
+ - [GetBatchJobAPIResponse](./model/GetBatchJobAPIResponse.md)
+ - [GetBatchJobsAPIResponse](./model/GetBatchJobsAPIResponse.md)
  - [GetCachedNotificationCountResponse](./model/GetCachedNotificationCountResponse.md)
  - [GetCommentBanStatusResponse](./model/GetCommentBanStatusResponse.md)
  - [GetCommentTextResponse](./model/GetCommentTextResponse.md)
@@ -423,11 +441,14 @@ All URIs are relative to *https://fastcomments.com*
  - [GetNotificationCountResponse](./model/GetNotificationCountResponse.md)
  - [GetNotificationsResponse](./model/GetNotificationsResponse.md)
  - [GetPageByURLIdAPIResponse](./model/GetPageByURLIdAPIResponse.md)
+ - [GetPageLikesAPIResponse](./model/GetPageLikesAPIResponse.md)
+ - [GetPageReactsAPIResponse](./model/GetPageReactsAPIResponse.md)
  - [GetPagesAPIResponse](./model/GetPagesAPIResponse.md)
  - [GetPendingWebhookEventCountResponse](./model/GetPendingWebhookEventCountResponse.md)
  - [GetPendingWebhookEventsResponse](./model/GetPendingWebhookEventsResponse.md)
  - [GetPollResponse](./model/GetPollResponse.md)
  - [GetPollVoteResponse](./model/GetPollVoteResponse.md)
+ - [GetPollVoterNamesSuccessResponse](./model/GetPollVoterNamesSuccessResponse.md)
  - [GetPollVotesResponse](./model/GetPollVotesResponse.md)
  - [GetPublicFeedPostsResponse](./model/GetPublicFeedPostsResponse.md)
  - [GetPublicPagesResponse](./model/GetPublicPagesResponse.md)
@@ -482,6 +503,7 @@ All URIs are relative to *https://fastcomments.com*
  - [MediaAsset](./model/MediaAsset.md)
  - [MentionAutoCompleteMode](./model/MentionAutoCompleteMode.md)
  - [MetaItem](./model/MetaItem.md)
+ - [MigrateAPIPagesData](./model/MigrateAPIPagesData.md)
  - [ModerationAPIChildCommentsResponse](./model/ModerationAPIChildCommentsResponse.md)
  - [ModerationAPIComment](./model/ModerationAPIComment.md)
  - [ModerationAPICommentLog](./model/ModerationAPICommentLog.md)
@@ -504,8 +526,17 @@ All URIs are relative to *https://fastcomments.com*
  - [Moderator](./model/Moderator.md)
  - [NotificationAndCount](./model/NotificationAndCount.md)
  - [NotificationObjectType](./model/NotificationObjectType.md)
+ - [NotificationSkipReason](./model/NotificationSkipReason.md)
  - [NotificationType](./model/NotificationType.md)
  - [OAuthScope](./model/OAuthScope.md)
+ - [PageCustomReactUser](./model/PageCustomReactUser.md)
+ - [PageMigration](./model/PageMigration.md)
+ - [PageMigrationFailure](./model/PageMigrationFailure.md)
+ - [PageMigrationSuccess](./model/PageMigrationSuccess.md)
+ - [PageMigrationType](./model/PageMigrationType.md)
+ - [PageMigrationUndoCounts](./model/PageMigrationUndoCounts.md)
+ - [PageReactIncludeUserInfo](./model/PageReactIncludeUserInfo.md)
+ - [PageReactUser](./model/PageReactUser.md)
  - [PageUserEntry](./model/PageUserEntry.md)
  - [PageUsersInfoResponse](./model/PageUsersInfoResponse.md)
  - [PageUsersOfflineResponse](./model/PageUsersOfflineResponse.md)
@@ -519,6 +550,7 @@ All URIs are relative to *https://fastcomments.com*
  - [Pick_CommentPoll.options-or-totalVotes-or-closesAt_](./model/Pick_CommentPoll.options-or-totalVotes-or-closesAt_.md)
  - [PollCreationMode](./model/PollCreationMode.md)
  - [PollPrivacy](./model/PollPrivacy.md)
+ - [PollVoterEntry](./model/PollVoterEntry.md)
  - [PollVotingMode](./model/PollVotingMode.md)
  - [PostRemoveCommentApiResponse](./model/PostRemoveCommentApiResponse.md)
  - [PreBanSummary](./model/PreBanSummary.md)
@@ -540,6 +572,8 @@ All URIs are relative to *https://fastcomments.com*
  - [PutSSOUserAPIResponse](./model/PutSSOUserAPIResponse.md)
  - [QueryPredicate](./model/QueryPredicate.md)
  - [QueryPredicate_value](./model/QueryPredicate_value.md)
+ - [QuestionCondition](./model/QuestionCondition.md)
+ - [QuestionConditionOperator](./model/QuestionConditionOperator.md)
  - [QuestionConfig](./model/QuestionConfig.md)
  - [QuestionConfig_customOptions_inner](./model/QuestionConfig_customOptions_inner.md)
  - [QuestionDatum](./model/QuestionDatum.md)
@@ -548,9 +582,11 @@ All URIs are relative to *https://fastcomments.com*
  - [QuestionResultAggregationOverall](./model/QuestionResultAggregationOverall.md)
  - [QuestionSubQuestionVisibility](./model/QuestionSubQuestionVisibility.md)
  - [QuestionWhenSave](./model/QuestionWhenSave.md)
+ - [QueuePageMigrationJobAPIResponse](./model/QueuePageMigrationJobAPIResponse.md)
  - [ReactBodyParams](./model/ReactBodyParams.md)
  - [ReactFeedPostResponse](./model/ReactFeedPostResponse.md)
  - [Record_string__before_string_or_null__after_string_or_null___value](./model/Record_string__before_string_or_null__after_string_or_null___value.md)
+ - [Record_string_string_or_number_or_number_Array__value](./model/Record_string_string_or_number_or_number_Array__value.md)
  - [RemoveCommentActionResponse](./model/RemoveCommentActionResponse.md)
  - [RemoveUserBadgeResponse](./model/RemoveUserBadgeResponse.md)
  - [RenderEmailTemplateBody](./model/RenderEmailTemplateBody.md)
@@ -578,6 +614,7 @@ All URIs are relative to *https://fastcomments.com*
  - [SizePreset](./model/SizePreset.md)
  - [SortDirections](./model/SortDirections.md)
  - [SpamRule](./model/SpamRule.md)
+ - [SubQuestionCondition](./model/SubQuestionCondition.md)
  - [TOSConfig](./model/TOSConfig.md)
  - [TenantBadge](./model/TenantBadge.md)
  - [TenantHashTag](./model/TenantHashTag.md)
@@ -621,6 +658,8 @@ All URIs are relative to *https://fastcomments.com*
  - [UsersListLocation](./model/UsersListLocation.md)
  - [VoteBodyParams](./model/VoteBodyParams.md)
  - [VoteDeleteResponse](./model/VoteDeleteResponse.md)
+ - [VotePollBody](./model/VotePollBody.md)
+ - [VotePollResponse](./model/VotePollResponse.md)
  - [VoteResponse](./model/VoteResponse.md)
  - [VoteResponseUser](./model/VoteResponseUser.md)
  - [VoteResponse_status](./model/VoteResponse_status.md)

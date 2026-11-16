@@ -4,7 +4,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 | **urlId** | **String** |  | [default to null] |
-| **value** | **Double** |  | [default to null] |
+| **value** | **Double** | Required unless values is given. For multi-choice questions this is derived from values. | [optional] [default to null] |
+| **values** | **List** | Selected option indexes for multi-choice questions. | [optional] [default to null] |
 | **questionId** | **String** |  | [default to null] |
 | **anonUserId** | **String** |  | [optional] [default to null] |
 | **userId** | **String** |  | [optional] [default to null] |

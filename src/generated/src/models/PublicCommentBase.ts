@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CommentPoll } from './CommentPoll';
+import {
+    CommentPollFromJSON,
+    CommentPollFromJSONTyped,
+    CommentPollToJSON,
+    CommentPollToJSONTyped,
+} from './CommentPoll';
 import type { CommentUserBadgeInfo } from './CommentUserBadgeInfo';
 import {
     CommentUserBadgeInfoFromJSON,
@@ -185,6 +192,12 @@ export interface PublicCommentBase {
     feedbackIds?: Array<string>;
     /**
      * 
+     * @type {CommentPoll}
+     * @memberof PublicCommentBase
+     */
+    poll?: CommentPoll | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof PublicCommentBase
      */
@@ -251,6 +264,7 @@ export function PublicCommentBaseFromJSONTyped(json: any, ignoreDiscriminator: b
         'isSpam': json['isSpam'] == null ? undefined : json['isSpam'],
         'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
+        'poll': json['poll'] == null ? undefined : CommentPollFromJSON(json['poll']),
         'requiresVerification': json['requiresVerification'] == null ? undefined : json['requiresVerification'],
         'editKey': json['editKey'] == null ? undefined : json['editKey'],
         'approved': json['approved'] == null ? undefined : json['approved'],
@@ -294,6 +308,7 @@ export function PublicCommentBaseToJSONTyped(value?: PublicCommentBase | null, i
         'isSpam': value['isSpam'],
         'anonUserId': value['anonUserId'],
         'feedbackIds': value['feedbackIds'],
+        'poll': CommentPollToJSON(value['poll']),
         'requiresVerification': value['requiresVerification'],
         'editKey': value['editKey'],
         'approved': value['approved'],

@@ -30,6 +30,7 @@ All URIs are relative to *https://fastcomments.com*
 | [**getOfflineUsers**](PublicApi.md#getOfflineUsers) | **GET** /pages/{tenantId}/users/offline |  |
 | [**getOnlineUsers**](PublicApi.md#getOnlineUsers) | **GET** /pages/{tenantId}/users/online |  |
 | [**getPagesPublic**](PublicApi.md#getPagesPublic) | **GET** /pages/{tenantId} |  |
+| [**getPollVoters**](PublicApi.md#getPollVoters) | **GET** /polls/{tenantId}/{commentId}/voters |  |
 | [**getTranslations**](PublicApi.md#getTranslations) | **GET** /translations/{namespace}/{component} |  |
 | [**getUserNotificationCount**](PublicApi.md#getUserNotificationCount) | **GET** /user-notifications/get-count |  |
 | [**getUserNotifications**](PublicApi.md#getUserNotifications) | **GET** /user-notifications |  |
@@ -47,6 +48,7 @@ All URIs are relative to *https://fastcomments.com*
 | [**resetUserNotifications**](PublicApi.md#resetUserNotifications) | **POST** /user-notifications/reset |  |
 | [**searchUsers**](PublicApi.md#searchUsers) | **GET** /user-search/{tenantId} |  |
 | [**setCommentText**](PublicApi.md#setCommentText) | **POST** /comments/{tenantId}/{commentId}/update-text |  |
+| [**translateComments**](PublicApi.md#translateComments) | **POST** /comments/{tenantId}/translations |  |
 | [**unBlockCommentPublic**](PublicApi.md#unBlockCommentPublic) | **DELETE** /block-from-comment/{commentId} |  |
 | [**unLockComment**](PublicApi.md#unLockComment) | **POST** /comments/{tenantId}/{commentId}/unlock |  |
 | [**unPinComment**](PublicApi.md#unPinComment) | **POST** /comments/{tenantId}/{commentId}/unpin |  |
@@ -56,6 +58,7 @@ All URIs are relative to *https://fastcomments.com*
 | [**updateUserNotificationStatus**](PublicApi.md#updateUserNotificationStatus) | **POST** /user-notifications/{notificationId}/mark/{newStatus} |  |
 | [**uploadImage**](PublicApi.md#uploadImage) | **POST** /upload-image/{tenantId} |  |
 | [**voteComment**](PublicApi.md#voteComment) | **POST** /comments/{tenantId}/{commentId}/vote |  |
+| [**votePoll**](PublicApi.md#votePoll) | **PUT** /polls/{tenantId}/{commentId}/vote |  |
 
 
 <a name="blockFromCommentPublic"></a>
@@ -115,7 +118,7 @@ No authorization required
 
 <a name="createCommentPublic"></a>
 # **createCommentPublic**
-> SaveCommentsResponseWithPresence createCommentPublic(tenantId, urlId, broadcastId, CommentData, sessionId, sso)
+> SaveCommentsResponseWithPresence createCommentPublic(tenantId, urlId, broadcastId, CommentData, sessionId, sso, locale)
 
 
 
@@ -129,6 +132,7 @@ No authorization required
 | **CommentData** | [**CommentData**](../model/CommentData.md)|  | |
 | **sessionId** | **String**|  | [optional] [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
 
 ### Return type
 
@@ -488,7 +492,7 @@ No authorization required
 
 <a name="getCommentsPublic"></a>
 # **getCommentsPublic**
-> GetCommentsResponseWithPresence_PublicComment_ getCommentsPublic(tenantId, urlId, page, direction, sso, skip, skipChildren, limit, limitChildren, countChildren, fetchPageForCommentId, includeConfig, countAll, includei10n, locale, modules, isCrawler, includeNotificationCount, asTree, maxTreeDepth, useFullTranslationIds, parentId, searchText, hashTags, userId, customConfigStr, afterCommentId, beforeCommentId)
+> GetCommentsResponseWithPresence_PublicComment_ getCommentsPublic(tenantId, urlId, page, direction, sso, skip, skipChildren, limit, limitChildren, countChildren, fetchPageForCommentId, includeConfig, countAll, includei10n, locale, modules, isCrawler, includeNotificationCount, asTree, maxTreeDepth, useFullTranslationIds, parentId, searchText, hashTags, userId, customConfigStr, afterCommentId, beforeCommentId, questionId, questionValue)
 
 
 
@@ -526,6 +530,8 @@ No authorization required
 | **customConfigStr** | **String**|  | [optional] [default to null] |
 | **afterCommentId** | **String**|  | [optional] [default to null] |
 | **beforeCommentId** | **String**|  | [optional] [default to null] |
+| **questionId** | **String**|  | [optional] [default to null] |
+| **questionValue** | **Integer**|  | [optional] [default to null] |
 
 ### Return type
 
@@ -837,6 +843,38 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getPollVoters"></a>
+# **getPollVoters**
+> GetPollVoterNamesSuccessResponse getPollVoters(tenantId, commentId, urlId, page, search, sso)
+
+
+
+    Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **commentId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [optional] [default to null] |
+| **page** | **Integer**|  | [optional] [default to null] |
+| **search** | **String**|  | [optional] [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**GetPollVoterNamesSuccessResponse**](../model/GetPollVoterNamesSuccessResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getTranslations"></a>
 # **getTranslations**
 > GetTranslationsResponse getTranslations(namespace, component, locale, useFullTranslationIds)
@@ -1011,7 +1049,7 @@ No authorization required
 
 <a name="getV1PageLikes"></a>
 # **getV1PageLikes**
-> GetV1PageLikes getV1PageLikes(tenantId, urlId, sso)
+> GetV1PageLikes getV1PageLikes(tenantId, urlId, sso, includeUserInfo)
 
 
 
@@ -1022,6 +1060,7 @@ No authorization required
 | **tenantId** | **String**|  | [default to null] |
 | **urlId** | **String**|  | [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
+| **includeUserInfo** | [**PageReactIncludeUserInfo**](../model/.md)| When set, returns the users who liked the page (avatars and usernames). Only \&quot;public\&quot; is accepted, which omits private profiles. | [optional] [default to null] [enum: public, include-private] |
 
 ### Return type
 
@@ -1066,7 +1105,7 @@ No authorization required
 
 <a name="getV2PageReacts"></a>
 # **getV2PageReacts**
-> GetV2PageReacts getV2PageReacts(tenantId, urlId, sso)
+> GetV2PageReacts getV2PageReacts(tenantId, urlId, sso, includeUserInfo)
 
 
 
@@ -1077,6 +1116,7 @@ No authorization required
 | **tenantId** | **String**|  | [default to null] |
 | **urlId** | **String**|  | [default to null] |
 | **sso** | **String**|  | [optional] [default to null] |
+| **includeUserInfo** | [**PageReactIncludeUserInfo**](../model/.md)| When set, returns the users for each react id (avatars and usernames). Only \&quot;public\&quot; is accepted, which omits private profiles. | [optional] [default to null] [enum: public, include-private] |
 
 ### Return type
 
@@ -1306,6 +1346,37 @@ No authorization required
 ### Return type
 
 [**PublicAPISetCommentTextResponse**](../model/PublicAPISetCommentTextResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="translateComments"></a>
+# **translateComments**
+> CommentTranslationsResponse translateComments(tenantId, urlId, CommentTranslationsRequest, sso, locale)
+
+
+
+    Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **CommentTranslationsRequest** | [**CommentTranslationsRequest**](../model/CommentTranslationsRequest.md)|  | |
+| **sso** | **String**|  | [optional] [default to null] |
+| **locale** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**CommentTranslationsResponse**](../model/CommentTranslationsResponse.md)
 
 ### Authorization
 
@@ -1571,6 +1642,36 @@ No authorization required
 ### Return type
 
 [**VoteResponse**](../model/VoteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="votePoll"></a>
+# **votePoll**
+> VotePollResponse votePoll(tenantId, commentId, VotePollBody, urlId, broadcastId, sso)
+
+
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **commentId** | **String**|  | [default to null] |
+| **VotePollBody** | [**VotePollBody**](../model/VotePollBody.md)|  | |
+| **urlId** | **String**|  | [optional] [default to null] |
+| **broadcastId** | **String**|  | [optional] [default to null] |
+| **sso** | **String**|  | [optional] [default to null] |
+
+### Return type
+
+[**VotePollResponse**](../model/VotePollResponse.md)
 
 ### Authorization
 

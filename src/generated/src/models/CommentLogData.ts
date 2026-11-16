@@ -27,6 +27,13 @@ import {
     RepeatCommentCheckIgnoredReasonToJSON,
     RepeatCommentCheckIgnoredReasonToJSONTyped,
 } from './RepeatCommentCheckIgnoredReason';
+import type { NotificationSkipReason } from './NotificationSkipReason';
+import {
+    NotificationSkipReasonFromJSON,
+    NotificationSkipReasonFromJSONTyped,
+    NotificationSkipReasonToJSON,
+    NotificationSkipReasonToJSONTyped,
+} from './NotificationSkipReason';
 import type { SpamRule } from './SpamRule';
 import {
     SpamRuleFromJSON,
@@ -329,6 +336,24 @@ export interface CommentLogData {
      * @memberof CommentLogData
      */
     detectedLanguage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentLogData
+     */
+    recipientUserId?: string;
+    /**
+     * 
+     * @type {NotificationSkipReason}
+     * @memberof CommentLogData
+     */
+    notifySkipReason?: NotificationSkipReason;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommentLogData
+     */
+    emailQueued?: boolean;
 }
 
 /**
@@ -405,6 +430,9 @@ export function CommentLogDataFromJSONTyped(json: any, ignoreDiscriminator: bool
         'invalidLocale': json['invalidLocale'] == null ? undefined : json['invalidLocale'],
         'detectedLocale': json['detectedLocale'] == null ? undefined : json['detectedLocale'],
         'detectedLanguage': json['detectedLanguage'] == null ? undefined : json['detectedLanguage'],
+        'recipientUserId': json['recipientUserId'] == null ? undefined : json['recipientUserId'],
+        'notifySkipReason': json['notifySkipReason'] == null ? undefined : NotificationSkipReasonFromJSON(json['notifySkipReason']),
+        'emailQueued': json['emailQueued'] == null ? undefined : json['emailQueued'],
     };
 }
 
@@ -467,6 +495,9 @@ export function CommentLogDataToJSONTyped(value?: CommentLogData | null, ignoreD
         'invalidLocale': value['invalidLocale'],
         'detectedLocale': value['detectedLocale'],
         'detectedLanguage': value['detectedLanguage'],
+        'recipientUserId': value['recipientUserId'],
+        'notifySkipReason': NotificationSkipReasonToJSON(value['notifySkipReason']),
+        'emailQueued': value['emailQueued'],
     };
 }
 

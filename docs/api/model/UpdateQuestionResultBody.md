@@ -7,6 +7,7 @@
 | **anonUserId** | **String** |  | [optional] [default to null] |
 | **userId** | **String** |  | [optional] [default to null] |
 | **value** | **Double** |  | [optional] [default to null] |
+| **values** | **List** | Selected option indexes for multi-choice questions. | [optional] [default to null] |
 | **commentId** | **String** |  | [optional] [default to null] |
 | **questionId** | **String** |  | [optional] [default to null] |
 | **meta** | [**List**](MetaItem.md) |  | [optional] [default to null] |
