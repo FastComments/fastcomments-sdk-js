@@ -45,6 +45,8 @@
 | **hasCode** | **Boolean** |  | [optional] [default to null] |
 | **approved** | **Boolean** |  | [default to null] |
 | **locale** | **String** |  | [default to null] |
+| **detectedLanguage** | **String** |  | [optional] [default to null] |
+| **translations** | [**Map**](CommentTranslation.md) | Construct a type with a set of properties K of type T | [optional] [default to null] |
 | **isDeleted** | **Boolean** |  | [optional] [default to null] |
 | **isDeletedUser** | **Boolean** |  | [optional] [default to null] |
 | **isBannedUser** | **Boolean** |  | [optional] [default to null] |

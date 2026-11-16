@@ -22,6 +22,8 @@ import type {
   CheckBlockedCommentsResponse,
   CommentData,
   CommentTextUpdateRequest,
+  CommentTranslationsRequest,
+  CommentTranslationsResponse,
   CreateFeedPostParams,
   CreateFeedPostResponse,
   CreateV1PageReact,
@@ -34,6 +36,7 @@ import type {
   GetGifsSearchResponse,
   GetGifsTrendingResponse,
   GetMyNotificationsResponse,
+  GetPollVoterNamesSuccessResponse,
   GetPublicPagesResponse,
   GetTranslationsResponse,
   GetUserNotificationCountResponse,
@@ -42,6 +45,7 @@ import type {
   GetV2PageReactUsersResponse,
   GetV2PageReacts,
   GifGetLargeResponse,
+  PageReactIncludeUserInfo,
   PageUsersInfoResponse,
   PageUsersOfflineResponse,
   PageUsersOnlineResponse,
@@ -67,6 +71,8 @@ import type {
   UserReactsResponse,
   VoteBodyParams,
   VoteDeleteResponse,
+  VotePollBody,
+  VotePollResponse,
   VoteResponse,
 } from '../models/index';
 import {
@@ -84,6 +90,10 @@ import {
     CommentDataToJSON,
     CommentTextUpdateRequestFromJSON,
     CommentTextUpdateRequestToJSON,
+    CommentTranslationsRequestFromJSON,
+    CommentTranslationsRequestToJSON,
+    CommentTranslationsResponseFromJSON,
+    CommentTranslationsResponseToJSON,
     CreateFeedPostParamsFromJSON,
     CreateFeedPostParamsToJSON,
     CreateFeedPostResponseFromJSON,
@@ -108,6 +118,8 @@ import {
     GetGifsTrendingResponseToJSON,
     GetMyNotificationsResponseFromJSON,
     GetMyNotificationsResponseToJSON,
+    GetPollVoterNamesSuccessResponseFromJSON,
+    GetPollVoterNamesSuccessResponseToJSON,
     GetPublicPagesResponseFromJSON,
     GetPublicPagesResponseToJSON,
     GetTranslationsResponseFromJSON,
@@ -124,6 +136,8 @@ import {
     GetV2PageReactsToJSON,
     GifGetLargeResponseFromJSON,
     GifGetLargeResponseToJSON,
+    PageReactIncludeUserInfoFromJSON,
+    PageReactIncludeUserInfoToJSON,
     PageUsersInfoResponseFromJSON,
     PageUsersInfoResponseToJSON,
     PageUsersOfflineResponseFromJSON,
@@ -174,6 +188,10 @@ import {
     VoteBodyParamsToJSON,
     VoteDeleteResponseFromJSON,
     VoteDeleteResponseToJSON,
+    VotePollBodyFromJSON,
+    VotePollBodyToJSON,
+    VotePollResponseFromJSON,
+    VotePollResponseToJSON,
     VoteResponseFromJSON,
     VoteResponseToJSON,
 } from '../models/index';
@@ -198,6 +216,7 @@ export interface CreateCommentPublicRequest {
     commentData: CommentData;
     sessionId?: string;
     sso?: string;
+    locale?: string;
 }
 
 export interface CreateFeedPostPublicRequest {
@@ -320,6 +339,8 @@ export interface GetCommentsPublicRequest {
     customConfigStr?: string;
     afterCommentId?: string;
     beforeCommentId?: string;
+    questionId?: string;
+    questionValue?: number;
 }
 
 export interface GetEventLogRequest {
@@ -397,6 +418,15 @@ export interface GetPagesPublicRequest {
     hasComments?: boolean;
 }
 
+export interface GetPollVotersRequest {
+    tenantId: string;
+    commentId: string;
+    urlId?: string;
+    page?: number;
+    search?: string;
+    sso?: string;
+}
+
 export interface GetTranslationsRequest {
     namespace: string;
     component: string;
@@ -445,6 +475,7 @@ export interface GetV1PageLikesRequest {
     tenantId: string;
     urlId: string;
     sso?: string;
+    includeUserInfo?: PageReactIncludeUserInfo;
 }
 
 export interface GetV2PageReactUsersRequest {
@@ -458,6 +489,7 @@ export interface GetV2PageReactsRequest {
     tenantId: string;
     urlId: string;
     sso?: string;
+    includeUserInfo?: PageReactIncludeUserInfo;
 }
 
 export interface LockCommentRequest {
@@ -514,6 +546,14 @@ export interface SetCommentTextRequest {
     commentTextUpdateRequest: CommentTextUpdateRequest;
     editKey?: string;
     sso?: string;
+}
+
+export interface TranslateCommentsRequest {
+    tenantId: string;
+    urlId: string;
+    commentTranslationsRequest: CommentTranslationsRequest;
+    sso?: string;
+    locale?: string;
 }
 
 export interface UnBlockCommentPublicRequest {
@@ -586,6 +626,15 @@ export interface VoteCommentRequest {
     sso?: string;
 }
 
+export interface VotePollRequest {
+    tenantId: string;
+    commentId: string;
+    votePollBody: VotePollBody;
+    urlId?: string;
+    broadcastId?: string;
+    sso?: string;
+}
+
 /**
  * PublicApi - interface
  * 
@@ -632,6 +681,7 @@ export interface PublicApiInterface {
      * @param {CommentData} commentData 
      * @param {string} [sessionId] 
      * @param {string} [sso] 
+     * @param {string} [locale] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -871,6 +921,8 @@ export interface PublicApiInterface {
      * @param {string} [customConfigStr] 
      * @param {string} [afterCommentId] 
      * @param {string} [beforeCommentId] 
+     * @param {string} [questionId] 
+     * @param {number} [questionValue] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -1054,6 +1106,25 @@ export interface PublicApiInterface {
     getPagesPublic(requestParameters: GetPagesPublicRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPublicPagesResponse>;
 
     /**
+     * Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.
+     * @param {string} tenantId 
+     * @param {string} commentId 
+     * @param {string} [urlId] 
+     * @param {number} [page] 
+     * @param {string} [search] 
+     * @param {string} [sso] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    getPollVotersRaw(requestParameters: GetPollVotersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPollVoterNamesSuccessResponse>>;
+
+    /**
+     * Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.
+     */
+    getPollVoters(requestParameters: GetPollVotersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPollVoterNamesSuccessResponse>;
+
+    /**
      * 
      * @param {string} namespace 
      * @param {string} component 
@@ -1157,6 +1228,7 @@ export interface PublicApiInterface {
      * @param {string} tenantId 
      * @param {string} urlId 
      * @param {string} [sso] 
+     * @param {PageReactIncludeUserInfo} [includeUserInfo] When set, returns the users who liked the page (avatars and usernames). Only \&quot;public\&quot; is accepted, which omits private profiles.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -1188,6 +1260,7 @@ export interface PublicApiInterface {
      * @param {string} tenantId 
      * @param {string} urlId 
      * @param {string} [sso] 
+     * @param {PageReactIncludeUserInfo} [includeUserInfo] When set, returns the users for each react id (avatars and usernames). Only \&quot;public\&quot; is accepted, which omits private profiles.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PublicApiInterface
@@ -1328,6 +1401,24 @@ export interface PublicApiInterface {
     /**
      */
     setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPISetCommentTextResponse>;
+
+    /**
+     * Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual.
+     * @param {string} tenantId 
+     * @param {string} urlId 
+     * @param {CommentTranslationsRequest} commentTranslationsRequest 
+     * @param {string} [sso] 
+     * @param {string} [locale] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    translateCommentsRaw(requestParameters: TranslateCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommentTranslationsResponse>>;
+
+    /**
+     * Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual.
+     */
+    translateComments(requestParameters: TranslateCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommentTranslationsResponse>;
 
     /**
      * 
@@ -1482,6 +1573,24 @@ export interface PublicApiInterface {
     /**
      */
     voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse>;
+
+    /**
+     * 
+     * @param {string} tenantId 
+     * @param {string} commentId 
+     * @param {VotePollBody} votePollBody 
+     * @param {string} [urlId] 
+     * @param {string} [broadcastId] 
+     * @param {string} [sso] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PublicApiInterface
+     */
+    votePollRaw(requestParameters: VotePollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VotePollResponse>>;
+
+    /**
+     */
+    votePoll(requestParameters: VotePollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VotePollResponse>;
 
 }
 
@@ -1643,6 +1752,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
+        }
+
+        if (requestParameters['locale'] != null) {
+            queryParameters['locale'] = requestParameters['locale'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2444,6 +2557,14 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             queryParameters['beforeCommentId'] = requestParameters['beforeCommentId'];
         }
 
+        if (requestParameters['questionId'] != null) {
+            queryParameters['questionId'] = requestParameters['questionId'];
+        }
+
+        if (requestParameters['questionValue'] != null) {
+            queryParameters['questionValue'] = requestParameters['questionValue'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -3004,6 +3125,62 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
     }
 
     /**
+     * Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.
+     */
+    async getPollVotersRaw(requestParameters: GetPollVotersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPollVoterNamesSuccessResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling getPollVoters().'
+            );
+        }
+
+        if (requestParameters['commentId'] == null) {
+            throw new runtime.RequiredError(
+                'commentId',
+                'Required parameter "commentId" was null or undefined when calling getPollVoters().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['search'] != null) {
+            queryParameters['search'] = requestParameters['search'];
+        }
+
+        if (requestParameters['sso'] != null) {
+            queryParameters['sso'] = requestParameters['sso'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/polls/{tenantId}/{commentId}/voters`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))).replace(`{${"commentId"}}`, encodeURIComponent(String(requestParameters['commentId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPollVoterNamesSuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.
+     */
+    async getPollVoters(requestParameters: GetPollVotersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPollVoterNamesSuccessResponse> {
+        const response = await this.getPollVotersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      */
     async getTranslationsRaw(requestParameters: GetTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTranslationsResponse>> {
         if (requestParameters['namespace'] == null) {
@@ -3334,6 +3511,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
             queryParameters['sso'] = requestParameters['sso'];
         }
 
+        if (requestParameters['includeUserInfo'] != null) {
+            queryParameters['includeUserInfo'] = requestParameters['includeUserInfo'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -3435,6 +3616,10 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
 
         if (requestParameters['sso'] != null) {
             queryParameters['sso'] = requestParameters['sso'];
+        }
+
+        if (requestParameters['includeUserInfo'] != null) {
+            queryParameters['includeUserInfo'] = requestParameters['includeUserInfo'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3866,6 +4051,68 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async setCommentText(requestParameters: SetCommentTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublicAPISetCommentTextResponse> {
         const response = await this.setCommentTextRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual.
+     */
+    async translateCommentsRaw(requestParameters: TranslateCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommentTranslationsResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling translateComments().'
+            );
+        }
+
+        if (requestParameters['urlId'] == null) {
+            throw new runtime.RequiredError(
+                'urlId',
+                'Required parameter "urlId" was null or undefined when calling translateComments().'
+            );
+        }
+
+        if (requestParameters['commentTranslationsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'commentTranslationsRequest',
+                'Required parameter "commentTranslationsRequest" was null or undefined when calling translateComments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['sso'] != null) {
+            queryParameters['sso'] = requestParameters['sso'];
+        }
+
+        if (requestParameters['locale'] != null) {
+            queryParameters['locale'] = requestParameters['locale'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/comments/{tenantId}/translations`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CommentTranslationsRequestToJSON(requestParameters['commentTranslationsRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CommentTranslationsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Translates the given comments into the widget locale. Only available when the matching widget customization rule has Comment Translation set to Automatic or Manual.
+     */
+    async translateComments(requestParameters: TranslateCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommentTranslationsResponse> {
+        const response = await this.translateCommentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4431,6 +4678,66 @@ export class PublicApi extends runtime.BaseAPI implements PublicApiInterface {
      */
     async voteComment(requestParameters: VoteCommentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VoteResponse> {
         const response = await this.voteCommentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async votePollRaw(requestParameters: VotePollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VotePollResponse>> {
+        if (requestParameters['tenantId'] == null) {
+            throw new runtime.RequiredError(
+                'tenantId',
+                'Required parameter "tenantId" was null or undefined when calling votePoll().'
+            );
+        }
+
+        if (requestParameters['commentId'] == null) {
+            throw new runtime.RequiredError(
+                'commentId',
+                'Required parameter "commentId" was null or undefined when calling votePoll().'
+            );
+        }
+
+        if (requestParameters['votePollBody'] == null) {
+            throw new runtime.RequiredError(
+                'votePollBody',
+                'Required parameter "votePollBody" was null or undefined when calling votePoll().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['urlId'] != null) {
+            queryParameters['urlId'] = requestParameters['urlId'];
+        }
+
+        if (requestParameters['broadcastId'] != null) {
+            queryParameters['broadcastId'] = requestParameters['broadcastId'];
+        }
+
+        if (requestParameters['sso'] != null) {
+            queryParameters['sso'] = requestParameters['sso'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/polls/{tenantId}/{commentId}/vote`.replace(`{${"tenantId"}}`, encodeURIComponent(String(requestParameters['tenantId']))).replace(`{${"commentId"}}`, encodeURIComponent(String(requestParameters['commentId']))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: VotePollBodyToJSON(requestParameters['votePollBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => VotePollResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async votePoll(requestParameters: VotePollRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VotePollResponse> {
+        const response = await this.votePollRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

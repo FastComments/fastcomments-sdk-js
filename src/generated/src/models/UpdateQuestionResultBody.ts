@@ -53,6 +53,12 @@ export interface UpdateQuestionResultBody {
      */
     value?: number;
     /**
+     * Selected option indexes for multi-choice questions.
+     * @type {Array<number>}
+     * @memberof UpdateQuestionResultBody
+     */
+    values?: Array<number>;
+    /**
      * 
      * @type {string}
      * @memberof UpdateQuestionResultBody
@@ -94,6 +100,7 @@ export function UpdateQuestionResultBodyFromJSONTyped(json: any, ignoreDiscrimin
         'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'userId': json['userId'] == null ? undefined : json['userId'],
         'value': json['value'] == null ? undefined : json['value'],
+        'values': json['values'] == null ? undefined : json['values'],
         'commentId': json['commentId'] == null ? undefined : json['commentId'],
         'questionId': json['questionId'] == null ? undefined : json['questionId'],
         'meta': json['meta'] == null ? undefined : ((json['meta'] as Array<any>).map(MetaItemFromJSON)),
@@ -116,6 +123,7 @@ export function UpdateQuestionResultBodyToJSONTyped(value?: UpdateQuestionResult
         'anonUserId': value['anonUserId'],
         'userId': value['userId'],
         'value': value['value'],
+        'values': value['values'],
         'commentId': value['commentId'],
         'questionId': value['questionId'],
         'meta': value['meta'] == null ? undefined : ((value['meta'] as Array<any>).map(MetaItemToJSON)),

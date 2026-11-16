@@ -111,6 +111,13 @@ import {
     CommentThreadDeletionModeToJSON,
     CommentThreadDeletionModeToJSONTyped,
 } from './CommentThreadDeletionMode';
+import type { CommentTranslationMode } from './CommentTranslationMode';
+import {
+    CommentTranslationModeFromJSON,
+    CommentTranslationModeFromJSONTyped,
+    CommentTranslationModeToJSON,
+    CommentTranslationModeToJSONTyped,
+} from './CommentTranslationMode';
 import type { SortDirections } from './SortDirections';
 import {
     SortDirectionsFromJSON,
@@ -190,6 +197,24 @@ export interface CustomConfigParameters {
      */
     allowedLanguages?: Array<string> | null;
     /**
+     * Simple SSO users on this page or domain can be admins and moderators: they keep those flags and pick them up from a matching email.
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    allowSimpleSSOAdmins?: boolean;
+    /**
+     * Serve each new visitor a unique generated username as the prefilled defaultUsername.
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    autoGenerateUsername?: boolean;
+    /**
+     * Comments from Simple SSO users on this page or domain are verified right away, instead of through an emailed link.
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    autoVerifySimpleSSOComments?: boolean;
+    /**
      * 
      * @type {boolean}
      * @memberof CustomConfigParameters
@@ -207,6 +232,12 @@ export interface CustomConfigParameters {
      * @memberof CustomConfigParameters
      */
     commentHTMLRenderingMode?: CommentHTMLRenderingMode;
+    /**
+     * Hold every new or edited comment on this page or domain for moderation, like the tenant-wide setting but scoped.
+     * @type {boolean}
+     * @memberof CustomConfigParameters
+     */
+    commentsRequireApproval?: boolean;
     /**
      * 
      * @type {CommentThreadDeletionMode}
@@ -693,6 +724,12 @@ export interface CustomConfigParameters {
      * @memberof CustomConfigParameters
      */
     tos?: TOSConfig;
+    /**
+     * 
+     * @type {CommentTranslationMode}
+     * @memberof CustomConfigParameters
+     */
+    commentTranslation?: CommentTranslationMode | null;
 }
 
 
@@ -720,9 +757,13 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'allowAnonFlag': json['allowAnonFlag'] == null ? undefined : json['allowAnonFlag'],
         'allowAnonVotes': json['allowAnonVotes'] == null ? undefined : json['allowAnonVotes'],
         'allowedLanguages': json['allowedLanguages'] == null ? undefined : json['allowedLanguages'],
+        'allowSimpleSSOAdmins': json['allowSimpleSSOAdmins'] == null ? undefined : json['allowSimpleSSOAdmins'],
+        'autoGenerateUsername': json['autoGenerateUsername'] == null ? undefined : json['autoGenerateUsername'],
+        'autoVerifySimpleSSOComments': json['autoVerifySimpleSSOComments'] == null ? undefined : json['autoVerifySimpleSSOComments'],
         'collapseReplies': json['collapseReplies'] == null ? undefined : json['collapseReplies'],
         'commentCountFormat': json['commentCountFormat'] == null ? undefined : json['commentCountFormat'],
         'commentHTMLRenderingMode': json['commentHTMLRenderingMode'] == null ? undefined : CommentHTMLRenderingModeFromJSON(json['commentHTMLRenderingMode']),
+        'commentsRequireApproval': json['commentsRequireApproval'] == null ? undefined : json['commentsRequireApproval'],
         'commentThreadDeleteMode': json['commentThreadDeleteMode'] == null ? undefined : CommentThreadDeletionModeFromJSON(json['commentThreadDeleteMode']),
         'pollCreation': json['pollCreation'] == null ? undefined : PollCreationModeFromJSON(json['pollCreation']),
         'pollVoting': json['pollVoting'] == null ? undefined : PollVotingModeFromJSON(json['pollVoting']),
@@ -804,6 +845,7 @@ export function CustomConfigParametersFromJSONTyped(json: any, ignoreDiscriminat
         'ticketMaxFileSize': json['ticketMaxFileSize'] == null ? undefined : json['ticketMaxFileSize'],
         'ticketAutoAssignUserIds': json['ticketAutoAssignUserIds'] == null ? undefined : json['ticketAutoAssignUserIds'],
         'tos': json['tos'] == null ? undefined : TOSConfigFromJSON(json['tos']),
+        'commentTranslation': json['commentTranslation'] == null ? undefined : CommentTranslationModeFromJSON(json['commentTranslation']),
     };
 }
 
@@ -824,9 +866,13 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'allowAnonFlag': value['allowAnonFlag'],
         'allowAnonVotes': value['allowAnonVotes'],
         'allowedLanguages': value['allowedLanguages'],
+        'allowSimpleSSOAdmins': value['allowSimpleSSOAdmins'],
+        'autoGenerateUsername': value['autoGenerateUsername'],
+        'autoVerifySimpleSSOComments': value['autoVerifySimpleSSOComments'],
         'collapseReplies': value['collapseReplies'],
         'commentCountFormat': value['commentCountFormat'],
         'commentHTMLRenderingMode': CommentHTMLRenderingModeToJSON(value['commentHTMLRenderingMode']),
+        'commentsRequireApproval': value['commentsRequireApproval'],
         'commentThreadDeleteMode': CommentThreadDeletionModeToJSON(value['commentThreadDeleteMode']),
         'pollCreation': PollCreationModeToJSON(value['pollCreation']),
         'pollVoting': PollVotingModeToJSON(value['pollVoting']),
@@ -908,6 +954,7 @@ export function CustomConfigParametersToJSONTyped(value?: CustomConfigParameters
         'ticketMaxFileSize': value['ticketMaxFileSize'],
         'ticketAutoAssignUserIds': value['ticketAutoAssignUserIds'],
         'tos': TOSConfigToJSON(value['tos']),
+        'commentTranslation': CommentTranslationModeToJSON(value['commentTranslation']),
     };
 }
 

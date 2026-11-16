@@ -34,13 +34,13 @@ import {
     CommentPollInputToJSON,
     CommentPollInputToJSONTyped,
 } from './CommentPollInput';
-import type { GifSearchResponseImagesInnerInner } from './GifSearchResponseImagesInnerInner';
+import type { RecordStringStringOrNumberOrNumberArrayValue } from './RecordStringStringOrNumberOrNumberArrayValue';
 import {
-    GifSearchResponseImagesInnerInnerFromJSON,
-    GifSearchResponseImagesInnerInnerFromJSONTyped,
-    GifSearchResponseImagesInnerInnerToJSON,
-    GifSearchResponseImagesInnerInnerToJSONTyped,
-} from './GifSearchResponseImagesInnerInner';
+    RecordStringStringOrNumberOrNumberArrayValueFromJSON,
+    RecordStringStringOrNumberOrNumberArrayValueFromJSONTyped,
+    RecordStringStringOrNumberOrNumberArrayValueToJSON,
+    RecordStringStringOrNumberOrNumberArrayValueToJSONTyped,
+} from './RecordStringStringOrNumberOrNumberArrayValue';
 
 /**
  * 
@@ -188,10 +188,10 @@ export interface CommentData {
     feedbackIds?: Array<string>;
     /**
      * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: GifSearchResponseImagesInnerInner; }}
+     * @type {{ [key: string]: RecordStringStringOrNumberOrNumberArrayValue; }}
      * @memberof CommentData
      */
-    questionValues?: { [key: string]: GifSearchResponseImagesInnerInner; };
+    questionValues?: { [key: string]: RecordStringStringOrNumberOrNumberArrayValue; };
     /**
      * 
      * @type {CommentPollInput}
@@ -256,7 +256,7 @@ export function CommentDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'fromOfflineRestore': json['fromOfflineRestore'] == null ? undefined : json['fromOfflineRestore'],
         'autoplayDelayMS': json['autoplayDelayMS'] == null ? undefined : json['autoplayDelayMS'],
         'feedbackIds': json['feedbackIds'] == null ? undefined : json['feedbackIds'],
-        'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], GifSearchResponseImagesInnerInnerFromJSON)),
+        'questionValues': json['questionValues'] == null ? undefined : (mapValues(json['questionValues'], RecordStringStringOrNumberOrNumberArrayValueFromJSON)),
         'poll': json['poll'] == null ? undefined : CommentPollInputFromJSON(json['poll']),
         'tos': json['tos'] == null ? undefined : json['tos'],
         'botId': json['botId'] == null ? undefined : json['botId'],
@@ -297,7 +297,7 @@ export function CommentDataToJSONTyped(value?: CommentData | null, ignoreDiscrim
         'fromOfflineRestore': value['fromOfflineRestore'],
         'autoplayDelayMS': value['autoplayDelayMS'],
         'feedbackIds': value['feedbackIds'],
-        'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], GifSearchResponseImagesInnerInnerToJSON)),
+        'questionValues': value['questionValues'] == null ? undefined : (mapValues(value['questionValues'], RecordStringStringOrNumberOrNumberArrayValueToJSON)),
         'poll': CommentPollInputToJSON(value['poll']),
         'tos': value['tos'],
         'botId': value['botId'],

@@ -75,7 +75,15 @@ export enum CommentLogType {
     NUMBER_54 = 54,
     NUMBER_55 = 55,
     NUMBER_56 = 56,
-    NUMBER_57 = 57
+    NUMBER_57 = 57,
+    NUMBER_58 = 58,
+    NUMBER_59 = 59,
+    NUMBER_60 = 60,
+    NUMBER_61 = 61,
+    NUMBER_62 = 62,
+    NUMBER_63 = 63,
+    NUMBER_64 = 64,
+    NUMBER_65 = 65
 }
 
 

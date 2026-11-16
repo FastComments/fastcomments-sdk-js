@@ -64,11 +64,17 @@ export interface QuestionResult {
      */
     createdAt: Date;
     /**
-     * 
+     * The answer. For multi-choice questions this is the number of selected options and the options are in values.
      * @type {number}
      * @memberof QuestionResult
      */
     value: number;
+    /**
+     * Selected option indexes, multi-choice questions only.
+     * @type {Array<number>}
+     * @memberof QuestionResult
+     */
+    values?: Array<number>;
     /**
      * 
      * @type {string}
@@ -128,6 +134,7 @@ export function QuestionResultFromJSONTyped(json: any, ignoreDiscriminator: bool
         'userId': json['userId'],
         'createdAt': (new Date(json['createdAt'])),
         'value': json['value'],
+        'values': json['values'] == null ? undefined : json['values'],
         'commentId': json['commentId'] == null ? undefined : json['commentId'],
         'questionId': json['questionId'],
         'meta': json['meta'] == null ? undefined : ((json['meta'] as Array<any>).map(MetaItemFromJSON)),
@@ -153,6 +160,7 @@ export function QuestionResultToJSONTyped(value?: QuestionResult | null, ignoreD
         'userId': value['userId'],
         'createdAt': ((value['createdAt']).toISOString()),
         'value': value['value'],
+        'values': value['values'],
         'commentId': value['commentId'],
         'questionId': value['questionId'],
         'meta': value['meta'] == null ? undefined : ((value['meta'] as Array<any>).map(MetaItemToJSON)),

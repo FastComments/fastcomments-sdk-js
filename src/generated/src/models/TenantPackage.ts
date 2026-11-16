@@ -50,7 +50,7 @@ export interface TenantPackage {
      */
     templateId?: string;
     /**
-     * 
+     * Always the USD list price, also on regionally priced tenants (commissions and plan comparisons read it).
      * @type {number}
      * @memberof TenantPackage
      */
@@ -61,6 +61,24 @@ export interface TenantPackage {
      * @memberof TenantPackage
      */
     yearlyCostUSD: number | null;
+    /**
+     * Regional prices the tenant is charged, when pricingCurrency is set; the Stripe plan ids below are then in that currency.
+     * @type {string}
+     * @memberof TenantPackage
+     */
+    pricingCurrency?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    monthlyCostLocal?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    yearlyCostLocal?: number | null;
     /**
      * 
      * @type {string}
@@ -357,6 +375,12 @@ export interface TenantPackage {
     flexSSOModeratorUnit?: number;
     /**
      * 
+     * @type {number}
+     * @memberof TenantPackage
+     */
+    flexFreeModerators?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof TenantPackage
      */
@@ -438,6 +462,9 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'templateId': json['templateId'] == null ? undefined : json['templateId'],
         'monthlyCostUSD': json['monthlyCostUSD'],
         'yearlyCostUSD': json['yearlyCostUSD'],
+        'pricingCurrency': json['pricingCurrency'] == null ? undefined : json['pricingCurrency'],
+        'monthlyCostLocal': json['monthlyCostLocal'] == null ? undefined : json['monthlyCostLocal'],
+        'yearlyCostLocal': json['yearlyCostLocal'] == null ? undefined : json['yearlyCostLocal'],
         'monthlyStripePlanId': json['monthlyStripePlanId'],
         'yearlyStripePlanId': json['yearlyStripePlanId'],
         'maxMonthlyPageLoads': json['maxMonthlyPageLoads'],
@@ -487,6 +514,7 @@ export function TenantPackageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'flexSSOAdminUnit': json['flexSSOAdminUnit'] == null ? undefined : json['flexSSOAdminUnit'],
         'flexSSOModeratorCostCents': json['flexSSOModeratorCostCents'] == null ? undefined : json['flexSSOModeratorCostCents'],
         'flexSSOModeratorUnit': json['flexSSOModeratorUnit'] == null ? undefined : json['flexSSOModeratorUnit'],
+        'flexFreeModerators': json['flexFreeModerators'] == null ? undefined : json['flexFreeModerators'],
         'isSSOBillingMonthlyActiveUsers': json['isSSOBillingMonthlyActiveUsers'] == null ? undefined : json['isSSOBillingMonthlyActiveUsers'],
         'hasAIAgents': json['hasAIAgents'] == null ? undefined : json['hasAIAgents'],
         'maxAIAgents': json['maxAIAgents'] == null ? undefined : json['maxAIAgents'],
@@ -513,6 +541,9 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'templateId': value['templateId'],
         'monthlyCostUSD': value['monthlyCostUSD'],
         'yearlyCostUSD': value['yearlyCostUSD'],
+        'pricingCurrency': value['pricingCurrency'],
+        'monthlyCostLocal': value['monthlyCostLocal'],
+        'yearlyCostLocal': value['yearlyCostLocal'],
         'monthlyStripePlanId': value['monthlyStripePlanId'],
         'yearlyStripePlanId': value['yearlyStripePlanId'],
         'maxMonthlyPageLoads': value['maxMonthlyPageLoads'],
@@ -562,6 +593,7 @@ export function TenantPackageToJSONTyped(value?: TenantPackage | null, ignoreDis
         'flexSSOAdminUnit': value['flexSSOAdminUnit'],
         'flexSSOModeratorCostCents': value['flexSSOModeratorCostCents'],
         'flexSSOModeratorUnit': value['flexSSOModeratorUnit'],
+        'flexFreeModerators': value['flexFreeModerators'],
         'isSSOBillingMonthlyActiveUsers': value['isSSOBillingMonthlyActiveUsers'],
         'hasAIAgents': value['hasAIAgents'],
         'maxAIAgents': value['maxAIAgents'],

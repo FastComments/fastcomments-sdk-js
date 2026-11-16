@@ -9,9 +9,13 @@
 | **allowAnonFlag** | **Boolean** |  | [optional] [default to null] |
 | **allowAnonVotes** | **Boolean** |  | [optional] [default to null] |
 | **allowedLanguages** | **List** |  | [optional] [default to null] |
+| **allowSimpleSSOAdmins** | **Boolean** | Simple SSO users on this page or domain can be admins and moderators: they keep those flags and pick them up from a matching email. | [optional] [default to null] |
+| **autoGenerateUsername** | **Boolean** | Serve each new visitor a unique generated username as the prefilled defaultUsername. | [optional] [default to null] |
+| **autoVerifySimpleSSOComments** | **Boolean** | Comments from Simple SSO users on this page or domain are verified right away, instead of through an emailed link. | [optional] [default to null] |
 | **collapseReplies** | **Boolean** |  | [optional] [default to null] |
 | **commentCountFormat** | **String** |  | [optional] [default to null] |
 | **commentHTMLRenderingMode** | [**CommentHTMLRenderingMode**](CommentHTMLRenderingMode.md) |  | [optional] [default to null] |
+| **commentsRequireApproval** | **Boolean** | Hold every new or edited comment on this page or domain for moderation, like the tenant-wide setting but scoped. | [optional] [default to null] |
 | **commentThreadDeleteMode** | [**CommentThreadDeletionMode**](CommentThreadDeletionMode.md) |  | [optional] [default to null] |
 | **pollCreation** | [**PollCreationMode**](PollCreationMode.md) |  | [optional] [default to null] |
 | **pollVoting** | [**PollVotingMode**](PollVotingMode.md) |  | [optional] [default to null] |
@@ -93,6 +97,7 @@
 | **ticketMaxFileSize** | **Integer** |  | [optional] [default to null] |
 | **ticketAutoAssignUserIds** | **List** |  | [optional] [default to null] |
 | **tos** | [**TOSConfig**](TOSConfig.md) |  | [optional] [default to null] |
+| **commentTranslation** | [**CommentTranslationMode**](CommentTranslationMode.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

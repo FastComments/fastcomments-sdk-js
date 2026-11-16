@@ -32,6 +32,7 @@
 | **mentions** | [**List**](CommentUserMentionInfo.md) |  | [default to null] |
 | **domain** | **String** |  | [default to null] |
 | **moderationGroupIds** | **List** |  | [default to null] |
+| **badges** | [**List**](CommentUserBadgeInfo.md) |  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

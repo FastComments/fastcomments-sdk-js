@@ -8,6 +8,8 @@ model/APIBanUserChangeLog.md
 model/APIBanUserChangedValues.md
 model/APIBannedUser.md
 model/APIBannedUserWithMultiMatchInfo.md
+model/APIBatchJob.md
+model/APIBatchJob_pageMigrationResults_inner.md
 model/APIComment.md
 model/APICommentBase.md
 model/APICommentBase_meta.md
@@ -95,6 +97,11 @@ model/CommentQuestionResultsRenderingType.md
 model/CommentQuestionsRequired.md
 model/CommentTextUpdateRequest.md
 model/CommentThreadDeletionMode.md
+model/CommentTranslation.md
+model/CommentTranslationMode.md
+model/CommentTranslationPublic.md
+model/CommentTranslationsRequest.md
+model/CommentTranslationsResponse.md
 model/CommentUserBadgeInfo.md
 model/CommentUserHashTagInfo.md
 model/CommentUserMentionInfo.md
@@ -164,6 +171,8 @@ model/FlagCommentResponse.md
 model/GetAuditLogsResponse.md
 model/GetBannedUsersCountResponse.md
 model/GetBannedUsersFromCommentResponse.md
+model/GetBatchJobAPIResponse.md
+model/GetBatchJobsAPIResponse.md
 model/GetCachedNotificationCountResponse.md
 model/GetCommentBanStatusResponse.md
 model/GetCommentTextResponse.md
@@ -191,11 +200,14 @@ model/GetMyNotificationsResponse.md
 model/GetNotificationCountResponse.md
 model/GetNotificationsResponse.md
 model/GetPageByURLIdAPIResponse.md
+model/GetPageLikesAPIResponse.md
+model/GetPageReactsAPIResponse.md
 model/GetPagesAPIResponse.md
 model/GetPendingWebhookEventCountResponse.md
 model/GetPendingWebhookEventsResponse.md
 model/GetPollResponse.md
 model/GetPollVoteResponse.md
+model/GetPollVoterNamesSuccessResponse.md
 model/GetPollVotesResponse.md
 model/GetPublicFeedPostsResponse.md
 model/GetPublicPagesResponse.md
@@ -250,6 +262,7 @@ model/MeAuthType.md
 model/MediaAsset.md
 model/MentionAutoCompleteMode.md
 model/MetaItem.md
+model/MigrateAPIPagesData.md
 model/ModerationAPIChildCommentsResponse.md
 model/ModerationAPIComment.md
 model/ModerationAPICommentLog.md
@@ -272,8 +285,17 @@ model/ModerationUserSearchResponse.md
 model/Moderator.md
 model/NotificationAndCount.md
 model/NotificationObjectType.md
+model/NotificationSkipReason.md
 model/NotificationType.md
 model/OAuthScope.md
+model/PageCustomReactUser.md
+model/PageMigration.md
+model/PageMigrationFailure.md
+model/PageMigrationSuccess.md
+model/PageMigrationType.md
+model/PageMigrationUndoCounts.md
+model/PageReactIncludeUserInfo.md
+model/PageReactUser.md
 model/PageUserEntry.md
 model/PageUsersInfoResponse.md
 model/PageUsersOfflineResponse.md
@@ -287,6 +309,7 @@ model/PendingCommentToSyncOutbound.md
 model/Pick_CommentPoll.options-or-totalVotes-or-closesAt_.md
 model/PollCreationMode.md
 model/PollPrivacy.md
+model/PollVoterEntry.md
 model/PollVotingMode.md
 model/PostRemoveCommentApiResponse.md
 model/PreBanSummary.md
@@ -308,6 +331,8 @@ model/PutDomainConfigResponse.md
 model/PutSSOUserAPIResponse.md
 model/QueryPredicate.md
 model/QueryPredicate_value.md
+model/QuestionCondition.md
+model/QuestionConditionOperator.md
 model/QuestionConfig.md
 model/QuestionConfig_customOptions_inner.md
 model/QuestionDatum.md
@@ -316,9 +341,11 @@ model/QuestionResult.md
 model/QuestionResultAggregationOverall.md
 model/QuestionSubQuestionVisibility.md
 model/QuestionWhenSave.md
+model/QueuePageMigrationJobAPIResponse.md
 model/ReactBodyParams.md
 model/ReactFeedPostResponse.md
 model/Record_string__before_string_or_null__after_string_or_null___value.md
+model/Record_string_string_or_number_or_number_Array__value.md
 model/RemoveCommentActionResponse.md
 model/RemoveUserBadgeResponse.md
 model/RenderEmailTemplateBody.md
@@ -346,6 +373,7 @@ model/SetUserTrustFactorResponse.md
 model/SizePreset.md
 model/SortDirections.md
 model/SpamRule.md
+model/SubQuestionCondition.md
 model/TOSConfig.md
 model/TenantBadge.md
 model/TenantHashTag.md
@@ -389,6 +417,8 @@ model/UserSessionInfo.md
 model/UsersListLocation.md
 model/VoteBodyParams.md
 model/VoteDeleteResponse.md
+model/VotePollBody.md
+model/VotePollResponse.md
 model/VoteResponse.md
 model/VoteResponseUser.md
 model/VoteResponse_status.md

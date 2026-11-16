@@ -3,6 +3,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+| **users** | [**List**](PageReactUser.md) | Most recent first. Present when includeUserInfo is passed. Capped at 100 reacts. | [optional] [default to null] |
 | **urlIdWS** | **String** |  | [default to null] |
 | **didLike** | **Boolean** |  | [default to null] |
 | **commentCount** | **Integer** |  | [default to null] |

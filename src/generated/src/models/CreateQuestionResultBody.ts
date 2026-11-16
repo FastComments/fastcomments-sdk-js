@@ -35,11 +35,17 @@ export interface CreateQuestionResultBody {
      */
     urlId: string;
     /**
-     * 
+     * Required unless values is given. For multi-choice questions this is derived from values.
      * @type {number}
      * @memberof CreateQuestionResultBody
      */
-    value: number;
+    value?: number;
+    /**
+     * Selected option indexes for multi-choice questions.
+     * @type {Array<number>}
+     * @memberof CreateQuestionResultBody
+     */
+    values?: Array<number>;
     /**
      * 
      * @type {string}
@@ -77,7 +83,6 @@ export interface CreateQuestionResultBody {
  */
 export function instanceOfCreateQuestionResultBody(value: object): value is CreateQuestionResultBody {
     if (!('urlId' in value) || value['urlId'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
     if (!('questionId' in value) || value['questionId'] === undefined) return false;
     return true;
 }
@@ -94,7 +99,8 @@ export function CreateQuestionResultBodyFromJSONTyped(json: any, ignoreDiscrimin
         
             ...json,
         'urlId': json['urlId'],
-        'value': json['value'],
+        'value': json['value'] == null ? undefined : json['value'],
+        'values': json['values'] == null ? undefined : json['values'],
         'questionId': json['questionId'],
         'anonUserId': json['anonUserId'] == null ? undefined : json['anonUserId'],
         'userId': json['userId'] == null ? undefined : json['userId'],
@@ -117,6 +123,7 @@ export function CreateQuestionResultBodyToJSONTyped(value?: CreateQuestionResult
             ...value,
         'urlId': value['urlId'],
         'value': value['value'],
+        'values': value['values'],
         'questionId': value['questionId'],
         'anonUserId': value['anonUserId'],
         'userId': value['userId'],

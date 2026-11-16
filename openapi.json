@@ -50,8 +50,7 @@
 					"name",
 					"type"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UserSearchSectionResult": {
 				"properties": {
@@ -69,8 +68,7 @@
 					"section",
 					"users"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SearchUsersSectionedResponse": {
 				"properties": {
@@ -213,8 +211,7 @@
 				"required": [
 					"actions"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SSOSecurityLevel": {
 				"enum": [
@@ -296,8 +293,15 @@
 						"format": "date-time"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
+			},
+			"CommentTranslationMode": {
+				"type": "string",
+				"enum": [
+					"off",
+					"auto",
+					"manual"
+				]
 			},
 			"CustomConfigParameters": {
 				"properties": {
@@ -323,6 +327,18 @@
 						"type": "array",
 						"nullable": true
 					},
+					"allowSimpleSSOAdmins": {
+						"type": "boolean",
+						"description": "Simple SSO users on this page or domain can be admins and moderators: they keep those flags and pick them up from a matching email."
+					},
+					"autoGenerateUsername": {
+						"type": "boolean",
+						"description": "Serve each new visitor a unique generated username as the prefilled defaultUsername."
+					},
+					"autoVerifySimpleSSOComments": {
+						"type": "boolean",
+						"description": "Comments from Simple SSO users on this page or domain are verified right away, instead of through an emailed link."
+					},
 					"collapseReplies": {
 						"type": "boolean"
 					},
@@ -332,6 +348,10 @@
 					},
 					"commentHTMLRenderingMode": {
 						"$ref": "#/components/schemas/CommentHTMLRenderingMode"
+					},
+					"commentsRequireApproval": {
+						"type": "boolean",
+						"description": "Hold every new or edited comment on this page or domain for moderation, like the tenant-wide setting but scoped."
 					},
 					"commentThreadDeleteMode": {
 						"allOf": [
@@ -638,10 +658,17 @@
 					},
 					"tos": {
 						"$ref": "#/components/schemas/TOSConfig"
+					},
+					"commentTranslation": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/CommentTranslationMode"
+							}
+						],
+						"nullable": true
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIError": {
 				"properties": {
@@ -677,8 +704,7 @@
 					"reason",
 					"code"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Record_string.boolean_": {
 				"properties": {},
@@ -871,8 +897,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetUserNotificationCountResponse": {
 				"properties": {
@@ -888,8 +913,7 @@
 					"status",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"EnumAsObject_typeofNotificationType_": {
 				"properties": {},
@@ -909,8 +933,7 @@
 					"type",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"HeaderAccountNotification": {
 				"properties": {
@@ -971,8 +994,7 @@
 					"linkText",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"HeaderState": {
 				"properties": {
@@ -1009,8 +1031,7 @@
 					"notificationCounts",
 					"accountNotifications"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UserNotificationWriteResponse": {
 				"properties": {
@@ -1031,8 +1052,7 @@
 					"matchedCount",
 					"modifiedCount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"IgnoredResponse": {
 				"properties": {
@@ -1051,8 +1071,7 @@
 					"status",
 					"note"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"MediaAsset": {
 				"properties": {
@@ -1073,8 +1092,7 @@
 					"h",
 					"src"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UploadImageResponse": {
 				"properties": {
@@ -1100,8 +1118,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SizePreset": {
 				"type": "string",
@@ -1295,8 +1312,195 @@
 				],
 				"type": "object"
 			},
+			"CommentPollOption": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"label": {
+						"type": "string"
+					},
+					"votes": {
+						"type": "integer",
+						"format": "int32"
+					}
+				},
+				"required": [
+					"id",
+					"label",
+					"votes"
+				],
+				"type": "object"
+			},
+			"PollPrivacy": {
+				"description": "Who may see which voter picked which option. Chosen by the poll's author when they build the poll, so it\nlives on the poll itself rather than in the widget config. Anonymous is the default and is never stored on\nthe poll or sent to the client, so an unset value means Anonymous.",
+				"enum": [
+					0,
+					1,
+					2
+				],
+				"type": "integer"
+			},
+			"CommentPoll": {
+				"description": "A poll attached to a comment. Vote counts are denormalized here; individual votes live in PollVote.",
+				"properties": {
+					"question": {
+						"type": "string"
+					},
+					"options": {
+						"items": {
+							"$ref": "#/components/schemas/CommentPollOption"
+						},
+						"type": "array"
+					},
+					"totalVotes": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"closesAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"privacy": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/PollPrivacy"
+							}
+						],
+						"nullable": true
+					},
+					"requireVoteToSeeResults": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"question",
+					"options",
+					"totalVotes"
+				],
+				"type": "object"
+			},
+			"VotePollResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"poll": {
+						"$ref": "#/components/schemas/CommentPoll"
+					},
+					"myPollVotes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"voterId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"poll",
+					"myPollVotes",
+					"voterId"
+				],
+				"type": "object"
+			},
+			"VotePollBody": {
+				"properties": {
+					"optionId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"optionId"
+				],
+				"type": "object"
+			},
+			"PollVoterEntry": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"optionLabel": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"optionLabel"
+				],
+				"type": "object"
+			},
+			"GetPollVoterNamesSuccessResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"voters": {
+						"items": {
+							"$ref": "#/components/schemas/PollVoterEntry"
+						},
+						"type": "array"
+					},
+					"page": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"pageSize": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"total": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"hasMore": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"status",
+					"voters",
+					"page",
+					"pageSize",
+					"total",
+					"hasMore"
+				],
+				"type": "object"
+			},
+			"PageReactUser": {
+				"properties": {
+					"avatarSrc": {
+						"type": "string"
+					},
+					"displayName": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"username",
+					"userId"
+				],
+				"type": "object"
+			},
 			"GetV1PageLikes": {
 				"properties": {
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/PageReactUser"
+						},
+						"type": "array",
+						"description": "Most recent first. Present when includeUserInfo is passed. Capped at 100 reacts."
+					},
 					"urlIdWS": {
 						"type": "string"
 					},
@@ -1323,6 +1527,14 @@
 					"status"
 				],
 				"type": "object"
+			},
+			"PageReactIncludeUserInfo": {
+				"type": "string",
+				"enum": [
+					"public",
+					"include-private"
+				],
+				"description": "public omits users with private profile activity; include-private requires an API key."
 			},
 			"GetV2PageReactUsersResponse": {
 				"properties": {
@@ -1351,8 +1563,40 @@
 				"type": "object",
 				"description": "Construct a type with a set of properties K of type T"
 			},
+			"PageCustomReactUser": {
+				"properties": {
+					"avatarSrc": {
+						"type": "string"
+					},
+					"displayName": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "string"
+					},
+					"reactId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"username",
+					"userId",
+					"reactId"
+				],
+				"type": "object"
+			},
 			"GetV2PageReacts": {
 				"properties": {
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/PageCustomReactUser"
+						},
+						"type": "array",
+						"description": "One entry per react, most recent first. Present when includeUserInfo is passed. Capped at 100 reacts."
+					},
 					"reactedIds": {
 						"items": {
 							"type": "string"
@@ -1442,8 +1686,7 @@
 						"description": "Set by the `exact=\"...\"` search syntax. The comment text must equal this value exactly\n(case-sensitive, full-string), as opposed to the substring matching of commentTextSearch."
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BuildModerationFilterResponse": {
 				"properties": {
@@ -1458,8 +1701,7 @@
 					"status",
 					"moderationFilter"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BuildModerationFilterParams": {
 				"properties": {
@@ -1500,8 +1742,7 @@
 					"status",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationAPIGetCommentIdsResponse": {
 				"properties": {
@@ -1570,8 +1811,7 @@
 					"type",
 					"description"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationAPIComment": {
 				"properties": {
@@ -1752,8 +1992,7 @@
 					"locale",
 					"verified"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationAPIGetCommentsResponse": {
 				"properties": {
@@ -1761,7 +2000,6 @@
 						"$ref": "#/components/schemas/APIStatus"
 					},
 					"translations": {
-						"additionalProperties": false,
 						"type": "object"
 					},
 					"comments": {
@@ -1779,8 +2017,7 @@
 					"translations",
 					"comments"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationExportResponse": {
 				"properties": {
@@ -1795,8 +2032,7 @@
 					"status",
 					"batchJobId"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationExportStatusResponse": {
 				"properties": {
@@ -1819,8 +2055,7 @@
 					"jobStatus",
 					"recordCount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationUserSearchProjected": {
 				"properties": {
@@ -1843,8 +2078,7 @@
 					"_id",
 					"username"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationUserSearchResponse": {
 				"properties": {
@@ -1886,8 +2120,7 @@
 					"title",
 					"commentCount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationPageSearchResponse": {
 				"properties": {
@@ -1920,8 +2153,7 @@
 				"required": [
 					"domain"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationSiteSearchResponse": {
 				"properties": {
@@ -1981,8 +2213,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PreBanSummary": {
 				"properties": {
@@ -2005,8 +2236,7 @@
 					"usernames",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkPreBanSummary": {
 				"properties": {
@@ -2050,8 +2280,7 @@
 					"userIds",
 					"ipHashes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkPreBanParams": {
 				"properties": {
@@ -2065,8 +2294,7 @@
 				"required": [
 					"commentIds"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIBannedUser": {
 				"properties": {
@@ -2127,8 +2355,7 @@
 					"bannedUntil",
 					"hasEmailWildcard"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIBanUserChangedValues": {
 				"properties": {
@@ -2179,8 +2406,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIBanUserChangeLog": {
 				"properties": {
@@ -2200,8 +2426,7 @@
 						"$ref": "#/components/schemas/APIBanUserChangedValues"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BanUserFromCommentResult": {
 				"properties": {
@@ -2221,8 +2446,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BannedUserMatchType": {
 				"type": "string",
@@ -2255,8 +2479,7 @@
 					"matchedOn",
 					"matchedOnValue"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APICommentCommonBannedUser": {
 				"properties": {
@@ -2296,8 +2519,7 @@
 					"bannedUntil",
 					"hasEmailWildcard"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIBannedUserWithMultiMatchInfo": {
 				"allOf": [
@@ -2365,8 +2587,7 @@
 				"required": [
 					"changelog"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"DeleteCommentAction": {
 				"type": "string",
@@ -2404,8 +2625,7 @@
 					"status",
 					"action"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SetCommentApprovedResponse": {
 				"properties": {
@@ -2442,8 +2662,7 @@
 					"actionName",
 					"messageHTML"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ModerationAPIGetLogsResponse": {
 				"properties": {
@@ -2508,8 +2727,7 @@
 				"required": [
 					"ids"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetCommentTextResponse": {
 				"properties": {
@@ -2550,8 +2768,7 @@
 				"required": [
 					"comment"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AdjustVotesResponse": {
 				"properties": {
@@ -2567,8 +2784,7 @@
 					"status",
 					"newCommentVotes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AdjustCommentVotesParams": {
 				"properties": {
@@ -2580,8 +2796,7 @@
 				"required": [
 					"adjustVoteAmount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"VoteResponseUser": {
 				"properties": {
@@ -2590,8 +2805,7 @@
 						"nullable": true
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"VoteResponse": {
 				"properties": {
@@ -2624,8 +2838,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"VoteDeleteResponse": {
 				"properties": {
@@ -2639,8 +2852,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetCommentBanStatusResponse": {
 				"properties": {
@@ -2661,8 +2873,7 @@
 					"emailDomain",
 					"canIPBan"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIModerateUserBanPreferences": {
 				"properties": {
@@ -2685,8 +2896,7 @@
 					"lastBanType",
 					"lastBanDuration"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIModerateGetUserBanPreferencesResponse": {
 				"properties": {
@@ -2806,8 +3016,7 @@
 					"isAwaitingReprocess",
 					"isAwaitingDeletion"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantManualBadgesResponse": {
 				"properties": {
@@ -2913,8 +3122,7 @@
 					"displayedOnComments",
 					"receivedAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetUserManualBadgesResponse": {
 				"properties": {
@@ -3179,8 +3387,7 @@
 					"h",
 					"src"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FeedPostMediaItem": {
 				"properties": {
@@ -3200,8 +3407,7 @@
 				"required": [
 					"sizes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FeedPostLink": {
 				"properties": {
@@ -3218,8 +3424,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Int32Map": {
 				"properties": {},
@@ -3300,8 +3505,7 @@
 					"tenantId",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UserSessionInfo": {
 				"properties": {
@@ -3357,8 +3561,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetPublicFeedPostsResponse": {
 				"properties": {
@@ -3384,8 +3587,7 @@
 					"status",
 					"feedPosts"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"TenantIdWS": {
 				"type": "string"
@@ -3453,8 +3655,7 @@
 					"reactType",
 					"isUndo"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ReactBodyParams": {
 				"properties": {
@@ -3462,8 +3663,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UserReactsResponse": {
 				"properties": {
@@ -3486,8 +3686,7 @@
 					"status",
 					"reacts"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateFeedPostResponse": {
 				"properties": {
@@ -3502,8 +3701,7 @@
 					"status",
 					"feedPost"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateFeedPostParams": {
 				"properties": {
@@ -3541,8 +3739,7 @@
 						"$ref": "#/components/schemas/Record_string.string_"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateFeedPostParams": {
 				"properties": {
@@ -3574,8 +3771,7 @@
 						"$ref": "#/components/schemas/Record_string.string_"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FeedPostStats": {
 				"properties": {
@@ -3587,8 +3783,7 @@
 						"format": "int32"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FeedPostsStatsResponse": {
 				"properties": {
@@ -3607,8 +3802,7 @@
 					"status",
 					"stats"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"EventLogEntry": {
 				"properties": {
@@ -3644,8 +3838,7 @@
 					"broadcastId",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetEventLogResponse": {
 				"properties": {
@@ -3805,8 +3998,7 @@
 					"type",
 					"optedOut"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PubSubVote": {
 				"properties": {
@@ -3852,80 +4044,7 @@
 					"createdAt",
 					"verificationId"
 				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"CommentPollOption": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"label": {
-						"type": "string"
-					},
-					"votes": {
-						"type": "integer",
-						"format": "int32"
-					}
-				},
-				"required": [
-					"id",
-					"label",
-					"votes"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"PollPrivacy": {
-				"description": "Who may see which voter picked which option. Chosen by the poll's author when they build the poll, so it\nlives on the poll itself rather than in the widget config. Anonymous is the default and is never stored on\nthe poll or sent to the client, so an unset value means Anonymous.",
-				"enum": [
-					0,
-					1,
-					2
-				],
-				"type": "integer"
-			},
-			"CommentPoll": {
-				"description": "A poll attached to a comment. Vote counts are denormalized here; individual votes live in PollVote.",
-				"properties": {
-					"question": {
-						"type": "string"
-					},
-					"options": {
-						"items": {
-							"$ref": "#/components/schemas/CommentPollOption"
-						},
-						"type": "array"
-					},
-					"totalVotes": {
-						"type": "integer",
-						"format": "int32"
-					},
-					"closesAt": {
-						"type": "string",
-						"format": "date-time",
-						"nullable": true
-					},
-					"privacy": {
-						"allOf": [
-							{
-								"$ref": "#/components/schemas/PollPrivacy"
-							}
-						],
-						"nullable": true
-					},
-					"requireVoteToSeeResults": {
-						"type": "boolean",
-						"nullable": true
-					}
-				},
-				"required": [
-					"question",
-					"options",
-					"totalVotes"
-				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FDomain": {
 				"type": "string"
@@ -4117,8 +4236,7 @@
 					"approved",
 					"locale"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PubSubComment": {
 				"allOf": [
@@ -4248,7 +4366,6 @@
 						"type": "object"
 					},
 					"config": {
-						"additionalProperties": false,
 						"type": "object"
 					},
 					"isClosed": {
@@ -4277,8 +4394,7 @@
 				"required": [
 					"type"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicAPIGetCommentTextResponse": {
 				"properties": {
@@ -4312,8 +4428,7 @@
 					"approved",
 					"commentHTML"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicAPISetCommentTextResponse": {
 				"properties": {
@@ -4356,8 +4471,7 @@
 					"id",
 					"tag"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentUserHashTagInfo": {
 				"properties": {
@@ -4380,8 +4494,7 @@
 					"tag",
 					"url"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentTextUpdateRequest": {
 				"properties": {
@@ -4404,8 +4517,7 @@
 				"required": [
 					"comment"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Pick_GetCommentsResponse.Exclude_keyofGetCommentsResponse.lastGenDate-or-pageNumber__": {
 				"properties": {},
@@ -4603,6 +4715,14 @@
 						},
 						"type": "array"
 					},
+					"poll": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/CommentPoll"
+							}
+						],
+						"nullable": true
+					},
 					"requiresVerification": {
 						"type": "boolean"
 					},
@@ -4620,8 +4740,7 @@
 					"date",
 					"verified"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Record_string.any_": {
 				"properties": {},
@@ -4741,8 +4860,7 @@
 					"user",
 					"pageNumber"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetCommentsResponseWithPresence_PublicComment_": {
 				"allOf": [
@@ -4779,8 +4897,7 @@
 					"comment",
 					"user"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SaveCommentsResponseWithPresence": {
 				"allOf": [
@@ -4797,7 +4914,7 @@
 					}
 				]
 			},
-			"Record_string.string-or-number_": {
+			"Record_string.string-or-number-or-number-Array_": {
 				"properties": {},
 				"additionalProperties": {
 					"anyOf": [
@@ -4807,6 +4924,13 @@
 						{
 							"type": "number",
 							"format": "double"
+						},
+						{
+							"items": {
+								"type": "number",
+								"format": "double"
+							},
+							"type": "array"
 						}
 					]
 				},
@@ -4842,8 +4966,7 @@
 					"question",
 					"options"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentData": {
 				"properties": {
@@ -4913,7 +5036,6 @@
 						"type": "string"
 					},
 					"meta": {
-						"additionalProperties": false,
 						"type": "object"
 					},
 					"moderationGroupIds": {
@@ -4940,7 +5062,7 @@
 						"type": "array"
 					},
 					"questionValues": {
-						"$ref": "#/components/schemas/Record_string.string-or-number_"
+						"$ref": "#/components/schemas/Record_string.string-or-number-or-number-Array_"
 					},
 					"poll": {
 						"$ref": "#/components/schemas/CommentPollInput"
@@ -4958,8 +5080,7 @@
 					"url",
 					"urlId"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"DeletedCommentResultComment": {
 				"properties": {
@@ -4981,8 +5102,7 @@
 					"commentHTML",
 					"commenterName"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicAPIDeleteCommentResponse": {
 				"properties": {
@@ -5045,8 +5165,7 @@
 					"voteDir",
 					"url"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetCommentVoteUserNamesSuccessResponse": {
 				"properties": {
@@ -5068,8 +5187,77 @@
 					"voteUserNames",
 					"hasMore"
 				],
+				"type": "object"
+			},
+			"CommentTranslationPublic": {
+				"properties": {
+					"commentHTML": {
+						"type": "string"
+					},
+					"sourceLanguage": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"commentHTML",
+					"sourceLanguage"
+				],
+				"type": "object"
+			},
+			"Record_string.CommentTranslationPublic-or-null_": {
+				"properties": {},
+				"additionalProperties": {
+					"allOf": [
+						{
+							"$ref": "#/components/schemas/CommentTranslationPublic"
+						}
+					],
+					"nullable": true
+				},
 				"type": "object",
-				"additionalProperties": false
+				"description": "Construct a type with a set of properties K of type T"
+			},
+			"CommentTranslationsResponse": {
+				"properties": {
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"locale": {
+						"type": "string"
+					},
+					"translations": {
+						"$ref": "#/components/schemas/Record_string.CommentTranslationPublic-or-null_",
+						"description": "null means the comment is already in the target language or cannot be translated."
+					},
+					"failed": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "Comment ids that failed transiently and may be retried."
+					}
+				},
+				"required": [
+					"status",
+					"locale",
+					"translations",
+					"failed"
+				],
+				"type": "object"
+			},
+			"CommentTranslationsRequest": {
+				"properties": {
+					"commentIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"commentIds"
+				],
+				"type": "object"
 			},
 			"ChangeCommentPinStatusResponse": {
 				"properties": {
@@ -5099,8 +5287,7 @@
 					"status",
 					"commentStatuses"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicBlockFromCommentParams": {
 				"properties": {
@@ -5116,8 +5303,7 @@
 				"required": [
 					"commentIds"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UnblockSuccess": {
 				"properties": {
@@ -5132,8 +5318,7 @@
 					"status",
 					"commentStatuses"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIUserSubscription": {
 				"properties": {
@@ -5369,8 +5554,7 @@
 					"displayLabel",
 					"displayName"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetSSOUserByIdAPIResponse": {
 				"properties": {
@@ -5731,6 +5915,61 @@
 				],
 				"type": "object"
 			},
+			"GetPageLikesAPIResponse": {
+				"properties": {
+					"reason": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/PageReactUser"
+						},
+						"type": "array",
+						"description": "Most recent first. Present when includeUserInfo is passed. Capped at 100 reacts."
+					},
+					"likeCount": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"GetPageReactsAPIResponse": {
+				"properties": {
+					"reason": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"users": {
+						"items": {
+							"$ref": "#/components/schemas/PageCustomReactUser"
+						},
+						"type": "array",
+						"description": "One entry per react, most recent first. Present when includeUserInfo is passed. Capped at 100 reacts."
+					},
+					"counts": {
+						"$ref": "#/components/schemas/Record_string.number_"
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
 			"AddPageAPIResponse": {
 				"properties": {
 					"reason": {
@@ -5781,6 +6020,69 @@
 					"title",
 					"url",
 					"urlId"
+				],
+				"type": "object"
+			},
+			"QueuePageMigrationJobAPIResponse": {
+				"properties": {
+					"reason": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"batchJobId": {
+						"type": "string",
+						"description": "Poll GET /api/v1/batch-jobs/{batchJobId} for progress and the result."
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"PageMigrationType": {
+				"type": "string",
+				"enum": [
+					"urlId",
+					"domain"
+				],
+				"description": "\"urlId\" renames exact urlId matches only. \"domain\" find/replaces the value inside every urlId and url."
+			},
+			"PageMigration": {
+				"properties": {
+					"from": {
+						"type": "string"
+					},
+					"to": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/PageMigrationType"
+					}
+				},
+				"required": [
+					"from",
+					"to",
+					"type"
+				],
+				"type": "object"
+			},
+			"MigrateAPIPagesData": {
+				"properties": {
+					"migrations": {
+						"items": {
+							"$ref": "#/components/schemas/PageMigration"
+						},
+						"type": "array",
+						"description": "Run in the order given, so a -> b then b -> c works. At most 100."
+					}
+				},
+				"required": [
+					"migrations"
 				],
 				"type": "object"
 			},
@@ -5932,8 +6234,7 @@
 					"enabled",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetWebhooksResponse": {
 				"properties": {
@@ -5951,8 +6252,7 @@
 					"status",
 					"webhooks"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"WebhookComment": {
 				"properties": {
@@ -6066,6 +6366,12 @@
 							"type": "string"
 						},
 						"type": "array"
+					},
+					"badges": {
+						"items": {
+							"$ref": "#/components/schemas/CommentUserBadgeInfo"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -6097,10 +6403,10 @@
 					"locale",
 					"mentions",
 					"domain",
-					"moderationGroupIds"
+					"moderationGroupIds",
+					"badges"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetWebhookSamplePayloadsResponse": {
 				"properties": {
@@ -6118,8 +6424,7 @@
 					"status",
 					"payloads"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateWebhookResponse": {
 				"properties": {
@@ -6134,8 +6439,7 @@
 					"status",
 					"webhook"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateWebhookParams": {
 				"properties": {
@@ -6159,8 +6463,7 @@
 					"url",
 					"event"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicVote": {
 				"properties": {
@@ -6192,8 +6495,7 @@
 					"direction",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetVotesResponse": {
 				"properties": {
@@ -6225,8 +6527,7 @@
 					"appliedAnonymousVotes",
 					"pendingVotes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetVotesForUserResponse": {
 				"properties": {
@@ -6258,8 +6559,7 @@
 					"appliedAnonymousVotes",
 					"pendingVotes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"DigestEmailFrequency": {
 				"enum": [
@@ -6500,8 +6800,7 @@
 					"loginId",
 					"loginIdDate"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetUserResponse": {
 				"properties": {
@@ -6516,8 +6815,7 @@
 					"status",
 					"user"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIGetUserBadgeResponse": {
 				"properties": {
@@ -6532,8 +6830,7 @@
 					"status",
 					"userBadge"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIGetUserBadgesResponse": {
 				"properties": {
@@ -6551,8 +6848,7 @@
 					"status",
 					"userBadges"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APICreateUserBadgeResponse": {
 				"properties": {
@@ -6573,8 +6869,7 @@
 					"status",
 					"userBadge"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateUserBadgeParams": {
 				"properties": {
@@ -6592,8 +6887,7 @@
 					"userId",
 					"badgeId"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIEmptySuccessResponse": {
 				"properties": {
@@ -6604,8 +6898,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateUserBadgeParams": {
 				"properties": {
@@ -6613,8 +6906,7 @@
 						"type": "boolean"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UserBadgeProgress": {
 				"properties": {
@@ -6658,8 +6950,7 @@
 					"firstCommentDate",
 					"progress"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIGetUserBadgeProgressResponse": {
 				"properties": {
@@ -6674,8 +6965,7 @@
 					"status",
 					"userBadgeProgress"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIGetUserBadgeProgressListResponse": {
 				"properties": {
@@ -6693,8 +6983,7 @@
 					"status",
 					"userBadgeProgresses"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APITicket": {
 				"properties": {
@@ -6742,8 +7031,7 @@
 					"state",
 					"fileCount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTicketsResponse": {
 				"properties": {
@@ -6761,8 +7049,7 @@
 					"status",
 					"tickets"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTicketResponse": {
 				"properties": {
@@ -6777,8 +7064,7 @@
 					"status",
 					"ticket"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTicketBody": {
 				"properties": {
@@ -6789,8 +7075,7 @@
 				"required": [
 					"subject"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APITicketFile": {
 				"properties": {
@@ -6837,8 +7122,7 @@
 					"url",
 					"expiresAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APITicketDetail": {
 				"properties": {
@@ -6905,8 +7189,7 @@
 					"fileCount",
 					"files"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTicketResponse": {
 				"properties": {
@@ -6929,8 +7212,7 @@
 					"ticket",
 					"availableStates"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ChangeTicketStateResponse": {
 				"properties": {
@@ -6945,8 +7227,7 @@
 					"status",
 					"ticket"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ChangeTicketStateBody": {
 				"properties": {
@@ -6958,8 +7239,7 @@
 				"required": [
 					"state"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ImportedSiteType": {
 				"enum": [
@@ -7033,8 +7313,7 @@
 					"domain",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BillingInfo": {
 				"properties": {
@@ -7079,8 +7358,7 @@
 					"zip",
 					"country"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APITenant": {
 				"properties": {
@@ -7195,8 +7473,7 @@
 					"enableProfanityFilter",
 					"enableSpamFilter"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantResponse": {
 				"properties": {
@@ -7211,8 +7488,7 @@
 					"status",
 					"tenant"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantsResponse": {
 				"properties": {
@@ -7230,8 +7506,7 @@
 					"status",
 					"tenants"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantResponse": {
 				"properties": {
@@ -7246,8 +7521,7 @@
 					"status",
 					"tenant"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantBody": {
 				"properties": {
@@ -7329,8 +7603,7 @@
 					"name",
 					"domainConfiguration"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateTenantBody": {
 				"properties": {
@@ -7411,8 +7684,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantUserResponse": {
 				"properties": {
@@ -7427,8 +7699,7 @@
 					"status",
 					"tenantUser"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantUsersResponse": {
 				"properties": {
@@ -7446,8 +7717,7 @@
 					"status",
 					"tenantUsers"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantUserResponse": {
 				"properties": {
@@ -7462,8 +7732,7 @@
 					"status",
 					"tenantUser"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantUserBody": {
 				"properties": {
@@ -7550,8 +7819,7 @@
 					"username",
 					"email"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ReplaceTenantUserBody": {
 				"properties": {
@@ -7652,8 +7920,7 @@
 					"username",
 					"email"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateTenantUserBody": {
 				"properties": {
@@ -7736,8 +8003,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"TenantPackage": {
 				"properties": {
@@ -7760,9 +8026,24 @@
 					"monthlyCostUSD": {
 						"type": "number",
 						"format": "double",
-						"nullable": true
+						"nullable": true,
+						"description": "Always the USD list price, also on regionally priced tenants (commissions and plan comparisons read it)."
 					},
 					"yearlyCostUSD": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"pricingCurrency": {
+						"type": "string",
+						"description": "Regional prices the tenant is charged, when pricingCurrency is set; the Stripe plan ids below are then in that currency."
+					},
+					"monthlyCostLocal": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"yearlyCostLocal": {
 						"type": "number",
 						"format": "double",
 						"nullable": true
@@ -7957,6 +8238,10 @@
 						"type": "number",
 						"format": "double"
 					},
+					"flexFreeModerators": {
+						"type": "number",
+						"format": "double"
+					},
 					"isSSOBillingMonthlyActiveUsers": {
 						"type": "boolean"
 					},
@@ -8005,8 +8290,7 @@
 					"hasAuditing",
 					"hasFlexPricing"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantPackageResponse": {
 				"properties": {
@@ -8021,8 +8305,7 @@
 					"status",
 					"tenantPackage"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantPackagesResponse": {
 				"properties": {
@@ -8040,8 +8323,7 @@
 					"status",
 					"tenantPackages"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantPackageResponse": {
 				"properties": {
@@ -8056,8 +8338,7 @@
 					"status",
 					"tenantPackage"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateTenantPackageBody": {
 				"properties": {
@@ -8269,8 +8550,7 @@
 					"featureTaglines",
 					"hasFlexPricing"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"ReplaceTenantPackageBody": {
 				"properties": {
@@ -8414,8 +8694,7 @@
 					"featureTaglines",
 					"hasFlexPricing"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateTenantPackageBody": {
 				"properties": {
@@ -8545,8 +8824,7 @@
 						"format": "double"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APITenantDailyUsage": {
 				"properties": {
@@ -8644,8 +8922,7 @@
 					"ignored",
 					"apiErrorCount"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetTenantDailyUsagesResponse": {
 				"properties": {
@@ -8663,8 +8940,7 @@
 					"status",
 					"tenantDailyUsages"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"MetaItem": {
 				"properties": {
@@ -8682,8 +8958,7 @@
 					"name",
 					"values"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"QuestionResult": {
 				"properties": {
@@ -8708,7 +8983,16 @@
 					},
 					"value": {
 						"type": "integer",
-						"format": "int32"
+						"format": "int32",
+						"description": "The answer. For multi-choice questions this is the number of selected options and the options are in values."
+					},
+					"values": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Selected option indexes, multi-choice questions only."
 					},
 					"commentId": {
 						"type": "string",
@@ -8739,8 +9023,7 @@
 					"questionId",
 					"ipHash"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetQuestionResultResponse": {
 				"properties": {
@@ -8755,8 +9038,7 @@
 					"status",
 					"questionResult"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetQuestionResultsResponse": {
 				"properties": {
@@ -8774,8 +9056,7 @@
 					"status",
 					"questionResults"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateQuestionResultResponse": {
 				"properties": {
@@ -8790,8 +9071,7 @@
 					"status",
 					"questionResult"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateQuestionResultBody": {
 				"properties": {
@@ -8800,7 +9080,16 @@
 					},
 					"value": {
 						"type": "number",
-						"format": "double"
+						"format": "double",
+						"description": "Required unless values is given. For multi-choice questions this is derived from values."
+					},
+					"values": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Selected option indexes for multi-choice questions."
 					},
 					"questionId": {
 						"type": "string"
@@ -8824,7 +9113,6 @@
 				},
 				"required": [
 					"urlId",
-					"value",
 					"questionId"
 				],
 				"type": "object",
@@ -8844,6 +9132,14 @@
 					"value": {
 						"type": "number",
 						"format": "double"
+					},
+					"values": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Selected option indexes for multi-choice questions."
 					},
 					"commentId": {
 						"type": "string"
@@ -8885,8 +9181,7 @@
 					"v",
 					"total"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Record_string.QuestionDatum_": {
 				"properties": {},
@@ -8924,8 +9219,7 @@
 					"total",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AggregateQuestionResultsResponse": {
 				"properties": {
@@ -8940,8 +9234,7 @@
 					"status",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AggregateTimeBucket": {
 				"type": "string",
@@ -8972,8 +9265,7 @@
 					"status",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkAggregateQuestionItem": {
 				"properties": {
@@ -9003,8 +9295,7 @@
 				"required": [
 					"aggId"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkAggregateQuestionResultsRequest": {
 				"properties": {
@@ -9018,8 +9309,43 @@
 				"required": [
 					"aggregations"
 				],
+				"type": "object"
+			},
+			"CommentTranslation": {
+				"properties": {
+					"comment": {
+						"type": "string"
+					},
+					"commentHTML": {
+						"type": "string"
+					},
+					"sourceLanguage": {
+						"type": "string"
+					},
+					"model": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"comment",
+					"commentHTML",
+					"sourceLanguage",
+					"model",
+					"createdAt"
+				],
+				"type": "object"
+			},
+			"Record_string.CommentTranslation_": {
+				"properties": {},
+				"additionalProperties": {
+					"$ref": "#/components/schemas/CommentTranslation"
+				},
 				"type": "object",
-				"additionalProperties": false
+				"description": "Construct a type with a set of properties K of type T"
 			},
 			"CommentLogType": {
 				"enum": [
@@ -9080,7 +9406,15 @@
 					54,
 					55,
 					56,
-					57
+					57,
+					58,
+					59,
+					60,
+					61,
+					62,
+					63,
+					64,
+					65
 				],
 				"type": "integer"
 			},
@@ -9101,6 +9435,27 @@
 					4,
 					5,
 					6
+				],
+				"type": "integer"
+			},
+			"NotificationSkipReason": {
+				"enum": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15
 				],
 				"type": "integer"
 			},
@@ -9275,10 +9630,18 @@
 					},
 					"detectedLanguage": {
 						"type": "string"
+					},
+					"recipientUserId": {
+						"type": "string"
+					},
+					"notifySkipReason": {
+						"$ref": "#/components/schemas/NotificationSkipReason"
+					},
+					"emailQueued": {
+						"type": "boolean"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentLogEntry": {
 				"properties": {
@@ -9297,8 +9660,7 @@
 					"d",
 					"t"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FComment": {
 				"properties": {
@@ -9461,6 +9823,18 @@
 					},
 					"locale": {
 						"type": "string",
+						"nullable": true
+					},
+					"detectedLanguage": {
+						"type": "string",
+						"nullable": true
+					},
+					"translations": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Record_string.CommentTranslation_"
+							}
+						],
 						"nullable": true
 					},
 					"isDeleted": {
@@ -9633,8 +10007,7 @@
 					"approved",
 					"locale"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FindCommentsByRangeItem": {
 				"properties": {
@@ -9654,8 +10027,7 @@
 					"comment",
 					"result"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FindCommentsByRangeResponse": {
 				"properties": {
@@ -9674,8 +10046,7 @@
 					"results",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CombineQuestionResultsWithCommentsResponse": {
 				"properties": {
@@ -9690,8 +10061,57 @@
 					"status",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
+			},
+			"QuestionConditionOperator": {
+				"enum": [
+					"lt",
+					"lte",
+					"gt",
+					"gte",
+					"eq",
+					"neq",
+					"includes",
+					"excludes"
+				],
+				"type": "string"
+			},
+			"SubQuestionCondition": {
+				"properties": {
+					"operator": {
+						"$ref": "#/components/schemas/QuestionConditionOperator"
+					},
+					"value": {
+						"type": "number",
+						"format": "double"
+					},
+					"subQuestionId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"operator",
+					"value",
+					"subQuestionId"
+				],
+				"type": "object"
+			},
+			"QuestionCondition": {
+				"description": "A rule evaluated against a question's answer. value is the score for nps/slider/star/emoji/scale, 1 or 0 for\nthumbs, and the option index for choice/multi.",
+				"properties": {
+					"operator": {
+						"$ref": "#/components/schemas/QuestionConditionOperator"
+					},
+					"value": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"operator",
+					"value"
+				],
+				"type": "object"
 			},
 			"QuestionConfig": {
 				"properties": {
@@ -9729,7 +10149,8 @@
 						"format": "date-time"
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"description": "One of nps, slider, star, thumbs, choice, multi, emoji, scale. Answers: nps 0-10, slider min-max, star 1-numStars,\nthumbs 1 (up) or 0 (down), choice = option index, multi = option indexes (values), emoji/scale = option index + 1."
 					},
 					"numStars": {
 						"type": "number",
@@ -9769,7 +10190,8 @@
 							],
 							"type": "object"
 						},
-						"type": "array"
+						"type": "array",
+						"description": "Option labels for choice, multi, emoji and scale questions."
 					},
 					"subQuestionIds": {
 						"items": {
@@ -9779,6 +10201,21 @@
 					},
 					"alwaysShowSubQuestions": {
 						"type": "boolean"
+					},
+					"subQuestionConditions": {
+						"items": {
+							"$ref": "#/components/schemas/SubQuestionCondition"
+						},
+						"type": "array",
+						"description": "Sub-questions listed here only show when this question's answer matches. Others always show."
+					},
+					"commentBoxCondition": {
+						"$ref": "#/components/schemas/QuestionCondition",
+						"description": "When set, the comment box only shows when this question's answer matches."
+					},
+					"commentBoxPrompt": {
+						"type": "string",
+						"description": "Placeholder for the comment box when commentBoxCondition reveals it."
 					},
 					"reportingOrder": {
 						"type": "number",
@@ -9807,8 +10244,7 @@
 					"alwaysShowSubQuestions",
 					"reportingOrder"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetQuestionConfigResponse": {
 				"properties": {
@@ -9823,8 +10259,7 @@
 					"status",
 					"questionConfig"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetQuestionConfigsResponse": {
 				"properties": {
@@ -9842,8 +10277,7 @@
 					"status",
 					"questionConfigs"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateQuestionConfigResponse": {
 				"properties": {
@@ -9858,8 +10292,7 @@
 					"status",
 					"questionConfig"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateQuestionConfigBody": {
 				"properties": {
@@ -9873,7 +10306,8 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"description": "One of nps, slider, star, thumbs, choice, multi, emoji, scale. choice, multi, emoji and scale take their labels\nfrom customOptions (choice/multi 2-20 options, emoji/scale 3-7)."
 					},
 					"numStars": {
 						"type": "number",
@@ -9923,6 +10357,21 @@
 					},
 					"alwaysShowSubQuestions": {
 						"type": "boolean"
+					},
+					"subQuestionConditions": {
+						"items": {
+							"$ref": "#/components/schemas/SubQuestionCondition"
+						},
+						"type": "array",
+						"description": "Show a sub-question only when this question's answer matches its rule."
+					},
+					"commentBoxCondition": {
+						"$ref": "#/components/schemas/QuestionCondition",
+						"description": "Show the comment box only when this question's answer matches."
+					},
+					"commentBoxPrompt": {
+						"type": "string",
+						"description": "Comment box placeholder when commentBoxCondition reveals it."
 					},
 					"reportingOrder": {
 						"type": "number",
@@ -9950,7 +10399,8 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"description": "One of nps, slider, star, thumbs, choice, multi, emoji, scale."
 					},
 					"numStars": {
 						"type": "number",
@@ -10001,6 +10451,18 @@
 					"alwaysShowSubQuestions": {
 						"type": "boolean"
 					},
+					"subQuestionConditions": {
+						"items": {
+							"$ref": "#/components/schemas/SubQuestionCondition"
+						},
+						"type": "array"
+					},
+					"commentBoxCondition": {
+						"$ref": "#/components/schemas/QuestionCondition"
+					},
+					"commentBoxPrompt": {
+						"type": "string"
+					},
 					"reportingOrder": {
 						"type": "number",
 						"format": "double"
@@ -10022,8 +10484,7 @@
 					"status",
 					"poll"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SavePollResponse": {
 				"properties": {
@@ -10038,8 +10499,7 @@
 					"status",
 					"poll"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentPollOptionInput": {
 				"properties": {
@@ -10054,8 +10514,7 @@
 				"required": [
 					"label"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentPollPutInput": {
 				"properties": {
@@ -10086,8 +10545,7 @@
 					"question",
 					"options"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CommentPollPatch": {
 				"properties": {
@@ -10128,8 +10586,7 @@
 						"nullable": true
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PublicPollVote": {
 				"description": "A single vote cast on a comment's poll.",
@@ -10170,8 +10627,7 @@
 					"optionId",
 					"createdAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetPollVotesResponse": {
 				"properties": {
@@ -10189,8 +10645,7 @@
 					"status",
 					"pollVotes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetPollVoteResponse": {
 				"properties": {
@@ -10205,8 +10660,7 @@
 					"status",
 					"pollVote"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreatePollVoteResponse": {
 				"properties": {
@@ -10225,8 +10679,7 @@
 					"pollVote",
 					"poll"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreatePollVoteBody": {
 				"properties": {
@@ -10250,8 +10703,7 @@
 					"commentId",
 					"optionId"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"DeletePollVoteResponse": {
 				"properties": {
@@ -10266,8 +10718,7 @@
 					"status",
 					"poll"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PendingCommentToSyncOutbound": {
 				"properties": {
@@ -10311,7 +10762,6 @@
 						"type": "string"
 					},
 					"lastError": {
-						"additionalProperties": false,
 						"type": "object"
 					},
 					"webhookId": {
@@ -10331,8 +10781,7 @@
 					"domain",
 					"lastError"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetPendingWebhookEventsResponse": {
 				"properties": {
@@ -10350,8 +10799,7 @@
 					"status",
 					"pendingWebhookEvents"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetPendingWebhookEventCountResponse": {
 				"properties": {
@@ -10367,8 +10815,7 @@
 					"status",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetNotificationsResponse": {
 				"properties": {
@@ -10386,8 +10833,7 @@
 					"status",
 					"notifications"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetNotificationCountResponse": {
 				"properties": {
@@ -10403,8 +10849,7 @@
 					"status",
 					"count"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateNotificationBody": {
 				"properties": {
@@ -10442,8 +10887,7 @@
 					"createdAt",
 					"expireAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetCachedNotificationCountResponse": {
 				"properties": {
@@ -10458,8 +10902,7 @@
 					"status",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Moderator": {
 				"properties": {
@@ -10559,8 +11002,7 @@
 					"createdAt",
 					"moderationGroupIds"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetModeratorResponse": {
 				"properties": {
@@ -10575,8 +11017,7 @@
 					"status",
 					"moderator"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetModeratorsResponse": {
 				"properties": {
@@ -10594,8 +11035,7 @@
 					"status",
 					"moderators"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateModeratorResponse": {
 				"properties": {
@@ -10610,8 +11050,7 @@
 					"status",
 					"moderator"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateModeratorBody": {
 				"properties": {
@@ -10712,8 +11151,7 @@
 					"authType",
 					"scopes"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"TenantHashTag": {
 				"properties": {
@@ -10740,8 +11178,7 @@
 					"tenantId",
 					"tag"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetHashTagsResponse": {
 				"properties": {
@@ -10759,8 +11196,7 @@
 					"status",
 					"hashTags"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateHashTagResponse": {
 				"properties": {
@@ -10775,8 +11211,7 @@
 					"status",
 					"hashTag"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateHashTagBody": {
 				"properties": {
@@ -10793,8 +11228,7 @@
 				"required": [
 					"tag"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkCreateHashTagsResponse": {
 				"properties": {
@@ -10819,8 +11253,7 @@
 					"status",
 					"results"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BulkCreateHashTagsBody": {
 				"properties": {
@@ -10848,8 +11281,7 @@
 				"required": [
 					"tags"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateHashTagResponse": {
 				"properties": {
@@ -10864,8 +11296,7 @@
 					"status",
 					"hashTag"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateHashTagBody": {
 				"properties": {
@@ -10879,8 +11310,7 @@
 						"type": "string"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetFeedPostsResponse": {
 				"properties": {
@@ -10898,8 +11328,7 @@
 					"status",
 					"feedPosts"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateFeedPostsResponse": {
 				"properties": {
@@ -10914,8 +11343,7 @@
 					"status",
 					"feedPost"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Record_string.unknown_": {
 				"properties": {},
@@ -10952,8 +11380,7 @@
 					"defaultTranslationsByLocale",
 					"defaultEJS"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetEmailTemplateDefinitionsResponse": {
 				"properties": {
@@ -10971,8 +11398,7 @@
 					"status",
 					"definitions"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"EmailTemplateRenderErrorResponse": {
 				"properties": {
@@ -11010,8 +11436,7 @@
 					"createdAt",
 					"lastOccurredAt"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetEmailTemplateRenderErrorsResponse": {
 				"properties": {
@@ -11029,8 +11454,7 @@
 					"status",
 					"renderErrors"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CustomEmailTemplate": {
 				"properties": {
@@ -11083,8 +11507,7 @@
 					"translationOverridesByLocale",
 					"testData"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetEmailTemplateResponse": {
 				"properties": {
@@ -11099,8 +11522,7 @@
 					"status",
 					"emailTemplate"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetEmailTemplatesResponse": {
 				"properties": {
@@ -11118,8 +11540,7 @@
 					"status",
 					"emailTemplates"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateEmailTemplateResponse": {
 				"properties": {
@@ -11134,8 +11555,7 @@
 					"status",
 					"emailTemplate"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateEmailTemplateBody": {
 				"properties": {
@@ -11163,8 +11583,7 @@
 					"displayName",
 					"ejs"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateEmailTemplateBody": {
 				"properties": {
@@ -11187,8 +11606,7 @@
 						"$ref": "#/components/schemas/Record_string.unknown_"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"RenderEmailTemplateResponse": {
 				"properties": {
@@ -11203,8 +11621,7 @@
 					"status",
 					"html"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"RenderEmailTemplateBody": {
 				"properties": {
@@ -11225,8 +11642,7 @@
 					"emailTemplateId",
 					"ejs"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AddDomainConfigParams": {
 				"properties": {
@@ -11255,8 +11671,7 @@
 				"required": [
 					"domain"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdateDomainConfigParams": {
 				"properties": {
@@ -11285,8 +11700,7 @@
 				"required": [
 					"domain"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"PatchDomainConfigParams": {
 				"properties": {
@@ -11312,8 +11726,7 @@
 						"$ref": "#/components/schemas/Record_string.string_"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APICommentBase": {
 				"properties": {
@@ -11558,8 +11971,7 @@
 					"urlId",
 					"verified"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIComment": {
 				"allOf": [
@@ -11594,8 +12006,7 @@
 					"status",
 					"comment"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APIGetCommentsResponse": {
 				"properties": {
@@ -11613,8 +12024,7 @@
 					"status",
 					"comments"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UpdatableCommentParams": {
 				"properties": {
@@ -11784,8 +12194,7 @@
 						"type": "array"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"APISaveCommentResponse": {
 				"properties": {
@@ -11812,8 +12221,7 @@
 					"comment",
 					"user"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateCommentParams": {
 				"properties": {
@@ -11883,7 +12291,6 @@
 						"type": "string"
 					},
 					"meta": {
-						"additionalProperties": false,
 						"type": "object"
 					},
 					"moderationGroupIds": {
@@ -11910,7 +12317,7 @@
 						"type": "array"
 					},
 					"questionValues": {
-						"$ref": "#/components/schemas/Record_string.string-or-number_"
+						"$ref": "#/components/schemas/Record_string.string-or-number-or-number-Array_"
 					},
 					"poll": {
 						"$ref": "#/components/schemas/CommentPollInput"
@@ -11963,8 +12370,7 @@
 					"urlId",
 					"locale"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"FlagCommentResponse": {
 				"properties": {
@@ -11988,8 +12394,7 @@
 				"required": [
 					"status"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"BlockFromCommentParams": {
 				"properties": {
@@ -12000,8 +12405,7 @@
 						"type": "array"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"UnBlockFromCommentParams": {
 				"properties": {
@@ -12012,8 +12416,198 @@
 						"type": "array"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
+			},
+			"PageMigrationSuccess": {
+				"properties": {
+					"from": {
+						"type": "string"
+					},
+					"to": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/PageMigrationType"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"commentsMigrated": {
+						"type": "integer",
+						"format": "int32"
+					}
+				},
+				"required": [
+					"from",
+					"to",
+					"type",
+					"status",
+					"commentsMigrated"
+				],
+				"type": "object"
+			},
+			"PageMigrationFailure": {
+				"properties": {
+					"from": {
+						"type": "string"
+					},
+					"to": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/PageMigrationType"
+					},
+					"status": {
+						"$ref": "#/components/schemas/APIStatus"
+					},
+					"code": {
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"from",
+					"to",
+					"type",
+					"status",
+					"code",
+					"reason"
+				],
+				"type": "object"
+			},
+			"PageMigrationUndoCounts": {
+				"properties": {
+					"restored": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Records put back to their pre-migration values."
+					},
+					"skipped": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Records left alone because they changed after the migration, or no longer exist."
+					},
+					"notRestorable": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Records a page merge or duplicate cleanup deleted during the migration. These cannot be brought back."
+					}
+				},
+				"required": [
+					"restored",
+					"skipped",
+					"notRestorable"
+				],
+				"type": "object"
+			},
+			"APIBatchJob": {
+				"properties": {
+					"pageMigrationUndoResult": {
+						"$ref": "#/components/schemas/PageMigrationUndoCounts",
+						"description": "undo-page-migration: set once the job has finished."
+					},
+					"undoId": {
+						"type": "string",
+						"description": "migrate-pages: set once the job has finished. Pass to POST /api/v1/pages/migrations/{undoId}/undo within 90 days.\nundo-page-migration: the migration being undone."
+					},
+					"pageMigrationResults": {
+						"items": {
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/PageMigrationSuccess"
+								},
+								{
+									"$ref": "#/components/schemas/PageMigrationFailure"
+								}
+							]
+						},
+						"type": "array",
+						"description": "migrate-pages: one entry per finished migration, in request order."
+					},
+					"totalCount": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Total work, when known up front."
+					},
+					"processedCount": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Work done so far. The unit depends on the type: migrations finished for migrate-pages, records restored for\nundo-page-migration, rows for imports and exports."
+					},
+					"completedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"status": {
+						"type": "string",
+						"description": "requested, running, success or failed."
+					},
+					"type": {
+						"type": "string",
+						"description": "For example migrate-pages, undo-page-migration, export, import."
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"processedCount",
+					"createdAt",
+					"status",
+					"type",
+					"id"
+				],
+				"type": "object"
+			},
+			"GetBatchJobsAPIResponse": {
+				"properties": {
+					"reason": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"batchJobs": {
+						"items": {
+							"$ref": "#/components/schemas/APIBatchJob"
+						},
+						"type": "array",
+						"description": "Newest first, 100 per page."
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			},
+			"GetBatchJobAPIResponse": {
+				"properties": {
+					"reason": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"batchJob": {
+						"$ref": "#/components/schemas/APIBatchJob"
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
 			},
 			"APIAuditLog": {
 				"properties": {
@@ -12093,8 +12687,7 @@
 					"resourceName",
 					"crudType"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"GetAuditLogsResponse": {
 				"properties": {
@@ -12112,8 +12705,7 @@
 					"status",
 					"auditLogs"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"SORT_DIR": {
 				"type": "string",
@@ -12207,8 +12799,7 @@
 					"status",
 					"data"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AggregationAPIError": {
 				"properties": {
@@ -12233,8 +12824,7 @@
 					"reason",
 					"code"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"QueryPredicate": {
 				"properties": {
@@ -12271,8 +12861,7 @@
 					"value",
 					"operator"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AggregationOpType": {
 				"type": "string",
@@ -12310,8 +12899,7 @@
 					"field",
 					"op"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"AggregationRequest": {
 				"description": "The aggregation request accepts a resource, optional grouping keys, an array of operations, and an optional sort",
@@ -12361,8 +12949,7 @@
 					"resourceName",
 					"operations"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateAgentTenantResponse": {
 				"properties": {
@@ -12401,8 +12988,7 @@
 					"apiBaseUrl",
 					"mcpUrl"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"CreateAgentTenantBody": {
 				"properties": {
@@ -12422,8 +13008,7 @@
 						"description": "Free-form identifier of the agent making the request, e.g. \"claude-code\"."
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			}
 		},
 		"securitySchemes": {
@@ -13653,6 +14238,172 @@
 				]
 			}
 		},
+		"/polls/{tenantId}/{commentId}/vote": {
+			"put": {
+				"operationId": "VotePoll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/VotePollResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "broadcastId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/VotePollBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/polls/{tenantId}/{commentId}/voters": {
+			"get": {
+				"operationId": "GetPollVoters",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPollVoterNamesSuccessResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"description": "Who voted for which option. Anonymous polls never answer, admins-only polls answer only for an admin or moderator.",
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/page-reacts/v1/likes/{tenantId}": {
 			"get": {
 				"operationId": "GetV1PageLikes",
@@ -13705,6 +14456,15 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"description": "When set, returns the users who liked the page (avatars and usernames). Only \"public\" is accepted, which omits private profiles.",
+						"in": "query",
+						"name": "includeUserInfo",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/PageReactIncludeUserInfo"
 						}
 					}
 				]
@@ -13945,6 +14705,15 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"description": "When set, returns the users for each react id (avatars and usernames). Only \"public\" is accepted, which omits private profiles.",
+						"in": "query",
+						"name": "includeUserInfo",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/PageReactIncludeUserInfo"
 						}
 					}
 				]
@@ -18493,6 +19262,23 @@
 						"schema": {
 							"type": "string"
 						}
+					},
+					{
+						"in": "query",
+						"name": "questionId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "questionValue",
+						"required": false,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
 					}
 				]
 			},
@@ -18560,6 +19346,14 @@
 					{
 						"in": "query",
 						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
 						"required": false,
 						"schema": {
 							"type": "string"
@@ -18953,6 +19747,82 @@
 						}
 					}
 				]
+			}
+		},
+		"/comments/{tenantId}/translations": {
+			"post": {
+				"operationId": "TranslateComments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommentTranslationsResponse"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/APIError"
+								}
+							}
+						}
+					}
+				},
+				"description": "Translates the given comments into the widget locale. Only available when the matching widget\ncustomization rule has Comment Translation set to Automatic or Manual.",
+				"tags": [
+					"Public"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sso",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "locale",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CommentTranslationsRequest"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/comments/{tenantId}/{commentId}/pin": {
@@ -20002,6 +20872,190 @@
 					{
 						"in": "query",
 						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/pages/likes": {
+			"get": {
+				"operationId": "GetPageLikes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPageLikesAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Like count for a page, optionally with the users who liked it.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "\"public\" omits users with private profiles, \"include-private\" includes them.",
+						"in": "query",
+						"name": "includeUserInfo",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/PageReactIncludeUserInfo"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/pages/reacts": {
+			"get": {
+				"operationId": "GetPageReacts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPageReactsAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Custom react counts for a page, optionally with the users who reacted.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "urlId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "\"public\" omits users with private profiles, \"include-private\" includes them.",
+						"in": "query",
+						"name": "includeUserInfo",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/PageReactIncludeUserInfo"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/pages/migrations": {
+			"post": {
+				"operationId": "MigratePages",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/QueuePageMigrationJobAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Queues a batch job that moves comments, pages and related records from one urlId or domain to another.\n\"urlId\" migrations only match the exact urlId. \"domain\" migrations find/replace the value inside every urlId and url.\nPoll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MigrateAPIPagesData"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/pages/migrations/{undoId}/undo": {
+			"post": {
+				"operationId": "UndoPageMigrations",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/QueuePageMigrationJobAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days.\nRecords changed since the migration are left alone, so a later edit is never overwritten.\nPoll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "undoId",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -26850,6 +27904,108 @@
 						}
 					}
 				}
+			}
+		},
+		"/api/v1/batch-jobs": {
+			"get": {
+				"operationId": "GetBatchJobs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBatchJobsAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "The tenant's batch jobs (imports, exports, page migrations...), newest first.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Only jobs of this type, for example migrate-pages.",
+						"in": "query",
+						"name": "type",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Only jobs in this status: requested, running, success or failed.",
+						"in": "query",
+						"name": "status",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "How many jobs to skip, for paging.",
+						"in": "query",
+						"name": "skip",
+						"required": false,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
+					}
+				]
+			}
+		},
+		"/api/v1/batch-jobs/{id}": {
+			"get": {
+				"operationId": "GetBatchJob",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBatchJobAPIResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Status, progress and, once done, the result of one batch job.",
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "tenantId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/api/v1/audit-logs": {

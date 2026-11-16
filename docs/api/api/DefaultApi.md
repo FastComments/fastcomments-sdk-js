@@ -53,6 +53,8 @@ All URIs are relative to *https://fastcomments.com*
 | [**deleteWebhook**](DefaultApi.md#deleteWebhook) | **DELETE** /api/v1/webhooks/{id} |  |
 | [**flagComment**](DefaultApi.md#flagComment) | **POST** /api/v1/comments/{id}/flag |  |
 | [**getAuditLogs**](DefaultApi.md#getAuditLogs) | **GET** /api/v1/audit-logs |  |
+| [**getBatchJob**](DefaultApi.md#getBatchJob) | **GET** /api/v1/batch-jobs/{id} |  |
+| [**getBatchJobs**](DefaultApi.md#getBatchJobs) | **GET** /api/v1/batch-jobs |  |
 | [**getCachedNotificationCount**](DefaultApi.md#getCachedNotificationCount) | **GET** /api/v1/notification-count/{id} |  |
 | [**getComment**](DefaultApi.md#getComment) | **GET** /api/v1/comments/{id} |  |
 | [**getComments**](DefaultApi.md#getComments) | **GET** /api/v1/comments |  |
@@ -70,6 +72,8 @@ All URIs are relative to *https://fastcomments.com*
 | [**getNotificationCount**](DefaultApi.md#getNotificationCount) | **GET** /api/v1/notifications/count |  |
 | [**getNotifications**](DefaultApi.md#getNotifications) | **GET** /api/v1/notifications |  |
 | [**getPageByURLId**](DefaultApi.md#getPageByURLId) | **GET** /api/v1/pages/by-url-id |  |
+| [**getPageLikes**](DefaultApi.md#getPageLikes) | **GET** /api/v1/pages/likes |  |
+| [**getPageReacts**](DefaultApi.md#getPageReacts) | **GET** /api/v1/pages/reacts |  |
 | [**getPages**](DefaultApi.md#getPages) | **GET** /api/v1/pages |  |
 | [**getPendingWebhookEventCount**](DefaultApi.md#getPendingWebhookEventCount) | **GET** /api/v1/pending-webhook-events/count |  |
 | [**getPendingWebhookEvents**](DefaultApi.md#getPendingWebhookEvents) | **GET** /api/v1/pending-webhook-events |  |
@@ -103,6 +107,7 @@ All URIs are relative to *https://fastcomments.com*
 | [**getVotesForUser**](DefaultApi.md#getVotesForUser) | **GET** /api/v1/votes/for-user |  |
 | [**getWebhookSamplePayloads**](DefaultApi.md#getWebhookSamplePayloads) | **GET** /api/v1/webhooks/sample-payloads |  |
 | [**getWebhooks**](DefaultApi.md#getWebhooks) | **GET** /api/v1/webhooks |  |
+| [**migratePages**](DefaultApi.md#migratePages) | **POST** /api/v1/pages/migrations |  |
 | [**patchDomainConfig**](DefaultApi.md#patchDomainConfig) | **PATCH** /api/v1/domain-configs/{domainToUpdate} |  |
 | [**patchHashTag**](DefaultApi.md#patchHashTag) | **PATCH** /api/v1/hash-tags/{tag} |  |
 | [**patchPage**](DefaultApi.md#patchPage) | **PATCH** /api/v1/pages/{id} |  |
@@ -120,6 +125,7 @@ All URIs are relative to *https://fastcomments.com*
 | [**sendLoginLink**](DefaultApi.md#sendLoginLink) | **POST** /api/v1/tenant-users/{id}/send-login-link |  |
 | [**unBlockUserFromComment**](DefaultApi.md#unBlockUserFromComment) | **POST** /api/v1/comments/{id}/un-block |  |
 | [**unFlagComment**](DefaultApi.md#unFlagComment) | **POST** /api/v1/comments/{id}/un-flag |  |
+| [**undoPageMigrations**](DefaultApi.md#undoPageMigrations) | **POST** /api/v1/pages/migrations/{undoId}/undo |  |
 | [**updateComment**](DefaultApi.md#updateComment) | **PATCH** /api/v1/comments/{id} |  |
 | [**updateEmailTemplate**](DefaultApi.md#updateEmailTemplate) | **PATCH** /api/v1/email-templates/{id} |  |
 | [**updateFeedPost**](DefaultApi.md#updateFeedPost) | **PATCH** /api/v1/feed-posts/{id} |  |
@@ -1474,6 +1480,64 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getBatchJob"></a>
+# **getBatchJob**
+> GetBatchJobAPIResponse getBatchJob(tenantId, id)
+
+
+
+    Status, progress and, once done, the result of one batch job.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **id** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetBatchJobAPIResponse**](../model/GetBatchJobAPIResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getBatchJobs"></a>
+# **getBatchJobs**
+> GetBatchJobsAPIResponse getBatchJobs(tenantId, type, status, skip)
+
+
+
+    The tenant&#39;s batch jobs (imports, exports, page migrations...), newest first.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **type** | **String**| Only jobs of this type, for example migrate-pages. | [optional] [default to null] |
+| **status** | **String**| Only jobs in this status: requested, running, success or failed. | [optional] [default to null] |
+| **skip** | **Integer**| How many jobs to skip, for paging. | [optional] [default to null] |
+
+### Return type
+
+[**GetBatchJobsAPIResponse**](../model/GetBatchJobsAPIResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getCachedNotificationCount"></a>
 # **getCachedNotificationCount**
 > GetCachedNotificationCountResponse getCachedNotificationCount(tenantId, id)
@@ -1934,6 +1998,64 @@ No authorization required
 ### Return type
 
 [**GetPageByURLIdAPIResponse**](../model/GetPageByURLIdAPIResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPageLikes"></a>
+# **getPageLikes**
+> GetPageLikesAPIResponse getPageLikes(tenantId, urlId, includeUserInfo)
+
+
+
+    Like count for a page, optionally with the users who liked it.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **includeUserInfo** | [**PageReactIncludeUserInfo**](../model/.md)| \&quot;public\&quot; omits users with private profiles, \&quot;include-private\&quot; includes them. | [optional] [default to null] [enum: public, include-private] |
+
+### Return type
+
+[**GetPageLikesAPIResponse**](../model/GetPageLikesAPIResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPageReacts"></a>
+# **getPageReacts**
+> GetPageReactsAPIResponse getPageReacts(tenantId, urlId, includeUserInfo)
+
+
+
+    Custom react counts for a page, optionally with the users who reacted.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **urlId** | **String**|  | [default to null] |
+| **includeUserInfo** | [**PageReactIncludeUserInfo**](../model/.md)| \&quot;public\&quot; omits users with private profiles, \&quot;include-private\&quot; includes them. | [optional] [default to null] [enum: public, include-private] |
+
+### Return type
+
+[**GetPageReactsAPIResponse**](../model/GetPageReactsAPIResponse.md)
 
 ### Authorization
 
@@ -2847,6 +2969,34 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="migratePages"></a>
+# **migratePages**
+> QueuePageMigrationJobAPIResponse migratePages(tenantId, MigrateAPIPagesData)
+
+
+
+    Queues a batch job that moves comments, pages and related records from one urlId or domain to another. \&quot;urlId\&quot; migrations only match the exact urlId. \&quot;domain\&quot; migrations find/replace the value inside every urlId and url. Poll GET /api/v1/batch-jobs/{batchJobId}: once it is done it carries per-migration results and an undoId.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **MigrateAPIPagesData** | [**MigrateAPIPagesData**](../model/MigrateAPIPagesData.md)|  | |
+
+### Return type
+
+[**QueuePageMigrationJobAPIResponse**](../model/QueuePageMigrationJobAPIResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="patchDomainConfig"></a>
 # **patchDomainConfig**
 > PatchDomainConfigResponse patchDomainConfig(tenantId, domainToUpdate, PatchDomainConfigParams)
@@ -3313,6 +3463,34 @@ No authorization required
 ### Return type
 
 [**FlagCommentResponse**](../model/FlagCommentResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="undoPageMigrations"></a>
+# **undoPageMigrations**
+> QueuePageMigrationJobAPIResponse undoPageMigrations(tenantId, undoId)
+
+
+
+    Queues a batch job that reverses every migration from one migrate-pages job, newest first. Available for 90 days. Records changed since the migration are left alone, so a later edit is never overwritten. Poll GET /api/v1/batch-jobs/{batchJobId} for the restored/skipped counts.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tenantId** | **String**|  | [default to null] |
+| **undoId** | **String**|  | [default to null] |
+
+### Return type
+
+[**QueuePageMigrationJobAPIResponse**](../model/QueuePageMigrationJobAPIResponse.md)
 
 ### Authorization
 

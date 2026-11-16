@@ -20,6 +20,20 @@ import {
     QuestionConfigCustomOptionsInnerToJSON,
     QuestionConfigCustomOptionsInnerToJSONTyped,
 } from './QuestionConfigCustomOptionsInner';
+import type { QuestionCondition } from './QuestionCondition';
+import {
+    QuestionConditionFromJSON,
+    QuestionConditionFromJSONTyped,
+    QuestionConditionToJSON,
+    QuestionConditionToJSONTyped,
+} from './QuestionCondition';
+import type { SubQuestionCondition } from './SubQuestionCondition';
+import {
+    SubQuestionConditionFromJSON,
+    SubQuestionConditionFromJSONTyped,
+    SubQuestionConditionToJSON,
+    SubQuestionConditionToJSONTyped,
+} from './SubQuestionCondition';
 
 /**
  * 
@@ -47,7 +61,7 @@ export interface UpdateQuestionConfigBody {
      */
     helpText?: string;
     /**
-     * 
+     * One of nps, slider, star, thumbs, choice, multi, emoji, scale.
      * @type {string}
      * @memberof UpdateQuestionConfigBody
      */
@@ -108,6 +122,24 @@ export interface UpdateQuestionConfigBody {
     alwaysShowSubQuestions?: boolean;
     /**
      * 
+     * @type {Array<SubQuestionCondition>}
+     * @memberof UpdateQuestionConfigBody
+     */
+    subQuestionConditions?: Array<SubQuestionCondition>;
+    /**
+     * 
+     * @type {QuestionCondition}
+     * @memberof UpdateQuestionConfigBody
+     */
+    commentBoxCondition?: QuestionCondition;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateQuestionConfigBody
+     */
+    commentBoxPrompt?: string;
+    /**
+     * 
      * @type {number}
      * @memberof UpdateQuestionConfigBody
      */
@@ -145,6 +177,9 @@ export function UpdateQuestionConfigBodyFromJSONTyped(json: any, ignoreDiscrimin
         'customOptions': json['customOptions'] == null ? undefined : ((json['customOptions'] as Array<any>).map(QuestionConfigCustomOptionsInnerFromJSON)),
         'subQuestionIds': json['subQuestionIds'] == null ? undefined : json['subQuestionIds'],
         'alwaysShowSubQuestions': json['alwaysShowSubQuestions'] == null ? undefined : json['alwaysShowSubQuestions'],
+        'subQuestionConditions': json['subQuestionConditions'] == null ? undefined : ((json['subQuestionConditions'] as Array<any>).map(SubQuestionConditionFromJSON)),
+        'commentBoxCondition': json['commentBoxCondition'] == null ? undefined : QuestionConditionFromJSON(json['commentBoxCondition']),
+        'commentBoxPrompt': json['commentBoxPrompt'] == null ? undefined : json['commentBoxPrompt'],
         'reportingOrder': json['reportingOrder'] == null ? undefined : json['reportingOrder'],
     };
 }
@@ -174,6 +209,9 @@ export function UpdateQuestionConfigBodyToJSONTyped(value?: UpdateQuestionConfig
         'customOptions': value['customOptions'] == null ? undefined : ((value['customOptions'] as Array<any>).map(QuestionConfigCustomOptionsInnerToJSON)),
         'subQuestionIds': value['subQuestionIds'],
         'alwaysShowSubQuestions': value['alwaysShowSubQuestions'],
+        'subQuestionConditions': value['subQuestionConditions'] == null ? undefined : ((value['subQuestionConditions'] as Array<any>).map(SubQuestionConditionToJSON)),
+        'commentBoxCondition': QuestionConditionToJSON(value['commentBoxCondition']),
+        'commentBoxPrompt': value['commentBoxPrompt'],
         'reportingOrder': value['reportingOrder'],
     };
 }

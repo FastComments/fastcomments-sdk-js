@@ -51,6 +51,9 @@
 | **invalidLocale** | **String** |  | [optional] [default to null] |
 | **detectedLocale** | **String** |  | [optional] [default to null] |
 | **detectedLanguage** | **String** |  | [optional] [default to null] |
+| **recipientUserId** | **String** |  | [optional] [default to null] |
+| **notifySkipReason** | [**NotificationSkipReason**](NotificationSkipReason.md) |  | [optional] [default to null] |
+| **emailQueued** | **Boolean** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
